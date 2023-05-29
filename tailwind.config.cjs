@@ -7,18 +7,21 @@ module.exports = {
     extend: {
       colors: {
         'bb-grey': {
-          200: '#f3f3f3',
+          default: '#EAEAEA',
+          200: '#F3F3F3',
           400: '#EAEAEA',
+          500: '#2E2E2E',
           600: '#2B2B2B',
         },
         'bb-blue': {
+          default: '#182B38',
           200: '#323F4B',
           400: '#182B38',
         },
       },
       fontFamily: {
         sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
-        grotesk: ['Space Grotesk'],
+        grotesk: ['Space Grotesk Variable', ...defaultTheme.fontFamily.sans],
       },
     },
   },
