@@ -9,7 +9,7 @@ interface Props {
 
 const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
   return (
-    <header className='relative pl-24 pr-0 py-48 bg-bb-grey-200 flex gap-24'>
+    <header className='relative pl-24 pr-0 py-48 flex gap-24'>
       <div className='flex flex-col items-start max-w-[35%]'>
         <BbLogo />
         <h1 className='text-black font-grotesk font-medium text-5xl mt-7 leading-tight'>{title}</h1>
