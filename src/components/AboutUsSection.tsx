@@ -5,8 +5,8 @@ interface Props {}
 
 const AboutUsSection: React.FC<Props> = () => {
   return (
-    <section className={'text-white flex flex-col md:flex-row md:p-28 px-5 pb-80'}>
-      <div className={'flex-1 mt-16'}>
+    <section className={'text-white flex flex-col md:flex-row px-5 pb-[16.5rem] pt-16 md:p-28 '}>
+      <div className={'flex-1'}>
         <SectionMark
           title={'Über uns'}
           classNameLine={'bg-white/75'}
@@ -24,7 +24,7 @@ const AboutUsSection: React.FC<Props> = () => {
           aliquet. Aliquam accumsan orci molestie nec amet iaculis sapien. Eget magna mattis platea
           pretium in et sollicitudin fusce ipsum.
         </p>
-        <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-36'}>
+        <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div>
             <img src='./moritz.png' className='w-14 h-14 rounded-full' />
             <p className={'mt-5 text-base md:text-xl leading-8'}>

@@ -5,8 +5,8 @@ import ServiceItemDivider from '@components/ServiceItemDivider'
 import { ReactComponent as GlobeIcon } from '@phosphor-icons/core/regular/globe.svg'
 import { ReactComponent as LightningIcon } from '@phosphor-icons/core/regular/lightning.svg'
 import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regular/terminal-window.svg'
-import { ReactComponent as SidebarIcon } from '@phosphor-icons/core/regular/sidebar.svg'
-import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats.svg'
+import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layout.svg'
+import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
 import ServiceHeader from '@components/ServiceHeader'
 
@@ -14,7 +14,7 @@ interface Props {}
 
 const ServicesSection: React.FC<Props> = () => {
   return (
-    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-36'}>
+    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-20'}>
       <div className={'flex-1 pb-6'}>
         <SectionMark
           title={'Leistungen'}
@@ -56,7 +56,7 @@ const ServicesSection: React.FC<Props> = () => {
             'Wir implementieren hochwertige und interaktive Frontends mit Hilfe modernster Web-Technologien.'
           }
           dark={true}
-          icon={<SidebarIcon />}
+          icon={<LayoutIcon />}
         />
         <div className={'h-8 bg-black hidden md:block'} />
         <div className={'h-4 md:hidden'} />

@@ -4,9 +4,9 @@ import Button from '@components/Button'
 
 const Footer: React.FC = () => {
   return (
-    <footer className={'flex flex-col md:flex-row pt-14 md:pt-20 px-5 md:px-28 pb-14'}>
-      <div className={'flex-[2] pt-0.5'}>
-        <BbLogo />
+    <footer className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 md:px-28 pb-14 gap-y-5'}>
+      <div className={'flex-[2] md:pt-0.5'}>
+        <BbLogo className={'h-6 md:h-10'} />
       </div>
       <div className={'flex-[3]'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
         <Button className='mt-5' caption={'Projekt anfragen'} />
         <div
           className={
-            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-[17.875rem]'
+            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-[11.5rem] md:mt-[17.875rem]'
           }
         >
           <address className={'not-italic'}>
