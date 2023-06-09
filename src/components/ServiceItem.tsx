@@ -7,7 +7,7 @@ interface Props {
   icon?: React.ReactNode
 }
 
-const ServiceSection: React.FC<Props> = ({ title, text, icon, dark = false }) => {
+const ServiceItem: React.FC<Props> = ({ title, text, icon, dark = false }) => {
   return (
     <div className={`p-8 ${dark ? 'bg-bb-grey-600' : 'bg-bb-grey-400'}`}>
       {icon && (
@@ -25,4 +25,4 @@ const ServiceSection: React.FC<Props> = ({ title, text, icon, dark = false }) =>
   )
 }
 
-export default ServiceSection
+export default ServiceItem
