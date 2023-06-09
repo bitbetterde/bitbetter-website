@@ -1,10 +1,11 @@
 import type React from 'react'
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
 import Button from '@components/Button'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
 const Footer: React.FC = () => {
   return (
-    <footer className={'flex pt-20 px-28 pb-14'}>
+    <footer className={'flex pt-20 px-28 pb-14 relative'}>
       <div className={'flex-[2] pt-0.5'}>
         <BbLogo />
       </div>
@@ -30,6 +31,8 @@ const Footer: React.FC = () => {
           </address>
         </div>
       </div>
+      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0' />
+      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-80' />
     </footer>
   )
 }
