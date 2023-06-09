@@ -37,8 +37,8 @@ const Footer: React.FC = () => {
           </address>
         </div>
       </div>
-      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0' />
-      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-80' />
+      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0 hidden md:block' />
+      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-80 hidden md:block' />
     </footer>
   )
 }

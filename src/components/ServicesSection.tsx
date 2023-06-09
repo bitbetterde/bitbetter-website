@@ -89,8 +89,8 @@ const ServicesSection: React.FC<Props> = () => {
         />
         <div className={'h-8 bg-bb-grey-200 hidden md:block'} />
       </div>
-      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8' />
-      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5]' />
+      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden md:block' />
+      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden md:block' />
     </section>
   )
 }
