@@ -4,7 +4,7 @@ import Button from '@components/Button'
 
 const Footer: React.FC = () => {
   return (
-    <div className={'flex pt-20 pl-24 pr-[7.5rem]'}>
+    <footer className={'flex pt-20 px-28 pb-14'}>
       <div className={'flex-[2] pt-0.5'}>
         <BbLogo />
       </div>
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           </address>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 
