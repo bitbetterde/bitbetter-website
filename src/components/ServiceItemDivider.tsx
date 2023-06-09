@@ -4,8 +4,8 @@ interface Props {
   className?: string
 }
 
-const ServiceSectionDivider: React.FC<Props> = ({ className = '' }) => {
+const ServiceItemDivider: React.FC<Props> = ({ className = '' }) => {
   return <div className={`h-3 ${className}`}></div>
 }
 
-export default ServiceSectionDivider
+export default ServiceItemDivider

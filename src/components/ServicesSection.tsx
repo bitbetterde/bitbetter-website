@@ -1,7 +1,7 @@
 import type React from 'react'
 import SectionMark from '@components/SectionMark'
-import ServiceSection from '@components/ServiceSection'
-import ServiceSectionDivider from '@components/ServiceSectionDivider'
+import ServiceItem from '@components/ServiceItem'
+import ServiceItemDivider from '@components/ServiceItemDivider'
 import { ReactComponent as GlobeIcon } from '@phosphor-icons/core/regular/globe.svg'
 import { ReactComponent as LightningIcon } from '@phosphor-icons/core/regular/lightning.svg'
 import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regular/terminal-window.svg'
@@ -34,7 +34,7 @@ const ServicesSection: React.FC<Props> = () => {
             Vertrauen Sie auf unsere langjährige Digital-Kompetenz
           </h3>
         </div>
-        <ServiceSection
+        <ServiceItem
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'
@@ -42,16 +42,16 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<LightningIcon />}
         />
-        <ServiceSection
+        <ServiceItem
           title={'Webanwendungen'}
           text={
             'Wir kennen den Markt und helfen dabei, die ideale Softwarelösung für Ihren Use Case zu finden.'
           }
           icon={<GlobeIcon />}
         />
-        <ServiceSectionDivider className={'bg-black'} />
-        <ServiceSectionDivider className={'bg-bb-grey-200'} />
-        <ServiceSection
+        <ServiceItemDivider className={'bg-black'} />
+        <ServiceItemDivider className={'bg-bb-grey-200'} />
+        <ServiceItem
           title={'Backend'}
           text={
             'Wir konstruieren performante Server-Anwendungen mit Hilfe von APIs, Microservices und Datenbanken.'
@@ -59,16 +59,16 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<TerminalWindowIcon />}
         />
-        <ServiceSection
+        <ServiceItem
           title={'Open Source'}
           text={
             'Wir helfen Ihnen, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
           }
           icon={<OSIIcon />}
         />
-        <ServiceSectionDivider className={'bg-black'} />
-        <ServiceSectionDivider className={'bg-bb-grey-200'} />
-        <ServiceSection
+        <ServiceItemDivider className={'bg-black'} />
+        <ServiceItemDivider className={'bg-bb-grey-200'} />
+        <ServiceItem
           title={'Frontend'}
           text={
             'Wir implementieren hochwertige und interaktive Frontends mit Hilfe modernster Web-Technologien.'
@@ -76,7 +76,7 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<SidebarIcon />}
         />
-        <ServiceSection
+        <ServiceItem
           title={'Messaging'}
           text={'Wir helfen Ihnen dabei, die ideale Messenger-Lösung für Ihr Szenario zu finden.'}
           icon={<ChatsIcon />}
