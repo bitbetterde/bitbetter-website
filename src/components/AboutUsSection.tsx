@@ -24,17 +24,17 @@ const AboutUsSection: React.FC<Props> = () => {
           aliquet. Aliquam accumsan orci molestie nec amet iaculis sapien. Eget magna mattis platea
           pretium in et sollicitudin fusce ipsum.
         </p>
-        <div className={'flex pt-[5.5rem] gap-36'}>
+        <div className={'flex mt-[5.5rem] gap-36'}>
           <div>
             <img src='./moritz.png' className='w-14 h-14 rounded-full' />
-            <p className={'pt-5 text-xl leading-8'}>
+            <p className={'mt-5 text-xl leading-8'}>
               <b>Moritz Stückler</b> ist Est curabitur egestas dolor pellentesque est interdum ut
               vulputate. Pulvinar massa tincidunt vulputate sapien
             </p>
           </div>
           <div>
             <img src='./fabian.png' className='w-14 h-14 rounded-full' />
-            <p className={'pt-5 text-xl leading-8'}>
+            <p className={'mt-5 text-xl leading-8'}>
               <b>Fabian Schmidt</b> ist Est curabitur egestas dolor pellentesque est interdum ut
               vulputate. Pulvinar massa tincidunt vulputate sapien
             </p>
