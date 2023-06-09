@@ -1,7 +1,6 @@
 import type React from 'react'
 import SectionMark from '@components/SectionMark'
-import DarkServiceSection from '@components/DarkSeviceSection'
-import LightServiceSection from '@components/LightSeviceSection'
+import ServiceSection from '@components/DarkSeviceSection'
 import ServiceSectionDivider from '@components/ServiceSectionDivider'
 
 interface Props {}
@@ -23,19 +22,20 @@ const ServicesSection: React.FC<Props> = () => {
             Individuelle Software-Lösungen sind unsere Leidenschaft
           </h3>
         </div>
-        <div className={'bg-bb-grey-200'}>
-          <div className={'text-xl ml-8 mt-8'}>Consulting & Strategie</div>
+        <div className={'bg-bb-grey-200 px-8 pt-8 pb-10'}>
+          <div className={'text-xl'}>Consulting & Strategie</div>
           <h3 className={'text-bb-3xl font-grotesk mt-[5.5rem] mx-8'}>
             Vertrauen Sie auf unsere langjährige Digital-Kompetenz
           </h3>
         </div>
-        <DarkServiceSection
+        <ServiceSection
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'
           }
+          dark={true}
         />
-        <LightServiceSection
+        <ServiceSection
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'
@@ -43,13 +43,14 @@ const ServicesSection: React.FC<Props> = () => {
         />
         <ServiceSectionDivider className={'bg-black'} />
         <ServiceSectionDivider className={'bg-bb-grey-200'} />
-        <DarkServiceSection
+        <ServiceSection
           title={'Backend'}
           text={
             'Wir konstruieren performante Server-Anwendungen mit Hilfe von APIs, Microservices und Datenbanken.'
           }
+          dark={true}
         />
-        <LightServiceSection
+        <ServiceSection
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'
@@ -57,13 +58,14 @@ const ServicesSection: React.FC<Props> = () => {
         />
         <ServiceSectionDivider className={'bg-black'} />
         <ServiceSectionDivider className={'bg-bb-grey-200'} />
-        <DarkServiceSection
+        <ServiceSection
           title={'Frontend'}
           text={
             'Wir implementieren hochwertige und interaktive Frontends mit Hilfe modernster Web-Technologien.'
           }
+          dark={true}
         />
-        <LightServiceSection
+        <ServiceSection
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'

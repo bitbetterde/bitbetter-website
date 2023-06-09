@@ -1,7 +1,4 @@
 import type React from 'react'
-import SectionMark from '@components/SectionMark'
-import DarkServiceSection from '@components/DarkSeviceSection'
-import LightServiceSection from '@components/LightSeviceSection'
 
 interface Props {
   className?: string
