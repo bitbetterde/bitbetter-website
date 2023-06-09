@@ -7,9 +7,7 @@ interface Props {}
 const AboutUsSection: React.FC<Props> = () => {
   return (
     <section className={'text-white relative'}>
-      <BbBracket className='text-bb-grey-600 absolute w-72 -bottom-16 left-0' />
-      <BbBracket className='rotate-180 text-bb-grey-600 absolute w-72 -top-24 -right-16' />
-      <div className='flex p-28 '>
+      <div className='flex p-28'>
         <div className={'flex-1'}>
           <SectionMark
             title={'Über uns'}
@@ -30,22 +28,24 @@ const AboutUsSection: React.FC<Props> = () => {
           </p>
           <div className={'flex mt-[5.5rem] gap-36'}>
             <div>
-              <img src='./moritz.png' className='w-14 h-14 rounded-full' />
+              <img src='/moritz.png' className='w-14 h-14 rounded-full' />
               <p className={'mt-5 text-xl leading-8'}>
-                <b>Moritz Stückler</b> ist Est curabitur egestas dolor pellentesque est interdum ut
-                vulputate. Pulvinar massa tincidunt vulputate sapien
+                <strong>Moritz Stückler</strong> ist Est curabitur egestas dolor pellentesque est
+                interdum ut vulputate. Pulvinar massa tincidunt vulputate sapien
               </p>
             </div>
             <div>
-              <img src='./fabian.png' className='w-14 h-14 rounded-full' />
+              <img src='/fabian.png' className='w-14 h-14 rounded-full' />
               <p className={'mt-5 text-xl leading-8'}>
-                <b>Fabian Schmidt</b> ist Est curabitur egestas dolor pellentesque est interdum ut
-                vulputate. Pulvinar massa tincidunt vulputate sapien
+                <strong>Fabian Schmidt</strong> ist Est curabitur egestas dolor pellentesque est
+                interdum ut vulputate. Pulvinar massa tincidunt vulputate sapien
               </p>
             </div>
           </div>
         </div>
       </div>
+      <BbBracket className='text-bb-grey-600 absolute w-72 -bottom-16 left-0 -z-10' />
+      <BbBracket className='rotate-180 text-bb-grey-600 absolute w-72 -top-24 -right-16 -z-10' />
     </section>
   )
 }
