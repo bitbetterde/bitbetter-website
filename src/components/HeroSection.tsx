@@ -14,7 +14,7 @@ const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
         <BbLogo />
         <h1 className='text-black font-grotesk font-medium text-5xl mt-7 leading-tight'>{title}</h1>
         {subtitle && <p className='text-lg mt-6 text-bb-grey-500'>{subtitle}</p>}
-        {buttonCaption && <Button className='mt-8' caption={buttonCaption} />}
+        {buttonCaption && <Button className='mt-8' caption={buttonCaption} dark={true} />}
       </div>
       <div className='absolute max-w-3xl right-0 top-32 h-96'>
         <img src='./team.jpg' className='w-full h-auto' />
