@@ -19,8 +19,10 @@ const ServiceItem: React.FC<Props> = ({ title, text, icon, dark = false }) => {
           {icon}
         </div>
       )}
-      <h5 className={`text-xl mt-4 ${dark ? 'text-bb-grey-400' : 'text-black'}`}>{title}</h5>
-      <p className={`opacity-75 mt-2 ${dark ? 'text-white' : ''}`}>{text}</p>
+      <h5 className={`text-base md:text-xl mt-4 ${dark ? 'text-bb-grey-400' : 'text-black'}`}>
+        {title}
+      </h5>
+      <p className={`text-base md:text-xl opacity-75 mt-2 ${dark ? 'text-white' : ''}`}>{text}</p>
     </div>
   )
 }

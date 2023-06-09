@@ -8,32 +8,30 @@ import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regul
 import { ReactComponent as SidebarIcon } from '@phosphor-icons/core/regular/sidebar.svg'
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
+import ServiceHeader from '@components/ServiceHeader'
 
 interface Props {}
 
 const ServicesSection: React.FC<Props> = () => {
   return (
-    <section className={'flex p-28'}>
-      <div className={'flex-1'}>
+    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-36'}>
+      <div className={'flex-1 pb-6'}>
         <SectionMark
           title={'Leistungen'}
           classNameLine={'bg-black/75'}
           classNameText={'opacity-75'}
         />
       </div>
-      <div className={'flex-[2.58] grid grid-cols-2 gap-x-6'}>
-        <div className={'bg-black text-white px-8 pt-8 pb-10'}>
-          <div className={'bg-black text-white text-xl'}>Entwicklung</div>
-          <h3 className={'bg-black text-white text-bb-3xl font-grotesk mt-[5.5rem]'}>
-            Individuelle Software-Lösungen sind unsere Leidenschaft
-          </h3>
-        </div>
-        <div className={'bg-bb-grey-200 px-8 pt-8 pb-10'}>
-          <div className={'text-xl'}>Consulting & Strategie</div>
-          <h3 className={'text-bb-3xl font-grotesk mt-[5.5rem]'}>
-            Vertrauen Sie auf unsere langjährige Digital-Kompetenz
-          </h3>
-        </div>
+      <div
+        className={
+          'flex-[2.58] grid grid-cols-1 md:grid-cols-2 md:grid-rows-[repeat(7,auto)] md:grid-flow-col gap-x-6'
+        }
+      >
+        <ServiceHeader
+          title={'Entwicklung'}
+          text={'Individuelle Software-Lösungen sind unsere Leidenschaft'}
+          dark={true}
+        />
         <ServiceItem
           title={'Automatisierung'}
           text={
@@ -42,15 +40,7 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<LightningIcon />}
         />
-        <ServiceItem
-          title={'Webanwendungen'}
-          text={
-            'Wir kennen den Markt und helfen dabei, die ideale Softwarelösung für Ihren Use Case zu finden.'
-          }
-          icon={<GlobeIcon />}
-        />
         <ServiceItemDivider className={'bg-black'} />
-        <ServiceItemDivider className={'bg-bb-grey-200'} />
         <ServiceItem
           title={'Backend'}
           text={
@@ -59,15 +49,7 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<TerminalWindowIcon />}
         />
-        <ServiceItem
-          title={'Open Source'}
-          text={
-            'Wir helfen Ihnen, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
-          }
-          icon={<OSIIcon />}
-        />
         <ServiceItemDivider className={'bg-black'} />
-        <ServiceItemDivider className={'bg-bb-grey-200'} />
         <ServiceItem
           title={'Frontend'}
           text={
@@ -76,13 +58,35 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<SidebarIcon />}
         />
+        <div className={'h-8 bg-black hidden md:block'} />
+        <div className={'h-4 md:hidden'} />
+
+        <ServiceHeader
+          title={'Consulting & Strategie'}
+          text={'Vertrauen Sie auf unsere langjährige Digital-Kompetenz'}
+        />
+        <ServiceItem
+          title={'Webanwendungen'}
+          text={
+            'Wir kennen den Markt und helfen dabei, die ideale Softwarelösung für Ihren Use Case zu finden.'
+          }
+          icon={<GlobeIcon />}
+        />
+        <ServiceItemDivider className={'bg-bb-grey-200'} />
+        <ServiceItem
+          title={'Open Source'}
+          text={
+            'Wir helfen Ihnen, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
+          }
+          icon={<OSIIcon />}
+        />
+        <ServiceItemDivider className={'bg-bb-grey-200'} />
         <ServiceItem
           title={'Messaging'}
           text={'Wir helfen Ihnen dabei, die ideale Messenger-Lösung für Ihr Szenario zu finden.'}
           icon={<ChatsIcon />}
         />
-        <div className={'h-8 bg-black'} />
-        <div className={'h-8 bg-bb-grey-200'} />
+        <div className={'h-8 bg-bb-grey-200 hidden md:block'} />
       </div>
     </section>
   )
