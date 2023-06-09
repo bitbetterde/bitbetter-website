@@ -1,11 +1,14 @@
 import type React from 'react'
 import SectionMark from '@components/SectionMark'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
 interface Props {}
 
 const AboutUsSection: React.FC<Props> = () => {
   return (
-    <section className={'text-white flex flex-col md:flex-row px-5 pb-[16.5rem] pt-16 md:p-28 '}>
+    <section
+      className={'text-white flex flex-col md:flex-row px-5 pb-[16.5rem] pt-16 md:p-28 relative'}
+    >
       <div className={'flex-1'}>
         <SectionMark
           title={'Über uns'}
@@ -41,6 +44,8 @@ const AboutUsSection: React.FC<Props> = () => {
           </div>
         </div>
       </div>
+      <BbBracket className='text-bb-grey-600 absolute w-72 -bottom-16 left-0 -z-10' />
+      <BbBracket className='rotate-180 text-bb-grey-600 absolute w-72 -top-24 -right-16 -z-10' />
     </section>
   )
 }

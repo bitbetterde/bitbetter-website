@@ -9,12 +9,13 @@ import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layou
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
 import ServiceHeader from '@components/ServiceHeader'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
 
 interface Props {}
 
 const ServicesSection: React.FC<Props> = () => {
   return (
-    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-20'}>
+    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-20 relative'}>
       <div className={'flex-1 pb-6'}>
         <SectionMark
           title={'Leistungen'}
@@ -88,6 +89,8 @@ const ServicesSection: React.FC<Props> = () => {
         />
         <div className={'h-8 bg-bb-grey-200 hidden md:block'} />
       </div>
+      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8' />
+      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5]' />
     </section>
   )
 }

@@ -12,7 +12,7 @@ const Button = ({ caption, onClick, className, dark = false }: Props) => {
     <button
       type='button'
       onClick={onClick}
-      className={`flex gap-2 py-4 px-5 rounded-full items-center font-medium ${
+      className={`flex gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${
         dark ? 'bg-black text-white' : 'bg-white text-bb-grey-500'
       } ${className || ''}`}
     >
