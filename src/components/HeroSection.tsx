@@ -1,4 +1,5 @@
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
 import Button from './Button'
 
 interface Props {
@@ -9,16 +10,18 @@ interface Props {
 
 const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
   return (
-    <header className='relative pl-24 pr-0 py-48 flex gap-24'>
-      <div className='flex flex-col items-start max-w-[35%]'>
+    <header className='relative pl-24 pr-0 pt-40 pb-24 flex gap-24'>
+      <div className='flex flex-col items-start max-w-[50%]'>
         <BbLogo />
         <h1 className='text-black font-grotesk font-medium text-5xl mt-7 leading-tight'>{title}</h1>
         {subtitle && <p className='text-lg mt-6 text-bb-grey-500'>{subtitle}</p>}
         {buttonCaption && <Button className='mt-8' caption={buttonCaption} dark={true} />}
       </div>
-      <div className='absolute max-w-3xl right-0 top-32 h-96'>
-        <img src='./team.jpg' className='w-full h-auto' />
+      <div className='absolute max-w-[45%] right-0 top-48 h-96'>
+        <img src='/team.jpg' className='w-full h-auto' />
       </div>
+      <BbBracket className='text-white scale-[140%] absolute w-72 top-0 -right-16' />
+      <BbBracket className='text-transparent stroke-black -rotate-[10deg] scale-[140%] absolute w-72 top-8 -right-8 stroke-[0.5]' />
     </header>
   )
 }

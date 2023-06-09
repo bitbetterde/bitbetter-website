@@ -8,12 +8,13 @@ import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regul
 import { ReactComponent as SidebarIcon } from '@phosphor-icons/core/regular/sidebar.svg'
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
 
 interface Props {}
 
 const ServicesSection: React.FC<Props> = () => {
   return (
-    <section className={'flex p-28'}>
+    <section className={'flex p-28 relative'}>
       <div className={'flex-1'}>
         <SectionMark
           title={'Leistungen'}
@@ -84,6 +85,8 @@ const ServicesSection: React.FC<Props> = () => {
         <div className={'h-8 bg-black'} />
         <div className={'h-8 bg-bb-grey-200'} />
       </div>
+      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8' />
+      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5]' />
     </section>
   )
 }
