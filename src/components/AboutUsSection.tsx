@@ -44,8 +44,8 @@ const AboutUsSection: React.FC<Props> = () => {
           </div>
         </div>
       </div>
-      <BbBracket className='text-bb-grey-600 absolute w-72 -bottom-16 left-0 -z-10' />
-      <BbBracket className='rotate-180 text-bb-grey-600 absolute w-72 -top-24 -right-16 -z-10' />
+      <BbBracket className='text-bb-grey-600 absolute w-56 md:w-72 -bottom-40 md:-bottom-16 md:left-0 -left-12 -z-10' />
+      <BbBracket className='rotate-180 text-bb-grey-600 absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16 -z-10' />
     </section>
   )
 }
