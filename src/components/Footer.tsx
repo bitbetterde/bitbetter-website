@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       <div className={'flex-[2] md:pt-0.5'}>
         <BbLogo className={'h-6 md:h-10'} />
       </div>
-      <div className={'flex-[3]'}>
+      <div className={'flex-[3] z-10'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Ihr möchtet mit uns zusammenarbeiten? Wir freuen uns von euch zu hören.
         </h3>

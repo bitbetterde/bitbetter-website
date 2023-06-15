@@ -15,7 +15,7 @@ interface Props {}
 
 const ServicesSection: React.FC<Props> = () => {
   return (
-    <section className={'flex flex-col md:flex-row md:p-28 pl-5 pt-16 pb-20 relative'}>
+    <section className={'flex flex-col lg:flex-row lg:p-28 pl-5 pt-16 pb-20 relative'}>
       <div className={'flex-1 pb-6'}>
         <SectionMark
           title={'Leistungen'}
@@ -25,7 +25,7 @@ const ServicesSection: React.FC<Props> = () => {
       </div>
       <div
         className={
-          'flex-[2.58] grid grid-cols-1 md:grid-cols-2 md:grid-rows-[repeat(7,auto)] md:grid-flow-col gap-x-6'
+          'flex-[2.58] grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] lg:grid-flow-col gap-x-6'
         }
       >
         <ServiceHeader
@@ -59,8 +59,8 @@ const ServicesSection: React.FC<Props> = () => {
           dark={true}
           icon={<LayoutIcon />}
         />
-        <div className={'h-8 bg-black hidden md:block'} />
-        <div className={'h-4 md:hidden'} />
+        <div className={'h-8 bg-black hidden lg:block'} />
+        <div className={'h-4 lg:hidden'} />
 
         <ServiceHeader
           title={'Consulting & Strategie'}
@@ -87,10 +87,10 @@ const ServicesSection: React.FC<Props> = () => {
           text={'Wir helfen Ihnen dabei, die ideale Messenger-Lösung für Ihr Szenario zu finden.'}
           icon={<ChatsIcon />}
         />
-        <div className={'h-8 bg-bb-grey-200 hidden md:block'} />
+        <div className={'h-8 bg-bb-grey-200 hidden lg:block'} />
       </div>
-      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden md:block' />
-      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden md:block' />
+      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden lg:block' />
+      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden lg:block' />
     </section>
   )
 }
