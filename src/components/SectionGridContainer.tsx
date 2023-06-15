@@ -6,7 +6,7 @@ const SectionGridContainer: React.FC<{ children: React.ReactNode; className?: st
 }) => {
   return (
     <div
-      className={`lg:grid grid-cols-[1fr_min(140ch,calc(100%-64px))_1fr] gap-8 grid-wrapper ${
+      className={`2xl:grid grid-cols-[1fr_min(140ch,calc(100%-64px))_1fr] gap-8 grid-wrapper ${
         className ?? ''
       }`}
     >
