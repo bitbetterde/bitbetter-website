@@ -29,14 +29,14 @@ const AboutUsSection: React.FC<Props> = () => {
         </p>
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div>
-            <img src='./moritz.png' className='w-14 h-14 rounded-full' />
+            <img src='/moritz.png' className='w-14 h-14 rounded-full' />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Moritz Stückler</b> ist Est curabitur egestas dolor pellentesque est interdum ut
               vulputate. Pulvinar massa tincidunt vulputate sapien
             </p>
           </div>
           <div>
-            <img src='./fabian.png' className='w-14 h-14 rounded-full' />
+            <img src='/fabian.png' className='w-14 h-14 rounded-full' />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Fabian Schmidt</b> ist Est curabitur egestas dolor pellentesque est interdum ut
               vulputate. Pulvinar massa tincidunt vulputate sapien
