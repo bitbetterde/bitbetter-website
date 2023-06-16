@@ -1,0 +1,86 @@
+---
+import {
+  HeroSection,
+  SectionGridContainer,
+  AboutUsSection,
+  ServicesSection,
+  Footer,
+} from '@components'
+
+import '../../base.css'
+import '@fontsource/ibm-plex-sans/400.css'
+import '@fontsource/ibm-plex-sans/500.css'
+import '@fontsource/ibm-plex-sans/700.css'
+import '@fontsource-variable/space-grotesk'
+import Config from '../../astro.config.mjs'
+
+const META_TITLE = 'bitbetter – Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
+const META_DESCRIPTION =
+  'Wir sind zwei Software-Entwickler aus Hamburg und lösen Ihre Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+---
+
+<html lang='de' class='overflow-x-hidden'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/bb_favicon.png' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{META_TITLE}</title>
+    <meta name='description' content={META_DESCRIPTION} />
+    <meta
+      name='keywords'
+      content='bitbetter, software, hamburg, software-entwicklung, entwicklung, react, laravel, matrix, element, java, frontend, backend, tailwind, css, html, automatisierung, camunda, astro, javascript, typescript, node'
+    />
+    <meta name='author' content='Fabian Schmidt' />
+    <meta name='author' content='Moritz Stückler' />
+    <meta property='og:title' content={META_TITLE} />
+    <meta property='og:description' content={META_DESCRIPTION} />
+    <meta property='og:image' content={Config.site + '/' + 'team.png'} />
+  </head>
+  <body class='flex flex-col overflow-x-hidden'>
+    <SectionGridContainer className='bg-bb-grey-200'>
+      <HeroSection
+        title='Individuelle Software – Modern, bodenständig und ohne Schnickschnack'
+        subtitle='Wir sind zwei Software-Entwickler aus Hamburg und lösen Ihre Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+        buttonCaption='Schreib uns'
+      />
+    </SectionGridContainer>
+    <SectionGridContainer className='bg-white'>
+      <div class='lg:h-48'></div>
+    </SectionGridContainer>
+    <SectionGridContainer className='z-10 bg-black overflow-hidden'>
+      <AboutUsSection />
+    </SectionGridContainer>
+    <SectionGridContainer className='bg-white'>
+      <ServicesSection />
+    </SectionGridContainer>
+    <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
+      <Footer>
+        <>
+          <address class={'not-italic mt-8 md:mt-0'}>
+            <a class='underline' href='mailto:info@bitbetter.de'>info@bitbetter.de</a>
+            <br />
+            <br />
+            bitbetter GmbH <br />
+            Desenißstr. 37 <br />
+            22083 Hamburg <br />
+            <br />
+            Registergericht: <br />
+            Amtsgericht Hamburg (HRB1337) <br />
+          </address>
+          <div>
+            <br />
+            <br />
+            Vertreten durch die Geschäftsführer: <br />
+            Moritz Stückler
+            <br />
+            Fabian Schmidt <br />
+            <br />
+            UStIdNr: DE358143925 <br />
+            © 2023 bitbetter GmbH <br />
+          </div>
+        </>
+      </Footer>
+    </SectionGridContainer>
+  </body>
+</html>
