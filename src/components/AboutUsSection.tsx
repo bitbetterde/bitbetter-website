@@ -18,21 +18,23 @@ const AboutUsSection: React.FC<Props> = () => {
       </div>
       <div className={'flex-[2.58] mt-6 md:mt-0'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
-          Wir sind Software-Entwickler aus Hamburg. Unsere Leidenschaft ist gute, individuelle
-          Software, die Menschen das Leben leichter macht.
+          Unsere Leidenschaft ist gute, individuelle Software, die Menschen das Leben leichter
+          macht.
         </h3>
         <p className={'opacity-75 text-base md:text-xl leading-8 mt-10'}>
-          Wir haben uns beim Studiengang Technische Informatik kennen gelernt. Nachdem wir beide das
-          Studium beendet hatten, sammelten wir erste Erfahrungen in unseren Bereichen, um dannach
-          mit eigenen Projekten in der Freizeit zu starten. Dadurch entsand die Idee, auch beruflich
-          zusammen Projekte umzusetzen.
+          Wir haben uns am ersten Tag unseres Informatik-Studiums kennengelernt und seitdem
+          entwickeln wir gemeinsam Software. Nach dem Ende unseres Studiums, sammelten wir
+          Berufserfahrung in verschiedenen Branchen und im Jahr 2022 haben wir gemeinsam die
+          bitbetter GmbH gegründet.
         </p>
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div className={'flex-1'}>
             <img src='/moritz.png' className='w-14 h-14 rounded-full' />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
-              <b>Moritz Stückler</b> ist seit 2018 als Frontend-Entwickler tätig und war zuvor
-              Jornalist. Hauptfelder sind Frontendanwendungen in React und Webframeworks.
+              <b>Moritz Stückler</b> arbeitete zunächst viele Jahre als IT-Journalist und entschied
+              sich 2014 für den Berufswechsel zum Software-Entwickler. Nach dem Studium arbeitete er
+              als Full-Stack-Entwickler in Produktfirmen und Agenturen. Sein Schwerpunkt sind
+              Frontend-Technologien, CMS-Systeme und Open-Source-Software.
             </p>
           </div>
           <div className={'flex-1'}>
@@ -40,8 +42,10 @@ const AboutUsSection: React.FC<Props> = () => {
               <img src='/fabian2.jpg' className='scale-[3.00] relative left-8 top-2' />
             </div>
             <p className={'mt-5 text-base md:text-xl leading-8'}>
-              <b>Fabian Schmidt</b> ist seit 2017 Full-Stack-Entwickler. Hauptfelder sind
-              Backendanwendungen in Java und Frontendanwendungen in React.
+              <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
+              Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von
+              Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-APIs
+              und Datenbanken.
             </p>
           </div>
         </div>

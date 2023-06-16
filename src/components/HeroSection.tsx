@@ -1,6 +1,6 @@
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
-import Button from './Button'
+import LinkButton from '@components/LinkButton'
 
 interface Props {
   title: string
@@ -17,7 +17,14 @@ const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
           {title}
         </h1>
         {subtitle && <p className='text-base lg:text-lg mt-6 text-bb-grey-500'>{subtitle}</p>}
-        {buttonCaption && <Button className='mt-8' caption={buttonCaption} dark={true} />}
+        {buttonCaption && (
+          <LinkButton
+            className='mt-8'
+            caption={buttonCaption}
+            dark={true}
+            href={'mailto:info@bitbetter.de'}
+          />
+        )}
       </div>
       <div className='relative lg:flex-1 lg:basis-1/2 lg:pt-48 -pb-10 w-full overflow-visible bg-bb-grey-200'>
         <div className={'lg:absolute lg:h-[46rem] h-auto w-full overflow-hidden'}>

@@ -30,7 +30,7 @@ const ServicesSection: React.FC<Props> = () => {
       >
         <ServiceHeader
           title={'Entwicklung'}
-          text={'Individuelle Software-Lösungen sind unsere Leidenschaft'}
+          text={'Technologieoffenheit und "Full-Stack" sind unsere Spezialität'}
           dark={true}
         />
         <ServiceItem
@@ -64,12 +64,12 @@ const ServicesSection: React.FC<Props> = () => {
 
         <ServiceHeader
           title={'Consulting & Strategie'}
-          text={'Vertrauen Sie auf unsere langjährige Digital-Kompetenz'}
+          text={'IT-Enthusiasten behalten den Überblick in der Software-Welt'}
         />
         <ServiceItem
           title={'Webanwendungen'}
           text={
-            'Wir kennen den Markt und helfen dabei, die ideale Softwarelösung für Ihren Use Case zu finden.'
+            'Wir kennen den Markt und helfen dabei, existierende Softwarelösungen für Ihren Use Case zu finden.'
           }
           icon={<GlobeIcon />}
         />
@@ -77,14 +77,16 @@ const ServicesSection: React.FC<Props> = () => {
         <ServiceItem
           title={'Open Source'}
           text={
-            'Wir helfen Ihnen, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
+            'Wir unterstützen Sie dabei, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
           }
           icon={<OSIIcon />}
         />
         <ServiceItemDivider className={'bg-bb-grey-200'} />
         <ServiceItem
           title={'Messaging'}
-          text={'Wir helfen Ihnen dabei, die ideale Messenger-Lösung für Ihr Szenario zu finden.'}
+          text={
+            'Wir helfen unseren Kunden dabei, die ideale Messenger-Lösung zu finden und für ihr Szenario anzupassen.'
+          }
           icon={<ChatsIcon />}
         />
         <div className={'h-8 bg-bb-grey-200 hidden lg:block'} />
