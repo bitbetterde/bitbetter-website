@@ -19,13 +19,13 @@ const ServiceItem: React.FC<Props> = ({ title, text, icon, dark = false }) => {
           {icon}
         </div>
       )}
-      <h5
+      <h4
         className={`text-base md:text-xl font-medium mt-4 ${
           dark ? 'text-bb-grey-400' : 'text-black'
         }`}
       >
         {title}
-      </h5>
+      </h4>
       <p className={`text-base font-normal md:text-xl opacity-75 mt-2 ${dark ? 'text-white' : ''}`}>
         {text}
       </p>

@@ -31,6 +31,9 @@ const AboutUsSection: React.FC<Props> = () => {
           <div className={'flex-1'}>
             <img
               src='/moritz_avatar.png'
+              alt={'Portrait von Moritz Stückler'}
+              width={400}
+              height={400}
               className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
             />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
@@ -43,6 +46,9 @@ const AboutUsSection: React.FC<Props> = () => {
           <div className={'flex-1'}>
             <img
               src='/fabian_avatar.png'
+              alt={'Portrait von Fabian Schmidt'}
+              width={400}
+              height={400}
               className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
             />
             <p className={'mt-5 text-base md:text-xl leading-8'}>

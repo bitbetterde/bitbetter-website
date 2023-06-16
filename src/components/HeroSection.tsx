@@ -30,6 +30,9 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
         <div className={'lg:absolute h-[64vw] lg:h-[46rem] w-full overflow-hidden'}>
           <img
             src='/team.png'
+            alt={'Die zwei bitbetter-Geschäftsführer vor einem Fluss und Bäumen'}
+            width={671}
+            height={736}
             className='relative lg:top-0 -top-[18vw] w-full lg:w-auto lg:h-full object-cover'
           />
         </div>
