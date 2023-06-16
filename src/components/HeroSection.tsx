@@ -20,7 +20,12 @@ const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
         {buttonCaption && <Button className='mt-8' caption={buttonCaption} dark={true} />}
       </div>
       <div className='relative lg:flex-1 lg:basis-1/2 lg:pt-48 -pb-10 w-full overflow-visible bg-bb-grey-200'>
-        <img src='/team.jpg' className='lg:absolute lg:h-[46rem] h-auto w-full lg:object-cover' />
+        <div className={'lg:absolute lg:h-[46rem] h-auto w-full overflow-hidden'}>
+          <img
+            src='/team.jpg'
+            className='relative -top-24 object-[60%_50%] lg:h-[60rem] object-cover'
+          />
+        </div>
       </div>
       <BbBracket className='text-white scale-[140%] absolute w-72 -top-40 lg:top-0 -right-16' />
       <BbBracket className='text-transparent stroke-black -rotate-[10deg] scale-[140%] absolute w-72 -top-32 lg:top-8 -right-8 stroke-[0.5]' />
