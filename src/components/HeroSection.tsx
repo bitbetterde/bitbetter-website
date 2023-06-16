@@ -23,7 +23,7 @@ const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
         <div className={'lg:absolute lg:h-[46rem] h-auto w-full overflow-hidden'}>
           <img
             src='/team.jpg'
-            className='relative -top-24 object-[60%_50%] lg:h-[60rem] object-cover'
+            className='lg:relative lg:-top-24 lg:object-[60%_50%] lg:h-[60rem] object-cover'
           />
         </div>
       </div>
