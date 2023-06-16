@@ -54,7 +54,7 @@ const AboutUsSection: React.FC<Props> = () => {
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
               Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von
-              Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-API
+              Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-APIs
               und Datenbanken.
             </p>
           </div>
