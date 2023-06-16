@@ -22,24 +22,26 @@ const AboutUsSection: React.FC<Props> = () => {
           Software, die Menschen das Leben leichter macht.
         </h3>
         <p className={'opacity-75 text-base md:text-xl leading-8 mt-10'}>
-          Est curabitur egestas dolor pellentesque est interdum ut vulputate. Pulvinar massa
-          tincidunt vulputate sapien arcu. Sollicitudin sed eget adipiscing ante aenean id vel nulla
-          aliquet. Aliquam accumsan orci molestie nec amet iaculis sapien. Eget magna mattis platea
-          pretium in et sollicitudin fusce ipsum.
+          Wir haben uns beim Studiengang Technische Informatik kennen gelernt. Nachdem wir beide das
+          Studium beendet hatten, sammelten wir erste Erfahrungen in unseren Bereichen, um dannach
+          mit eigenen Projekten in der Freizeit zu starten. Dadurch entsand die Idee, auch beruflich
+          zusammen Projekte umzusetzen.
         </p>
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
-          <div>
+          <div className={'flex-1'}>
             <img src='/moritz.png' className='w-14 h-14 rounded-full' />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
-              <b>Moritz Stückler</b> ist Est curabitur egestas dolor pellentesque est interdum ut
-              vulputate. Pulvinar massa tincidunt vulputate sapien
+              <b>Moritz Stückler</b> ist seit 2018 als Frontend-Entwickler tätig und war zuvor
+              Jornalist. Hauptfelder sind Frontendanwendungen in React und Webframeworks.
             </p>
           </div>
-          <div>
-            <img src='/fabian.png' className='w-14 h-14 rounded-full' />
+          <div className={'flex-1'}>
+            <div className={'w-14 h-14 rounded-full overflow-hidden '}>
+              <img src='/fabian2.jpg' className='scale-[3.00] relative left-8 top-2' />
+            </div>
             <p className={'mt-5 text-base md:text-xl leading-8'}>
-              <b>Fabian Schmidt</b> ist Est curabitur egestas dolor pellentesque est interdum ut
-              vulputate. Pulvinar massa tincidunt vulputate sapien
+              <b>Fabian Schmidt</b> ist seit 2017 Full-Stack-Entwickler. Hauptfelder sind
+              Backendanwendungen in Java und Frontendanwendungen in React.
             </p>
           </div>
         </div>
