@@ -29,7 +29,10 @@ const AboutUsSection: React.FC<Props> = () => {
         </p>
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div className={'flex-1'}>
-            <img src='/moritz.png' className='w-14 h-14 rounded-full' />
+            <img
+              src='/moritz_avatar.png'
+              className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
+            />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Moritz Stückler</b> arbeitete zunächst viele Jahre als IT-Journalist und entschied
               sich 2014 für den Berufswechsel zum Software-Entwickler. Nach dem Studium arbeitete er
@@ -38,13 +41,14 @@ const AboutUsSection: React.FC<Props> = () => {
             </p>
           </div>
           <div className={'flex-1'}>
-            <div className={'w-14 h-14 rounded-full overflow-hidden '}>
-              <img src='/fabian2.jpg' className='scale-[3.00] relative left-8 top-2' />
-            </div>
+            <img
+              src='/fabian_avatar.png'
+              className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
+            />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
               Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von
-              Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-APIs
+              Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-API
               und Datenbanken.
             </p>
           </div>

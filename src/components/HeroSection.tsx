@@ -27,10 +27,10 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
         )}
       </div>
       <div className='relative lg:flex-1 lg:basis-1/2 lg:pt-48 -pb-10 w-full overflow-visible bg-bb-grey-200'>
-        <div className={'lg:absolute lg:h-[46rem] h-auto w-full overflow-hidden'}>
+        <div className={'lg:absolute h-[64vw] lg:h-[46rem] w-full overflow-hidden'}>
           <img
-            src='/team.jpg'
-            className='lg:relative lg:-top-24 lg:object-[60%_50%] lg:h-[60rem] object-cover'
+            src='/team.png'
+            className='relative lg:top-0 -top-[18vw] w-full lg:w-auto lg:h-full object-cover'
           />
         </div>
       </div>
