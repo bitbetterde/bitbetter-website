@@ -8,7 +8,7 @@ interface Props {
   newTab?: boolean
 }
 
-const LinkButton = ({ caption, className, href, newTab, dark = false }: Props) => {
+const LinkButton: React.FC<Props> = ({ caption, className, href, newTab, dark = false }: Props) => {
   return (
     <a
       href={href}

@@ -7,7 +7,7 @@ interface Props {
   dark?: boolean
 }
 
-const Button = ({ caption, onClick, className, dark = false }: Props) => {
+const Button: React.FC<Props> = ({ caption, onClick, className, dark = false }: Props) => {
   return (
     <button
       type='button'

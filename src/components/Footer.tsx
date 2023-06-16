@@ -1,9 +1,13 @@
 import type React from 'react'
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
-import LinkButton from '@components/LinkButton'
+import { LinkButton } from '@components'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
-const Footer: React.FC = () => {
+interface Props {
+  children?: React.ReactNode
+}
+
+const Footer: React.FC<Props> = ({ children }: Props) => {
   return (
     <footer
       className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 md:px-28 pb-14 gap-y-5 relative'}
@@ -21,30 +25,7 @@ const Footer: React.FC = () => {
             'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-[11.5rem] md:mt-[17.875rem]'
           }
         >
-          <address className={'not-italic mt-8 md:mt-0'}>
-            <a className='underline' href='mailto:info@bitbetter.de'>
-              info@bitbetter.de
-            </a>
-            <br />
-            <br />
-            bitbetter GmbH <br />
-            Desenißstr. 37 <br />
-            22083 Hamburg <br />
-            <br />
-            Registergericht: <br />
-            Amtsgericht Hamburg (HRB1337) <br />
-          </address>
-          <div className={'not-italic'}>
-            <br />
-            <br />
-            Vertreten durch die Geschäftsführer: <br />
-            Moritz Stückler
-            <br />
-            Fabian Schmidt <br />
-            <br />
-            UStIdNr: DE358143925 <br />
-            © 2023 bitbetter GmbH <br />
-          </div>
+          {children}
         </div>
       </div>
       <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0 hidden md:block' />

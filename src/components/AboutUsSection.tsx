@@ -1,5 +1,5 @@
 import type React from 'react'
-import SectionMark from '@components/SectionMark'
+import { SectionMark } from '@components'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
 interface Props {}

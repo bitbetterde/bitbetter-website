@@ -1,14 +1,11 @@
 import type React from 'react'
-import SectionMark from '@components/SectionMark'
-import ServiceItem from '@components/ServiceItem'
-import ServiceItemDivider from '@components/ServiceItemDivider'
+import { SectionMark, ServiceItem, ServiceItemDivider, ServiceHeader } from '@components'
 import { ReactComponent as GlobeIcon } from '@phosphor-icons/core/regular/globe.svg'
 import { ReactComponent as LightningIcon } from '@phosphor-icons/core/regular/lightning.svg'
 import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regular/terminal-window.svg'
 import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layout.svg'
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
-import ServiceHeader from '@components/ServiceHeader'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
 
 interface Props {}

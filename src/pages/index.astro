@@ -1,9 +1,12 @@
 ---
-import HeroSection from '@components/HeroSection'
-import SectionGridContainer from '@components/SectionGridContainer'
-import AboutUsSection from '@components/AboutUsSection'
-import ServicesSection from '@components/ServicesSection'
-import Footer from '@components/Footer'
+import {
+  HeroSection,
+  SectionGridContainer,
+  AboutUsSection,
+  ServicesSection,
+  Footer,
+} from '@components'
+
 import '../../base.css'
 import '@fontsource/ibm-plex-sans/400.css'
 import '@fontsource/ibm-plex-sans/500.css'
@@ -37,7 +40,32 @@ import '@fontsource-variable/space-grotesk'
       <ServicesSection />
     </SectionGridContainer>
     <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
-      <Footer />
+      <Footer>
+        <>
+          <address class={'not-italic mt-8 md:mt-0'}>
+            <a class='underline' href='mailto:info@bitbetter.de'>info@bitbetter.de</a>
+            <br />
+            <br />
+            bitbetter GmbH <br />
+            Desenißstr. 37 <br />
+            22083 Hamburg <br />
+            <br />
+            Registergericht: <br />
+            Amtsgericht Hamburg (HRB1337) <br />
+          </address>
+          <div>
+            <br />
+            <br />
+            Vertreten durch die Geschäftsführer: <br />
+            Moritz Stückler
+            <br />
+            Fabian Schmidt <br />
+            <br />
+            UStIdNr: DE358143925 <br />
+            © 2023 bitbetter GmbH <br />
+          </div>
+        </>
+      </Footer>
     </SectionGridContainer>
   </body>
 </html>

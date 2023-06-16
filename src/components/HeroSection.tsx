@@ -1,6 +1,6 @@
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
-import LinkButton from '@components/LinkButton'
+import { LinkButton } from '@components'
 
 interface Props {
   title: string
@@ -8,7 +8,7 @@ interface Props {
   buttonCaption?: string
 }
 
-const HeroSection = ({ title, subtitle, buttonCaption }: Props) => {
+const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props) => {
   return (
     <header className='relative  lg:pt-0 flex flex-col justify-between items-start lg:flex-row overflow-hidden lg:overflow-visible'>
       <div className='lg:flex-1 lg:basis-1/2 flex flex-col items-start px-5 pt-[18.625rem] pb-24 lg:pl-24 lg:pr-44 lg:pt-48 lg:pb-32 bg-bb-grey-200'>
