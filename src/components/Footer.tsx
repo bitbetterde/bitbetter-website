@@ -2,6 +2,8 @@ import type React from 'react'
 import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
 import { LinkButton } from '@components'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
+import { ReactComponent as GithubIcon } from '@assets/github.svg'
+import { ReactComponent as LinkedInIcon } from '@assets/linkedin.svg'
 
 interface Props {
   children?: React.ReactNode
@@ -12,8 +14,26 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
     <footer
       className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 md:px-28 pb-14 gap-y-5 relative'}
     >
-      <div className={'flex-[2] md:pt-0.5'}>
-        <BbLogo className={'h-6 md:h-10'} />
+      <div className={'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10'}>
+        <div>
+          <BbLogo className={'h-8 md:h-10'} />
+        </div>
+        <div className='flex gap-2'>
+          <a
+            href='https://github.com/bitbetterde/'
+            target='_blank'
+            className='text-black hover:text-opacity-75'
+          >
+            <GithubIcon className='p-2 h-10 w-10' />
+          </a>
+          <a
+            href='https://www.linkedin.com/company/bitbetter/'
+            target='_blank'
+            className='text-black hover:text-opacity-75'
+          >
+            <LinkedInIcon className='p-2 h-10 w-10' />
+          </a>
+        </div>
       </div>
       <div className={'flex-[3] z-10'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
