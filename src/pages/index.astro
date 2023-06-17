@@ -34,10 +34,10 @@ const META_DESCRIPTION =
     <meta name='author' content='Moritz Stückler' />
     <meta property='og:title' content={META_TITLE} />
     <meta property='og:description' content={META_DESCRIPTION} />
-    <meta property='og:image' content={'https://bitbetter.de/team.png'} />
+    <meta property='og:image' content={'https://bitbetter.de/bitbetter_opengraph.jpg'} />
   </head>
   <body class='flex flex-col overflow-x-hidden'>
-    <SectionGridContainer className='bg-bb-grey-200'>
+    <SectionGridContainer className='bg-bb-grey-200' data-paralless='0.5'>
       <HeroSection
         title='Individuelle Software – Modern, bodenständig und ohne Schnickschnack'
         subtitle='Wir sind zwei Software-Entwickler aus Hamburg und lösen Ihre Probleme im Bereich der Digitalisierung: Making the world a bit better.'
@@ -47,7 +47,7 @@ const META_DESCRIPTION =
     <SectionGridContainer className='bg-white'>
       <div class='lg:h-48'></div>
     </SectionGridContainer>
-    <SectionGridContainer className='z-10 bg-black overflow-hidden'>
+    <SectionGridContainer data-paralless='0.5' className='z-10 bg-black overflow-hidden'>
       <AboutUsSection />
     </SectionGridContainer>
     <SectionGridContainer className='bg-white'>
@@ -81,5 +81,10 @@ const META_DESCRIPTION =
         </>
       </Footer>
     </SectionGridContainer>
+    <script>
+      import paralless from 'paralless'
+      const parallax = paralless()
+      console.log('HELLO')
+    </script>
   </body>
 </html>
