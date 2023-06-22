@@ -23,7 +23,7 @@ const AboutUsSection: React.FC<Props> = () => {
         </h3>
         <p className={'opacity-75 text-base md:text-xl leading-8 mt-10'}>
           Wir haben uns am ersten Tag unseres Informatik-Studiums kennengelernt und seitdem
-          entwickeln wir gemeinsam Software. Nach dem Ende unseres Studiums, sammelten wir
+          entwickeln wir gemeinsam Software. Nach dem Ende unseres Studiums, sammelten wir getrennt
           Berufserfahrung in verschiedenen Branchen und im Jahr 2022 haben wir gemeinsam die
           bitbetter GmbH gegründet.
         </p>
