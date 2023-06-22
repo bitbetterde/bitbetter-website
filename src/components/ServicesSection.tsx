@@ -33,7 +33,7 @@ const ServicesSection: React.FC<Props> = () => {
         <ServiceItem
           title={'Automatisierung'}
           text={
-            'Wir verknüpfen und integrieren Ihre bestehenden Dienste und sorgen für Interoperabilität und Optimierung.'
+            'Wir verknüpfen und integrieren bestehende Dienste und sorgen für Interoperabilität und Optimierung.'
           }
           dark={true}
           icon={<LightningIcon />}
@@ -66,7 +66,7 @@ const ServicesSection: React.FC<Props> = () => {
         <ServiceItem
           title={'Webanwendungen'}
           text={
-            'Wir kennen den Markt und helfen dabei, existierende Softwarelösungen für Ihren Use Case zu finden.'
+            'Wir kennen den Markt und helfen dabei, existierende Softwarelösungen für jedes Einsatzgebiet zu finden.'
           }
           icon={<GlobeIcon />}
         />
@@ -74,7 +74,7 @@ const ServicesSection: React.FC<Props> = () => {
         <ServiceItem
           title={'Open Source'}
           text={
-            'Wir unterstützen Sie dabei, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
+            'Wir unterstützen dabei, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
           }
           icon={<OSIIcon />}
         />
