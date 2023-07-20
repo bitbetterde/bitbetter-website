@@ -6,6 +6,7 @@ const techStackCollection = defineCollection({
     title: z.string(),
     image: z.string(),
     link: z.string(),
+    order: z.number().optional(),
   }),
 })
 export const collections = {

@@ -7,12 +7,13 @@ import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layou
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
 import { ReactComponent as OSIIcon } from '@assets/osi.svg'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
-import { useEffect } from 'react'
+import TechStackItem from './TechStackItem'
 
 interface TechItem {
   title: string
   image: string
   link: string
+  order?: number
 }
 
 interface Props {
@@ -66,7 +67,13 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           dark={true}
           icon={<LayoutIcon />}
         />
-        <div className={'h-8 bg-black hidden lg:block'} />
+        <div className={`${developmentTechItems?.length ? '' : 'h-8'} bg-black`}>
+          <div className='p-8 inline-grid grid-cols-2 gap-x-12 gap-y-5'>
+            {developmentTechItems?.map((item, i) => (
+              <TechStackItem key={i} light title={item.title} link={item.link} image={item.image} />
+            ))}
+          </div>
+        </div>
         <div className={'h-4 lg:hidden'} />
 
         <ServiceHeader
@@ -96,10 +103,14 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           }
           icon={<ChatsIcon />}
         />
-        <div className={'h-8 bg-bb-grey-200 hidden lg:block'} />
-        {developmentTechItems?.map((item) => (
-          <img src={item.image} />
-        ))}
+
+        <div className={`${consultingTechItems?.length ? '' : 'h-8'} bg-bb-grey-200`}>
+          <div className='p-8 inline-grid grid-cols-2 gap-x-12 gap-y-5'>
+            {consultingTechItems?.map((item, i) => (
+              <TechStackItem key={i} title={item.title} link={item.link} image={item.image} />
+            ))}
+          </div>
+        </div>
       </div>
       <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden lg:block' />
       <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden lg:block' />
