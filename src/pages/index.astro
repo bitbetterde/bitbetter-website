@@ -12,10 +12,14 @@ import '@fontsource/ibm-plex-sans/400.css'
 import '@fontsource/ibm-plex-sans/500.css'
 import '@fontsource/ibm-plex-sans/700.css'
 import '@fontsource-variable/space-grotesk'
+import { getCollection } from 'astro:content'
 
 const META_TITLE = 'bitbetter – Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
 const META_DESCRIPTION =
   'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+
+const developmentTechItems = (await getCollection('stack_development')).map((c) => c.data)
+const consultingTechItems = (await getCollection('stack_consulting')).map((c) => c.data)
 ---
 
 <html lang='de' class='overflow-x-hidden'>
@@ -35,7 +39,10 @@ const META_DESCRIPTION =
     <meta property='og:title' content={META_TITLE} />
     <meta property='og:description' content={META_DESCRIPTION} />
     <meta property='og:image' content={'https://bitbetter.de/bitbetter_opengraph.jpg'} />
-    <script async src="https://analytics.bitbetter.de/script.js" data-website-id="0c1e576e-389d-4f07-941c-8631e3c6dd0b"></script>
+    <script
+      async
+      src='https://analytics.bitbetter.de/script.js'
+      data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'></script>
   </head>
   <body class='flex flex-col overflow-x-hidden'>
     <SectionGridContainer className='bg-bb-grey-200' data-paralless='0.5'>
@@ -52,7 +59,10 @@ const META_DESCRIPTION =
       <AboutUsSection />
     </SectionGridContainer>
     <SectionGridContainer className='bg-white'>
-      <ServicesSection />
+      <ServicesSection
+        developmentTechItems={developmentTechItems}
+        consultingTechItems={consultingTechItems}
+      />
     </SectionGridContainer>
     <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
       <Footer>
