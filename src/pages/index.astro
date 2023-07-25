@@ -12,10 +12,21 @@ import '@fontsource/ibm-plex-sans/400.css'
 import '@fontsource/ibm-plex-sans/500.css'
 import '@fontsource/ibm-plex-sans/700.css'
 import '@fontsource-variable/space-grotesk'
+import { getCollection } from 'astro:content'
 
-const META_TITLE = 'bitbetter – Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
+const META_TITLE = 'bitbetter'
+const META_SUBTITLE = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
 const META_DESCRIPTION =
   'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+
+const developmentTechItems = (await getCollection('stack_development'))
+  .map((c) => c.data)
+  .sort((a, b) => (a.order || 0) - (b.order || 0))
+const consultingTechItems = (await getCollection('stack_consulting'))
+  .map((c) => c.data)
+  .sort((a, b) => (a.order || 0) - (b.order || 0))
+
+const isProduction = import.meta.env.MODE === 'production'
 ---
 
 <html lang='de' class='overflow-x-hidden'>
@@ -24,7 +35,7 @@ const META_DESCRIPTION =
     <link rel='icon' type='image/svg+xml' href='/bb_favicon.png' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <meta name='generator' content={Astro.generator} />
-    <title>{META_TITLE}</title>
+    <title>{`${META_TITLE} - ${META_SUBTITLE}`}</title>
     <meta name='description' content={META_DESCRIPTION} />
     <meta
       name='keywords'
@@ -35,15 +46,19 @@ const META_DESCRIPTION =
     <meta property='og:title' content={META_TITLE} />
     <meta property='og:description' content={META_DESCRIPTION} />
     <meta property='og:image' content={'https://bitbetter.de/bitbetter_opengraph.jpg'} />
-    <script async src="https://analytics.bitbetter.de/script.js" data-website-id="0c1e576e-389d-4f07-941c-8631e3c6dd0b"></script>
+    {
+      isProduction && (
+        <script
+          async
+          src='https://analytics.bitbetter.de/script.js'
+          data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
+        />
+      )
+    }
   </head>
   <body class='flex flex-col overflow-x-hidden'>
     <SectionGridContainer className='bg-bb-grey-200' data-paralless='0.5'>
-      <HeroSection
-        title='Individuelle Software – Modern, bodenständig und ohne Schnickschnack'
-        subtitle={META_DESCRIPTION}
-        buttonCaption='Schreib uns'
-      />
+      <HeroSection title={META_SUBTITLE} subtitle={META_DESCRIPTION} buttonCaption='Schreib uns' />
     </SectionGridContainer>
     <SectionGridContainer className='bg-white'>
       <div class='lg:h-48'></div>
@@ -52,7 +67,10 @@ const META_DESCRIPTION =
       <AboutUsSection />
     </SectionGridContainer>
     <SectionGridContainer className='bg-white'>
-      <ServicesSection />
+      <ServicesSection
+        developmentTechItems={developmentTechItems}
+        consultingTechItems={consultingTechItems}
+      />
     </SectionGridContainer>
     <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
       <Footer>
@@ -61,23 +79,23 @@ const META_DESCRIPTION =
             <a class='underline' href='mailto:info@bitbetter.de'>info@bitbetter.de</a>
             <br />
             <br />
-            bitbetter GmbH <br />
-            Desenißstr. 37 <br />
-            22083 Hamburg <br />
+             bitbetter GmbH <br />
+             Desenißstr. 37 <br />
+             22083 Hamburg <br />
             <br />
-            Registergericht: <br />
-            Amtsgericht Hamburg (HRB 177719) <br />
+             Registergericht: <br />
+             Amtsgericht Hamburg (HRB 177719) <br />
           </address>
           <div>
             <br />
             <br />
-            Vertreten durch die Geschäftsführer: <br />
-            Moritz Stückler
+             Vertreten durch die Geschäftsführer: <br />
+             Moritz Stückler
             <br />
-            Fabian Schmidt <br />
+             Fabian Schmidt <br />
             <br />
-            UStIdNr: DE358143925 <br />
-            © 2023 bitbetter GmbH <br />
+             UStIdNr: DE358143925 <br />
+             © 2023 bitbetter GmbH <br />
           </div>
         </>
       </Footer>
