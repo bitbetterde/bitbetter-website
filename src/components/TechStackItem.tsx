@@ -18,7 +18,7 @@ const TechStackItem: React.FC<Props> = ({ image, title, link, light }: Props) =>
       } overflow-hidden flex items-center justify-center [&>*]:h-full [&>*]:w-auto`}
       dangerouslySetInnerHTML={{ __html: image }}
     />
-    <div className='font-medium flex-1'>{title}</div>
+    <div className='font-medium flex-1 text-xl'>{title}</div>
   </a>
 )
 
