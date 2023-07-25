@@ -26,7 +26,7 @@ const consultingTechItems = (await getCollection('stack_consulting'))
   .map((c) => c.data)
   .sort((a, b) => (a.order || 0) - (b.order || 0))
 
-const allItemsKeywords = [...developmentTechItems, ...consultingTechItems]
+const techstackKeywords = [...developmentTechItems, ...consultingTechItems]
   ?.map((item) => item?.title)
   .join(', ')
 
@@ -44,7 +44,7 @@ const isProduction = import.meta.env.MODE === 'production'
     <meta
       name='keywords'
       content={`bitbetter, software, hamburg, software-entwicklung, entwicklung, automatisierung, tailwind, ${
-        allItemsKeywords || ''
+        techstackKeywords || ''
       }`}
     />
     <meta name='author' content='Fabian Schmidt' />
