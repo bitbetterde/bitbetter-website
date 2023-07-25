@@ -76,7 +76,6 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
               <TechStackItem key={i} light title={item.title} link={item.link} image={item.image} />
             ))}
           </div>
-          {/* <div className="px-8 pt-4 pb-8 font-medium text-lg text-white/75">und mehr...</div> */}
         </div>
         <div className={'h-4 lg:hidden'} />
 
