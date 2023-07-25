@@ -71,11 +71,12 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           <h4 className='px-8 pt-8 uppercase text-lg tracking-[0.1em] text-white/75'>
             Wir entwickeln mit
           </h4>
-          <div className='p-8 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5'>
+          <div className='px-8 pt-4 pb-8 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5'>
             {developmentTechItems?.map((item, i) => (
               <TechStackItem key={i} light title={item.title} link={item.link} image={item.image} />
             ))}
           </div>
+          {/* <div className="px-8 pt-4 pb-8 font-medium text-lg text-white/75">und mehr...</div> */}
         </div>
         <div className={'h-4 lg:hidden'} />
 
