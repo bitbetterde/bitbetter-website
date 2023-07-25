@@ -1,0 +1,6 @@
+{
+  "title": "Camunda",
+  "link": "https://camunda.com/",
+  "order": 8,
+  "image": "<svg viewBox='0 0 72 218' xmlns='http://www.w3.org/2000/svg' stroke-linejoin='round' stroke-miterlimit='2'><path d='M35.59 155.31c23.49 0 35.58-13.85 35.76-38.22V96.94H48.74v21.73c0 10.87-4.74 14.73-12.45 14.73-7.54 0-12.45-3.86-12.45-14.73V36.51c0-10.87 4.74-15.08 12.45-14.9 7.54 0 12.45 4.2 12.45 15.07v16.26h22.61V38.21C71.35 13.84 59.25 0 35.76 0 12.27 0 .15 13.84 0 38.21v79.06c0 24.02 12.15 38.04 35.59 38.04Z' fill='currentColor'/><path fill='currentColor' d='M0 177.57h71.35v40.32H0z'/></svg>"
+}
