@@ -13,12 +13,12 @@ const TechStackItem: React.FC<Props> = ({ image, title, link, light }: Props) =>
   `}
   >
     <div
-      className={`w-8 h-8 p-1 ${
+      className={`w-8 h-8 shrink-0 aspect-square p-1 ${
         light ? 'hover:text-white/50' : 'hover:text-black/80'
       } overflow-hidden flex items-center justify-center [&>*]:h-full [&>*]:w-auto`}
       dangerouslySetInnerHTML={{ __html: image }}
     />
-    <div className='font-medium'>{title}</div>
+    <div className='font-medium flex-1'>{title}</div>
   </a>
 )
 

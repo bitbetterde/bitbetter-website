@@ -5,7 +5,7 @@ import { ReactComponent as LightningIcon } from '@phosphor-icons/core/regular/li
 import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regular/terminal-window.svg'
 import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layout.svg'
 import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
-import { ReactComponent as OSIIcon } from '@assets/osi.svg'
+import { ReactComponent as OSIcon } from '@assets/opensource.svg'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
 import TechStackItem from './TechStackItem'
 
@@ -68,7 +68,10 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           icon={<LayoutIcon />}
         />
         <div className={`${developmentTechItems?.length ? '' : 'h-8'} bg-black`}>
-          <div className='p-8 inline-grid grid-cols-2 gap-x-12 gap-y-5'>
+          <h4 className='px-8 pt-8 uppercase text-lg tracking-[0.1em] text-white/75'>
+            Wir entwickeln mit
+          </h4>
+          <div className='p-8 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5'>
             {developmentTechItems?.map((item, i) => (
               <TechStackItem key={i} light title={item.title} link={item.link} image={item.image} />
             ))}
@@ -93,7 +96,7 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           text={
             'Wir unterstützen dabei, Software, Methoden & Prozesse aus der Open-Source-Welt zu verstehen und einzusetzen.'
           }
-          icon={<OSIIcon />}
+          icon={<OSIcon />}
         />
         <ServiceItemDivider className={'bg-bb-grey-200'} />
         <ServiceItem
@@ -105,7 +108,10 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
         />
 
         <div className={`${consultingTechItems?.length ? '' : 'h-8'} bg-bb-grey-200`}>
-          <div className='p-8 inline-grid grid-cols-2 gap-x-12 gap-y-5'>
+          <h4 className='px-8 pt-8 uppercase text-lg tracking-[0.1em] text-black/75'>
+            Wir beraten zu
+          </h4>
+          <div className='px-8 py-4 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5'>
             {consultingTechItems?.map((item, i) => (
               <TechStackItem key={i} title={item.title} link={item.link} image={item.image} />
             ))}
