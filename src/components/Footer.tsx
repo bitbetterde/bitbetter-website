@@ -23,6 +23,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
             href='https://github.com/bitbetterde/'
             target='_blank'
             className='text-black hover:text-opacity-75'
+            aria-label='bitbetter auf GitHub'
           >
             <GithubIcon className='p-2 h-10 w-10' />
           </a>
@@ -30,6 +31,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
             href='https://www.linkedin.com/company/bitbetter/'
             target='_blank'
             className='text-black hover:text-opacity-75'
+            aria-label='bitbetter auf LinkedIn'
           >
             <LinkedInIcon className='p-2 h-10 w-10' />
           </a>

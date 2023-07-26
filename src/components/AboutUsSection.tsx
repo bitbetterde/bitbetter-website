@@ -29,13 +29,18 @@ const AboutUsSection: React.FC<Props> = () => {
         </p>
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div className={'flex-1'}>
-            <img
-              src='/moritz_avatar.png'
-              alt={'Portrait von Moritz Stückler'}
-              width={400}
-              height={400}
-              className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
-            />
+            <picture>
+              <source srcSet='/moritz_avatar.webp' type='image/webp' />
+              <source srcSet='/moritz_avatar.jpg' type='image/jpeg' />
+              <img
+                src='/moritz_avatar.jpg'
+                alt={'Portrait von Moritz Stückler'}
+                width={400}
+                height={400}
+                className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
+              />
+            </picture>
+
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Moritz Stückler</b> arbeitete zunächst viele Jahre als IT-Journalist und entschied
               sich 2014 für den Berufswechsel zum Software-Entwickler. Nach dem Studium arbeitete er
@@ -44,13 +49,18 @@ const AboutUsSection: React.FC<Props> = () => {
             </p>
           </div>
           <div className={'flex-1'}>
-            <img
-              src='/fabian_avatar.png'
-              alt={'Portrait von Fabian Schmidt'}
-              width={400}
-              height={400}
-              className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
-            />
+            <picture>
+              <source srcSet='/fabian_avatar.webp' type='image/webp' />
+              <source srcSet='/fabian_avatar.jpg' type='image/jpeg' />
+              <img
+                src='/fabian_avatar.jpg'
+                alt={'Portrait von Fabian Schmidt'}
+                width={400}
+                height={400}
+                className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
+              />
+            </picture>
+
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
               Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von
