@@ -9,9 +9,11 @@ import ServiceHeader from './ServiceHeader'
 import ServiceItem from './ServiceItem'
 import ServiceItemDivider from './ServiceItemDivider'
 import ServicesSection from './ServicesSection'
+import CarbonBadge from './CarbonBadge.astro'
 
 export {
   AboutUsSection,
+  CarbonBadge,
   Button,
   Footer,
   HeroSection,

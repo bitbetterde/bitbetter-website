@@ -5,6 +5,7 @@ import {
   AboutUsSection,
   ServicesSection,
   Footer,
+  CarbonBadge,
 } from '@components'
 
 import '../../base.css'
@@ -80,30 +81,7 @@ const isProduction = import.meta.env.MODE === 'production'
     </SectionGridContainer>
     <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
       <Footer>
-        <>
-          <address class={'not-italic mt-8 md:mt-0'}>
-            <a class='underline' href='mailto:info@bitbetter.de'>info@bitbetter.de</a>
-            <br />
-            <br />
-             bitbetter GmbH <br />
-             Desenißstr. 37 <br />
-             22083 Hamburg <br />
-            <br />
-             Registergericht: <br />
-             Amtsgericht Hamburg (HRB 177719) <br />
-          </address>
-          <div>
-            <br />
-            <br />
-             Vertreten durch die Geschäftsführer: <br />
-             Moritz Stückler
-            <br />
-             Fabian Schmidt <br />
-            <br />
-             UStIdNr: DE358143925 <br />
-             © 2023 bitbetter GmbH <br />
-          </div>
-        </>
+        <CarbonBadge production={isProduction} />
       </Footer>
     </SectionGridContainer>
   </body>
