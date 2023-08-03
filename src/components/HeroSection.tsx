@@ -29,10 +29,10 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
       <div className='relative lg:flex-1 lg:basis-1/2 lg:pt-48 -pb-10 w-full overflow-visible bg-bb-grey-200'>
         <div className={'lg:absolute h-[64vw] lg:h-[46rem] w-full overflow-hidden'}>
           <picture>
-            <source srcSet='/team.webp' type='image/webp' />
-            <source srcSet='/team.jpg' type='image/jpeg' />
+            <source srcSet='/images/team.webp' type='image/webp' />
+            <source srcSet='/images/team.jpg' type='image/jpeg' />
             <img
-              src='/team.jpg'
+              src='/images/team.jpg'
               alt={'Die zwei bitbetter-Geschäftsführer vor einem Fluss und Bäumen'}
               width={671}
               height={736}

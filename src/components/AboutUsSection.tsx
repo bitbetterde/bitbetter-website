@@ -30,10 +30,10 @@ const AboutUsSection: React.FC<Props> = () => {
         <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
           <div className={'flex-1'}>
             <picture>
-              <source srcSet='/moritz_avatar.webp' type='image/webp' />
-              <source srcSet='/moritz_avatar.jpg' type='image/jpeg' />
+              <source srcSet='/images/moritz_avatar.webp' type='image/webp' />
+              <source srcSet='/images/moritz_avatar.jpg' type='image/jpeg' />
               <img
-                src='/moritz_avatar.jpg'
+                src='/images/moritz_avatar.jpg'
                 alt={'Portrait von Moritz Stückler'}
                 width={400}
                 height={400}
@@ -50,10 +50,10 @@ const AboutUsSection: React.FC<Props> = () => {
           </div>
           <div className={'flex-1'}>
             <picture>
-              <source srcSet='/fabian_avatar.webp' type='image/webp' />
-              <source srcSet='/fabian_avatar.jpg' type='image/jpeg' />
+              <source srcSet='/images/fabian_avatar.webp' type='image/webp' />
+              <source srcSet='/images/fabian_avatar.jpg' type='image/jpeg' />
               <img
-                src='/fabian_avatar.jpg'
+                src='/images/fabian_avatar.jpg'
                 alt={'Portrait von Fabian Schmidt'}
                 width={400}
                 height={400}
