@@ -23,7 +23,10 @@ interface Props {
 
 const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTechItems }) => {
   return (
-    <section className={'flex flex-col lg:flex-row lg:p-28 pl-5 pt-16 pb-20 relative'}>
+    <section
+      id={'services'}
+      className={'flex flex-col lg:flex-row lg:p-28 pl-5 pt-16 pb-20 relative'}
+    >
       <div className={'flex-1 pb-6'}>
         <SectionMark
           title={'Leistungen'}

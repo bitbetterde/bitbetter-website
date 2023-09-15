@@ -10,6 +10,7 @@ import ServiceItem from './ServiceItem'
 import ServiceItemDivider from './ServiceItemDivider'
 import ServicesSection from './ServicesSection'
 import CarbonBadge from './CarbonBadge.astro'
+import Navbar from './Navbar'
 
 export {
   AboutUsSection,
@@ -24,4 +25,5 @@ export {
   ServiceItem,
   ServiceItemDivider,
   ServicesSection,
+  Navbar,
 }

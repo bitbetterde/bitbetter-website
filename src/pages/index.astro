@@ -6,14 +6,11 @@ import {
   ServicesSection,
   Footer,
   CarbonBadge,
+  Navbar,
 } from '@components'
 
-import '../../base.css'
-import '@fontsource/ibm-plex-sans/400.css'
-import '@fontsource/ibm-plex-sans/500.css'
-import '@fontsource/ibm-plex-sans/700.css'
-import '@fontsource-variable/space-grotesk'
 import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
 
 const META_TITLE = 'bitbetter'
 const META_SUBTITLE = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
@@ -30,63 +27,31 @@ const consultingTechItems = (await getCollection('stack_consulting'))
 const techstackKeywords = [...developmentTechItems, ...consultingTechItems]
   ?.map((item) => item?.title)
   .join(', ')
-
-const isProduction = import.meta.env.MODE === 'production'
 ---
 
-<html lang='de' class='overflow-x-hidden'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/bb_favicon.png' />
-    <meta name='viewport' content='width=device-width,initial-scale=1' />
-    <meta name='generator' content={Astro.generator} />
-    <title>{`${META_TITLE} - ${META_SUBTITLE}`}</title>
-    <meta name='description' content={META_DESCRIPTION} />
-    <meta
-      name='keywords'
-      content={`bitbetter, software, hamburg, software-entwicklung, entwicklung, automatisierung, tailwind, ${
-        techstackKeywords || ''
-      }`}
+<BaseLayout
+  metaTitle={META_TITLE}
+  metaSubtitle={META_SUBTITLE}
+  metaDescription={META_DESCRIPTION}
+  techstackKeywords={techstackKeywords}
+>
+  <SectionGridContainer className='bg-bb-grey-200'>
+    <HeroSection
+      title={'Individuelle Software: Modern, bodenständig und\u00A0ohne Schnickschnack'}
+      subtitle={META_DESCRIPTION}
+      buttonCaption='Schreib uns'
     />
-    <meta name='author' content='Fabian Schmidt' />
-    <meta name='author' content='Moritz Stückler' />
-    <meta property='og:title' content={META_TITLE} />
-    <meta property='og:description' content={META_DESCRIPTION} />
-    <meta property='og:image' content={'https://bitbetter.de/bitbetter_opengraph.jpg'} />
-    {
-      isProduction && (
-        <script
-          async
-          src='https://analytics.bitbetter.de/script.js'
-          data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
-        />
-      )
-    }
-  </head>
-  <body class='flex flex-col overflow-x-hidden'>
-    <SectionGridContainer className='bg-bb-grey-200'>
-      <HeroSection
-        title={'Individuelle Software: Modern, bodenständig und\u00A0ohne Schnickschnack'}
-        subtitle={META_DESCRIPTION}
-        buttonCaption='Schreib uns'
-      />
-    </SectionGridContainer>
-    <SectionGridContainer className='bg-white'>
-      <div class='lg:h-48'></div>
-    </SectionGridContainer>
-    <SectionGridContainer className='z-10 bg-black overflow-hidden'>
-      <AboutUsSection />
-    </SectionGridContainer>
-    <SectionGridContainer className='bg-white'>
-      <ServicesSection
-        developmentTechItems={developmentTechItems}
-        consultingTechItems={consultingTechItems}
-      />
-    </SectionGridContainer>
-    <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
-      <Footer>
-        <CarbonBadge production={isProduction} />
-      </Footer>
-    </SectionGridContainer>
-  </body>
-</html>
+  </SectionGridContainer>
+  <SectionGridContainer className='bg-white'>
+    <div class='lg:h-48'></div>
+  </SectionGridContainer>
+  <SectionGridContainer className='z-10 bg-black overflow-hidden'>
+    <AboutUsSection />
+  </SectionGridContainer>
+  <SectionGridContainer className='bg-white'>
+    <ServicesSection
+      developmentTechItems={developmentTechItems}
+      consultingTechItems={consultingTechItems}
+    />
+  </SectionGridContainer>
+</BaseLayout>

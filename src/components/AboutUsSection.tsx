@@ -7,6 +7,7 @@ interface Props {}
 const AboutUsSection: React.FC<Props> = () => {
   return (
     <section
+      id={'aboutus'}
       className={'text-white flex flex-col md:flex-row px-5 pb-[16.5rem] pt-16 md:p-28 relative'}
     >
       <div className={'flex-1'}>
