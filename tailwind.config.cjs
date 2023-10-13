@@ -25,7 +25,8 @@ module.exports = {
         grotesk: ["Space Grotesk Variable", ...defaultTheme.fontFamily.sans]
       },
       fontSize: {
-        "bb-3xl": ["2rem", { lineHeight: "140%", letterSpacing: "-1%", fontWeight: "500" }]
+        "bb-3xl": ["2rem", { lineHeight: "140%", letterSpacing: "-1%", fontWeight: "500" }],
+        "bb-4xl": ["2.5rem", { lineHeight: "140%", letterSpacing: "-1%", fontWeight: "500" }]
       }
     }
   },

@@ -41,10 +41,8 @@ const isProduction = import.meta.env.MODE === 'production'
       )
     }
   </head>
-  <body class='flex flex-col overflow-x-hidden'>
-    <SectionGridContainer>
-      <Navbar buttonCaption='Schreib uns!' />
-    </SectionGridContainer>
+  <body class='flex flex-col overflow-x-hidden pt-16'>
+    <Navbar buttonCaption='Schreib uns!' client:only='react' />
     <slot />
     <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
       <Footer>

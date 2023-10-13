@@ -8,7 +8,8 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .grid-wrapper > * {
+  .grid-wrapper > *,
+  .grid-wrapper .grid-child {
     grid-column: 2;
   }
 
