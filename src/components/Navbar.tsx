@@ -59,31 +59,27 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
         <ul
           className={`${
             navListOpen ? 'flex' : 'hidden'
-          } lg:flex gap-4 lg:gap-8 ml-5 lg:ml-0 flex-col lg:flex-row font-grotesk lg:font-sans text-bb-4xl lg:text-base`}
+          } lg:flex gap-4 lg:gap-8 ml-5 lg:ml-0 flex-col lg:flex-row font-grotesk lg:font-sans text-bb-4xl lg:text-base !font-normal`}
         >
-          <li className={'lg:flex lg:items-center'}>
-            <a
-              href={'/#services'}
-              onClick={() => {
-                closeMenu()
-              }}
-            >
-              Leistung
-            </a>
-          </li>
-          <li className={'lg:flex lg:items-center'}>
-            <a href={'blog'}>Blog</a>
-          </li>
-          <li className={'lg:flex lg:items-center'}>
-            <a
-              href={'/#aboutus'}
-              onClick={() => {
-                closeMenu()
-              }}
-            >
-              Über uns
-            </a>
-          </li>
+          <MenuItem
+            href='/#aboutus'
+            onClick={() => {
+              closeMenu()
+            }}
+          >
+            Über uns
+          </MenuItem>
+          <MenuItem
+            href='/#services'
+            onClick={() => {
+              closeMenu()
+            }}
+          >
+            Leistungen
+          </MenuItem>
+
+          <MenuItem href='/blog'>Blog</MenuItem>
+
           <li className={'ml-4 hidden lg:block'}>
             <LinkButton
               className={'h-9'}
@@ -97,7 +93,8 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
         {navListOpen && (
           <div className={'lg:hidden px-5 mb-10'}>
             <LinkButton
-              className={'h-12 w-full justify-center'}
+              className={'w-full justify-center'}
+              small
               caption={buttonCaption}
               dark={true}
               href={'mailto:info@bitbetter.de'}
@@ -110,3 +107,19 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
 }
 
 export default Navbar
+
+interface MenuItemProps {
+  onClick?: (e: any) => void
+  href: string
+  className?: string
+  children: React.ReactNode
+}
+const MenuItem = ({ onClick, children, href, className }: MenuItemProps) => {
+  return (
+    <li className={`lg:flex lg:items-center opacity-75 ${className || ''}`}>
+      <a href={href} {...(onClick ? { onClick } : {})}>
+        {children}
+      </a>
+    </li>
+  )
+}

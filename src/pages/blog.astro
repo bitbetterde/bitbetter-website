@@ -1,17 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-
-const META_TITLE = 'bitbetter'
-const META_SUBTITLE = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack'
-const META_DESCRIPTION =
-  'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+import { Card, SectionGridContainer, SectionMark } from '@components'
 ---
 
-<BaseLayout
-  metaTitle={META_TITLE}
-  metaSubtitle={META_SUBTITLE}
-  metaDescription={META_DESCRIPTION}
-  techstackKeywords={'blog'}
->
-  <div></div>
+<BaseLayout>
+  <SectionGridContainer className='px-28 pt-16 bg-bb-grey-200'>
+    <div class='flex gap-20 items-start h-96'>
+      <Card
+        title='Most prominent post'
+        subtitle='Some Category'
+        href='https://www.google.de'
+        teaser='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rhoncus tincidunt lectus, vel egestas ligula tincidunt ac. Nulla placerat posuere justo, ut sagittis purus tincidunt ut. Sed non consectetur risus. Integer vel mauris ac dui efficitur sodales vel sed nunc. Vivamus vel massa blandit, condimentum massa vel, pellentesque purus. Aliquam sed nunc lorem. Phasellus sodales mauris elit, et bibendum ipsum aliquet eu.'
+        className='!flex-[2]'
+      />
+      <div class='w-full h-[28rem] flex-[3_3_20px] overflow-hidden'>
+        <img src='https://picsum.photos/640/480?grayscale&random=17' class='w-full h-auto' />
+      </div>
+    </div>
+  </SectionGridContainer>
+  <SectionGridContainer className='px-28 pt-32 pb-16'>
+    <div class='flex'>
+      <div class='flex-1'>
+        <SectionMark
+          title={'Weitere Artikel'}
+          classNameLine={'bg-black opacity-75'}
+          classNameText={'opacity-75'}
+        />
+      </div>
+      <div class='flex-[3] grid grid-cols-2 gap-x-6 gap-y-16'>
+        <Card
+          title='Nachhaltige Webentwicklung – den CO2 Fußabdruck einer Website reduzieren und noch mehr Zeug was hier kommt ey wie lange muss das hier noch werden'
+          subtitle='Category'
+          img='https://picsum.photos/640/480?grayscale&random=1'
+          href='https://www.google.de'
+        />
+        <Card
+          title='Ein anderer Blogpost mit mittlerer Länge'
+          subtitle='Category'
+          img='https://picsum.photos/640/480?grayscale&random=9'
+          href='https://www.google.de'
+        />
+        <Card
+          title='HELLO'
+          subtitle='Category'
+          img='https://picsum.photos/640/480?grayscale&random=99'
+          href='https://www.google.de'
+        />
+        <Card
+          title='Kurzer Blogpost kurzer Titel'
+          subtitle='Category'
+          img='https://picsum.photos/640/480?grayscale&random=79'
+          href='https://www.google.de'
+        />
+      </div>
+    </div>
+  </SectionGridContainer>
 </BaseLayout>

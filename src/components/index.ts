@@ -1,5 +1,6 @@
 import AboutUsSection from './AboutUsSection'
 import Button from './Button'
+import Card from './Card'
 import Footer from './Footer'
 import HeroSection from './HeroSection'
 import LinkButton from './LinkButton'
@@ -9,13 +10,12 @@ import ServiceHeader from './ServiceHeader'
 import ServiceItem from './ServiceItem'
 import ServiceItemDivider from './ServiceItemDivider'
 import ServicesSection from './ServicesSection'
-import CarbonBadge from './CarbonBadge.astro'
 import Navbar from './Navbar'
 
 export {
   AboutUsSection,
-  CarbonBadge,
   Button,
+  Card,
   Footer,
   HeroSection,
   LinkButton,
