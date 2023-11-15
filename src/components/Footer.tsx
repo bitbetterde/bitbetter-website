@@ -11,10 +11,12 @@ interface Props {
 
 const Footer: React.FC<Props> = ({ children }: Props) => {
   return (
-    <footer
-      className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 lg:px-28 pb-14 gap-y-12 relative'}
-    >
-      <div className={'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10'}>
+    <>
+      <div
+        className={
+          'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10 lg:col-start-2 lg:col-span-5 col-span-1'
+        }
+      >
         <div>
           <BbLogo className={'h-8 md:h-10'} />
         </div>
@@ -41,7 +43,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
           {children}
         </div>
       </div>
-      <div className={'flex-[3] z-10'}>
+      <div className={'flex-[3] z-10 col-span-1 lg:col-span-6'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf deine E-Mail.
         </h3>
@@ -77,9 +79,9 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
           </div>
         </div>
       </div>
-      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0 hidden md:block' />
-      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-80 hidden md:block' />
-    </footer>
+      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
+      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-60 hidden md:block' />
+    </>
   )
 }
 

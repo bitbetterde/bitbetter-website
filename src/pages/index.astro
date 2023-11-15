@@ -1,15 +1,9 @@
 ---
 import { HeroSection, SectionGridContainer, AboutUsSection, ServicesSection } from '@components'
 
-import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const developmentTechItems = (await getCollection('stack_development'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
-const consultingTechItems = (await getCollection('stack_consulting'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
+import { developmentTechItems, consultingTechItems } from '../util/content'
 ---
 
 <BaseLayout>
@@ -23,10 +17,13 @@ const consultingTechItems = (await getCollection('stack_consulting'))
   <SectionGridContainer className='bg-white'>
     <div class='lg:h-48'></div>
   </SectionGridContainer>
-  <SectionGridContainer className='z-10 bg-black overflow-hidden'>
+  <SectionGridContainer
+    className='z-10 bg-black overflow-hidden'
+    innerClassName='pb-[16.5rem] pt-16 md:py-28 px-5 lg:px-0'
+  >
     <AboutUsSection />
   </SectionGridContainer>
-  <SectionGridContainer className='bg-white'>
+  <SectionGridContainer className='bg-white' breakpoint='xl'>
     <ServicesSection
       developmentTechItems={developmentTechItems}
       consultingTechItems={consultingTechItems}

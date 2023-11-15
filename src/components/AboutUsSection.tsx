@@ -6,18 +6,15 @@ interface Props {}
 
 const AboutUsSection: React.FC<Props> = () => {
   return (
-    <section
-      id={'aboutus'}
-      className={'text-white flex flex-col md:flex-row px-5 pb-[16.5rem] pt-16 md:p-28 relative'}
-    >
-      <div className={'flex-1'}>
+    <>
+      <div id={'aboutus'} className={'text-white lg:col-span-4 lg:col-start-2'}>
         <SectionMark
           title={'Über uns'}
           classNameLine={'bg-white/75'}
           classNameText={'opacity-75'}
         />
       </div>
-      <div className={'flex-[2.58] mt-6 md:mt-0'}>
+      <div className={'text-white flex-[2.58] mt-6 md:mt-0 col-span-8'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Unsere Leidenschaft ist gute, individuelle Software, die Menschen das Leben leichter
           macht.
@@ -28,8 +25,8 @@ const AboutUsSection: React.FC<Props> = () => {
           Berufserfahrung in verschiedenen Branchen und im Jahr 2022 haben wir gemeinsam die
           bitbetter GmbH gegründet.
         </p>
-        <div className={'flex flex-col md:flex-row mt-16 md:mt-[5.5rem] gap-16 md:gap-36'}>
-          <div className={'flex-1'}>
+        <div className={'grid grid-cols-1 sm:grid-cols-8 mt-16 md:mt-[5.5rem] gap-8'}>
+          <div className={'col-span-1 sm:col-span-4 lg:col-span-3'}>
             <picture>
               <source srcSet='/images/moritz_avatar.webp' type='image/webp' />
               <source srcSet='/images/moritz_avatar.jpg' type='image/jpeg' />
@@ -49,7 +46,7 @@ const AboutUsSection: React.FC<Props> = () => {
               Frontend-Technologien, CMS-Systeme und Open-Source-Software.
             </p>
           </div>
-          <div className={'flex-1'}>
+          <div className={'col-span-1 sm:col-span-4 lg:col-start-5 lg:col-span-3'}>
             <picture>
               <source srcSet='/images/fabian_avatar.webp' type='image/webp' />
               <source srcSet='/images/fabian_avatar.jpg' type='image/jpeg' />
@@ -73,7 +70,7 @@ const AboutUsSection: React.FC<Props> = () => {
       </div>
       <BbBracket className='text-bb-grey-600 absolute w-56 md:w-72 -bottom-40 md:-bottom-16 md:left-0 -left-12 -z-10' />
       <BbBracket className='rotate-180 text-bb-grey-600 absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16 -z-10' />
-    </section>
+    </>
   )
 }
 

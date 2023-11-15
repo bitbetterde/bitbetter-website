@@ -1,7 +1,7 @@
 ---
 import { Footer, Navbar, SectionGridContainer } from '../components'
 import CarbonBadge from '@components/CarbonBadge.astro'
-import { getCollection } from 'astro:content'
+import { techstackKeywords } from '../util/content'
 
 import '../../base.css'
 import '@fontsource/ibm-plex-sans/400.css'
@@ -20,17 +20,6 @@ const {
   metaSubtitle = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack',
   metaDescription = 'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.',
 } = Astro.props
-
-const developmentTechItems = (await getCollection('stack_development'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
-const consultingTechItems = (await getCollection('stack_consulting'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
-
-const techstackKeywords = [...developmentTechItems, ...consultingTechItems]
-  ?.map((item) => item?.title)
-  .join(', ')
 
 const isProduction = import.meta.env.MODE === 'production'
 ---
@@ -67,7 +56,11 @@ const isProduction = import.meta.env.MODE === 'production'
   <body class='flex flex-col overflow-x-hidden pt-20'>
     <Navbar buttonCaption='Schreib uns!' client:only='react' />
     <slot />
-    <SectionGridContainer className='bg-bb-grey-200 overflow-y-hidden'>
+    <SectionGridContainer
+      as='footer'
+      className='bg-bb-grey-200 overflow-y-hidden'
+      innerClassName='pt-20 pb-14 relative px-5 2xl:px-0 gap-y-12'
+    >
       <Footer>
         <CarbonBadge production={isProduction} />
       </Footer>
