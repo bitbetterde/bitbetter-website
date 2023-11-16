@@ -14,7 +14,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
     <>
       <div
         className={
-          'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10 lg:col-start-2 lg:col-span-5 col-span-1'
+          'flex gap-8 flex-col justify-between md:pt-0.5 z-10 lg:col-start-2 lg:col-span-5 col-span-1'
         }
       >
         <div>
@@ -43,7 +43,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
           {children}
         </div>
       </div>
-      <div className={'flex-[3] z-10 col-span-1 lg:col-span-6'}>
+      <div className={'z-10 col-span-1 lg:col-span-6'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf deine E-Mail.
         </h3>

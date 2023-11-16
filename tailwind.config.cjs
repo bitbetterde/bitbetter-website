@@ -29,7 +29,7 @@ module.exports = {
         'bb-4xl': ['2.5rem', { lineHeight: '140%', letterSpacing: '-1%', fontWeight: '500' }],
       },
       gridTemplateColumns: {
-        inner: 'repeat(14, minmax(0, 1fr))',
+        inner: 'repeat(13, minmax(0, 1fr))',
         outer: '1fr min(1500px, 100%) 1fr',
       },
       gridColumn: {

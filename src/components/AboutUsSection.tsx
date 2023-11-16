@@ -7,14 +7,14 @@ interface Props {}
 const AboutUsSection: React.FC<Props> = () => {
   return (
     <>
-      <div id={'aboutus'} className={'text-white lg:col-span-4 lg:col-start-2'}>
+      <div id={'aboutus'} className={'text-white lg:col-span-3 lg:col-start-2'}>
         <SectionMark
           title={'Über uns'}
           classNameLine={'bg-white/75'}
           classNameText={'opacity-75'}
         />
       </div>
-      <div className={'text-white flex-[2.58] mt-6 md:mt-0 col-span-8'}>
+      <div className={'text-white flex-[2.58] mt-6 md:mt-0 col-span-7'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Unsere Leidenschaft ist gute, individuelle Software, die Menschen das Leben leichter
           macht.
@@ -25,8 +25,8 @@ const AboutUsSection: React.FC<Props> = () => {
           Berufserfahrung in verschiedenen Branchen und im Jahr 2022 haben wir gemeinsam die
           bitbetter GmbH gegründet.
         </p>
-        <div className={'grid grid-cols-1 sm:grid-cols-8 mt-16 md:mt-[5.5rem] gap-8'}>
-          <div className={'col-span-1 sm:col-span-4 lg:col-span-3'}>
+        <div className={'grid grid-cols-1 sm:grid-cols-7 mt-16 md:mt-[5.5rem] gap-8'}>
+          <div className={'col-span-1 sm:col-span-3'}>
             <picture>
               <source srcSet='/images/moritz_avatar.webp' type='image/webp' />
               <source srcSet='/images/moritz_avatar.jpg' type='image/jpeg' />
@@ -46,7 +46,7 @@ const AboutUsSection: React.FC<Props> = () => {
               Frontend-Technologien, CMS-Systeme und Open-Source-Software.
             </p>
           </div>
-          <div className={'col-span-1 sm:col-span-4 lg:col-start-5 lg:col-span-3'}>
+          <div className={'col-span-1 sm:col-start-5 sm:col-span-3'}>
             <picture>
               <source srcSet='/images/fabian_avatar.webp' type='image/webp' />
               <source srcSet='/images/fabian_avatar.jpg' type='image/jpeg' />

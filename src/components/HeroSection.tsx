@@ -10,7 +10,7 @@ interface Props {
 const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props) => {
   return (
     <>
-      <div className='flex flex-col items-start pt-[18.625rem] pb-24 lg:pr-44 lg:pt-36 lg:pb-32 bg-bb-grey-200 pr-5 pl-5 2lg:pl-0 col-span-1 lg:col-span-6 lg:col-start-2'>
+      <div className='flex flex-col items-start pt-[18.625rem] pb-24 lg:pt-36 lg:pb-32 bg-bb-grey-200 px-5 lg:px-0 col-span-1 lg:col-span-5 lg:col-start-2'>
         <h1 className='text-black font-grotesk font-medium text-[1.75rem] lg:text-5xl mt-7 leading-tight'>
           {title}
         </h1>
@@ -24,7 +24,7 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
           />
         )}
       </div>
-      <div className='relative lg:pt-28 w-full overflow-visible bg-bb-grey-200 col-span-12 lg:col-span-6'>
+      <div className='relative lg:pt-28 w-full overflow-visible bg-bb-grey-200 col-span-1 lg:col-start-8 lg:col-span-6'>
         <div className={'lg:absolute h-[64vw] lg:h-[46rem] w-full overflow-hidden'}>
           <picture>
             <source srcSet='/images/team.webp' type='image/webp' />
@@ -36,7 +36,7 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
               }
               width={671}
               height={736}
-              className='relative lg:top-0 -top-[18vw] w-full lg:w-auto lg:h-full object-cover'
+              className='relative lg:top-0 -top-[18vw] w-full lg:h-full object-cover'
             />
           </picture>
         </div>

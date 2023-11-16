@@ -25,7 +25,7 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
   return (
     <>
       <div
-        className={'xl:col-span-4 xl:col-start-2 pt-16 pb-0 xl:py-20 px-5 2xl:px-0'}
+        className={'xl:col-span-3 xl:col-start-2 pt-16 pb-0 xl:py-20 px-5 2xl:px-0'}
         id='services'
       >
         <SectionMark
