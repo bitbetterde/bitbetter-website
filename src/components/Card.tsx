@@ -2,6 +2,7 @@ import LinkButton from './LinkButton'
 
 interface Props {
   img?: string
+  imgAlt?: string
   title: string
   subtitle: string
   href?: string
@@ -9,10 +10,18 @@ interface Props {
   className?: string
 }
 
-const Card: React.FC<Props> = ({ img, title, subtitle, teaser, href, className }: Props) => {
+const Card: React.FC<Props> = ({
+  img,
+  imgAlt,
+  title,
+  subtitle,
+  teaser,
+  href,
+  className,
+}: Props) => {
   return (
     <div className={`flex-1 flex flex-col ${className || ''}`}>
-      {img && <img className='w-full h-64 object-cover' src={img} />}
+      {img && <img className='w-full h-64 object-cover' src={img} alt={imgAlt} />}
       {subtitle && (
         <h3
           className={`font-sans text-lg leading-5 tracking-widest uppercase font-normal text-black opacity-70 ${

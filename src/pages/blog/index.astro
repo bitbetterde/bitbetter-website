@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
+import { getCollection } from 'astro:content'
+
+const content = await getCollection('blog')
+const [firstPost, ...restPosts] = content
 ---
 
 <BaseLayout>
@@ -11,17 +15,18 @@ import { Card, SectionGridContainer, SectionMark } from '@components'
   </SectionGridContainer>
   <SectionGridContainer className='pt-16 bg-bb-grey-200 pb-16' innerClassName='gap-8'>
     <Card
-      title='Most prominent post'
-      subtitle='Some Category'
-      href='https://www.google.de'
-      teaser='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rhoncus tincidunt lectus, vel egestas ligula tincidunt ac. Nulla placerat posuere justo, ut sagittis purus tincidunt ut. Sed non consectetur risus. Integer vel mauris ac dui efficitur sodales vel sed nunc. Vivamus vel massa blandit, condimentum massa vel, pellentesque purus. Aliquam sed nunc lorem. Phasellus sodales mauris elit, et bibendum ipsum aliquet eu.'
+      title={firstPost.data.title}
+      subtitle={firstPost.data.subtitle}
+      href={'/blog/' + firstPost.slug}
+      teaser={firstPost.data.teaser}
       className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
     />
     <div
       class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 h-[28rem] overflow-hidden lg:-mb-32'
     >
       <img
-        src='https://picsum.photos/640/480?grayscale&random=17'
+        src={firstPost.data.image.url}
+        alt={firstPost.data.image.alt}
         class='w-full h-auto object-cover'
       />
     </div>
@@ -36,31 +41,17 @@ import { Card, SectionGridContainer, SectionMark } from '@components'
       />
     </div>
     <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
-      <!-- TODO: Get blog posts from content collection -->
-      <Card
-        title='Nachhaltige Webentwicklung – den CO2 Fußabdruck einer Website reduzieren und noch mehr Zeug was hier kommt ey wie lange muss das hier noch werden'
-        subtitle='Category'
-        img='https://picsum.photos/640/480?grayscale&random=1'
-        href='/blog/post1'
-      />
-      <Card
-        title='Ein anderer Blogpost mit mittlerer Länge'
-        subtitle='Category'
-        img='https://picsum.photos/640/480?grayscale&random=9'
-        href='https://www.google.de'
-      />
-      <Card
-        title='HELLO'
-        subtitle='Category'
-        img='https://picsum.photos/640/480?grayscale&random=99'
-        href='https://www.google.de'
-      />
-      <Card
-        title='Kurzer Blogpost kurzer Titel'
-        subtitle='Category'
-        img='https://picsum.photos/640/480?grayscale&random=79'
-        href='https://www.google.de'
-      />
+      {
+        restPosts.map((post) => (
+          <Card
+            title={post.data.title}
+            subtitle={post.data.subtitle}
+            img={post.data.image.url}
+            imgAlt={post.data.image.alt}
+            href={'/blog/' + post.slug}
+          />
+        ))
+      }
     </div>
   </SectionGridContainer>
 </BaseLayout>

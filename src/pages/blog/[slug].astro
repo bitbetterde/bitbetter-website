@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 const { Content } = await post.render()
-const { title, subtitle, image } = post.data
+const { title, subtitle, image, teaser } = post.data
 ---
 
 <BaseLayout metaTitle={title} metaSubtitle={'bitbetter blog'}>
@@ -34,11 +34,14 @@ const { title, subtitle, image } = post.data
   </SectionGridContainer>
   <SectionGridContainer className='bg-bb-grey-200' innerClassName=''>
     <div class='col-start-2 col-span-6'>
-      <img src={image.url} alt={image.alt} class='w-full h-auto aspect-video object-cover -mb-16' />
+      <img src={image.url} alt={image.alt} class='w-full h-auto aspect-video object-cover -mb-20' />
     </div>
   </SectionGridContainer>
   <SectionGridContainer innerClassName='pt-44 pb-28'>
-    <article class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] max-w-none'>
+    <article
+      class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] prose-headings:font-grotesk prose-blockquote:border-l-0 prose-blockquote:font-grotesk prose-blockquote:pl-0 prose-bb-grey max-w-none'
+    >
+      <p class='lead'>{teaser}</p>
       <Content />
     </article>
   </SectionGridContainer>
