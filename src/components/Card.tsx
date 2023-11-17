@@ -28,15 +28,7 @@ const Card: React.FC<Props> = ({ img, title, subtitle, teaser, href, className }
         </h2>
       )}
       {teaser && <p>{teaser}</p>}
-      {href && (
-        <LinkButton
-          small
-          caption={'Weiterlesen'}
-          dark={true}
-          href={'www.google.de'}
-          className='mt-5'
-        />
-      )}
+      {href && <LinkButton small caption={'Weiterlesen'} dark href={href} className='mt-5' />}
     </div>
   )
 }

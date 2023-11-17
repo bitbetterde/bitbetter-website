@@ -34,8 +34,8 @@ module.exports = {
       },
       gridColumn: {
         'span-inner': '2/-2',
-      }
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

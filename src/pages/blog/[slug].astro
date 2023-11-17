@@ -1,0 +1,45 @@
+---
+import { SectionGridContainer } from '@components'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const content = await getCollection('blog')
+
+  const result = content.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    }
+  })
+
+  return result
+}
+
+const { post } = Astro.props
+const { Content } = await post.render()
+const { title, subtitle, image } = post.data
+---
+
+<BaseLayout metaTitle={title} metaSubtitle={'bitbetter blog'}>
+  <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-24'>
+    <div class='col-start-2 col-span-12 flex flex-col gap-4'>
+      <h4 class='uppercase text-black/60'>{subtitle}</h4>
+      <h1 class='font-grotesk text-7xl font-medium'>{title}</h1>
+    </div>
+  </SectionGridContainer>
+  <SectionGridContainer className='bg-bb-grey-200' innerClassName=''>
+    <div class='col-start-2 col-span-6'>
+      <img src={image.url} alt={image.alt} class='w-full h-auto aspect-video object-cover -mb-16' />
+    </div>
+  </SectionGridContainer>
+  <SectionGridContainer innerClassName='pt-44 pb-28'>
+    <article class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] max-w-none'>
+      <Content />
+    </article>
+  </SectionGridContainer>
+</BaseLayout>

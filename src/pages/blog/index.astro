@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
 ---
 
@@ -36,11 +36,12 @@ import { Card, SectionGridContainer, SectionMark } from '@components'
       />
     </div>
     <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
+      <!-- TODO: Get blog posts from content collection -->
       <Card
         title='Nachhaltige Webentwicklung – den CO2 Fußabdruck einer Website reduzieren und noch mehr Zeug was hier kommt ey wie lange muss das hier noch werden'
         subtitle='Category'
         img='https://picsum.photos/640/480?grayscale&random=1'
-        href='https://www.google.de'
+        href='/blog/post1'
       />
       <Card
         title='Ein anderer Blogpost mit mittlerer Länge'

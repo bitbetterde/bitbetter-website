@@ -9,7 +9,22 @@ const techStackCollection = defineCollection({
     order: z.number().optional(),
   }),
 })
+
+const blogCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    subtitle: z.string(),
+    teaser: z.string(),
+  }),
+})
+
 export const collections = {
   stack_development: techStackCollection,
   stack_consulting: techStackCollection,
+  blog: blogCollection,
 }
