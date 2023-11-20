@@ -6,7 +6,8 @@ image:
 subtitle: Mein Lebensweg
 teaser: Lorem Ipsum
 date: 2023-08-01
-author: moritz
+authors:
+  - moritz
 ---
 
 Hallo das ist 3. anderer Content

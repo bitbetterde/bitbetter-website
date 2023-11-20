@@ -2,18 +2,22 @@
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
 import { getCollection } from 'astro:content'
+import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
 const content = await getCollection('blog')
 const [firstPost, ...restPosts] = content
 ---
 
 <BaseLayout>
-  <SectionGridContainer className='pt-16 bg-bb-grey-200 px-5 lg:px-0'>
+  <SectionGridContainer className='pt-16 bg-bb-grey-200 px-5 lg:px-0' innerClassName='relative'>
     <div class='lg:col-start-2'>
       <h1 class='font-grotesk text-5xl lg:text-[10rem] tracking-tighter font-medium'>blog</h1>
     </div>
+    <BbBracket
+      className='rotate-180 scale-x-150 -scale-y-[1.5] text-white absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16'
+    />
   </SectionGridContainer>
-  <SectionGridContainer className='pt-16 bg-bb-grey-200 pb-16' innerClassName='gap-8'>
+  <SectionGridContainer className='py-8 lg:py-16 bg-bb-grey-200' innerClassName='gap-8'>
     <Card
       title={firstPost.data.title}
       subtitle={firstPost.data.subtitle}
@@ -22,7 +26,7 @@ const [firstPost, ...restPosts] = content
       className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
     />
     <div
-      class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 h-[28rem] overflow-hidden lg:-mb-32'
+      class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 lg:h-[28rem] overflow-hidden lg:-mb-32'
     >
       <img
         src={firstPost.data.image.url}

@@ -6,7 +6,8 @@ image:
 subtitle: My Category
 teaser: Lorem Ipsum
 date: 2023-09-01
-author: fabian
+authors:
+  - fabian
 ---
 
 Hallo das ist anderer Content

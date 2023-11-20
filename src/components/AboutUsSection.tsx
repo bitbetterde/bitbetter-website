@@ -1,5 +1,5 @@
 import type React from 'react'
-import { SectionMark } from '@components'
+import { Avatar, SectionMark } from '@components'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
 interface Props {}
@@ -27,17 +27,11 @@ const AboutUsSection: React.FC<Props> = () => {
         </p>
         <div className={'grid grid-cols-1 sm:grid-cols-7 mt-16 md:mt-[5.5rem] gap-8'}>
           <div className={'col-span-1 sm:col-span-3'}>
-            <picture>
-              <source srcSet='/images/moritz_avatar.webp' type='image/webp' />
-              <source srcSet='/images/moritz_avatar.jpg' type='image/jpeg' />
-              <img
-                src='/images/moritz_avatar.jpg'
-                alt={'Portrait von Moritz Stückler'}
-                width={400}
-                height={400}
-                className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
-              />
-            </picture>
+            <Avatar
+              jpgSrc='/images/moritz_avatar.jpg'
+              webpSrc='/images/moritz_avatar.webp'
+              alt='Portrait von Moritz Stückler'
+            />
 
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Moritz Stückler</b> arbeitete zunächst viele Jahre als IT-Journalist und entschied
@@ -47,18 +41,11 @@ const AboutUsSection: React.FC<Props> = () => {
             </p>
           </div>
           <div className={'col-span-1 sm:col-start-5 sm:col-span-3'}>
-            <picture>
-              <source srcSet='/images/fabian_avatar.webp' type='image/webp' />
-              <source srcSet='/images/fabian_avatar.jpg' type='image/jpeg' />
-              <img
-                src='/images/fabian_avatar.jpg'
-                alt={'Portrait von Fabian Schmidt'}
-                width={400}
-                height={400}
-                className='w-20 h-20 rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300'
-              />
-            </picture>
-
+            <Avatar
+              jpgSrc='/images/fabian_avatar.jpg'
+              webpSrc='/images/fabian_avatar.webp'
+              alt='Portrait von Fabian Schmidt'
+            />
             <p className={'mt-5 text-base md:text-xl leading-8'}>
               <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
               Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von

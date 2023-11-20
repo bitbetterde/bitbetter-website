@@ -21,7 +21,7 @@ const blogCollection = defineCollection({
     subtitle: z.string(),
     teaser: z.string(),
     date: z.date(),
-    author: z.string().optional(),
+    authors: z.array(z.string()),
   }),
 })
 
@@ -30,7 +30,11 @@ const authorCollection = defineCollection({
   schema: z.object({
     firstName: z.string(),
     lastName: z.string(),
-    image: z.string(),
+    image: z.object({
+      default: z.string(),
+      webp: z.string().optional(),
+      alt: z.string(),
+    }),
   }),
 })
 

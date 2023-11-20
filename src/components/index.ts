@@ -1,4 +1,5 @@
 import AboutUsSection from './AboutUsSection'
+import Avatar from './Avatar'
 import Button from './Button'
 import Card from './Card'
 import Footer from './Footer'
@@ -14,6 +15,7 @@ import Navbar from './Navbar'
 
 export {
   AboutUsSection,
+  Avatar,
   Button,
   Card,
   Footer,

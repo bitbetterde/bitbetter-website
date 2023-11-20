@@ -36,7 +36,7 @@ module.exports = {
         'span-inner': '2/-2',
       },
       typography: ({ theme }) => ({
-        "bb-grey": {
+        'bb-grey': {
           css: {
             '--tw-prose-body': theme('colors["bb-grey"][600]'),
             '--tw-prose-headings': theme('colors["bb-grey"][900]'),
@@ -54,26 +54,16 @@ module.exports = {
             '--tw-prose-pre-bg': theme('colors["bb-grey"][900]'),
             '--tw-prose-th-borders': theme('colors["bb-grey"][300]'),
             '--tw-prose-td-borders': theme('colors["bb-grey"][200]'),
-            '--tw-prose-invert-body': theme('colors["bb-grey"][200]'),
-            '--tw-prose-invert-headings': theme('colors.white'),
-            '--tw-prose-invert-lead': theme('colors["bb-grey"][300]'),
-            '--tw-prose-invert-links': theme('colors.white'),
-            '--tw-prose-invert-bold': theme('colors.white'),
-            '--tw-prose-invert-counters': theme('colors["bb-grey"][400]'),
-            '--tw-prose-invert-bullets': theme('colors["bb-grey"][600]'),
-            '--tw-prose-invert-hr': theme('colors["bb-grey"][700]'),
-            '--tw-prose-invert-quotes': theme('colors["bb-grey"][100]'),
-            '--tw-prose-invert-quote-borders': theme('colors["bb-grey"][700]'),
-            '--tw-prose-invert-captions': theme('colors["bb-grey"][400]'),
-            '--tw-prose-invert-code': theme('colors.white'),
-            '--tw-prose-invert-pre-code': theme('colors["bb-grey"][300]'),
-            '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
-            '--tw-prose-invert-th-borders': theme('colors["bb-grey"][600]'),
-            '--tw-prose-invert-td-borders': theme('colors["bb-grey"][700]'),
           },
         },
         DEFAULT: {
           css: {
+            'code::before': {
+              content: '"" !important',
+            },
+            'code::after': {
+              content: '"" !important',
+            },
             blockquote: {
               'font-style': 'normal',
               'font-weight': 500,

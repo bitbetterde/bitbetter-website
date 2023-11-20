@@ -16,4 +16,8 @@
   .full-bleed {
     grid-column: 1 / -1;
   }
+
+  .prose > p:first-of-type {
+    @apply text-[1.22em]/[1.4em] my-[1.1em];
+  }
 }

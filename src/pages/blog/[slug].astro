@@ -1,7 +1,12 @@
 ---
-import { SectionGridContainer } from '@components'
+import { SectionGridContainer, Avatar } from '@components'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { getCollection } from 'astro:content'
+import { getEntry, getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+}
 
 export async function getStaticPaths() {
   const content = await getCollection('blog')
@@ -21,11 +26,18 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
+let authors: CollectionEntry<'authors'>[] = []
+for (const author of post.data.authors) {
+  const authorObj = await getEntry('authors', author)
+  if (authorObj) {
+    authors.push(authorObj)
+  }
+}
 const { Content } = await post.render()
 const { title, subtitle, image, teaser } = post.data
 ---
 
-<BaseLayout metaTitle={title} metaSubtitle={'bitbetter blog'}>
+<BaseLayout metaTitle={title} metaSubtitle={'bitbetter blog'} metaImage={post.data.image.url}>
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-24'>
     <div class='col-start-2 col-span-12 flex flex-col gap-4'>
       <h4 class='uppercase text-black/60'>{subtitle}</h4>
@@ -36,12 +48,43 @@ const { title, subtitle, image, teaser } = post.data
     <div class='col-start-2 col-span-6'>
       <img src={image.url} alt={image.alt} class='w-full h-auto aspect-video object-cover -mb-20' />
     </div>
+    <div class='col-start-9 col-span-4'>
+      <p class='text-lg py-4 leading-[1.4em] text-black/75'>
+        {teaser}
+      </p>
+      {
+        Boolean(authors.length) && (
+          <p class='text-lg font-medium pb-16'>
+            Von
+            <Avatar
+              jpgSrc={authors[0]?.data.image.default}
+              webpSrc={authors[0]?.data.image.webp}
+              alt={authors[0]?.data.image.alt}
+              small
+            />{' '}
+            {authors[0].data.firstName} {authors[0].data.lastName}
+            {authors.length > 1 && (
+              <>
+                {' '}
+                &
+                <Avatar
+                  jpgSrc={authors[1]?.data.image.default}
+                  webpSrc={authors[1]?.data.image.webp}
+                  alt={authors[1]?.data.image.alt}
+                  small
+                />{' '}
+                {authors[1].data.firstName} {authors[1].data.lastName}
+              </>
+            )}
+          </p>
+        )
+      }
+    </div>
   </SectionGridContainer>
   <SectionGridContainer innerClassName='pt-44 pb-28'>
     <article
       class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] prose-headings:font-grotesk prose-blockquote:border-l-0 prose-blockquote:font-grotesk prose-blockquote:pl-0 prose-bb-grey max-w-none'
     >
-      <p class='lead'>{teaser}</p>
       <Content />
     </article>
   </SectionGridContainer>

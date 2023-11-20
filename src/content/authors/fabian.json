@@ -1,5 +1,10 @@
 {
   "firstName": "Fabian",
   "lastName": "Schmidt",
-  "image": "bla.jpg"
+  "image": {
+    "default": "/images/fabian_avatar.jpg",
+    "webp": "/images/fabian_avatar.webp",
+    "alt": "Portrait von Fabian Schmidt"
+  },
+  "description": "arbeitet seit 2017 als Full-Stack-Entwickler in einer Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-APIs und Datenbanken."
 }
