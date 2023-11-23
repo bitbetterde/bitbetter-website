@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content'
+import { z, reference, defineCollection } from 'astro:content'
 
 const techStackCollection = defineCollection({
   type: 'data',
@@ -21,7 +21,7 @@ const blogCollection = defineCollection({
     subtitle: z.string(),
     teaser: z.string(),
     date: z.date(),
-    authors: z.array(z.string()),
+    authors: z.array(reference('authors')),
   }),
 })
 

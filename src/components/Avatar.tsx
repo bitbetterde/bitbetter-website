@@ -7,7 +7,7 @@ interface Props {
 
 const Avatar: React.FC<Props> = ({ jpgSrc, webpSrc, alt, small }: Props) => {
   return (
-    <picture className={`${small ? 'inline-block my-0 align-middle' : ''}`}>
+    <picture className={`${small ? 'inline-block my-0 pb-1 align-middle' : ''}`}>
       <source srcSet={webpSrc} type='image/webp' />
       <source srcSet={jpgSrc} type='image/jpeg' />
       <img

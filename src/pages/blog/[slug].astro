@@ -27,8 +27,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 let authors: CollectionEntry<'authors'>[] = []
+
 for (const author of post.data.authors) {
-  const authorObj = await getEntry('authors', author)
+  const authorObj = await getEntry(author.collection, author.id)
   if (authorObj) {
     authors.push(authorObj)
   }
@@ -38,17 +39,21 @@ const { title, subtitle, image, teaser } = post.data
 ---
 
 <BaseLayout metaTitle={title} metaSubtitle={'bitbetter blog'} metaImage={post.data.image.url}>
-  <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-24'>
-    <div class='col-start-2 col-span-12 flex flex-col gap-4'>
+  <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
+    <div class='lg:col-start-2 col-span-12 flex flex-col gap-4'>
       <h4 class='uppercase text-black/60'>{subtitle}</h4>
       <h1 class='font-grotesk text-7xl font-medium'>{title}</h1>
     </div>
   </SectionGridContainer>
   <SectionGridContainer className='bg-bb-grey-200' innerClassName=''>
-    <div class='col-start-2 col-span-6'>
-      <img src={image.url} alt={image.alt} class='w-full h-auto aspect-video object-cover -mb-20' />
+    <div class='lg:col-start-2 lg:col-span-6 order-2 lg:order-1'>
+      <img
+        src={image.url}
+        alt={image.alt}
+        class='w-full h-auto aspect-video object-cover lg:-mb-20'
+      />
     </div>
-    <div class='col-start-9 col-span-4'>
+    <div class='lg:col-start-9 lg:col-span-4 px-5 lg:px-0 order-1 lg:order-2'>
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
         {teaser}
       </p>
@@ -62,7 +67,7 @@ const { title, subtitle, image, teaser } = post.data
               alt={authors[0]?.data.image.alt}
               small
             />{' '}
-            {authors[0].data.firstName} {authors[0].data.lastName}
+            {authors[0].data.firstName + ' ' + authors[0].data.lastName}
             {authors.length > 1 && (
               <>
                 {' '}
@@ -73,7 +78,7 @@ const { title, subtitle, image, teaser } = post.data
                   alt={authors[1]?.data.image.alt}
                   small
                 />{' '}
-                {authors[1].data.firstName} {authors[1].data.lastName}
+                {authors[1].data.firstName + ' ' + authors[1].data.lastName}
               </>
             )}
           </p>
@@ -81,7 +86,7 @@ const { title, subtitle, image, teaser } = post.data
       }
     </div>
   </SectionGridContainer>
-  <SectionGridContainer innerClassName='pt-44 pb-28'>
+  <SectionGridContainer innerClassName='pt-8 lg:pt-44 pb-28 px-5 lg:px-0'>
     <article
       class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] prose-headings:font-grotesk prose-blockquote:border-l-0 prose-blockquote:font-grotesk prose-blockquote:pl-0 prose-bb-grey max-w-none'
     >
