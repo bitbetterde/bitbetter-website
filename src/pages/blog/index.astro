@@ -4,8 +4,10 @@ import { Card, SectionGridContainer, SectionMark } from '@components'
 import { getCollection } from 'astro:content'
 import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
 
-const content = await getCollection('blog')
-const [firstPost, ...restPosts] = content
+const contentSortedByDate = (await getCollection('blog')).sort(
+  (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
+)
+const [firstPost, ...restPosts] = contentSortedByDate
 ---
 
 <BaseLayout>
