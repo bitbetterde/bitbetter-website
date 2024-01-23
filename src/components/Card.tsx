@@ -20,8 +20,14 @@ const Card: React.FC<Props> = ({
   className,
 }: Props) => {
   return (
-    <div className={`flex-1 flex flex-col ${className || ''}`}>
-      {img && <img className='w-full h-64 object-cover' src={img} alt={imgAlt} />}
+    <div className={`flex-1 flex flex-col group ${className || ''}`}>
+      {img && (
+        <img
+          className='w-full h-64 object-cover grayscale group-hover:grayscale-0 transition duration-300 ease-in-out'
+          src={img}
+          alt={imgAlt}
+        />
+      )}
       {subtitle && (
         <h3
           className={`font-sans text-lg leading-5 tracking-widest uppercase font-normal text-black opacity-70 ${
