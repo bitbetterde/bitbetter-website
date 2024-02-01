@@ -2,7 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
 import { getCollection } from 'astro:content'
-import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
+import BbBracket from '@assets/bb_bracket.svg?react'
 
 const contentSortedByDate = (await getCollection('blog')).sort(
   (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),

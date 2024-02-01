@@ -1,9 +1,9 @@
 import type React from 'react'
 import { useState } from 'react'
-import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
+import BbLogo from '@assets/bb_logo_black.svg?react'
 import { LinkButton, SectionGridContainer } from '@components'
-import { ReactComponent as ListIcon } from '@phosphor-icons/core/regular/list.svg'
-import { ReactComponent as XIcon } from '@phosphor-icons/core/bold/x-bold.svg'
+import ListIcon from '@phosphor-icons/core/regular/list.svg?react'
+import XIcon from '@phosphor-icons/core/bold/x-bold.svg?react'
 
 interface Props {
   buttonCaption: string

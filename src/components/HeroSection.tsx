@@ -1,4 +1,4 @@
-import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
+import BbBracket from '@assets/bb_bracket_border.svg?react'
 import { LinkButton } from '@components'
 
 interface Props {

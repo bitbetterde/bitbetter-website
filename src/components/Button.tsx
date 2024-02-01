@@ -1,4 +1,4 @@
-import { ReactComponent as ArrowRightIcon } from '@phosphor-icons/core/regular/arrow-right.svg'
+import ArrowRightIcon from '@phosphor-icons/core/regular/arrow-right.svg?react'
 
 interface Props {
   caption: string

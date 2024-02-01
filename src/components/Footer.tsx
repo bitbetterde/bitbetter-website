@@ -1,9 +1,9 @@
 import type React from 'react'
-import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
+import BbLogo from '@assets/bb_logo_black.svg?react'
 import { LinkButton } from '@components'
-import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
-import { ReactComponent as GithubIcon } from '@assets/github.svg'
-import { ReactComponent as LinkedInIcon } from '@assets/linkedin.svg'
+import BbBracket from '@assets/bb_bracket.svg?react'
+import GithubIcon from '@assets/github.svg?react'
+import LinkedInIcon from '@assets/linkedin.svg?react'
 
 interface Props {
   children?: React.ReactNode
