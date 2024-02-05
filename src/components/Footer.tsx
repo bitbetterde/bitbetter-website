@@ -13,6 +13,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
   return (
     <footer
       className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 lg:px-28 pb-14 gap-y-12 relative'}
+      id='footer'
     >
       <div className={'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10'}>
         <div>
