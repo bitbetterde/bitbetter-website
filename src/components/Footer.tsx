@@ -80,7 +80,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
       </div>
       <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
       <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-60 hidden md:block' />
-    </>
+    </footer>
   )
 }
 
