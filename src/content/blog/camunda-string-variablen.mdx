@@ -1,11 +1,11 @@
 ---
-title: Warum Strings in Camunda nicht verwendet werden sollten
+title: Warum Strings in Camunda komplizierter sind, als man denkt
 image:
-  url: /images/blog/camunda/camunda-title.png
-  alt: The Astro logo with the word One.
-subtitle: Es ist schwierig 
-teaser: "Ganz wie wir es mögen: Eine tolle Idee, ein tolles Team und dazu auch noch Open Source. Für unseren Kunden regenholz haben wir in der zweiten Jahreshälfte 2023 ein modernes Frontend für parametrische Open-Source-Möbel gebaut."
-date: 2024-01-01
+  url: /images/blog/camunda-string-variablen/camunda-title.png
+  alt: Ein weißes Camunda Logo auf orangenem Grund und einigen abgeschnittenen Elementen aus einem BPMN-Diagramm
+subtitle: Tückische Limitierungen 
+teaser: In Camunda-Prozessen sind String-Variablen ein häufiges Werkzeug um Nutzereingaben oder Ähnliches zu speichern. Was erstmal simpel klingt kommt allerdings mit einigen unerwarteten Limitierungen in Bezug auf die Länge der Variablem daher. Wir zeigen mögliche Alternativen.
+date: 2024-01-31
 authors:
   - fabian
 ---
@@ -16,7 +16,9 @@ authors:
 
 Wer einen Camunda-Prozess entwickelt, wird an vielen Stellen mit diversen benutzerdefinierten Variablen konfrontiert: Zum einem gibt es die Prozess-Variablen, welche über die gesamte Laufzeit des Prozesses existieren, aber auch "lokale Variablen" (zum Beispiel Input/Output-Variablen). Dabei müssen sämtliche Variablen einen der folgenden Typen haben:
 
-![](https://docs.camunda.org/manual/7.20/user-guide/process-engine/img/variables-1.png)
+<figure class="[&>p>img]:mx-auto">
+![Mögliche Variablentypen in Camunda](/images/blog/camunda-string-variablen/camunda-variablen-typen.png)
+</figure>
 
 Der hier erwähnte `string`-Typ ist allerdings innerhalb von Camunda etwas anders zu verwenden, als Strings in Java oder anderen Programmiersprachen und Frameworks: In der [API-Dokumentation zu Prozessvariablen](https://docs.camunda.org/manual/7.20/user-guide/process-engine/variables/#supported-variable-values) findet sich auch schon die Erklärung, warum Strings nicht in Camunda verwendet werden sollten:
 
@@ -54,7 +56,9 @@ Etwas komplizierter wird es, wenn man einen langen Text an einen externen Servic
 
 Die naheliegendste Version wäre folgende Konfiguration:
 
-![](/images/blog/camunda/camunda-expression-field.png)
+<figure class="[&>p>img]:mx-auto">
+![Direkter Zugriff auf eine Input-Variable innerhalb eines Objekts](/images/blog/camunda-string-variablen/camunda-expression-field.png)
+</figure>
 
 Das Problem hierbei ist der "Variable Assignment Type": Denn die lokale Variable, welche von Camunda hier erzeugt wird, ist nun wieder vom Typ String, welcher wieder der bekannten Limitierung auf 4000 Zeichen unterliegt und im Falle der Überschreitung zu einem Laufzeitfehler der Datenbank führt.
 
@@ -62,7 +66,11 @@ Wie bei den Prozess-Variablen liegt die Lösung also auch in der Serialisierung 
 
 Das könnte zum Beispiel so aussehen:
 
-![](/images/blog/camunda/camunda-expression-getter.png)
+
+<figure class="[&>p>img]:mx-auto">
+![Zugriff über eine Getter-Funktion auf eine Input-Variable innerhalb eines Objekts](/images/blog/camunda-string-variablen/camunda-expression-getter.png)
+</figure>
+
 
 ```java
 public ObjectValue getMailBody() {  
