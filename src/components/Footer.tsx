@@ -1,9 +1,9 @@
 import type React from 'react'
-import { ReactComponent as BbLogo } from '@assets/bb_logo_black.svg'
+import BbLogo from '@assets/bb_logo_black.svg?react'
 import { LinkButton } from '@components'
-import { ReactComponent as BbBracket } from '@assets/bb_bracket.svg'
-import { ReactComponent as GithubIcon } from '@assets/github.svg'
-import { ReactComponent as LinkedInIcon } from '@assets/linkedin.svg'
+import BbBracket from '@assets/bb_bracket.svg?react'
+import GithubIcon from '@assets/github.svg?react'
+import LinkedInIcon from '@assets/linkedin.svg?react'
 
 interface Props {
   children?: React.ReactNode
@@ -42,7 +42,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
           {children}
         </div>
       </div>
-      <div className={'flex-[3] z-10'}>
+      <div className={'z-10 col-span-1 lg:col-span-6'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf deine E-Mail.
         </h3>
@@ -78,9 +78,9 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
           </div>
         </div>
       </div>
-      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 left-0 hidden md:block' />
-      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-80 hidden md:block' />
-    </footer>
+      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
+      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-60 hidden md:block' />
+    </>
   )
 }
 

@@ -1,0 +1,71 @@
+---
+import { Footer, Navbar, SectionGridContainer } from '../components'
+import CarbonBadge from '@components/CarbonBadge.astro'
+import { techstackKeywords } from '../util/content'
+
+import '../../base.css'
+import '@fontsource/ibm-plex-sans/400.css'
+import '@fontsource/ibm-plex-sans/500.css'
+import '@fontsource/ibm-plex-sans/700.css'
+import '@fontsource-variable/space-grotesk'
+
+interface Props {
+  metaTitle?: string
+  metaSubtitle?: string
+  metaDescription?: string
+  metaImage?: string
+}
+
+const {
+  metaTitle = 'bitbetter',
+  metaSubtitle = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack',
+  metaDescription = 'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.',
+  metaImage = 'https://bitbetter.de/bitbetter_opengraph.jpg',
+} = Astro.props
+
+const isProduction = import.meta.env.MODE === 'production'
+---
+
+<html lang='de' class='overflow-x-hidden scroll-smooth'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/bb_favicon.png' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{`${metaTitle} - ${metaSubtitle}`}</title>
+    <meta name='description' content={metaDescription} />
+    <meta
+      name='keywords'
+      content={`bitbetter, software, hamburg, software-entwicklung, entwicklung, automatisierung, tailwind, ${
+        techstackKeywords || ''
+      }`}
+    />
+    <meta name='author' content='Fabian Schmidt' />
+    <meta name='author' content='Moritz Stückler' />
+    <meta property='og:title' content={metaTitle} />
+    <meta property='og:description' content={metaDescription} />
+    <meta property='og:image' content={metaImage} />
+    {
+      isProduction && (
+        <script
+          async
+          src='https://analytics.bitbetter.de/script.js'
+          data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
+        />
+      )
+    }
+  </head>
+  <body class='flex flex-col overflow-x-hidden pt-20'>
+    <Navbar buttonCaption='Schreib uns!' client:only='react' />
+    <slot />
+    <SectionGridContainer
+      as='footer'
+      className='bg-bb-grey-200 overflow-y-hidden'
+      innerClassName='pt-20 pb-14 relative px-5 2xl:px-0 gap-y-12'
+    >
+      <Footer>
+        <CarbonBadge production={isProduction} />
+      </Footer>
+    </SectionGridContainer>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+title: Nextcloud und das große Freigabe-Chaos
+image:
+  url: /images/blog/nextcloud-freigabe-chaos/nextcloud-teaser.webp
+  alt: "Die drei Icons für verschiedene Freigabe-Methoden in Nextcloud: Shares, Gruppenordner und Circles"
+subtitle: Komplizierter als gedacht
+teaser: Nextcloud gilt oft als Ersatz für kommerzielle Cloudspeicher wie Dropbox und Google Drive. Die ursprüngliche Kernaufgabe, das Teilen von Dateien und Ordnern, ist aber oft deutlich komplizierter und verwirrender als angenommen, da es drei unterschiedliche Freigabe-Mechanismen gibt.
+date: 2024-02-07
+authors:
+  - moritz
+---
+
+Die Verbreitung und Popularität von Open-Source-Software hat im Jahr 2023 noch einmal deutlich an Fahrt aufgenommen. Nicht zuletzt durch große Umwerfungen im Social-Media-Bereich waren Open-Source-Alternativen zu etablierten Software-Lösungen in 2023 populärer denn je. Dabei kommt man natürlich nicht um das [Nextcloud-Projekt](https://nextcloud.com/) herum. Gerne und häufig wird die Software als Vorzeige-Alternative zu kommerziellen und zentralisierten Cloudspeicher-Anbietern wie Dropbox, Google Drive oder Microsoft One Drive und Sharepoint genannt. Auf den ersten Blick ist das eine tolle Idee, aber im Detail sorgt Nextcloud leider oft für mehr Probleme als es löst: Zum Beispiel bei der Kernaufgabe "Filesharing". 
+
+## Drei unabhängige Mechanismen zum Teilen von Dateien und Ordnern
+
+Die Motivation und Euphorie beim Start einer neuen Nextcloud-Instanz sind oft sehr groß. Endlich eigene, unabhängige Infrastruktur zu nutzen, fühlt sich zunächst toll an. Über die Web-Oberfläche oder die verschiedenen Client-Anwendungen füllt sich die Nextcloud schnell mit den ersten Dateien. Und irgendwann kommt der Moment, wo mindestens zwei Benutzer oder vielleicht sogar eine ganze Gruppe von Benutzern eine Datei oder einen Ordner miteinander teilen möchten. Klingt eigentlich simpel, denn dieses Szenario beschreibt ja schließlich die Gründungsidee von Nextcloud (bzw. OwnCloud). Doch diese Aufgabe (Teilen von Dateien in einer festen Gruppe von Personen) ist gar nicht so trivial zu bewerkstelligen. Nextcloud bietet inzwischen mindestens drei verschiedene Mechanismen dafür an. 
+
+### Shares: Der naheliegendste Weg mit vielen Fallstricken
+
+Die einfachste Lösung für dieses Problem ist also auch die Älteste: die eingebaute "Teilen"-Funktion von Nextcloud. Neben jeder Datei und jedem Ordner in Nextcloud gibt es ein kleines "Share"-Icon, welches einen Dialog öffnet, in dem sich eine Datei oder ein Ordner mit anderen Nextcloud-Nutzern oder Gruppen teilen lässt. Das ist einfach und leicht verständlich – und gefährlich. Diese Funktion sorgt gerade in Organisationen mit vielen Benutzern oft für viel Chaos: Technisch gesehen verhält sich eine solche Nextcloud-Freigabe eigentlich wie ein sogenannter [symbolischer Link](https://de.m.wikipedia.org/wiki/Symbolische_Verkn%C3%BCpfung) in einem Dateisystem. Deswegen gibt es einige weniger bekannte Nebeneffekte:
+
+- 👤 **Shares gehören immer einem spezifischen Nutzer:** Nur der teilende Nutzer kann den Share verwalten. Sollte der Nutzer zum Beispiel aus der betreffenden Organisation ausscheiden, und sein Account gelöscht oder gesperrt werden, dann ist der Share nicht mehr zugänglich für die anderen Empfänger des Shares (für Admins gibt es die Möglichkeit, über das `occ`-Kommandozeilenprogramm die Shares auf einen anderen Nutzer zu übertragen). Genau so kann sich der teilende Nutzer einfach entscheiden, wichtige Dateien zu löschen, ohne dass es eine Möglichkeit zur Intervention für die Share-Empfänger gibt. Gerade für Firmen ist das oft ein kaum überschaubares Risiko.
+
+- ❓ **Benennung und Ort des Shares sind nicht eindeutig:** Ein empfangener Share taucht zunächst auf dem obersten Level der eigenen Nextcloud auf. Der Empfänger einer Freigabe kann diese jedoch an einen beliebigen Ort in seiner persönlichen Ordnerstruktur verschieben. Und er kann die Freigabe auch beliebig umbenennen. Möchte man also (rein kommunikativ) ein gemeinsames Dokument referenzieren, dann wird es kompliziert: Eine Freigabe kann beim Benutzer A einen anderen Namen und einen anderen Ort haben als bei Benutzer B.
+
+Für sehr kleine und private Instanzen ist die einfache Share-Funktion meistens noch ausreichend. Mit steigender Anzahl von Nutzern und festen Teams wird die Funktion allerdings sehr schnell unübersichtlich. Im professionellen Umfeld ist die Funktion kaum zu beherrschen und birgt die Gefahr, dass Mitarbeiter ihre Dokumente nicht mehr finden, wenn Nutzer ausscheiden. Wer eine Übersicht über die Menge an eingerichteten Shares haben möchte, kann dazu das [`sharelisting`-Plugin](https://github.com/nextcloud/sharelisting) nutzen.
+
+### Gruppenordner: Fast perfekt aber wenig gepflegt
+
+Um viele der genannten Probleme bei der Arbeit mit Gruppen zu beseitigen, gibt es bereits [seit 2017](https://nextcloud.com/blog/new-version-of-groupfolders-app-is-coming/) das offizielle ["groupfolders"-Plugin](https://github.com/nextcloud/groupfolders) für Nextcloud. Kurioserweise gehören Gruppen zwar zum Standard-Funktionsumfang von Nextcloud, aber nicht das Plugin für Gruppenordner. Die zugrundeliegenden Gruppen können nur von Admins in Nextcloud verwaltet werden. Gruppenbasierte Funktionalitäten eignen sich also tendenziell gut für hierarchisch strukturierte Organisationen und Firmen, wo klar definiert ist, wer über eine Gruppenzuordnung entscheiden kann.
+
+- 👥 **Ein Gruppenordner gehört tatsächlich einer Gruppe und nicht einem Nutzer:** Das Ausscheiden einzelner Gruppen-Mitglieder hat also keinen Einfluss auf die Verfügbarkeit der Daten. Trotzdem kann ein Gruppenordner auch mehreren Gruppen gleichzeitig zugänglich gemacht werden.
+
+- 👑 **Gruppenordner können nur von Nextcloud-Admins angelegt werden.** Ein bisschen Selbstorganisation innerhalb eines Gruppenordners kann trotzdem über sogenannte "Advanced Permissions" sichergestellt werden.
+
+- 🔐 **Zugriffsrechte in Gruppenordnern können detailliert eingestellt werden:** Über die "Advanced Permissions" kann einzelnen Gruppen oder Nutzer Lesen/Schreiben/Löschen/Erstelln und Teilen erlaubt oder verboten werden.
+
+- 🎯 **Einheitlicher Ort und Benennung:** Gruppenordner sind für alle Nutzer immer auf der obersten Verzeichnisebene ansässig und heißen für alle Nutzer gleich.
+
+- 🚪 **Nur für interne Nutzer mit Nextcloud-Account:** Gruppenordner können nicht verwendet werden, um Objekte mit Externen (Menschen ohne einen Account auf der betreffenden Nextcloud-Instanz) über einen Link zu teilen – das geht nur mit "Shares".
+
+Für die Zusammenarbeit in einer festen und hierarchischen Gruppen-Konstellation (wie sie üblicherweise im Arbeitsumfeld vorkommt) scheinen Groupfolders also eine überlegene Lösung zu sein. Trotzdem fühlt sich das groupfolders-Plugin manchmal wie ungewollter Ballast im Nextcloud-Universum an. Obwohl das Plugin offiziell von der Nextcloud GmbH verwaltet wird, bekommt es augenscheinlich nur [wenig Priorität und Ressourcen](https://github.com/nextcloud/groupfolders/issues/1215) zugewiesen und weist deswegen teilweise monatelang gravierende Fehler auf.
+
+### Circles: Aufgebohrte Share-Funktion
+
+["Circles"](https://github.com/nextcloud/circles) ist eine dritte Variante um mit einer Gruppe Dateien und Ordner zu teilen. Circles wirken aber eher wie eine kleine Erweiterung der einfachen Share-Funktionalität. Anstelle einzelner Nutzer und (durch Admins definierte) Gruppen, können Dateien und Ordner damit auch mit selbstverwalteten Circles geteilt werden. Circles können von jedem Nutzer erstellt werden, und benötigen keinerlei Admin-Intervention. Circles ermöglichen also Selbstorganisation in Strukturen, wo keine klare Hierarchie oder Zuständigkeit herrscht. Die so erstellten Freigaben leiden allerdings unter denselben Problemen wie die einfachen Dateifreigaben:
+
+- 👤 **Shares gehören immer einem spezifischen Nutzer:** Der Freigabe-Ersteller kann die Freigabe jederzeit widerrufen, so dass der Inhalt nicht mehr verfügbar ist.
+
+- ❓ **Benennung und Ort des Shares sind nicht eindeutig:** Die Ordner können bei unterschiedlichen Nutzern unterschiedliche Namen haben und sich an unterschiedlichen Orten befinden.
+
+Circles sind vor allem für Szenarien geeignet, in denen sich Nutzer selbst organisieren möchten, und Gruppen auch ohne Zutun eines Administrators einrichten möchten.
+
+## Problem: Es mangelt an Dokumentation und Aufklärung
+
+Natürlich ist es eine Luxus-Situation wenn es ein großes Ökosystem rund um Nextcloud gibt, mit verschiedenen Ansätzen zum Teilen von Objekten. Das Problem ist also nicht die Existenz der einzelnen Methoden, sondern ihre Koexistenz. Viele Nutzer kennen die Alternativen zur einfachen Share-Funktion und ihre jeweiligen Nachteile gar nicht. Auf der anderen Seite wird es vor allem dann problematisch, wenn mehrere Methoden gleichzeitig aktiv sind. Denn ein Groupfolder kann zusätzlich auch noch von einer Person "geteilt" werden. Es ist also denkbar, dass zwei Personen auf den gleichen Ordner zugreifen – eine Person über einen Share, und eine andere über ihre Gruppenzugehörigkeit. Das Erkennen der jeweiligen Freigabe-Methode durch das passende Icon in der Weboberfläche ist also eine wichtige Fähigkeit für Nextcloud-Nutzer.
+
+<figure class="[&>p>img]:mx-auto">
+![](/images/blog/nextcloud-freigabe-chaos/nextcloud-shares.png)
+</figure>
+
+Admins können die einzelnen Methoden zwar deaktivieren, aber das hat Auswirkungen auf die Funktionalität: Wer ausschließlich mit Groupfolders arbeitet kann die "Share"-Funktion komplett deaktivieren, und so Verwirrungen vorbeugen. Wer aber weiterhin gelegentlich Dateien und Ordner mit externen Personen über einen Link teilen möchte, der muss die Share-Funktion weiterhin aktiviert lassen und muss somit seinen Nutzern beibringen, für welche Situation welche Freigabe-Methode die beste ist.
+
+Es wäre daher wünschenswert, wenn das Nextcloud-Interface auf das Vorhandensein mehrerer Freigabe-Methoden eingehen würde. Sobald mehrere Methoden installiert sind, könnten die Nutzer mit entsprechenden Hinweisen oder Hilfetexten aufgeklärt werden, ob sie wirklich die jeweils richtige Methode gewählt haben. Die Basis dafür wäre aber zunächst eine ausführliche, gegenüberstellende Dokumentation der drei Methoden mit ihren einzelnen Vor- und Nachteilen. Eine solche Dokumentation durch die Nextcloud GmbH wäre sehr hilfreich – auch gerade im Bezug auf die Produktvision und die Zukunftspläne der GmbH. Bisher geht das Nextcloud User Manual aber [ausschließlich auf die Share-Funktion ein](https://docs.nextcloud.com/server/latest/user_manual/en/files/sharing.html), ohne Vergleiche zu Circles und Groupfolders zu ziehen. Auch im offiziellen Nextcloud-Blog kam das Thema leider noch nicht vor.

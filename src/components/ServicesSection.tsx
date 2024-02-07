@@ -1,12 +1,12 @@
 import type React from 'react'
 import { SectionMark, ServiceItem, ServiceItemDivider, ServiceHeader } from '@components'
-import { ReactComponent as GlobeIcon } from '@phosphor-icons/core/regular/globe.svg'
-import { ReactComponent as LightningIcon } from '@phosphor-icons/core/regular/lightning.svg'
-import { ReactComponent as TerminalWindowIcon } from '@phosphor-icons/core/regular/terminal-window.svg'
-import { ReactComponent as LayoutIcon } from '@phosphor-icons/core/regular/layout.svg'
-import { ReactComponent as ChatsIcon } from '@phosphor-icons/core/regular/chats-teardrop.svg'
-import { ReactComponent as OSIcon } from '@assets/opensource.svg'
-import { ReactComponent as BbBracket } from '@assets/bb_bracket_border.svg'
+import GlobeIcon from '@phosphor-icons/core/regular/globe.svg?react'
+import LightningIcon from '@phosphor-icons/core/regular/lightning.svg?react'
+import TerminalWindowIcon from '@phosphor-icons/core/regular/terminal-window.svg?react'
+import LayoutIcon from '@phosphor-icons/core/regular/layout.svg?react'
+import ChatsIcon from '@phosphor-icons/core/regular/chats-teardrop.svg?react'
+import OSIcon from '@assets/opensource.svg?react'
+import BbBracket from '@assets/bb_bracket_border.svg?react'
 import TechStackItem from './TechStackItem'
 
 interface TechItem {
@@ -23,8 +23,11 @@ interface Props {
 
 const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTechItems }) => {
   return (
-    <section className={'flex flex-col lg:flex-row lg:p-28 pl-5 pt-16 pb-20 relative'}>
-      <div className={'flex-1 pb-6'}>
+    <>
+      <div
+        className={'xl:col-span-3 xl:col-start-2 pt-16 pb-0 xl:py-20 px-5 2xl:px-0'}
+        id='services'
+      >
         <SectionMark
           title={'Leistungen'}
           classNameLine={'bg-black/75'}
@@ -33,20 +36,20 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
       </div>
       <div
         className={
-          'flex-[2.58] grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] lg:grid-flow-col gap-x-6'
+          'grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] pl-5 xl:pl-0 lg:grid-flow-col gap-x-4 lg:col-span-8 pt-0 xl:pt-16 pb-20'
         }
       >
         <ServiceHeader
           title={'Entwicklung'}
           text={'Technologieoffenheit und "Full-Stack" sind unsere Spezialität'}
-          dark={true}
+          dark
         />
         <ServiceItem
           title={'Automatisierung'}
           text={
             'Wir verknüpfen und integrieren bestehende Dienste und sorgen für Interoperabilität und Optimierung.'
           }
-          dark={true}
+          dark
           icon={<LightningIcon />}
         />
         <ServiceItemDivider className={'bg-black'} />
@@ -55,7 +58,7 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           text={
             'Wir konstruieren performante Server-Anwendungen mit Hilfe von APIs, Microservices und Datenbanken.'
           }
-          dark={true}
+          dark
           icon={<TerminalWindowIcon />}
         />
         <ServiceItemDivider className={'bg-black'} />
@@ -64,7 +67,7 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           text={
             'Wir implementieren hochwertige und interaktive Frontends mit Hilfe modernster Web-Technologien.'
           }
-          dark={true}
+          dark
           icon={<LayoutIcon />}
         />
         <div className={`${developmentTechItems?.length ? '' : 'h-8'} bg-black`}>
@@ -118,9 +121,9 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           </div>
         </div>
       </div>
-      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden lg:block' />
-      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden lg:block' />
-    </section>
+      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden 2xl:block' />
+      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden 2xl:block' />
+    </>
   )
 }
 

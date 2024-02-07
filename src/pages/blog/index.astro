@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { Card, SectionGridContainer, SectionMark } from '@components'
+import { getCollection } from 'astro:content'
+import BbBracket from '@assets/bb_bracket.svg?react'
+
+const contentSortedByDate = (await getCollection('blog')).sort(
+  (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
+)
+const [firstPost, ...restPosts] = contentSortedByDate
+---
+
+<BaseLayout>
+  <SectionGridContainer className='pt-16 bg-bb-grey-200 px-5 lg:px-0' innerClassName='relative'>
+    <div class='lg:col-start-2'>
+      <h1 class='font-grotesk text-5xl lg:text-[10rem] tracking-tighter font-medium'>blog</h1>
+    </div>
+    <BbBracket
+      className='rotate-180 scale-x-150 -scale-y-[1.5] text-white absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16'
+    />
+  </SectionGridContainer>
+  <SectionGridContainer className='py-8 lg:py-16 bg-bb-grey-200' innerClassName='gap-8'>
+    <Card
+      title={firstPost.data.title}
+      subtitle={firstPost.data.subtitle}
+      href={'/blog/' + firstPost.slug}
+      teaser={firstPost.data.teaser}
+      className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
+    />
+    <div
+      class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 lg:h-[28rem] overflow-hidden lg:-mb-32'
+    >
+      <img
+        src={firstPost.data.image.url}
+        alt={firstPost.data.image.alt}
+        class='w-full h-auto object-cover'
+      />
+    </div>
+  </SectionGridContainer>
+
+  <SectionGridContainer className='pt-16 lg:pt-48 pb-16' innerClassName='px-5 lg:px-0'>
+    <div class='col-span-1 lg:col-start-2 lg:col-span-3 pb-8 lg:pb-0'>
+      <SectionMark
+        title={'Weitere Artikel'}
+        classNameLine={'bg-black opacity-75'}
+        classNameText={'opacity-75'}
+      />
+    </div>
+    <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
+      {
+        restPosts.map((post) => (
+          <Card
+            title={post.data.title}
+            subtitle={post.data.subtitle}
+            img={post.data.image.url}
+            imgAlt={post.data.image.alt}
+            href={'/blog/' + post.slug}
+          />
+        ))
+      }
+    </div>
+  </SectionGridContainer>
+</BaseLayout>
