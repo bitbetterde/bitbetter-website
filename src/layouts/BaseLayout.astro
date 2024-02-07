@@ -15,6 +15,7 @@ interface Props {
   metaDescription?: string
   metaImage?: string
   metaAuthors?: string[]
+  metaType?: string
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   metaDescription = 'Wir sind zwei Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.',
   metaImage = 'https://bitbetter.de/bitbetter_opengraph.jpg',
   metaAuthors = ['Fabian Schmidt', 'Moritz Stückler'],
+  metaType = 'website',
 } = Astro.props
 
 const isProduction = import.meta.env.MODE === 'production'
@@ -42,7 +44,7 @@ const isProduction = import.meta.env.MODE === 'production'
         techstackKeywords || ''
       }`}
     />
-    <meta property='og:type' content='website' />
+    <meta property='og:type' content={metaType} />
     <meta property='og:title' content={metaTitle} />
     <meta property='og:description' content={metaDescription} />
     <meta property='og:url' content={Astro.url} />

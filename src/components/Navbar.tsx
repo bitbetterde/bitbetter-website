@@ -26,12 +26,12 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
     <SectionGridContainer className='fixed top-0 bg-white w-full z-20 border border-b-bb-grey-200'>
       <div
         className={`${
-          navListOpen ? 'flex-col h-screen' : 'flex-row'
+          navListOpen ? 'flex-col h-dvh' : 'flex-row'
         } flex justify-between lg:items-center lg:col-start-2 col-span-1 lg:col-span-11`}
       >
         <nav
           className={`flex ${
-            navListOpen ? 'flex-col h-full' : 'flex-row'
+            navListOpen ? 'flex-col h-dvh' : 'flex-row'
           } w-full justify-between items-start lg:items-center px-5 lg:px-0`}
         >
           <div className='flex justify-between items-center w-full h-20'>
