@@ -31,7 +31,7 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
       >
         <nav
           className={`flex ${
-            navListOpen ? 'flex-col h-dvh' : 'flex-row'
+            navListOpen ? 'flex-col h-full' : 'flex-row'
           } w-full justify-between items-start lg:items-center px-5 lg:px-0`}
         >
           <div className='flex justify-between items-center w-full h-20'>
