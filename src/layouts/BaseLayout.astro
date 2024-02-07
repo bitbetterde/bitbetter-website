@@ -16,6 +16,7 @@ interface Props {
   metaImage?: string
   metaAuthors?: string[]
   metaType?: string
+  metaDate?: string
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   metaImage = 'https://bitbetter.de/bitbetter_opengraph.jpg',
   metaAuthors = ['Fabian Schmidt', 'Moritz Stückler'],
   metaType = 'website',
+  metaDate,
 } = Astro.props
 
 const isProduction = import.meta.env.MODE === 'production'
@@ -33,7 +35,7 @@ const isProduction = import.meta.env.MODE === 'production'
 <html lang='de' class='overflow-x-hidden scroll-smooth'>
   <head>
     <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/bb_favicon.png' />
+    <link rel='icon' type='image/png' href='/bb_favicon.png' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <meta name='generator' content={Astro.generator} />
     <title>{`${metaTitle} - ${metaSubtitle}`}</title>
@@ -49,7 +51,16 @@ const isProduction = import.meta.env.MODE === 'production'
     <meta property='og:description' content={metaDescription} />
     <meta property='og:url' content={Astro.url} />
     <meta property='og:image' content={metaImage} />
-    {metaAuthors?.map((author) => <meta property='og:author' content={author} />)}
+    {
+      metaDate && (
+        <meta name='publish_date' property='og:article:published_time' content={metaDate} />
+      )
+    }
+    {
+      metaAuthors?.map((author) => (
+        <meta property='og:article:author' name='author' content={author} />
+      ))
+    }
     {
       isProduction && (
         <script

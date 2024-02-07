@@ -51,6 +51,7 @@ const { title, subtitle, image, teaser } = post.data
   metaDescription={post.data.teaser}
   metaAuthors={authors.map((author) => `${author.data.firstName} ${author.data.lastName}`)}
   metaType='article'
+  metaDate={post.data.date?.toISOString()}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
     <div class='lg:col-start-2 col-span-12 flex flex-col gap-4'>
