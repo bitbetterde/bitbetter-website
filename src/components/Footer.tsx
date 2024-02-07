@@ -11,11 +11,12 @@ interface Props {
 
 const Footer: React.FC<Props> = ({ children }: Props) => {
   return (
-    <footer
-      className={'flex flex-col md:flex-row pt-12 md:pt-20 px-5 lg:px-28 pb-14 gap-y-12 relative'}
-      id='footer'
-    >
-      <div className={'flex-[2] flex gap-8 flex-col justify-between md:pt-0.5 z-10'}>
+    <>
+      <div
+        className={
+          'flex gap-8 flex-col justify-between md:pt-0.5 z-10 lg:col-start-2 lg:col-span-5 col-span-1'
+        }
+      >
         <div>
           <BbLogo className={'h-8 md:h-10'} />
         </div>
@@ -80,7 +81,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
       </div>
       <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
       <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-60 hidden md:block' />
-    </footer>
+    </>
   )
 }
 
