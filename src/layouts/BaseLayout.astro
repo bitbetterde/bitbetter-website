@@ -47,10 +47,10 @@ const isProduction = import.meta.env.MODE === 'production'
       }`}
     />
     <meta property='og:type' content={metaType} />
-    <meta property='og:title' content={`${metaTitle} - ${metaSubtitle}`} />
-    <meta property='og:description' content={metaDescription} />
+    <meta name='title' property='og:title' content={`${metaTitle} - ${metaSubtitle}`} />
+    <meta name='description' property='og:description' content={metaDescription} />
     <meta property='og:url' content={Astro.url} />
-    <meta property='og:image' content={metaImage} />
+    <meta name='image' property='og:image' content={metaImage} />
     {metaDate && <meta name='date' property='og:article:published_time' content={metaDate} />}
     {
       metaAuthors?.map((author) => (
