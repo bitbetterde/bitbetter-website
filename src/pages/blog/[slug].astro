@@ -34,6 +34,12 @@ for (const author of post.data.authors) {
     authors.push(authorObj)
   }
 }
+const formattedDate = new Date(post.data.date).toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+
 const { Content } = await post.render()
 const { title, subtitle, image, teaser } = post.data
 ---
@@ -57,6 +63,11 @@ const { title, subtitle, image, teaser } = post.data
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
         {teaser}
       </p>
+      {
+        Boolean(post?.data?.date) && (
+          <p class='text-lg pt-4 italic pb-12'>Veröffentlicht am {formattedDate}</p>
+        )
+      }
       {
         Boolean(authors.length) && (
           <p class='text-lg font-medium pb-16'>
@@ -86,7 +97,7 @@ const { title, subtitle, image, teaser } = post.data
       }
     </div>
   </SectionGridContainer>
-  <SectionGridContainer innerClassName='pt-8 lg:pt-44 pb-28 px-5 lg:px-0'>
+  <SectionGridContainer innerClassName='pt-8 lg:pt-24 pb-28 px-5 lg:px-0'>
     <article
       class='col-start-2 col-span-6 prose prose-lg prose-p:leading-[1.4em] prose-headings:font-grotesk prose-blockquote:border-l-0 prose-blockquote:font-grotesk prose-blockquote:pl-0 prose-bb-grey prose-li:my-0 max-w-none'
     >

@@ -1,0 +1,77 @@
+---
+title: Warum Strings in Camunda nicht verwendet werden sollten
+image:
+  url: /images/blog/camunda/camunda-title.png
+  alt: The Astro logo with the word One.
+subtitle: Es ist schwierig 
+teaser: "Ganz wie wir es mögen: Eine tolle Idee, ein tolles Team und dazu auch noch Open Source. Für unseren Kunden regenholz haben wir in der zweiten Jahreshälfte 2023 ein modernes Frontend für parametrische Open-Source-Möbel gebaut."
+date: 2024-01-01
+authors:
+  - fabian
+---
+
+[Camunda](https://camunda.com/platform-7/) ist ein beliebtes Workflow-Management-System auf Java-Basis, welches aufgrund seiner Open-Source-Lizenz (in Version 7) schnell eine große Verbreitung erreichte. Es eignet sich gut, um interne Geschäftsprozesse zu entwerfen und zu automatisieren. Allerdings kommt Camunda auch mit einigen Fallstricken daher, die wir erst nach und nach kennengelernt haben. Einer davon: String-Variablen in einem Camunda-Prozess.
+
+## Warum Strings in Camunda nicht verwendet werden sollten
+
+Wer einen Camunda-Prozess entwickelt, wird an vielen Stellen mit diversen benutzerdefinierten Variablen konfrontiert: Zum einem gibt es die Prozess-Variablen, welche über die gesamte Laufzeit des Prozesses existieren, aber auch "lokale Variablen" (zum Beispiel Input/Output-Variablen). Dabei müssen sämtliche Variablen einen der folgenden Typen haben:
+
+![](https://docs.camunda.org/manual/7.20/user-guide/process-engine/img/variables-1.png)
+
+Der hier erwähnte `string`-Typ ist allerdings innerhalb von Camunda etwas anders zu verwenden, als Strings in Java oder anderen Programmiersprachen und Frameworks: In der [API-Dokumentation zu Prozessvariablen](https://docs.camunda.org/manual/7.20/user-guide/process-engine/variables/#supported-variable-values) findet sich auch schon die Erklärung, warum Strings nicht in Camunda verwendet werden sollten:
+
+> `string` values are stored in the database in a column of type `(n)varchar`, with a length restriction of 4000 (2000 for Oracle). Depending on the database in use and the configured charset, this length restriction can result in different quantities of real characters. Variable value length is not validated inside the Camunda engine, but the values are sent to the database ‘as is’ and, in case the length restriction is exceeded, a database level exception will be thrown.
+
+Prozessvariablen des Typs String werden also unverändert in der Datenbank in einer Spalte gespeichert, welche eine begrenzte Größe von 4000 Zeichen (2000 bei Oracle-Datenbanken) aufweist. Dieses Limit ist erstaunlich klein und schnell erreicht – gerade im Kontext von Nutzer-Eingaben oder Nachrichten aus einem Usertask, wo die gewünschte Länge nur schwer vorhersehbar ist. Ein Brief, der Inhalt einer Webseite oder der Text einer E-Mail können diese Grenze sehr leicht sprengen.
+
+## Für Prozess-Variablen
+Im Allgemeinen ist die Empfehlung daher, Variablen in Klassen zu verpacken und dann als JSON oder XML gemeinsam zu serialisieren und in Camunda zu speichern, denn im Gegensatz zu Strings haben JSON- oder XML-Objekte in Camunda keine maximale Größe und können daher auch für große Datenmengen genutzt werden.
+
+```java
+String potentiallyLongString = "Hello World![...]";
+
+// Don't do this:
+execution.setVariable("longText", potentiallyLongString);
+
+// Instead do this:
+MyProcessVariables pv = new MyProcessVariables();
+pv.setLongText(potentiallyLongString);
+
+ObjectValue pvSerialized = Variables.objectValue(pv)
+                                    .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+                                    .create();
+execution.setVariable("myProcessVariables", pvSerialized);
+```
+
+Im weiteren Verlauf eines Prozesses kann trotzdem weiterhin über alle gängigen Expression-Formate wie JUEL, FEEL, Freemarker, Groovy, etc. auf diese Variablen innerhalb eines Objekts zugegriffen werden – entweder über selbst erstellte Getter-Funktionen oder direkt über das jeweilige Feld.
+
+```js
+// Zugriff im weiteren Verlauf des Workflows
+${myProcessVariables.longText.length > 50}
+```
+## Für lokale Variablen
+Etwas komplizierter wird es, wenn man einen langen Text an einen externen Service Task als Input weitergeben will. Externe Service Tasks werden häufig von verschiedenen Camunda-Prozessen aufgerufen, daher müssen die Prozessvariablen des jeweiligen Prozesses auf das Interface des externen Service Task gemappt werden.
+
+Die naheliegendste Version wäre folgende Konfiguration:
+
+![](/images/blog/camunda/camunda-expression-field.png)
+
+Das Problem hierbei ist der "Variable Assignment Type": Denn die lokale Variable, welche von Camunda hier erzeugt wird, ist nun wieder vom Typ String, welcher wieder der bekannten Limitierung auf 4000 Zeichen unterliegt und im Falle der Überschreitung zu einem Laufzeitfehler der Datenbank führt.
+
+Wie bei den Prozess-Variablen liegt die Lösung also auch in der Serialisierung eines Objektes nach JSON. Damit die Serialisierung selber gestaltet werden kann, muss an der Stelle des Variablen-Mappings Code ausgeführt werden.
+
+Das könnte zum Beispiel so aussehen:
+
+![](/images/blog/camunda/camunda-expression-getter.png)
+
+```java
+public ObjectValue getMailBody() {  
+  MailBody mailBody = new MailBody(this.longText); 
+  return Variables.objectValue(mailBody)  
+                  .serializationDataFormat(Variables.SerializationDataFormats.JSON)  
+                  .create();  
+                }
+```
+
+### Zusammenfassung
+Prozess-Variablen in Camunda als Objekte zu implementieren hat mehrere Vorteile: Durch die dazugehörige Java-Klasse entsteht eine Typsicherheit, es gibt keine Größenbegrenzung durch die Camunda Datenbank und es trägt zur Übersichtlichkeit bei. An manchen Stellen, wie bei den lokalen Variablen, ist der Aufwand allerdings höher, da Probleme, welche theoretisch ausschließlich im BPMN-Diagramm gelöst werden könnten, in eine Java-Klasse ausgelagert werden müssen. Nichtsdestotrotz lohnt sich der Mehraufwand und man sollte primitive Typen in den Prozess-Variablen nur benutzen, wenn man sich sehr sicher über den Inhalt der Variable sein kann.

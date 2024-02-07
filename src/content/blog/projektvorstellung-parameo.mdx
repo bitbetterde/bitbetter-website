@@ -1,0 +1,25 @@
+---
+title: Ein Frontend für Parameo, den parametrischen Möbelgenerator
+image:
+  url: /images/blog/parameo/parameo-title.jpg
+  alt: The Astro logo with the word One.
+subtitle: Projektvorstellung
+teaser: "Ganz wie wir es mögen: Eine tolle Idee, ein nettes Team und dazu auch noch Open Source. Für unseren Kunden regenholz haben wir in der zweiten Jahreshälfte 2023 ein modernes Frontend für parametrische Open-Source-Möbel gebaut."
+date: 2024-01-01
+authors:
+  - moritz
+---
+
+Als Selbstständige ist eine unserer größten Freiheiten die Tatsache, dass wir uns aussuchen können, welche Projekte wir umsetzen möchten, und welche nicht. Als Fynn und René von [regenholz](https://regenholz.de) im März 2023 zum ersten Mal auf uns zukamen, mussten wir daher nicht lange überlegen: Mit ihrer Idee für eine Web-Plattform zur parametrischen Generierung und Bestellung von Möbeln haben sie bei uns offene Türen eingerannt.
+
+Die Themen Handwerk, Open Source und Nachhaltigkeit liegen uns schon lange am Herz und durch unsere Verbindung über den [Hamburger Verein Fab City Hamburg e.V.](https://fabcity.hamburg) wussten wir auch, dass unsere Teams menschlich gut zusammenpassen. Außerdem konnten wir in dem Projekt zusätzlich auf die Hilfe von Agustina Carrion, einer befreundeten Junior-Entwicklerin zurückgreifen. So konnten wir gemeinsam zwischen Mai und Dezember 2023 ein passendes Web-Frontend für das parameo-Projekt. Dabei konnten wir uns technologisch voll austoben, weil der Kunde unserer Expertise bei der Auswahl der passenden Technologien vertraute. So entschieden wir uns für den folgenden Frontend-Stack um mit dem bestehenden Python-Backend zu kommunizieren:
+
+- Single Page Application mit [React](https://react.dev/)
+- Globales State Management über [Zustand](https://github.com/pmndrs/zustand)
+- CSS mittels [Tailwind](https://tailwindcss.com/), [Headless UI](https://headlessui.com/) und [HeroIcons](https://heroicons.com/)
+- Kommunikation mit dem Python-Backend über eine Rest API
+- Vorschau von 3D-Modellen mit dem [Model Viewer von Google](https://modelviewer.dev/)
+
+https://www.youtube.com/watch?v=3gbeLVOyuXk
+
+Der Quelltext von Parameo (sowohl das [Frontend](https://gitlab.regenholz.de/bat/parameo-frontend), als auch das [Backend](https://gitlab.regenholz.de/bat/bat-dev)) stehen unter einer Open-Source-Lizenz und können von allen eingesehen und verwendet werden. Die aktuelle Live-Version ist unter [parameo.de](https://parameo.de) zu finden.

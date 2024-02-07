@@ -67,7 +67,7 @@ module.exports = {
             blockquote: {
               'font-style': 'normal',
               'font-weight': 500,
-              'font-size': '2rem',
+              'font-size': '1.5rem',
               '& *::before': {
                 content: 'normal !important',
               },
