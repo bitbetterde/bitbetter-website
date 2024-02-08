@@ -10,7 +10,10 @@ const contentSortedByDate = (await getCollection('blog')).sort(
 const [firstPost, ...restPosts] = contentSortedByDate
 ---
 
-<BaseLayout>
+<BaseLayout
+  metaTitle='bitbetter blog'
+  metaDescription='In unserem Blog präsentieren wir regelmäßig Beiträge über unsere Projekte und Software, die wir gerne verwenden.'
+>
   <SectionGridContainer className='pt-16 bg-bb-grey-200 px-5 lg:px-0' innerClassName='relative'>
     <div class='lg:col-start-2'>
       <h1 class='font-grotesk text-5xl lg:text-[10rem] tracking-tighter font-medium'>blog</h1>
