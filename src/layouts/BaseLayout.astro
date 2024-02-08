@@ -66,6 +66,12 @@ const isProduction = import.meta.env.MODE === 'production'
         />
       )
     }
+    <link
+      rel='alternate'
+      type='application/rss+xml'
+      title='bitbetter blog RSS-Feed'
+      href='/blog/feed.xml'
+    />
   </head>
   <body class='flex flex-col overflow-x-hidden pt-20'>
     <Navbar buttonCaption='Schreib uns!' client:only='react' />
