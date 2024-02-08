@@ -4,13 +4,12 @@ import svgr from 'vite-plugin-svgr'
 import tailwind from '@astrojs/tailwind'
 import rehypeExternalLinks from 'rehype-external-links'
 import mdx from '@astrojs/mdx'
-import embeds from 'astro-embed/integration'
 
 // https://astro.build/config
 export default defineConfig({
   devToolbar: { enabled: false },
   site: 'https://bitbetter.de',
-  integrations: [react(), tailwind({ config: { applyBaseStyles: false } }), embeds(), mdx()],
+  integrations: [react(), tailwind({ config: { applyBaseStyles: false } }), mdx()],
   vite: {
     plugins: [svgr()],
   },
