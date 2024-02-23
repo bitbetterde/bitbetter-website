@@ -52,6 +52,7 @@ const schema = {
   description: teaser,
   author: authors.map(({ data }) => ({
     name: `${data.firstName} ${data.lastName}`,
+    ...(data.homepage ? { url: data.homepage } : {}),
     '@type': 'Person',
   })),
   datePublished: date?.toISOString(),
