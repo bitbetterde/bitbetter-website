@@ -41,17 +41,32 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('de-DE', {
 })
 
 const { Content } = await post.render()
-const { title, subtitle, image, teaser } = post.data
+const { title, subtitle, image, teaser, date } = post.data
+
+// JSON-LD Schema for Google Metadata (see https://developers.google.com/search/docs/appearance/structured-data/article)
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  image: image.url,
+  headline: title,
+  description: teaser,
+  author: authors.map(({ data }) => ({
+    name: `${data.firstName} ${data.lastName}`,
+    '@type': 'Person',
+  })),
+  datePublished: date?.toISOString(),
+}
 ---
 
 <BaseLayout
   metaTitle={title}
   metaSubtitle={'bitbetter blog'}
-  metaImage={Astro.url.origin + post.data.image.url}
-  metaDescription={post.data.teaser}
+  metaImage={Astro.url.origin + image.url}
+  metaDescription={teaser}
   metaAuthors={authors.map((author) => `${author.data.firstName} ${author.data.lastName}`)}
   metaType='article'
-  metaDate={post.data.date?.toISOString()}
+  metaDate={date.toISOString()}
+  metaSchema={JSON.stringify(schema)}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
     <div class='lg:col-start-2 col-span-12 flex flex-col gap-4'>
@@ -72,9 +87,9 @@ const { title, subtitle, image, teaser } = post.data
         {teaser}
       </p>
       {
-        Boolean(post?.data?.date) && (
+        Boolean(date) && (
           <p class='text-lg pt-4 italic pb-12'>
-            Veröffentlicht am <time datetime={post.data.date?.toISOString()}>{formattedDate}</time>
+            Veröffentlicht am <time datetime={date?.toISOString()}>{formattedDate}</time>
           </p>
         )
       }
