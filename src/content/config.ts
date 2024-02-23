@@ -22,6 +22,21 @@ const blogCollection = defineCollection({
     teaser: z.string(),
     date: z.date(),
     authors: z.array(reference('authors')),
+    hidden: z.boolean().optional(),
+  }),
+})
+
+const servicesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    subtitle: z.string(),
+    teaser: z.string(),
+    date: z.date(),
   }),
 })
 
@@ -43,4 +58,5 @@ export const collections = {
   stack_consulting: techStackCollection,
   blog: blogCollection,
   authors: authorCollection,
+  services: servicesCollection,
 }
