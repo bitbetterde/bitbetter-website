@@ -50,6 +50,7 @@ const authorCollection = defineCollection({
       webp: z.string().optional(),
       alt: z.string(),
     }),
+    homepage: z.string().optional(),
   }),
 })
 
