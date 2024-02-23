@@ -5,11 +5,11 @@ import { getEntry, getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  post: CollectionEntry<'blog'>
+  post: CollectionEntry<'services'>
 }
 
 export async function getStaticPaths() {
-  const content = await getCollection('blog', (entry) => !entry.data.hidden)
+  const content = await getCollection('services', (entry) => !entry.data.hidden)
 
   const result = content.map((post) => {
     return {
@@ -26,14 +26,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
-let authors: CollectionEntry<'authors'>[] = []
 
-for (const author of post.data.authors) {
-  const authorObj = await getEntry(author.collection, author.id)
-  if (authorObj) {
-    authors.push(authorObj)
-  }
-}
 const formattedDate = new Date(post.data.date).toLocaleDateString('de-DE', {
   year: 'numeric',
   month: 'long',
@@ -49,7 +42,6 @@ const { title, subtitle, image, teaser } = post.data
   metaSubtitle={'bitbetter blog'}
   metaImage={Astro.url.origin + post.data.image.url}
   metaDescription={post.data.teaser}
-  metaAuthors={authors.map((author) => `${author.data.firstName} ${author.data.lastName}`)}
   metaType='article'
   metaDate={post.data.date?.toISOString()}
 >
@@ -71,40 +63,13 @@ const { title, subtitle, image, teaser } = post.data
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
         {teaser}
       </p>
-      {
+      <!-- {
         Boolean(post?.data?.date) && (
           <p class='text-lg pt-4 italic pb-12'>
             Veröffentlicht am <time datetime={post.data.date?.toISOString()}>{formattedDate}</time>
           </p>
         )
-      }
-      {
-        Boolean(authors.length) && (
-          <p class='text-lg font-medium pb-16'>
-            Von
-            <Avatar
-              jpgSrc={authors[0]?.data.image.default}
-              webpSrc={authors[0]?.data.image.webp}
-              alt={authors[0]?.data.image.alt}
-              small
-            />{' '}
-            {authors[0].data.firstName + ' ' + authors[0].data.lastName}
-            {authors.length > 1 && (
-              <>
-                {' '}
-                &
-                <Avatar
-                  jpgSrc={authors[1]?.data.image.default}
-                  webpSrc={authors[1]?.data.image.webp}
-                  alt={authors[1]?.data.image.alt}
-                  small
-                />{' '}
-                {authors[1].data.firstName + ' ' + authors[1].data.lastName}
-              </>
-            )}
-          </p>
-        )
-      }
+      } -->
     </div>
   </SectionGridContainer>
   <SectionGridContainer innerClassName='pt-8 lg:pt-24 pb-28 px-5 lg:px-0'>
