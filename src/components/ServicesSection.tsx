@@ -14,6 +14,7 @@ interface TechItem {
   image: string
   link: string
   order?: number
+  internal?: boolean
 }
 
 interface Props {
@@ -76,7 +77,14 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           </h4>
           <div className='px-8 pt-4 pb-8 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5'>
             {developmentTechItems?.map((item, i) => (
-              <TechStackItem key={i} light title={item.title} link={item.link} image={item.image} />
+              <TechStackItem
+                key={i}
+                light
+                title={item.title}
+                link={item.link}
+                image={item.image}
+                internal={item.internal}
+              />
             ))}
           </div>
         </div>
@@ -116,7 +124,13 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
           </h4>
           <div className='px-8 py-4 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5'>
             {consultingTechItems?.map((item, i) => (
-              <TechStackItem key={i} title={item.title} link={item.link} image={item.image} />
+              <TechStackItem
+                key={i}
+                title={item.title}
+                link={item.link}
+                image={item.image}
+                internal={item.internal}
+              />
             ))}
           </div>
         </div>

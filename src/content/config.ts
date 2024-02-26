@@ -6,6 +6,7 @@ const techStackCollection = defineCollection({
     title: z.string(),
     image: z.string(),
     link: z.string(),
+    internal: z.boolean().optional(),
     order: z.number().optional(),
   }),
 })
