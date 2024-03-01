@@ -38,11 +38,9 @@ const Card: React.FC<Props> = ({
         </h3>
       )}
       {title && (
-        <h2 className='font-grotesk font-medium text-2xl leading-8 mt-3 line-clamp-2 h-16'>
-          {title}
-        </h2>
+        <h2 className='font-grotesk font-medium text-2xl leading-8 mt-3 line-clamp-2'>{title}</h2>
       )}
-      {teaser && <p>{teaser}</p>}
+      {teaser && <p className='pt-4'>{teaser}</p>}
       {href && <LinkButton small caption={'Weiterlesen'} dark href={href} className='mt-5' />}
     </div>
   )
