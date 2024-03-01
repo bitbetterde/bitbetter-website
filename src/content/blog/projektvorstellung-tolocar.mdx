@@ -1,0 +1,38 @@
+---
+title: Tolocar – Webseite für mobile Makerspaces in der Ukraine
+image:
+  url: /images/blog/tolocar/tolocar-title.jpg
+  alt: Das Tolocar-Logo vor einem Bild von drei umgebauten LKW und deren Besatzung.
+subtitle: Projektvorstellung
+teaser: "Der russische Angriffskrieg auf die Ukraine hat das Land und die Menschen schwer gezeichnet. Die mobilen Makerspaces namens Tolocar versuchen vor Ort zu reparieren und neue Maker auszubilden. Wir durften die Webseite dafür bauen."
+date: 2024-03-01
+authors:
+  - moritz
+---
+import { LinkButton } from "@components";
+
+Bereits kurz nach dem russischen Überfall auf die Ukraine formierte sich in der europäischen Maker-Szene eine pragmatische Hilfsmaßnahme: Mobile Makerspaces in Form von umgebauten LKWs und Transportern, die schnell und unabhängig dort helfen können, wo Hilfe dringend gebraucht wird. Diese "Tolocars" sind ausgestattet mit jeder Menge Werkzeugen und modernen Produktionsmaschinen (3D-Drucker, Lasercutter, CNC-Fräsen und mehr) um viele kleinere Kriegsschäden direkt vor Ort zu reparieren. Außerdem dienen sie als Vermittler und Botschafter für die Maker-Szene und das Prinzip der Selbsthilfe, die gerade in der Ukraine wichtiger ist denn je.
+
+Durch unser privates Interesse und unsere langjährigen Verbindungen in die Hamburger Maker-Szene wurden wir im Sommer 2022 von den Initiatoren (damals konkret das [HIWW](https://www.hiww.de/)) angesprochen, ob wir die Webseite für das Tolocar-Projekt entwickeln und betreuen können. Da es sich um ein tolles und unterstützenswertes Projekt handelt, haben wir schnell zugesagt und leisten seitdem Beratung und Entwicklung rund um die Webseite des Projekts.
+
+![Die interaktive Karte auf Mapbox-Basis zeigt die vergangenen Tolocar-Einsätze](/images/blog/tolocar/tolocar-map.jpg)
+
+
+## Was wir gemacht haben
+Wir kooperierten bei den Projekt mit unserem befreundeten Designer [Tobias Möritz](https://moeritz.io/) und bekamen weitere Entwickler-Power von [Agustina Carrion](https://github.com/Agustina-Carrion). Mit beiden Partnern haben wir in der Vergangenheit schon mehrere Projekte realisiert. Was wir geleistet haben:
+
+- ❓ Anforderungsanalyse und Technologieauswahl
+- 🎨 Hybride Webseite (größtenteils serverseitig gerendert) mit [Astro](https://astro.build/) und [React](https://react.dev/)
+- 🗺️ Integration einer interaktiven Karte mit OpenStreetMap-Daten (über die [Mapbox](https://www.mapbox.com/) API)
+- 🧮 Integration von dynamischen Daten via [AirTable](https://www.airtable.com) API
+- 💬 GitHub-basierte Kommentarfunktion via [Giscus](https://github.com/giscus/giscus)
+- 💅 CSS mittels [Tailwind](https://tailwindcss.com/)
+
+Der Quelltext der Tolocar-Webseite ist einsehbar und steht unter einer Open-Source-Lizenz [zur Verfügung](https://github.com/tolocar-project/website).
+
+<LinkButton
+  className={'not-prose mx-auto my-8'}
+  caption={"Zur Projekt-Webseite"}
+  dark={true}
+  href={"https://tolocar.org"}
+/>
