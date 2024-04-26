@@ -1,5 +1,11 @@
 ---
-import { HeroSection, SectionGridContainer, AboutUsSection, ServicesSection } from '@components'
+import {
+  HeroSection,
+  SectionGridContainer,
+  AboutUsSection,
+  ServicesSection,
+  CustomersSection,
+} from '@components'
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 
@@ -28,5 +34,8 @@ import { developmentTechItems, consultingTechItems } from '../util/content'
       developmentTechItems={developmentTechItems}
       consultingTechItems={consultingTechItems}
     />
+  </SectionGridContainer>
+  <SectionGridContainer className='bg-white' breakpoint='xl'>
+    <CustomersSection />
   </SectionGridContainer>
 </BaseLayout>

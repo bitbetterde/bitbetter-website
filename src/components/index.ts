@@ -2,6 +2,7 @@ import AboutUsSection from './AboutUsSection'
 import Avatar from './Avatar'
 import Button from './Button'
 import Card from './Card'
+import CustomersSection from './CustomersSection'
 import Footer from './Footer'
 import HeroSection from './HeroSection'
 import LinkButton from './LinkButton'
@@ -18,6 +19,7 @@ export {
   Avatar,
   Button,
   Card,
+  CustomersSection,
   Footer,
   HeroSection,
   LinkButton,
