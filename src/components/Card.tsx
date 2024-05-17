@@ -41,7 +41,9 @@ const Card: React.FC<Props> = ({
         <h2 className='font-grotesk font-medium text-2xl leading-8 mt-3 line-clamp-2'>{title}</h2>
       )}
       {teaser && <p className='pt-4'>{teaser}</p>}
-      {href && <LinkButton small caption={'Weiterlesen'} dark href={href} className='mt-5' />}
+      {href && (
+        <LinkButton small caption={'Weiterlesen'} variant='dark' href={href} className='mt-5' />
+      )}
     </div>
   )
 }

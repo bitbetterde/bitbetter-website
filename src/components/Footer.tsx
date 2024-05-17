@@ -45,9 +45,18 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
       </div>
       <div className={'z-10 col-span-1 lg:col-span-6'}>
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
-          Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf deine E-Mail.
+          Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf ein Gespräch oder eine E-Mail.
         </h3>
-        <LinkButton className='mt-5' caption={'Schreib uns'} href='mailto:info@bitbetter.de' />
+        <div className='flex gap-4 mt-5'>
+          <LinkButton
+            variant='dark'
+            className=''
+            caption={'Gespräch buchen'}
+            href='https://cal.bitbetter.de/team/bitbetter/projekt-anfrage'
+            newTab
+          />
+          <LinkButton className='' caption={'E-Mail schreiben'} href='mailto:info@bitbetter.de' />
+        </div>
         <div
           className={
             'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-[11.5rem] md:mt-[17.875rem]'

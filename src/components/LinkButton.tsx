@@ -4,7 +4,8 @@ interface Props {
   caption: string
   className?: string
   href?: string
-  dark?: boolean
+  variant?: 'dark' | 'white' | 'grey'
+  grey?: boolean
   newTab?: boolean
   small?: boolean
 }
@@ -15,14 +16,17 @@ const LinkButton: React.FC<Props> = ({
   href,
   newTab,
   small,
-  dark = false,
+  variant = 'white',
 }: Props) => {
+  const colorClasses = {
+    dark: 'bg-black text-white',
+    white: 'bg-white text-bb-grey-500',
+    grey: 'bg-bb-grey-200 text-bb-grey-500',
+  }
   return (
     <a
       href={href}
-      className={`flex w-fit gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${
-        dark ? 'bg-black text-white' : 'bg-white text-bb-grey-500'
-      } ${small ? 'py-[10px] px-4' : 'py-4 px-5'} ${className || ''}`}
+      className={`flex w-fit gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${colorClasses[variant] || ''} ${small ? 'py-[10px] px-4' : 'py-4 px-5'} ${className || ''}`}
       {...(newTab ? { target: '_blank' } : {})}
     >
       {caption}

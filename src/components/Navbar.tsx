@@ -84,7 +84,7 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
               <LinkButton
                 className={'h-9'}
                 caption={buttonCaption}
-                dark={true}
+                variant='dark'
                 href={'mailto:info@bitbetter.de'}
               />
             </li>
@@ -97,7 +97,7 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
               className={'w-full justify-center'}
               small
               caption={buttonCaption}
-              dark={true}
+              variant='dark'
               href={'mailto:info@bitbetter.de'}
             />
           </div>
