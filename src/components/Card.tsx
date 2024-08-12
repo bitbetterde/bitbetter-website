@@ -33,6 +33,7 @@ const Card: React.FC<Props> = ({
           className={`font-sans text-lg leading-5 tracking-widest uppercase font-normal text-black opacity-70 ${
             img ? 'pt-8' : ''
           } line-clamp-1`}
+          title={subtitle}
         >
           {subtitle}
         </h3>

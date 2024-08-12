@@ -1,0 +1,51 @@
+---
+title: Warum wir am liebsten Web-Apps bauen
+image:
+  url: /images/blog/webapps/webapps_examples.png
+  alt: Die Logos einiger bekannter Webanwendungen (Figma, Google Docs, Canva, Netflix) vor einem stilisierten Browserfenster
+subtitle: Der Browser ist die beste Plattform für portable Anwendungen 
+teaser: Webanwendungen sind oft eine gute und kostengünstige Variante um individuelle Software zu realisieren. Benutzer brauchen lediglich einen aktuellen Browser. Damit sind Web-Apps klassischen, nativen Anwendungen in vielen Bereichen überlegen.
+date: 2024-08-09
+authors:
+  - fabian
+---
+
+Webanwendungen sind in den letzten Jahren (spätestens seit dem "Web 2.0") immer beliebter geworden und haben sich in der in der IT-Welt fest etabliert. Sie bieten zahlreiche Vorteile, die sie für sehr viele Anwendungsbereiche sinnvoll machen. Wir beschreiben, warum wir Webanwendungen für eine gute und effiziente Lösung für viele Anwendungsfälle und Kunden (gerade für kleine und mittlere Unternehmen) halten – aber auch welche Risiken sie haben können.
+
+## Was sind überhaupt Webanwendungen?
+
+Webanwendungen (auf Englisch auch Web-Apps genannt) sind Softwareanwendungen, die über einen Webbrowser aufgerufen und genutzt werden. Von einfachen Webseiten grenzen sich Webanwendungen durch eine höhere Komplexität ab. Bekannte Beispiele für Web-Apps sind zum Beispiel solche Anwendungen wie die Online-Office-Lösung [Google Docs](https://www.google.com/docs/about/), die Design-Programme [Figma](https://www.figma.com/) oder [Canva](https://www.canva.com/) oder das Videostreaming-Portal [Netflix](https://www.netflix.com). Im Gegensatz zu traditionellen Desktop- oder mobilen Anwendungen (auch "native" Anwendungen genannt) müssen sie meistens nicht auf dem Gerät installiert werden, sondern können einfach über eine Internetadresse (URL) aufgerufen und genutzt werden.
+
+### 👁️ Zugänglichkeit: Ein Browser reicht aus
+
+Webanwendungen werden über einen Webbrowser aufgerufen. Das bedeutet, dass jedes Gerät, auf welchem ein moderner Browser installiert werden kann (egal ob es sich um einen PC, ein Smartphone, ein Tablet, ein Auto oder einen Fernseher handelt) diese ausführen kann, unabhängig vom Betriebssystem oder der darunterliegenden Hardware. Mit einer einzigen Applikation können also wahnsinnig viele Gerätearten und -kategorien abgedeckt werden. Dank dem sogenannten Responsive Design können Webanwendungen auch auf alle Bildschirmgrößen zugeschnitten werden. Das reduziert den Entwicklungsaufwand deutlich gegenüber nativen Anwendungen und verringert die Abhängigkeit von speziellen Herstellern oder Plattformen. Entwickelt man z.B. eine native iOS-App, so ist man auch in Zukunft an Apple-Hardware gebunden – dies ist bei Web-Apps nicht der Fall. Die Web-Technologie erlaubt es außerdem relativ gut, Software auch für Menschen mit Beeinträchtigung (etwa Seh- oder Motorikbeeinträchtigungen) zugänglich zu machen.
+
+### 🕸️ Zentralisierung: Geteilte Daten, keine Backups und offene Schnittstellen
+
+Webapplikationen bestehen häufig aus einer Server-Komponente (Backend) und einer Benutzeroberfläche (Frontend). Das Frontend ist die eigentliche Web-App und wird im Browser des Benutzers ausgeführt. Das Backend läuft meistens auf einem (oder mehreren) zentralisierten Server(n). Das Frontend kann dabei idealerweise sehr schlank gestaltet werden, so dass der Nutzer nur die Daten vom Server bekommt, welche er tatsächlich benötigt. Die Geschäftslogik (z.B. Berechnungen etc.) als auch die Daten liegen auf dem Server und können von vielen Nutzern geteilt werden. Eine gemeinsame Datenbasis zwischen allen Nutzern erleichtert die Kollaboration und macht das Austauschen von Dateien oder das Nutzen von Netzlaufwerken häufig unnötig.
+
+<figure class="[&>p>img]:mx-auto [&>p>img]:mb-0">
+![](/images/blog/webapps/webapps_figma.png)
+<figcaption>Ein Screenshot aus der beliebten Design-Anwendung Figma, die komplett im Browser verwendet werden kann.</figcaption>
+</figure>
+
+Durch die Zentralisierung der Daten müssen auch kaum Daten beim Nutzer gespeichert werden, wodurch dem Nutzer auch keine Daten verloren gehen können (Laptop geklaut, Wasserschaden, etc.). Am wichtigsten finden wir allerdings, dass es im Kontext von Web-Apps gängig und einfach ist, eine generische Programmier-Schnittstelle zur Verfügung zu stellen, die auch von anderen Programmen genutzt werden kann. Programme sollten heutzutage immer eine Möglichkeit bieten, im Zusammenspiel mit anderen Anwendungen zu funktionieren, sonst ist eine Automatisierung eines Prozesses, in welchem dieses Programm vorkommt, nicht möglich. Dadurch, dass bei einer Web-App meistens ein Server vorhanden ist, der eine Schnittstelle für das Frontend bereitstellt, kann diese Schnittstelle oft auch von anderen Programmen verwendet werden.
+
+### 📲 Updates passieren automatisch
+
+Eine Software, die nicht gewartet wird, stirbt bekanntlich irgendwann aus. Updates sind essentiell, um Fehler zu beheben, neue Features einzubauen und die Software an neue Bedingungen anzupassen. Daher ist es von großem Vorteil, wenn jeder Benutzer immer die aktuelle Version einer Software benutzt. Bei nativen Anwendungen bedeutet das, dass auf jedem Gerät das Update installiert werden muss. Je nach Art der Nutzer, bedeutet das einen großen Administrationsaufwand (z.B. in einer Unternehmensstruktur) oder es dauert sehr lange, bis alle Nutzer das Update installiert haben, z.B. bei privaten Nutzern. Bei Webanwendungen dagegen laden die Nutzer die Anwendung meistens bei jedem Aufruf über das Netzwerk. Somit muss nur die Anwendung auf dem Server aktualisiert werden – die Clients updaten sich dann quasi von alleine. Der Administrationsaufwand wird dadurch drastisch reduziert.
+
+### 💸 Web-Apps sind oft günstiger zu erstellen als native Anwendungen
+
+Alle oben beschriebenen Vorteile einer Webanwendung tragen erheblich dazu bei, die Kosten für den Betrieb und die Entwicklung einer Anwendung zu senken. Webanwendungen können nicht alles besser, aber sie sind oft ein sehr kosteneffizienter Weg, eine große Spanne an Funktionen abzudecken. Sowohl Frontend als auch Backend können zum Beispiel in einer gemeinsamen Programmiersprache (JavaScript/Typescript), geschrieben werden, wodurch eine schnelle und kosteneffiziente Entwicklung auch von einem kleinen Team möglich gemacht wird.
+
+
+### Nachteile: Immer online, wenig Hardware-Support und Tracking
+
+Natürlich sind Web-Apps kein Allheilmittel. Die vielen Vorteile bringen auch einige Nachteile mit sich, die nicht verschwiegen werden sollten:
+
+Die Abhängigkeit von einer Internetverbindung ist ein konzeptionelles Problem. Zwar lassen sich Web-Anwendungen heute auch so entwickeln, dass sie eine Zeit lang gut ohne Internetverbindung auskommen, jedoch braucht es spätestens zum Abgleich von Daten irgendwann wieder eine Verbindung.
+
+Einen weiteren Nachteil haben die Web-Anwendungen wenn es um die enge Verknüpfung mit Hardware geht. Browser können nur auf einige, wenige Hardware-Komponenten zugreifen. Wer also unmittelbar mit Hardware-Komponenten interagieren muss, oder optimierte Hardware-Features (z.B. im 3D- und Grafikbereich oder bei maschinellem Lernen) verwenden möchte, für den sind Web-Apps oft keine Alternative.
+
+Web-Apps haben außerdem einen schlechten Ruf, da gerade große Beispiel oft sehr stark mit Tracking-Maßnahmen durchsetzt sind oder immer weiter aufgebläht werden, bis sie nicht mehr performant funktionieren können. Beide Aspekte sind aber eher organisatorische Probleme und sollten nicht der Technologie zugeschrieben werden.
