@@ -2,8 +2,9 @@ import { SectionMark } from '@components'
 import HsuLogo from '@assets/customers/hsu.svg?react'
 import HiwwLogo from '@assets/customers/hiww.svg?react'
 import FchhLogo from '@assets/customers/fchh.svg?react'
-import OwLogo from '@assets/customers/ow.svg?react'
+// import OwLogo from '@assets/customers/ow.svg?react'
 import SchleyLogo from '@assets/customers/schley.svg?react'
+import CoshLogo from '@assets/customers/cosh.svg?react'
 
 const CustomersSection: React.FC = () => {
   const linkClasses = 'block flex items-center justify-center p-4 customer-logo'
@@ -20,21 +21,21 @@ const CustomersSection: React.FC = () => {
           classNameText={'opacity-75'}
         />
       </div>
-      <div className='xl:col-span-8 grid grid-cols-5 py-16'>
+      <div className='xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 py-16 gap-4 xl:gap-x-8'>
         <a href='bla.com' target='_blank' className={linkClasses}>
-          <HsuLogo className={logoClasses} />
+          <CoshLogo className={logoClasses} />
         </a>
         <a href='bla.com' target='_blank' className={linkClasses}>
           <HiwwLogo className={logoClasses} />
         </a>
         <a href='bla.com' target='_blank' className={linkClasses}>
-          <FchhLogo className={logoClasses} />
-        </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
-          <OwLogo className={logoClasses} />
-        </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
           <SchleyLogo className={logoClasses} />
+        </a>
+        <a href='bla.com' target='_blank' className={linkClasses}>
+          <HsuLogo className={logoClasses} />
+        </a>
+        <a href='bla.com' target='_blank' className={linkClasses}>
+          <FchhLogo className={logoClasses} />
         </a>
       </div>
     </>
