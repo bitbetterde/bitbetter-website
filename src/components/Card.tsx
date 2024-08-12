@@ -33,6 +33,7 @@ const Card: React.FC<Props> = ({
           className={`font-sans text-lg leading-5 tracking-widest uppercase font-normal text-black opacity-70 ${
             img ? 'pt-8' : ''
           } line-clamp-1`}
+          title={subtitle}
         >
           {subtitle}
         </h3>
@@ -41,7 +42,9 @@ const Card: React.FC<Props> = ({
         <h2 className='font-grotesk font-medium text-2xl leading-8 mt-3 line-clamp-2'>{title}</h2>
       )}
       {teaser && <p className='pt-4'>{teaser}</p>}
-      {href && <LinkButton small caption={'Weiterlesen'} dark href={href} className='mt-5' />}
+      {href && (
+        <LinkButton small caption={'Weiterlesen'} variant='dark' href={href} className='mt-5' />
+      )}
     </div>
   )
 }

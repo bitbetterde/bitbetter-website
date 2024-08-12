@@ -19,7 +19,7 @@ const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props)
           <LinkButton
             className='mt-8'
             caption={buttonCaption}
-            dark={true}
+            variant='dark'
             href={'mailto:info@bitbetter.de'}
           />
         )}
