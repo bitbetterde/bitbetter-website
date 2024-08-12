@@ -22,19 +22,19 @@ const CustomersSection: React.FC = () => {
         />
       </div>
       <div className='xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 py-16 gap-4 xl:gap-x-8'>
-        <a href='bla.com' target='_blank' className={linkClasses}>
+        <a href='https://cosh.de/' target='_blank' className={linkClasses}>
           <CoshLogo className={logoClasses} />
         </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
+        <a href='https://www.hiww.de/' target='_blank' className={linkClasses}>
           <HiwwLogo className={logoClasses} />
         </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
+        <a href='https://www.ios-schley.de/' target='_blank' className={linkClasses}>
           <SchleyLogo className={logoClasses} />
         </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
+        <a href='https://www.hsu-hh.de/' target='_blank' className={linkClasses}>
           <HsuLogo className={logoClasses} />
         </a>
-        <a href='bla.com' target='_blank' className={linkClasses}>
+        <a href='https://www.fabcity.hamburg/' target='_blank' className={linkClasses}>
           <FchhLogo className={logoClasses} />
         </a>
       </div>

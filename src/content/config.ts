@@ -55,21 +55,10 @@ const authorCollection = defineCollection({
   }),
 })
 
-const customerCollection = defineCollection({
-  type: 'data',
-  schema: z.object({
-    name: z.string(),
-    href: z.string(),
-    image: z.string(),
-    homepage: z.string().optional(),
-  }),
-})
-
 export const collections = {
   stack_development: techStackCollection,
   stack_consulting: techStackCollection,
   blog: blogCollection,
   authors: authorCollection,
   services: servicesCollection,
-  customers: customerCollection,
 }
