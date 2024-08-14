@@ -25,4 +25,12 @@
   lite-youtube::before {
     content: none !important;
   }
+
+  .customer-logo {
+    --svg-hover-color: black;
+  }
+
+  .customer-logo:hover {
+    --svg-hover-color: initial;
+  }
 }
