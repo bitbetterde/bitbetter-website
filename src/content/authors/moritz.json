@@ -7,5 +7,6 @@
     "alt": "Portrait von Moritz Stückler"
   },
   "description": "arbeitete zunächst viele Jahre als IT-Journalist und entschied sich 2014 für den Berufswechsel zum Software-Entwickler. Nach dem Studium arbeitete er als Full-Stack-Entwickler in Produktfirmen und Agenturen. Sein Schwerpunkt sind Frontend-Technologien, CMS-Systeme und Open-Source-Software.",
-  "homepage": "https://netchild.de/"
+  "homepage": "https://netchild.de/",
+  "fediverse": "@preya@mastodon.social"
 }

@@ -52,6 +52,7 @@ const authorCollection = defineCollection({
       alt: z.string(),
     }),
     homepage: z.string().optional(),
+    fediverse: z.string().optional(),
   }),
 })
 

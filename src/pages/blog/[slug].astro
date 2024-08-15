@@ -65,6 +65,7 @@ const schema = {
   metaImage={Astro.url.origin + image.url}
   metaDescription={teaser}
   metaAuthors={authors.map((author) => `${author.data.firstName} ${author.data.lastName}`)}
+  metaFediverse={authors?.[0].data.fediverse}
   metaType='article'
   metaDate={date.toISOString()}
   metaSchema={JSON.stringify(schema)}
