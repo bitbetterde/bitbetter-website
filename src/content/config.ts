@@ -22,6 +22,7 @@ const blogCollection = defineCollection({
     subtitle: z.string(),
     teaser: z.string(),
     date: z.date(),
+    update: z.date().optional(),
     authors: z.array(reference('authors')),
     hidden: z.boolean().optional(),
   }),

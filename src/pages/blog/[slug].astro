@@ -34,14 +34,15 @@ for (const author of post.data.authors) {
     authors.push(authorObj)
   }
 }
-const formattedDate = new Date(post.data.date).toLocaleDateString('de-DE', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-})
+const formatDate = (date: Date) =>
+  new Date(date).toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 
 const { Content } = await post.render()
-const { title, subtitle, image, teaser, date } = post.data
+const { title, subtitle, image, teaser, date, update } = post.data
 
 // JSON-LD Schema for Google Metadata (see https://developers.google.com/search/docs/appearance/structured-data/article)
 const schema = {
@@ -68,6 +69,7 @@ const schema = {
   metaFediverse={authors?.[0].data.fediverse}
   metaType='article'
   metaDate={date.toISOString()}
+  metaUpdate={update?.toISOString()}
   metaSchema={JSON.stringify(schema)}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
@@ -88,13 +90,23 @@ const schema = {
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
         {teaser}
       </p>
-      {
-        Boolean(date) && (
-          <p class='text-lg pt-4 italic pb-12'>
-            Veröffentlicht am <time datetime={date?.toISOString()}>{formattedDate}</time>
-          </p>
-        )
-      }
+      <div class='pb-12'>
+        {
+          Boolean(date) && (
+            <p class='text-lg pt-4 italic'>
+              Veröffentlicht am <time datetime={date?.toISOString()}>{formatDate(date)}</time>
+            </p>
+          )
+        }
+        {
+          Boolean(update) && (
+            <p class='text-lg pt-4 italic'>
+              Zuletzt aktualisiert am{' '}
+              <time datetime={update?.toISOString()}>{formatDate(update as Date)}</time>
+            </p>
+          )
+        }
+      </div>
       {
         Boolean(authors.length) && (
           <p class='text-lg font-medium pb-16'>

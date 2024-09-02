@@ -2,10 +2,11 @@
 title: Nextcloud und das große Freigabe-Chaos
 image:
   url: /images/blog/nextcloud-freigabe-chaos/nextcloud-teaser.webp
-  alt: "Die drei Icons für verschiedene Freigabe-Methoden in Nextcloud: Shares, Gruppenordner und Circles"
+  alt: "Die drei Icons für verschiedene Freigabe-Methoden in Nextcloud: Shares, Gruppenordner und Teams"
 subtitle: Komplizierter als gedacht
 teaser: Nextcloud gilt oft als Ersatz für kommerzielle Cloudspeicher wie Dropbox und Google Drive. Die ursprüngliche Kernaufgabe, das Teilen von Dateien und Ordnern, ist aber oft deutlich komplizierter und verwirrender als angenommen, da es drei unterschiedliche Freigabe-Mechanismen gibt.
 date: 2024-02-07
+update: 2024-09-02
 authors:
   - moritz
 ---
@@ -42,15 +43,15 @@ Um viele der genannten Probleme bei der Arbeit mit Gruppen zu beseitigen, gibt e
 
 Für die Zusammenarbeit in einer festen und hierarchischen Gruppen-Konstellation (wie sie üblicherweise im Arbeitsumfeld vorkommt) scheinen Groupfolders also eine überlegene Lösung zu sein. Trotzdem fühlt sich das groupfolders-Plugin manchmal wie ungewollter Ballast im Nextcloud-Universum an. Obwohl das Plugin offiziell von der Nextcloud GmbH verwaltet wird, bekommt es augenscheinlich nur [wenig Priorität und Ressourcen](https://github.com/nextcloud/groupfolders/issues/1215) zugewiesen und weist deswegen teilweise monatelang gravierende Fehler auf.
 
-### Circles: Aufgebohrte Share-Funktion
+### Teams: Aufgebohrte Share-Funktion
 
-["Circles"](https://github.com/nextcloud/circles) ist eine dritte Variante um mit einer Gruppe Dateien und Ordner zu teilen. Circles wirken aber eher wie eine kleine Erweiterung der einfachen Share-Funktionalität. Anstelle einzelner Nutzer und (durch Admins definierte) Gruppen, können Dateien und Ordner damit auch mit selbstverwalteten Circles geteilt werden. Circles können von jedem Nutzer erstellt werden, und benötigen keinerlei Admin-Intervention. Circles ermöglichen also Selbstorganisation in Strukturen, wo keine klare Hierarchie oder Zuständigkeit herrscht. Die so erstellten Freigaben leiden allerdings unter denselben Problemen wie die einfachen Dateifreigaben:
+["Teams"](https://github.com/nextcloud/circles)(früher "Circles") ist eine dritte Variante um mit einer Gruppe Dateien und Ordner zu teilen. Teams wirken aber eher wie eine kleine Erweiterung der einfachen Share-Funktionalität. Anstelle einzelner Nutzer und (durch Admins definierte) Gruppen, können Dateien und Ordner damit auch mit selbstverwalteten Teams geteilt werden. Teams können von jedem Nutzer erstellt werden (vorausgesetzt die zugehörige Nextcloud-App ist installiert), und benötigen keinerlei Admin-Intervention. Teams ermöglichen also Selbstorganisation in Strukturen, wo keine klare Hierarchie oder Zuständigkeit herrscht. Die so erstellten Freigaben leiden allerdings unter denselben Problemen wie die einfachen Dateifreigaben:
 
-- 👤 **Shares gehören immer einem spezifischen Nutzer:** Der Freigabe-Ersteller kann die Freigabe jederzeit widerrufen, so dass der Inhalt nicht mehr verfügbar ist.
+- 👤 **Shares gehören immer einem spezifischen Nutzer:** Auch mit einem Team geteilte Freigaben können vom Freigabe-Ersteller jederzeit widerrufen werden, so dass der Inhalt nicht mehr verfügbar ist.
 
 - ❓ **Benennung und Ort des Shares sind nicht eindeutig:** Die Ordner können bei unterschiedlichen Nutzern unterschiedliche Namen haben und sich an unterschiedlichen Orten befinden.
 
-Circles sind vor allem für Szenarien geeignet, in denen sich Nutzer selbst organisieren möchten, und Gruppen auch ohne Zutun eines Administrators einrichten möchten.
+Teams sind vor allem für Szenarien geeignet, in denen sich Nutzer selbst organisieren möchten, und Gruppen auch ohne Zutun eines Administrators einrichten möchten.
 
 ## Problem: Es mangelt an Dokumentation und Aufklärung
 
@@ -62,4 +63,6 @@ Natürlich ist es eine Luxus-Situation wenn es ein großes Ökosystem rund um Ne
 
 Admins können die einzelnen Methoden zwar deaktivieren, aber das hat Auswirkungen auf die Funktionalität: Wer ausschließlich mit Groupfolders arbeitet kann die "Share"-Funktion komplett deaktivieren, und so Verwirrungen vorbeugen. Wer aber weiterhin gelegentlich Dateien und Ordner mit externen Personen über einen Link teilen möchte, der muss die Share-Funktion weiterhin aktiviert lassen und muss somit seinen Nutzern beibringen, für welche Situation welche Freigabe-Methode die beste ist.
 
-Es wäre daher wünschenswert, wenn das Nextcloud-Interface auf das Vorhandensein mehrerer Freigabe-Methoden eingehen würde. Sobald mehrere Methoden installiert sind, könnten die Nutzer mit entsprechenden Hinweisen oder Hilfetexten aufgeklärt werden, ob sie wirklich die jeweils richtige Methode gewählt haben. Die Basis dafür wäre aber zunächst eine ausführliche, gegenüberstellende Dokumentation der drei Methoden mit ihren einzelnen Vor- und Nachteilen. Eine solche Dokumentation durch die Nextcloud GmbH wäre sehr hilfreich – auch gerade im Bezug auf die Produktvision und die Zukunftspläne der GmbH. Bisher geht das Nextcloud User Manual aber [ausschließlich auf die Share-Funktion ein](https://docs.nextcloud.com/server/latest/user_manual/en/files/sharing.html), ohne Vergleiche zu Circles und Groupfolders zu ziehen. Auch im offiziellen Nextcloud-Blog kam das Thema leider noch nicht vor.
+Es wäre daher wünschenswert, wenn das Nextcloud-Interface auf das Vorhandensein mehrerer Freigabe-Methoden eingehen würde. Sobald mehrere Methoden installiert sind, könnten die Nutzer mit entsprechenden Hinweisen oder Hilfetexten aufgeklärt werden, ob sie wirklich die jeweils richtige Methode gewählt haben. Die Basis dafür wäre aber zunächst eine ausführliche, gegenüberstellende Dokumentation der drei Methoden mit ihren einzelnen Vor- und Nachteilen. Eine solche Dokumentation durch die Nextcloud GmbH wäre sehr hilfreich – auch gerade im Bezug auf die Produktvision und die Zukunftspläne der GmbH. Bisher geht das Nextcloud User Manual aber [ausschließlich auf die Share-Funktion ein](https://docs.nextcloud.com/server/latest/user_manual/en/files/sharing.html), ohne Vergleiche zu Teams und Groupfolders zu ziehen. Auch im offiziellen Nextcloud-Blog kam das Thema leider noch nicht vor.
+
+**Update (2.9.24)**: Mit dem Release von Nextcloud Hub 8 (aka Nextcloud 29) wurde die "Circles"-Funktionalität in "Teams" umbenannt. An der Funktionsweise hat sich allerdings nichts geändert. Wir haben den Artikel entsprechend angepasst.
