@@ -39,7 +39,7 @@ const bigArray2 = Array.from(
 const diff = bigArray1.filter(
   (obj) => !bigArray2.some((obj2) => obj2.id === obj.id),
 );
-// => Dauer ~ 120 s
+// => Dauer ~120 s
 
 // Option 1b
 const diff = [];
@@ -52,7 +52,7 @@ outerLoop: for (const array1Element of bigArray1) {
   }
   diff.push(array1Element);
 }
-// => Dauer ~ 120 s
+// => Dauer ~120 s
 
 ```
 
@@ -65,7 +65,7 @@ const bigArray2Ids = bigArray2.map((obj) => obj.id);
 const diff = bigArray1.filter(
   (obj) => !bigArray2Ids.includes(obj.id),
 );
-// => Dauer ~ 80 s
+// => Dauer ~80 s
 
 ```
 
@@ -88,7 +88,7 @@ const differenceStringified = Array.from(
 const diff = differenceStringified.map((obj) =>
   JSON.parse(obj),
 );
-// => Dauer ~ 0.4 s
+// => Dauer ~0.4 s
 
 ```
 
@@ -104,7 +104,7 @@ for (const ele of bigArray2) {
 }
 
 const diff = bigArray1.filter((obj) => !map[obj.id]);
-// Dauer ~ 0.07 s
+// => Dauer ~0.07 s
 
 ```
 
