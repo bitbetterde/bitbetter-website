@@ -20,8 +20,15 @@ JavaScript bzw. ECMAScript (der "richtige" Name der Sprache) brachte lange Zeit 
 Für die folgenden Vergleiche haben wir jeweils die gleichen zwei Arrays mit einer beispielhaften Länge von 200.000 Elementen initialisiert. Der Inhalt dieser Objekte spielt hier keine besondere Rolle. Nur so viel: Sie enthalten jeweils eine ID, über die sie eindeutig identifiziert werden können. Wir suchen also in beiden Arrays diejenigen Objekte mit der gleichen ID.
 
 ```ts
-const bigArray1 = Array.from({length: 200000}, (v, k) => ({id: k.toString()}));
-const bigArray2 = Array.from({length: 200000}, (v, k) => ({id: (k / 2).toString()}));
+const bigArray1 = Array.from(
+  { length: 200000 },
+  (v, k) => ({ id: k.toString() }),
+);
+const bigArray2 = Array.from(
+  { length: 200000 },
+  (v, k) => ({ id: (k / 2).toString() }),
+);
+
 ```
 
 ### Vergleichen mit Schleifen oder `.filter()` und `.some()`
@@ -29,22 +36,24 @@ const bigArray2 = Array.from({length: 200000}, (v, k) => ({id: (k / 2).toString(
 
 ```ts
 // Option 1a
-const diff = bigArray1.filter(obj => !bigArray2.some(obj2 => obj2.id === obj.id));
+const diff = bigArray1.filter(
+  (obj) => !bigArray2.some((obj2) => obj2.id === obj.id),
+);
 // => Dauer ~ 120 s
 
 // Option 1b
 const diff = [];
 
-outerLoop:
-  for (const array1Element of bigArray1) {
-    for (const array2Element of bigArray2) {
-      if (array1Element.id === array2Element.id) {
-        continue outerLoop;
-      }
+outerLoop: for (const array1Element of bigArray1) {
+  for (const array2Element of bigArray2) {
+    if (array1Element.id === array2Element.id) {
+      continue outerLoop;
     }
-    diff.push(array1Element);
   }
+  diff.push(array1Element);
+}
 // => Dauer ~ 120 s
+
 ```
 
 Dieser Code war unser erster, naiver Ansatz zum Bilden der Differenz: Die Verwendung von `.filter()` ist ein klassisches Konzept aus der funktionalen Programmierung. Der Code ist kurz und gut verständlich und es wird dabei relativ wenig Speicher verbraucht. Der Nachteil dieser Variante ist aber, dass relativ viel Zeit benötigt wird. Die Laufzeit dieses Algorithmus wird als `O(n²)` bezeichnet – das heißt, jedes Array-Element des ersten Arrays wird mit jedem Array-Element des zweiten Arrays verglichen (also in diesem Fall finden `200.000^200.000` Vergleichsoperationen statt). Auch die zweite Code-Variante basiert genau auf diesem Grundsatz, benutzt jedoch zwei for-Schleifen statt dem funktionalen `filter()`-Aufruf und braucht deswegen etwa genau so lange für die Berechnung. Beide Varianten sind also nur sinnvoll, wenn wenig Arbeitsspeicher zur Verfügung steht oder die beiden Arrays eine Größe haben, bei denen die Laufzeit egal ist.
@@ -53,8 +62,11 @@ Dieser Code war unser erster, naiver Ansatz zum Bilden der Differenz: Die Verwen
 ```ts
 // Option 2
 const bigArray2Ids = bigArray2.map((obj) => obj.id);
-const diff = bigArray1.filter(obj => !bigArray2Ids.includes(obj.id));
+const diff = bigArray1.filter(
+  (obj) => !bigArray2Ids.includes(obj.id),
+);
 // => Dauer ~ 80 s
+
 ```
 
 Bei der zweiten Option haben wir `Array.includes()` benutzt, um zu prüfen, ob eine Logzeile in dem Array vorhanden ist. Da `includes()` die Referenzen der Objekte vergleicht, und nicht deren Inhalt, müssen wir hier die IDs statt der kompletten Objekte benutzen. Deswegen erstellen wir zuerst ein Array mit allen IDs von einem der beiden Logfiles und sortieren dann diejenigen Einträge aus dem zweiten Logfile, deren IDs bereits im ersten Array enthalten sind. Die Laufzeit verbessert sich in diesem Ansatz etwas, dafür ist nun der Speicherbedarf höher, da wir ein zusätzliches Array mit den IDs benötigen. Diese Variante ist vielleicht etwas weniger intuitiv als die erste Variante und der Laufzeit-Vorteil ist relativ gering.
@@ -62,11 +74,22 @@ Bei der zweiten Option haben wir `Array.includes()` benutzt, um zu prüfen, ob e
 ### Sets mit JSON.stringify()
 ```ts
 // Option 3
-const bigArray2StringifiedSet = new Set(bigArray2.map((obj) => JSON.stringify(obj)));
-const bigArray1StringifiedSet = new Set(bigArray1.map((obj) => JSON.stringify(obj)));
-const differenceStringified = Array.from(bigArray1StringifiedSet.difference(bigArray2StringifiedSet));
-const diff = differenceStringified.map((obj) => JSON.parse(obj));
+const bigArray2StringifiedSet = new Set(
+  bigArray2.map((obj) => JSON.stringify(obj)),
+);
+const bigArray1StringifiedSet = new Set(
+  bigArray1.map((obj) => JSON.stringify(obj)),
+);
+const differenceStringified = Array.from(
+  bigArray1StringifiedSet.difference(
+    bigArray2StringifiedSet,
+  ),
+);
+const diff = differenceStringified.map((obj) =>
+  JSON.parse(obj),
+);
 // => Dauer ~ 0.4 s
+
 ```
 
 Nun verwenden wir endlich die "neuen" Mengenoperationen. Diese arbeiten aber nur mit Sets, das heißt wir müssen beide Arrays zunächst in geeignete Sets überführen. Da aber auch hier Referenzen von den jeweiligen Objekten verglichen werden würden, benutzen wir nun `JSON.stringify()`, um vergleichbare Strings aus den Objekten zu erzeugen. Der Haken hier dran ist, dass beide Objekte die gleichen Eigenschaften haben müssen – die gleiche ID reicht nicht aus. Alternativ könnte man die Mengenoperation auch nur auf die zwei Sets der IDs anwenden. Dann müsste man im Nachhinein aber wieder die verbleibenden IDs zu ihren ursprünglichen Objekten auflösen – was in Summe langsamer ist, als dieser `JSON.stringify()`-Ansatz. Hier stellen wir nun das erste mal einen deutlichen Sprung in der Laufzeit fest. Die Komplexität des Algorithmus sinkt nämlich wahrscheinlich auf `O(n)` (abhängig von der Implementierung in der jeweiligen JavaScript-Engine). Der Speicherbedarf ist allerdings auch deutlich gestiegen, da wir beide Arrays nicht nur duplizieren, sondern auch als serialisierte Strings im Speicher halten.
@@ -80,8 +103,9 @@ for (const ele of bigArray2) {
   map[ele.id] = true;
 }
 
-const diff = bigArray1.filter(obj => !map[obj.id]);
+const diff = bigArray1.filter((obj) => !map[obj.id]);
 // Dauer ~ 0.07 s
+
 ```
 
 Die mit Abstand schnellste Variante ist es, ein Objekt als eine einfache "Lookup Table" zu benutzen. Hierbei erzeugen wir für jeden ID des einen Arrays ein Feld in einem neuen Objekt. Somit wird zusätlicher Speicher für diese Tabelle benötigt – allerdings nur in der Größe von `n (= Anzahl der Element im Array) * 2` Bytes (ein Boolean in JavaScript ist üblicherweise ein Byte groß). Beim Vergleichen der Werte kann dann auf die vorgefertigte Tabelle zugegriffen werden. Der Zugriff auf die Tabelle hat eine Laufzeitkomplexität von `O(1)`, somit hat das Filtern eine Komplexität von `O(n)`. Diese Variante ist deutlich schneller als alle anderen Herangehensweisen. Allerdings mag der Code für einige Entwickler (die keinen Background in hardwarenaher Programmierung haben) etwas ungewöhnlich aussehen. Für performantes Vergleichen von zwei solcher Arrays ist diese Variante allerdings klar zu bevorzugen, solange genügend Arbeitsspeicher vorhanden ist.
