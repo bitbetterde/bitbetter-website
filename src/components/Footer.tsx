@@ -2,8 +2,9 @@ import type React from 'react'
 import BbLogo from '@assets/bb_logo_black.svg?react'
 import { LinkButton } from '@components'
 import BbBracket from '@assets/bb_bracket.svg?react'
-import GithubIcon from '@assets/github.svg?react'
-import LinkedInIcon from '@assets/linkedin.svg?react'
+import GithubIcon from '@assets/icons/github.svg?react'
+import LinkedInIcon from '@assets/icons/linkedin.svg?react'
+import RssIcon from '@assets/icons/rss.svg?react'
 
 interface Props {
   children?: React.ReactNode
@@ -38,6 +39,14 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
               aria-label='bitbetter auf LinkedIn'
             >
               <LinkedInIcon className='p-2 h-10 w-10' />
+            </a>
+            <a
+              href='/blog/feed.xml'
+              target='_blank'
+              className='text-black hover:text-opacity-75'
+              aria-label='bitbetter Blog RSS Feed'
+            >
+              <RssIcon className='p-2 h-10 w-10' />
             </a>
           </div>
           {children}
