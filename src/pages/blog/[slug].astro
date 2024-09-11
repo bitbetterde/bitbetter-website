@@ -34,8 +34,12 @@ for (const author of post.data.authors) {
     authors.push(authorObj)
   }
 }
+
+// Add 8 hours to the date, so we don't have midnight timestamps in feed reader, etc.
+const addEightHours = (date: Date) => new Date(date.getTime() + 8 * 60 * 60 * 1000)
+
 const formatDate = (date: Date) =>
-  new Date(date).toLocaleDateString('de-DE', {
+  date.toLocaleDateString('de-DE', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -56,7 +60,7 @@ const schema = {
     ...(data.homepage ? { url: data.homepage } : {}),
     '@type': 'Person',
   })),
-  datePublished: date?.toISOString(),
+  datePublished: addEightHours(date)?.toISOString(),
 }
 ---
 
@@ -68,8 +72,8 @@ const schema = {
   metaAuthors={authors.map((author) => `${author.data.firstName} ${author.data.lastName}`)}
   metaFediverse={authors?.[0].data.fediverse}
   metaType='article'
-  metaDate={date.toISOString()}
-  metaUpdate={update?.toISOString()}
+  metaDate={addEightHours(date).toISOString()}
+  metaUpdate={update && addEightHours(update).toISOString()}
   metaSchema={JSON.stringify(schema)}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
@@ -92,17 +96,22 @@ const schema = {
       </p>
       <div class='pb-12'>
         {
-          Boolean(date) && (
+          !!date && (
             <p class='text-lg pt-4 italic'>
-              Veröffentlicht am <time datetime={date?.toISOString()}>{formatDate(date)}</time>
+              Veröffentlicht am{' '}
+              <time datetime={addEightHours(date)?.toISOString()}>
+                {formatDate(addEightHours(date))}
+              </time>
             </p>
           )
         }
         {
-          Boolean(update) && (
+          !!update && (
             <p class='text-lg pt-4 italic'>
               Zuletzt aktualisiert am{' '}
-              <time datetime={update?.toISOString()}>{formatDate(update as Date)}</time>
+              <time datetime={addEightHours(update)?.toISOString()}>
+                {formatDate(addEightHours(update))}
+              </time>
             </p>
           )
         }
