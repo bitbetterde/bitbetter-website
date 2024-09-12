@@ -1,31 +1,29 @@
 ---
-title: 'Leadershift: Sentiment Tracking für die Organisationsentwicklung'
+title: 'Leadershift: Begleit-Anwendung für die Organisationsentwicklung'
 image:
   url: /images/blog/leadershift/leadershift_screenshots_mobile.png
-  alt: Einige der Produkte, die über Parameo konfiguriert werden können vor einem lila Hintergrund mit dem Parameo-Schriftzug darüber.
+  alt: Einige mobile Screenshots aus dem Onboarding-Prozess der Leadershift-Anwendung.
 subtitle: Projektvorstellung
-teaser: 'Wir haben eine Fullstack-Webapplikation gebaut, die in Organisationsentwicklungs-Prozessen unseres Kunden zum Einsatz kommt. Die Funktion der Anwendung erinnert an ein digitales Tagebuch.'
+teaser: 'Wir haben eine Fullstack-Webapplikation gebaut, die unserem Kunden dabei hilft, seine Organisationsentwicklungs-Prozesse zu dokumentieren.'
 date: 2024-09-13
 authors: 
   - moritz
 ---
 
-Über einen gemeinsamen Bekannten kontaktierte uns im April 2024 Johannes Schley, der Geschäftsführer der [IOS Schley & Partner GmbH](https://www.ios-schley.de/) aus Hamburg. Johannes beklagte sich bei uns über die mangelnde Funktionalität und Probleme mit bestehenden Apps und Anwendungen aus dem Bereich des "Sentiment Tracking". Deswegen haben wir dem Kunden eine individuelle Lösung für dieses Problem gebaut.
+Über einen gemeinsamen Bekannten kontaktierte uns im April 2024 Johannes Schley, der Geschäftsführer der [IOS Institut für Organisationsentwicklung und
+Systemberatung Schley & Partner GmbH](https://www.ios-schley.de/) aus Hamburg. Johannes und seine Firma helfen Kunden seit mittlerweile 39 Jahren bei allen Aspekten der Organisationsentwicklung und suchten nach Hilfe bei einem Digitalisierungsthema.
 
-IOS Schley hilft seinen Kunden seit mittlerweile 25 Jahren bei allen Aspekten der Organisationsentwicklung. Für uns war dieses Projekt der erste Kontakt mit dem Thema Organisationsentwicklung und wir konnten in den vergangenen Monaten einen kleinen, aber interessanten Einblick in diese Branche bekommen. 
+Für uns war das Thema "Organisationsentwicklung" komplett neu, aber wir konnten schnell einen interessanten Einblick in die Branche und die Tätigkeit unseres Kunden bekommen. Der (für uns relevante) Teil der Arbeit von IOS Schley sind gemeinsame, mehrwöchigen Entwicklungsprozesse, in denen die Teilnehmer und IOS-Mitarbeiter in kleinen Gruppen über Probleme und Ideen für ihrer jeweilige Organisation sprechen und daran arbeiten.
 
-Bei diesem Projekt geht es darum, dass die Kunden von IOS Schley Teilnehmer in einem andauernden Entwicklungsprozess innerhalb ihrer Organisation sind. Im Rahmen dieses Prozesses sollen die Teilnehmer ihren eigenen Fortschritt digital bewerten (auf einer Skala von 1 bis 10) und ggf. auch kommentieren (mit einem kleinen Text). Am Ende eines solchen, mehrwöchigen Prozesses können die Teilnehmer und die Mitarbeiter von IOS Schley dann den Fortschritt mithilfe von Diagrammen visualisieren und nachverfolgen.
+Einen solchen Entwicklungs-Prozess kann man heutzutage natürlich auch auf verschiedene Weisen digital begleiten und dokumentieren. Aber alle existierenden Anwendungen, die bei IOS Schley in den letzten Jahren diesbezüglich getestet wurden, konnten nie alle Anforderungen vollständig erfüllen.
 
+Durch die sehr konkreten Vorstellungen von IOS Schley konnten wir nach einem produktiven, initialen Requirements-Workshop sehr schnell mit der Umsetzung starten und dem Kunden eine maßgeschneiderte Anwendung mit dem folgenden Tech-Stack erstellen:
 
-<figure class="[&>p>img]:mx-auto">
-![Ein Screenshot des Admin-Panels der Leadershift-Anwendung](/images/blog/leadershift/leadershift_admin.png)
-</figure>
-
-Nach einem produktiven, initialen Requirements-Workshop, ergab sich für uns schnell ein Bild von einer passenden Anwendung für IOS Schley:
-
-- Hybride Fullstack-Webapplikation mit [Astro](https://astro.build/) mit zwei Frontends (für Teilnehmer und für Admins)
+- Hybride Fullstack-Webapplikation mit [Astro](https://astro.build/) mit zwei Frontends (eins für Teilnehmer und eins für Admins)
 - Frontend größtenteils auf dem Server gerendert (SSR), interaktive Komponenten mit React
+- Styling des Admin-Interfaces mit [TailwindCSS](https://tailwindcss.com/) und [Flowbite](https://flowbite.com)
+- Styling des Teilnehmer-Frontends durch ein eigenes Design von [Sophia Weider](https://sophiaweider.de/)
 - Anbindung von Notifications über E-Mail (via SMTP) und SMS (via [GatewayAPI](https://gatewayapi.com/))
 - Anbindung von Kundendaten aus [Moco ERP](https://www.mocoapp.com/) via API
-- Styling des Admin-Interfaces mit [TailwindCSS](https://tailwindcss.com/) und [Flowbite](https://flowbite.com)
-- Styling des Teilnehmer-Frontends durch eigene Vorlagen von [Sophia Weider](https://sophiaweider.de/)
+
+Für uns war dieser Auftrag ein besonders dankbares Projekt, da wir mit tollen Menschen arbeiten durften, die konzeptionell bereits sehr genau wussten, was sie haben möchten. So konnten wir uns stark auf die Umsetzung und den technischen Part konzentrieren und schnell und effizient eine individuelle Software erstellen, die dem Kunden hoffentlich lange helfen wird.
