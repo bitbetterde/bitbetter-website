@@ -1,0 +1,29 @@
+---
+title: 'Leadershift: Begleit-Anwendung für die Organisationsentwicklung'
+image:
+  url: /images/blog/leadershift/leadershift_screenshots_mobile.png
+  alt: Einige mobile Screenshots aus dem Onboarding-Prozess der Leadershift-Anwendung.
+subtitle: Projektvorstellung
+teaser: 'Wir haben eine Fullstack-Webapplikation gebaut, die unserem Kunden dabei hilft, seine Organisationsentwicklungs-Prozesse zu dokumentieren.'
+date: 2024-09-16
+authors: 
+  - moritz
+---
+
+Über einen gemeinsamen Bekannten kontaktierte uns im April 2024 Johannes Schley, der Geschäftsführer der [IOS Institut für Organisationsentwicklung und
+Systemberatung Schley & Partner GmbH](https://www.ios-schley.de/) aus Hamburg. Johannes und seine Firma helfen Kunden seit mittlerweile 39 Jahren bei allen Aspekten der Organisationsentwicklung und suchten nach Hilfe bei einem Digitalisierungsthema.
+
+Für uns war das Thema "Organisationsentwicklung" komplett neu, aber wir konnten schnell einen interessanten Einblick in die Branche und die Tätigkeit unseres Kunden bekommen. Der (für uns relevante) Teil der Arbeit von IOS Schley sind gemeinsame, mehrwöchigen Entwicklungsprozesse, in denen die Teilnehmer und IOS-Mitarbeiter in kleinen Gruppen über Probleme und Ideen für ihrer jeweilige Organisation sprechen und daran arbeiten.
+
+Einen solchen Entwicklungs-Prozess kann man heutzutage natürlich auch auf verschiedene Weisen digital begleiten und dokumentieren. Aber alle existierenden Anwendungen, die bei IOS Schley in den letzten Jahren diesbezüglich getestet wurden, konnten nie alle Anforderungen vollständig erfüllen.
+
+Durch die sehr konkreten Vorstellungen von IOS Schley konnten wir nach einem produktiven, initialen Requirements-Workshop sehr schnell mit der Umsetzung starten und dem Kunden eine maßgeschneiderte Anwendung mit dem folgenden Tech-Stack erstellen:
+
+- Hybride Fullstack-Webapplikation mit [Astro](https://astro.build/) mit zwei Frontends (eins für Teilnehmer und eins für Admins)
+- Frontend größtenteils auf dem Server gerendert (SSR), interaktive Komponenten mit React
+- Styling des Admin-Interfaces mit [TailwindCSS](https://tailwindcss.com/) und [Flowbite](https://flowbite.com)
+- Styling des Teilnehmer-Frontends durch ein eigenes Design von [Sophia Weider](https://sophiaweider.de/)
+- Anbindung von Notifications über E-Mail (via SMTP) und SMS (via [GatewayAPI](https://gatewayapi.com/))
+- Anbindung von Kundendaten aus [Moco ERP](https://www.mocoapp.com/) via API
+
+Für uns war dieser Auftrag ein besonders dankbares Projekt, da wir mit tollen Menschen arbeiten durften, die konzeptionell bereits sehr genau wussten, was sie haben möchten. So konnten wir uns stark auf die Umsetzung und den technischen Part konzentrieren und schnell und effizient eine individuelle Software erstellen, die dem Kunden hoffentlich lange helfen wird.
