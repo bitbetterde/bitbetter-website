@@ -13,8 +13,7 @@ interface TechItem {
   title: string
   image: string
   link: string
-  order?: number
-  internal?: boolean
+  page?: boolean
 }
 
 interface Props {
@@ -83,7 +82,7 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
                 title={item.title}
                 link={item.link}
                 image={item.image}
-                internal={item.internal}
+                internal={item.page}
               />
             ))}
           </div>

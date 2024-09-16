@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content'
+
+const content = await Astro.slots.render('default')
+const contentItem = await getEntry('tools', content.toLowerCase())
+
+console.log('String', content)
+console.log('Item', contentItem)
+---
+
+<a
+  class='flex items-center gap-1'
+  href={contentItem?.data.page || contentItem?.data.link}
+  target='_blank'
+  ><span class='w-4 h-4' set:html={contentItem?.data.image} />{contentItem?.data.title}</a
+>
