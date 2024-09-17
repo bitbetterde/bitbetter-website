@@ -25,6 +25,7 @@ const blogCollection = defineCollection({
     update: z.date().optional(),
     authors: z.array(reference('authors')),
     hidden: z.boolean().optional(),
+    keywords: z.string(),
   }),
 })
 
@@ -39,6 +40,7 @@ const servicesCollection = defineCollection({
     subtitle: z.string(),
     teaser: z.string(),
     date: z.date(),
+    keywords: z.string(),
   }),
 })
 

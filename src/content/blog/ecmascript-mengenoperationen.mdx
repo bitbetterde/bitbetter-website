@@ -8,6 +8,7 @@ teaser: Durch Funktionen wie Array.filter(), Array.some() oder das neue Set.diff
 date: 2024-09-03
 authors:
   - fabian
+keywords: javascript, ecmascript, array, mengen, optimierung
 ---
 
 Bei einem unserer Projekte sind wir kürzlich auf ein unerwartete Performance-Problem in JavaScript gestoßen: Wir wollten zwei große JSON-Logdateien miteinander vergleichen und diejenigen Zeilen herausfiltern, welche in beiden Logdateien enthalten sind. Eigentlich ist das eine gängige und simple Aufgabe und mit wenigen Zeilen JavaScript erledigt. Mit dem Suchbegriff "Mengenoperationen JavaScript" findet man auch schnell die üblichen StackOverflow-Beiträge mit vermeintlichen Lösungen für diese Aufgabe zum Thema "Differenzmenge". Bei kleinen Dateien werden alle gefundenen Lösungen auch keine Probleme machen, aber in unserem Fall ging es um JSON-Arrays mit ca. 1.000.000 Objekten/Zeilen. Als eine der vorgeschlagenen Lösungen nach über einer Stunde Laufzeit immer noch nicht fertig war, machten wir uns langsam Gedanken und haben ein paar Alternativen miteinander verglichen.
