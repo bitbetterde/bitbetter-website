@@ -34,7 +34,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('de-DE', {
 })
 
 const { Content } = await post.render()
-const { title, subtitle, image, teaser } = post.data
+const { title, subtitle, image, teaser, keywords } = post.data
 ---
 
 <BaseLayout
@@ -44,6 +44,7 @@ const { title, subtitle, image, teaser } = post.data
   metaDescription={post.data.teaser}
   metaType='article'
   metaDate={post.data.date?.toISOString()}
+  metaKeywords={keywords}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
     <div class='lg:col-start-2 col-span-11 flex flex-col gap-4'>
