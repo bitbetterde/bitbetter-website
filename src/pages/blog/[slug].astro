@@ -46,7 +46,7 @@ const formatDate = (date: Date) =>
   })
 
 const { Content } = await post.render()
-const { title, subtitle, image, teaser, date, update } = post.data
+const { title, subtitle, image, teaser, date, update, keywords } = post.data
 
 // JSON-LD Schema for Google Metadata (see https://developers.google.com/search/docs/appearance/structured-data/article)
 const schema = {
@@ -75,6 +75,7 @@ const schema = {
   metaDate={addEightHours(date).toISOString()}
   metaUpdate={update && addEightHours(update).toISOString()}
   metaSchema={JSON.stringify(schema)}
+  metaKeywords={keywords}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
     <div class='lg:col-start-2 col-span-11 flex flex-col gap-4'>
