@@ -85,6 +85,7 @@ const Footer: React.FC<Props> = ({ children }: Props) => {
             Amtsgericht Hamburg (HRB 177719) <br />
           </address>
           <div>
+            Tel.: <a href={'tel:4940 33463362'}>040 33463362</a>
             <br />
             <br />
             Vertreten durch die Geschäftsführer: <br />
