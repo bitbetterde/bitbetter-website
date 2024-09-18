@@ -13,7 +13,7 @@ interface TechItem {
   title: string
   image: string
   link: string
-  page?: boolean
+  internalPage?: string
 }
 
 interface Props {
@@ -80,9 +80,9 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
                 key={i}
                 light
                 title={item.title}
-                link={item.link}
+                link={item.internalPage || item.link}
                 image={item.image}
-                internal={item.page}
+                openInNewTab={!item.internalPage}
               />
             ))}
           </div>
@@ -126,9 +126,9 @@ const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTech
               <TechStackItem
                 key={i}
                 title={item.title}
-                link={item.link}
+                link={item.internalPage || item.link}
                 image={item.image}
-                internal={item.internal}
+                openInNewTab={!item.internalPage}
               />
             ))}
           </div>

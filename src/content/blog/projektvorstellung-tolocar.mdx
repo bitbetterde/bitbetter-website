@@ -11,6 +11,7 @@ authors:
 keywords: tolocar, ukraine, makerspace, website, astro, map, openstreetmap, open-source
 ---
 import { LinkButton } from "@components";
+import ToolTag from "@components/ToolTag.astro"
 
 Bereits kurz nach dem russischen Überfall auf die Ukraine formierte sich in der europäischen Maker-Szene eine pragmatische Hilfsmaßnahme: Mobile Makerspaces in Form von umgebauten LKWs und Transportern, die schnell und unabhängig dort helfen können, wo Hilfe dringend gebraucht wird – die sogenannten Tolocars.
 
@@ -24,17 +25,17 @@ Durch unser privates Interesse und unsere langjährigen Verbindungen in die Hamb
 Wir kooperierten bei diesem Projekt mit unserem befreundeten Designer [Tobias Möritz](https://moeritz.io/) und bekamen weitere Entwickler-Kapazität von [Agustina Carrion](https://github.com/Agustina-Carrion). Mit beiden Partnern haben wir in der Vergangenheit schon mehrere Projekte realisiert. Was wir genau geleistet haben:
 
 - ❓ Anforderungsanalyse und Technologieauswahl
-- 🎨 Hybride Webseite (größtenteils serverseitig gerendert) mit [Astro](https://astro.build/) und [React](https://react.dev/)
+- 🎨 Hybride Webseite (größtenteils serverseitig gerendert) mit <ToolTag>Astro</ToolTag> und <ToolTag>React</ToolTag>
 - 🗺️ Integration einer interaktiven Karte mit OpenStreetMap-Daten (über die [Mapbox](https://www.mapbox.com/) API)
 - 🧮 Integration von dynamischen Daten via [AirTable](https://www.airtable.com) API
 - 💬 GitHub-basierte Kommentarfunktion via [Giscus](https://github.com/giscus/giscus)
-- 💅 CSS mittels [Tailwind](https://tailwindcss.com/)
+- 💅 CSS mittels <ToolTag>Tailwind</ToolTag>
 
 Der Quelltext der Tolocar-Webseite ist einsehbar und steht unter einer Open-Source-Lizenz [zur Verfügung](https://github.com/tolocar-project/website).
 
 <LinkButton
   className={'not-prose mx-auto my-8'}
   caption={"Zur Projekt-Webseite"}
-  dark={true}
+  variant="dark"
   href={"https://tolocar.org"}
 />

@@ -10,6 +10,7 @@ authors:
   - moritz
 keywords: projekt, leadershift, organisationsentwicklung, astro, webapp
 ---
+import ToolTag from "@components/ToolTag.astro"
 
 Über einen gemeinsamen Bekannten kontaktierte uns im April 2024 Johannes Schley, der Geschäftsführer der [IOS Institut für Organisationsentwicklung und
 Systemberatung Schley & Partner GmbH](https://www.ios-schley.de/) aus Hamburg. Johannes und seine Firma helfen Kunden seit mittlerweile 39 Jahren bei allen Aspekten der Organisationsentwicklung und suchten nach Hilfe bei einem Digitalisierungsthema.
@@ -20,9 +21,9 @@ Einen solchen Entwicklungs-Prozess kann man heutzutage natürlich auch auf versc
 
 Durch die sehr konkreten Vorstellungen von IOS Schley konnten wir nach einem produktiven, initialen Requirements-Workshop sehr schnell mit der Umsetzung starten und dem Kunden eine maßgeschneiderte Anwendung mit dem folgenden Tech-Stack erstellen:
 
-- Hybride Fullstack-Webapplikation mit [Astro](https://astro.build/) mit zwei Frontends (eins für Teilnehmer und eins für Admins)
+- Hybride Fullstack-Webapplikation mit <ToolTag>Astro</ToolTag> mit zwei Frontends (eins für Teilnehmer und eins für Admins)
 - Frontend größtenteils auf dem Server gerendert (SSR), interaktive Komponenten mit React
-- Styling des Admin-Interfaces mit [TailwindCSS](https://tailwindcss.com/) und [Flowbite](https://flowbite.com)
+- Styling des Admin-Interfaces mit <ToolTag>Tailwind</ToolTag> und [Flowbite](https://flowbite.com)
 - Styling des Teilnehmer-Frontends durch ein eigenes Design von [Sophia Weider](https://sophiaweider.de/)
 - Anbindung von Notifications über E-Mail (via SMTP) und SMS (via [GatewayAPI](https://gatewayapi.com/))
 - Anbindung von Kundendaten aus [Moco ERP](https://www.mocoapp.com/) via API

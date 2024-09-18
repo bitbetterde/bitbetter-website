@@ -3,13 +3,13 @@ interface Props {
   link: string
   image: string
   light?: boolean
-  internal?: boolean
+  openInNewTab?: boolean
 }
 
-const TechStackItem: React.FC<Props> = ({ image, title, link, light, internal }: Props) => (
+const TechStackItem: React.FC<Props> = ({ image, title, link, light, openInNewTab }: Props) => (
   <a
     href={link}
-    {...(internal ? {} : { target: '_blank' })}
+    {...(openInNewTab ? { target: '_blank' } : {})}
     className={`flex items-center gap-2 ${light ? 'text-white' : 'text-black'}
   `}
   >

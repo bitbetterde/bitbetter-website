@@ -6,7 +6,7 @@ const toolsCollection = defineCollection({
     title: z.string(),
     image: z.string(),
     link: z.string(),
-    page: z.string().optional(),
+    internalPage: z.string().optional(),
   }),
 })
 
