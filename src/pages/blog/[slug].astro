@@ -95,31 +95,10 @@ const schema = {
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
         {teaser}
       </p>
-      <div class='pb-12'>
-        {
-          !!date && (
-            <p class='text-lg pt-4 italic'>
-              Veröffentlicht am{' '}
-              <time datetime={addEightHours(date)?.toISOString()}>
-                {formatDate(addEightHours(date))}
-              </time>
-            </p>
-          )
-        }
-        {
-          !!update && (
-            <p class='text-lg pt-4 italic'>
-              Zuletzt aktualisiert am{' '}
-              <time datetime={addEightHours(update)?.toISOString()}>
-                {formatDate(addEightHours(update))}
-              </time>
-            </p>
-          )
-        }
-      </div>
+
       {
         Boolean(authors.length) && (
-          <p class='text-lg font-medium pb-16'>
+          <p class='text-lg font-medium pt-4'>
             Von
             <Avatar
               jpgSrc={authors[0]?.data.image.default}
@@ -144,6 +123,28 @@ const schema = {
           </p>
         )
       }
+      <div class='pb-12'>
+        {
+          !!date && (
+            <p class='text-lg italic'>
+              Veröffentlicht am{' '}
+              <time datetime={addEightHours(date)?.toISOString()}>
+                {formatDate(addEightHours(date))}
+              </time>
+            </p>
+          )
+        }
+        {
+          !!update && (
+            <p class='text-lg italic'>
+              Aktualisiert am{' '}
+              <time datetime={addEightHours(update)?.toISOString()}>
+                {formatDate(addEightHours(update))}
+              </time>
+            </p>
+          )
+        }
+      </div>
     </div>
   </SectionGridContainer>
   <SectionGridContainer innerClassName='pt-8 lg:pt-24 pb-28 px-5 lg:px-0'>
