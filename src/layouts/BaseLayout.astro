@@ -1,7 +1,6 @@
 ---
 import { Footer, Navbar, SectionGridContainer } from '../components'
 import CarbonBadge from '@components/CarbonBadge.astro'
-import { techstackKeywords } from '../util/content'
 
 import '../styles/base.css'
 import '@fontsource/ibm-plex-sans/400.css'
@@ -20,6 +19,7 @@ interface Props {
   metaDate?: string
   metaUpdate?: string
   metaSchema?: string
+  metaKeywords?: string
 }
 
 const {
@@ -33,6 +33,7 @@ const {
   metaUpdate,
   metaSchema,
   metaFediverse,
+  metaKeywords = '',
 } = Astro.props
 
 const isProduction = import.meta.env.MODE === 'production'
@@ -48,9 +49,7 @@ const isProduction = import.meta.env.MODE === 'production'
     <meta name='description' content={metaDescription} />
     <meta
       name='keywords'
-      content={`bitbetter, software, hamburg, software-entwicklung, entwicklung, automatisierung, tailwind, ${
-        techstackKeywords || ''
-      }`}
+      content={`${metaKeywords ? metaKeywords + ', ' : ''}bitbetter, software, hamburg, software-entwicklung, entwicklung`}
     />
     <meta property='og:type' content={metaType} />
     <meta name='title' property='og:title' content={`${metaTitle} - ${metaSubtitle}`} />

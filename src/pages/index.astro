@@ -9,7 +9,36 @@ import {
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 
-import { developmentTechItems, consultingTechItems } from '../util/content'
+import { findCollectionItemsByIdOrTitle } from '../util/content'
+
+const devTools = [
+  'react',
+  'laravel',
+  'java',
+  'typescript',
+  'node',
+  'php',
+  'astro',
+  'inertia',
+  'camunda',
+  'kirby',
+  'tailwind',
+]
+
+const consultTools = [
+  'matrix',
+  'nextcloud',
+  'git',
+  'bitwarden',
+  'github',
+  'gitlab',
+  'markdown',
+  'keycloak',
+  'paperless-ngx',
+]
+
+const devToolsItems = await findCollectionItemsByIdOrTitle('tools', devTools)
+const consultToolsItems = await findCollectionItemsByIdOrTitle('tools', consultTools)
 ---
 
 <BaseLayout>
@@ -30,10 +59,7 @@ import { developmentTechItems, consultingTechItems } from '../util/content'
     <AboutUsSection />
   </SectionGridContainer>
   <SectionGridContainer className='bg-white' breakpoint='xl'>
-    <ServicesSection
-      developmentTechItems={developmentTechItems}
-      consultingTechItems={consultingTechItems}
-    />
+    <ServicesSection developmentTechItems={devToolsItems} consultingTechItems={consultToolsItems} />
   </SectionGridContainer>
   <SectionGridContainer className='bg-white pb-16' breakpoint='xl'>
     <CustomersSection />

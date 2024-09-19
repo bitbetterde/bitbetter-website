@@ -1,15 +1,30 @@
-import { getCollection } from 'astro:content'
+import { getCollection, type ContentEntryMap, type DataEntryMap } from 'astro:content'
 
-const developmentTechItems = (await getCollection('stack_development'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
+const findCollectionItemsByIdOrTitle = async (
+  collection: keyof ContentEntryMap | keyof DataEntryMap,
+  ids: string[],
+) => {
+  const allItems = await getCollection(collection)
 
-const consultingTechItems = (await getCollection('stack_consulting'))
-  .map((c) => c.data)
-  .sort((a, b) => (a.order || 0) - (b.order || 0))
+  return ids
+    .map(
+      (toolName) =>
+        allItems.find(
+          (tool) =>
+            tool.id.toLowerCase() === toolName.toLowerCase() ||
+            tool.data.title.toLowerCase() === toolName.toLowerCase(),
+        )?.data,
+    )
+    .filter(Boolean)
+}
 
-const techstackKeywords = [...developmentTechItems, ...consultingTechItems]
-  ?.map((item) => item?.title)
-  .join(', ')
+const getAllToolKeywords = async () => {
+  const allTools = await getCollection('tools')
 
-export { developmentTechItems, consultingTechItems, techstackKeywords }
+  return allTools
+    .map((tool) => tool.data.title)
+    .filter(Boolean)
+    .join(',')
+}
+
+export { getAllToolKeywords, findCollectionItemsByIdOrTitle }
