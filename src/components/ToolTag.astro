@@ -9,7 +9,10 @@ const contentItem = await getEntry('tools', content.toLowerCase())
   class='tooltag inline-flex align-top items-center gap-1'
   href={contentItem?.data.internalPage || contentItem?.data.link}
   {...contentItem?.data.internalPage ? {} : { target: '_blank' }}
-  ><span class='flex items-center justify-center w-3.5 h-3.5' set:html={contentItem?.data.image} />{
-    contentItem?.data.title
-  }</a
 >
+  <span
+    class='flex items-center justify-center h-5 [&_svg]:h-full [&_svg]:w-auto'
+    set:html={contentItem?.data.image}
+  />
+  {contentItem?.data.title}
+</a>
