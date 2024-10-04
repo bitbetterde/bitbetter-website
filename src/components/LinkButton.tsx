@@ -5,7 +5,6 @@ interface Props {
   className?: string
   href?: string
   variant?: 'dark' | 'white' | 'grey'
-  grey?: boolean
   newTab?: boolean
   small?: boolean
 }
