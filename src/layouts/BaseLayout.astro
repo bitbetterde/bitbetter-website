@@ -66,13 +66,14 @@ const isProduction = import.meta.env.MODE === 'production'
       ))
     }
     {metaFediverse && <meta name='fediverse:creator' content={metaFediverse} />}
-    {metaSchema && <script type='application/ld+json' set:html={metaSchema} />}
+    {metaSchema && <script type='application/ld+json' set:html={metaSchema} is:inline />}
     {
       isProduction && (
         <script
           async
           src='https://analytics.bitbetter.de/script.js'
           data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
+          is:inline
         />
       )
     }
