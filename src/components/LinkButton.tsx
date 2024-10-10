@@ -7,6 +7,8 @@ interface Props {
   variant?: 'dark' | 'white' | 'grey'
   newTab?: boolean
   small?: boolean
+  download?: boolean
+  umamiEvent?: string
 }
 
 const LinkButton: React.FC<Props> = ({
@@ -16,6 +18,8 @@ const LinkButton: React.FC<Props> = ({
   newTab,
   small,
   variant = 'white',
+  download,
+  umamiEvent,
 }: Props) => {
   const colorClasses = {
     dark: 'bg-black text-white',
@@ -27,6 +31,8 @@ const LinkButton: React.FC<Props> = ({
       href={href}
       className={`flex w-fit gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${colorClasses[variant] || ''} ${small ? 'py-[10px] px-4' : 'py-4 px-5'} ${className || ''}`}
       {...(newTab ? { target: '_blank' } : {})}
+      {...(download ? { download: '' } : {})}
+      {...(umamiEvent ? { 'data-umami-event': umamiEvent } : {})}
     >
       {caption}
       <ArrowRightIcon className='h-6 w-6' />
