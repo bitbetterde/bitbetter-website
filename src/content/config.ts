@@ -36,7 +36,7 @@ const servicesCollection = defineCollection({
       url: z.string(),
       alt: z.string(),
     }),
-    subtitle: z.string(),
+    subtitle: z.string().optional(),
     teaser: z.string(),
     date: z.date(),
     keywords: z.string(),
