@@ -41,10 +41,10 @@ const { title, subtitle, image, teaser, keywords } = post.data
   metaKeywords={keywords}
 >
   <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
-    <div class='lg:col-start-2 col-span-11 flex flex-col gap-4'>
-      {subtitle && <h4 class='uppercase text-black/60'>{subtitle}</h4>}
+    <header class='lg:col-start-2 col-span-11 flex flex-col gap-4'>
+      {subtitle && <p class='uppercase text-black/60'>{subtitle}</p>}
       <h1 class='font-grotesk text-4xl md:text-7xl font-medium'>{title}</h1>
-    </div>
+    </header>
   </SectionGridContainer>
   <SectionGridContainer className='bg-bb-grey-200' innerClassName=''>
     <div class='lg:col-start-2 lg:col-span-6 order-2 lg:order-1'>
