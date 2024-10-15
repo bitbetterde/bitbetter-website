@@ -22,8 +22,9 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
         className={'text-white col-span-9 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16 z-10'}
       >
         {posts &&
-          posts.map((post) => (
+          posts.map((post, i) => (
             <Card
+              key={'news' + i}
               title={post.data.title}
               subtitle={post.data.subtitle}
               img={post.data.image.url}

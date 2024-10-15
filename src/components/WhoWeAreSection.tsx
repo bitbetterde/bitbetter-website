@@ -9,7 +9,7 @@ const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = () => {
     <>
       <div id={'whoweare'} className={'text-white lg:col-span-3 lg:col-start-2'}>
         <SectionMark
-          title={'Über uns'}
+          title={'Das sind wir'}
           className='mb-4 lg:mb-0'
           classNameLine={'bg-white/75'}
           classNameText={'opacity-75'}
