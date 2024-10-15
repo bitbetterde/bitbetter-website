@@ -23,7 +23,7 @@ const Navbar: React.FC<Props> = ({ buttonCaption }) => {
   }
 
   return (
-    <SectionGridContainer className='fixed top-0 bg-white w-full z-20 border border-b-bb-grey-200'>
+    <SectionGridContainer className='fixed top-0 bg-white w-full z-30 border border-b-bb-grey-200'>
       <div
         className={`${
           navListOpen ? 'flex-col h-dvh' : 'flex-row'

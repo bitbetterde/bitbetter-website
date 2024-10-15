@@ -15,7 +15,7 @@ const Avatar: React.FC<Props> = ({ jpgSrc, webpSrc, alt, small }: Props) => {
         alt={alt}
         width={80}
         height={80}
-        className={`rounded-full grayscale hover:grayscale-0 transition-all ease-in-out duration-300 ${
+        className={`rounded-full grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all ease-in-out duration-300 ${
           small ? 'w-6 h-6' : 'w-20 h-20'
         }`}
       />

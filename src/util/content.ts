@@ -1,4 +1,4 @@
-import { getCollection, type ContentEntryMap, type DataEntryMap } from 'astro:content'
+import { getCollection, getEntry, type ContentEntryMap, type DataEntryMap } from 'astro:content'
 
 const findCollectionItemsByIdOrTitle = async (
   collection: keyof ContentEntryMap | keyof DataEntryMap,
@@ -27,4 +27,29 @@ const getAllToolKeywords = async () => {
     .join(',')
 }
 
-export { getAllToolKeywords, findCollectionItemsByIdOrTitle }
+const loadLatestBlogPostsWithAuthors = async () => {
+  const latestBlogPosts = (await getCollection('blog')).sort(
+    (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
+  )
+
+  const loadLatestBlogPostsWithAuthors = await Promise.allSettled(
+    latestBlogPosts.map(async (post) => {
+      let authors = []
+
+      for (const author of post.data.authors) {
+        const authorObj = await getEntry(author.collection, author.id)
+        if (authorObj) {
+          authors.push(authorObj)
+        }
+      }
+
+      return { ...post, authors }
+    }),
+  ).then((allPosts) =>
+    allPosts.filter((p) => p.status === 'fulfilled').map((post) => ({ ...post.value })),
+  )
+
+  return loadLatestBlogPostsWithAuthors
+}
+
+export { getAllToolKeywords, findCollectionItemsByIdOrTitle, loadLatestBlogPostsWithAuthors }
