@@ -1,5 +1,6 @@
 ---
 import { SectionGridContainer, Avatar } from '@components'
+import AuthorsByline from '@components/AuthorsByline'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getEntry, getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
@@ -96,33 +97,7 @@ const schema = {
         {teaser}
       </p>
 
-      {
-        Boolean(authors.length) && (
-          <p class='text-lg font-medium pt-4'>
-            Von
-            <Avatar
-              jpgSrc={authors[0]?.data.image.default}
-              webpSrc={authors[0]?.data.image.webp}
-              alt={authors[0]?.data.image.alt}
-              small
-            />{' '}
-            {authors[0].data.firstName + ' ' + authors[0].data.lastName}
-            {authors.length > 1 && (
-              <>
-                {' '}
-                &
-                <Avatar
-                  jpgSrc={authors[1]?.data.image.default}
-                  webpSrc={authors[1]?.data.image.webp}
-                  alt={authors[1]?.data.image.alt}
-                  small
-                />{' '}
-                {authors[1].data.firstName + ' ' + authors[1].data.lastName}
-              </>
-            )}
-          </p>
-        )
-      }
+      {Boolean(authors.length) && <AuthorsByline authors={authors} />}
       <div class='pb-12'>
         {
           !!date && (

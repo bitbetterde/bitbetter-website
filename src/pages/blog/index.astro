@@ -1,13 +1,18 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import BbBracket from '@assets/bb_bracket.svg?react'
 
 const contentSortedByDate = (await getCollection('blog')).sort(
   (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
 )
 const [firstPost, ...restPosts] = contentSortedByDate
+
+const firstPostAuthor = await getEntry(
+  firstPost.data.authors[0].collection,
+  firstPost.data.authors[0].id,
+)
 ---
 
 <BaseLayout
@@ -28,17 +33,24 @@ const [firstPost, ...restPosts] = contentSortedByDate
       subtitle={firstPost.data.subtitle}
       href={'/blog/' + firstPost.slug + '/'}
       teaser={firstPost.data.teaser}
+      date={firstPost.data.date.toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: 'long',
+      })}
+      author={firstPostAuthor}
       className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
+      showButton
     />
-    <div
+    <a
       class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 lg:h-[28rem] overflow-hidden lg:-mb-32'
+      href={'/blog/' + firstPost.slug + '/'}
     >
       <img
         src={firstPost.data.image.url}
         alt={firstPost.data.image.alt}
         class='w-full h-auto object-cover'
       />
-    </div>
+    </a>
   </SectionGridContainer>
 
   <SectionGridContainer className='pt-16 lg:pt-48 pb-16' innerClassName='px-5 lg:px-0'>
@@ -51,15 +63,31 @@ const [firstPost, ...restPosts] = contentSortedByDate
     </div>
     <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
       {
-        restPosts.map((post) => (
-          <Card
-            title={post.data.title}
-            subtitle={post.data.subtitle}
-            img={post.data.image.url}
-            imgAlt={post.data.image.alt}
-            href={'/blog/' + post.slug + '/'}
-          />
-        ))
+        restPosts.map(async (post) => {
+          let authors = []
+
+          for (const author of post.data.authors) {
+            const authorObj = await getEntry(author.collection, author.id)
+            if (authorObj) {
+              authors.push(authorObj)
+            }
+          }
+
+          return (
+            <Card
+              title={post.data.title}
+              subtitle={post.data.subtitle}
+              img={post.data.image.url}
+              imgAlt={post.data.image.alt}
+              href={'/blog/' + post.slug + '/'}
+              date={post.data.date.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+              })}
+              author={authors[0]}
+            />
+          )
+        })
       }
     </div>
   </SectionGridContainer>
