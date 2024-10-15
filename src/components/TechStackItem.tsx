@@ -1,4 +1,4 @@
-interface Props {
+interface TechStackItemProps {
   title: string
   link: string
   image: string
@@ -6,7 +6,13 @@ interface Props {
   openInNewTab?: boolean
 }
 
-const TechStackItem: React.FC<Props> = ({ image, title, link, light, openInNewTab }: Props) => (
+const TechStackItem: React.FC<TechStackItemProps> = ({
+  image,
+  title,
+  link,
+  light,
+  openInNewTab,
+}) => (
   <a
     href={link}
     {...(openInNewTab ? { target: '_blank' } : {})}

@@ -6,11 +6,11 @@ import GithubIcon from '@assets/icons/github.svg?react'
 import LinkedInIcon from '@assets/icons/linkedin.svg?react'
 import RssIcon from '@assets/icons/rss.svg?react'
 
-interface Props {
+interface FooterProps {
   children?: React.ReactNode
 }
 
-const Footer: React.FC<Props> = ({ children }: Props) => {
+const Footer: React.FC<FooterProps> = ({ children }) => {
   return (
     <>
       <div

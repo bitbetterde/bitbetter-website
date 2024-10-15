@@ -7,14 +7,16 @@ interface SectionGridContainerProps {
   innerClassName?: string
   breakpoint?: 'lg' | 'xl' | '2xl'
   as?: ElementType
+  id?: string
 }
 
 const SectionGridContainer: React.FC<SectionGridContainerProps> = ({
   children,
-  className,
-  innerClassName,
+  className = '',
+  innerClassName = '',
   breakpoint = 'lg',
   as: Tag = 'section',
+  id,
 }) => {
   const innerGridBreakpointClasses = {
     lg: 'lg:grid-cols-inner lg:gap-4',
@@ -23,10 +25,10 @@ const SectionGridContainer: React.FC<SectionGridContainerProps> = ({
   }
 
   return (
-    <div className={`2xl:grid 2xl:grid-cols-outer 2xl:grid-wrapper ${className ?? ''}`}>
+    <div className={`2xl:grid 2xl:grid-cols-outer 2xl:grid-wrapper ${className}`} id={id}>
       <Tag
         className={`grid grid-cols-1 relative ${innerGridBreakpointClasses[breakpoint] ?? ''} ${
-          innerClassName || ''
+          innerClassName
         }`}
       >
         {children}

@@ -16,18 +16,18 @@ interface TechItem {
   internalPage?: string
 }
 
-interface Props {
+interface TechItemProps {
   developmentTechItems?: TechItem[]
   consultingTechItems?: TechItem[]
 }
 
-const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTechItems }) => {
+const ServicesSection: React.FC<TechItemProps> = ({
+  consultingTechItems,
+  developmentTechItems,
+}) => {
   return (
     <>
-      <div
-        className={'xl:col-span-3 xl:col-start-2 pt-16 pb-0 xl:py-20 px-5 2xl:px-0'}
-        id='services'
-      >
+      <div className={'xl:col-span-3 xl:col-start-2 pt-16 pb-0 xl:py-20 px-5 2xl:px-0'}>
         <SectionMark
           title={'Leistungen'}
           classNameLine={'bg-black/75'}

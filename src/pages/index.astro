@@ -9,7 +9,10 @@ import {
 
 import BaseLayout from '@layouts/BaseLayout.astro'
 
-import { findCollectionItemsByIdOrTitle } from '../util/content'
+import { findCollectionItemsByIdOrTitle, loadLatestBlogPostsWithAuthors } from '../util/content'
+import NewsSection from '@components/NewsSection'
+import WhoWeAreSection from '@components/WhoWeAreSection'
+import { getCollection } from 'astro:content'
 
 const devTools = [
   'react',
@@ -40,6 +43,8 @@ const consultTools = [
 
 const devToolsItems = await findCollectionItemsByIdOrTitle('tools', devTools)
 const consultToolsItems = await findCollectionItemsByIdOrTitle('tools', consultTools)
+
+const latestBlogPosts = (await loadLatestBlogPostsWithAuthors()).slice(0, 2)
 ---
 
 <BaseLayout>
@@ -50,16 +55,27 @@ const consultToolsItems = await findCollectionItemsByIdOrTitle('tools', consultT
       buttonCaption='Schreib uns'
     />
   </SectionGridContainer>
-  <SectionGridContainer className='bg-white'>
-    <div class='lg:h-48'></div>
-  </SectionGridContainer>
   <SectionGridContainer
-    className='z-10 bg-black overflow-hidden'
-    innerClassName='pb-[16.5rem] pt-16 md:py-28 px-5 lg:px-0'
+    className='bg-black overflow-hidden'
+    innerClassName='py-16 md:py-28 px-5 lg:px-0'
+    id='aboutus'
   >
     <AboutUsSection />
   </SectionGridContainer>
-  <SectionGridContainer className='bg-white' breakpoint='xl'>
+  <SectionGridContainer
+    className='bg-white overflow-hidden'
+    innerClassName='py-16 md:py-28 px-5 lg:px-0'
+    id='news'
+  >
+    <NewsSection posts={latestBlogPosts} />
+  </SectionGridContainer>
+  <SectionGridContainer
+    className='bg-black overflow-hidden'
+    innerClassName='py-16 md:py-28 px-5 lg:px-0'
+  >
+    <WhoWeAreSection />
+  </SectionGridContainer>
+  <SectionGridContainer className='bg-white' breakpoint='xl' id='services'>
     <ServicesSection developmentTechItems={devToolsItems} consultingTechItems={consultToolsItems} />
   </SectionGridContainer>
   <SectionGridContainer className='bg-white pb-16' breakpoint='xl'>

@@ -1,18 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import BbBracket from '@assets/bb_bracket.svg?react'
+import { loadLatestBlogPostsWithAuthors } from 'src/util/content'
 
-const contentSortedByDate = (await getCollection('blog')).sort(
-  (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
-)
-const [firstPost, ...restPosts] = contentSortedByDate
-
-const firstPostAuthor = await getEntry(
-  firstPost.data.authors[0].collection,
-  firstPost.data.authors[0].id,
-)
+const latestBlogPosts = await loadLatestBlogPostsWithAuthors()
+const [firstPost, ...restPosts] = latestBlogPosts
 ---
 
 <BaseLayout
@@ -37,7 +30,7 @@ const firstPostAuthor = await getEntry(
         year: 'numeric',
         month: 'long',
       })}
-      author={firstPostAuthor}
+      author={firstPost.authors[0]}
       className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
       showButton
     />
@@ -64,15 +57,6 @@ const firstPostAuthor = await getEntry(
     <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
       {
         restPosts.map(async (post) => {
-          let authors = []
-
-          for (const author of post.data.authors) {
-            const authorObj = await getEntry(author.collection, author.id)
-            if (authorObj) {
-              authors.push(authorObj)
-            }
-          }
-
           return (
             <Card
               title={post.data.title}
@@ -84,7 +68,7 @@ const firstPostAuthor = await getEntry(
                 year: 'numeric',
                 month: 'long',
               })}
-              author={authors[0]}
+              author={post.authors[0]}
             />
           )
         })
