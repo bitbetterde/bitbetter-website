@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind'
 import rehypeExternalLinks from 'rehype-external-links'
 import mdx from '@astrojs/mdx'
 
-import sitemap from '@astrojs/sitemap';
+import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,5 +25,8 @@ export default defineConfig({
         },
       ],
     ],
+  },
+  redirects: {
+    '/leistungen/camunda': '/leistungen/camunda-automatisierung',
   },
 })
