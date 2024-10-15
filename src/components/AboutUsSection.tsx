@@ -7,7 +7,7 @@ interface AboutUsSectionProps {}
 const AboutUsSection: React.FC<AboutUsSectionProps> = () => {
   return (
     <>
-      <div id={'aboutus'} className={'text-white lg:col-span-3 lg:col-start-2'}>
+      <div className={'text-white lg:col-span-3 lg:col-start-2'}>
         <SectionMark
           title={'Über uns'}
           className='mb-4 lg:mb-0'

@@ -10,7 +10,7 @@ interface NewsSectionProps {
 const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
   return (
     <>
-      <div id={'news'} className={'text-black lg:col-span-3 lg:col-start-2'}>
+      <div className={'text-black lg:col-span-3 lg:col-start-2'}>
         <SectionMark
           title={"Was gibt's Neues"}
           className='mb-4 lg:mb-0'
