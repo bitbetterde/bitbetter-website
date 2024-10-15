@@ -5,11 +5,11 @@ import { LinkButton, SectionGridContainer } from '@components'
 import ListIcon from '@phosphor-icons/core/regular/list.svg?react'
 import XIcon from '@phosphor-icons/core/bold/x-bold.svg?react'
 
-interface Props {
+interface NavbarProps {
   buttonCaption: string
 }
 
-const Navbar: React.FC<Props> = ({ buttonCaption }) => {
+const Navbar: React.FC<NavbarProps> = ({ buttonCaption }) => {
   const [navListOpen, setNavListOpen] = useState(false)
 
   const openMenu = () => {
@@ -115,9 +115,9 @@ interface MenuItemProps {
   className?: string
   children: React.ReactNode
 }
-const MenuItem = ({ onClick, children, href, className }: MenuItemProps) => {
+const MenuItem = ({ onClick, children, href, className = '' }: MenuItemProps) => {
   return (
-    <li className={`lg:flex lg:items-center shrink-0 opacity-75 ${className || ''}`}>
+    <li className={`lg:flex lg:items-center shrink-0 opacity-75 ${className}`}>
       <a href={href} {...(onClick ? { onClick } : {})}>
         {children}
       </a>

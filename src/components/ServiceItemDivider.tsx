@@ -1,10 +1,10 @@
 import type React from 'react'
 
-interface Props {
+interface ServiceItemDividerProps {
   className?: string
 }
 
-const ServiceItemDivider: React.FC<Props> = ({ className = '' }) => {
+const ServiceItemDivider: React.FC<ServiceItemDividerProps> = ({ className = '' }) => {
   return <div className={`h-3 ${className}`}></div>
 }
 

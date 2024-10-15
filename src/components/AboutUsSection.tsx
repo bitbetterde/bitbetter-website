@@ -1,10 +1,10 @@
 import type React from 'react'
-import { Avatar, SectionMark } from '@components'
+import { SectionMark } from '@components'
 import BbBracket from '@assets/bb_bracket.svg?react'
 
-interface Props {}
+interface AboutUsSectionProps {}
 
-const AboutUsSection: React.FC<Props> = () => {
+const AboutUsSection: React.FC<AboutUsSectionProps> = () => {
   return (
     <>
       <div id={'aboutus'} className={'text-white lg:col-span-3 lg:col-start-2'}>

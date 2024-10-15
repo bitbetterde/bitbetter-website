@@ -1,11 +1,11 @@
-interface Props {
+interface AvatarProps {
   jpgSrc: string
   webpSrc?: string
   alt: string
   small?: boolean
 }
 
-const Avatar: React.FC<Props> = ({ jpgSrc, webpSrc, alt, small }: Props) => {
+const Avatar: React.FC<AvatarProps> = ({ jpgSrc, webpSrc, alt, small }) => {
   return (
     <picture className={`${small ? 'inline-block my-0 pb-1 align-middle' : ''}`}>
       <source srcSet={webpSrc} type='image/webp' />

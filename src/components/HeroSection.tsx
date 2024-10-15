@@ -1,13 +1,13 @@
 import BbBracket from '@assets/bb_bracket_border.svg?react'
 import { LinkButton } from '@components'
 
-interface Props {
+interface HeroSectionProps {
   title: string
   subtitle?: string
   buttonCaption?: string
 }
 
-const HeroSection: React.FC<Props> = ({ title, subtitle, buttonCaption }: Props) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaption }) => {
   return (
     <>
       <div className='flex flex-col items-start pt-[18.625rem] pb-24 lg:py-32 bg-bb-grey-200 px-5 lg:px-0 col-span-1 lg:col-span-5 lg:col-start-2'>

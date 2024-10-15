@@ -1,6 +1,6 @@
 import ArrowRightIcon from '@phosphor-icons/core/regular/arrow-right.svg?react'
 
-interface Props {
+interface LinkButtonProps {
   caption: string
   className?: string
   href?: string
@@ -11,16 +11,16 @@ interface Props {
   umamiEvent?: string
 }
 
-const LinkButton: React.FC<Props> = ({
+const LinkButton: React.FC<LinkButtonProps> = ({
   caption,
-  className,
+  className = '',
   href,
   newTab,
   small,
   variant = 'white',
   download,
   umamiEvent,
-}: Props) => {
+}) => {
   const colorClasses = {
     dark: 'bg-black text-white',
     white: 'bg-white text-bb-grey-500',
@@ -29,7 +29,7 @@ const LinkButton: React.FC<Props> = ({
   return (
     <a
       href={href}
-      className={`flex w-fit gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${colorClasses[variant] || ''} ${small ? 'py-[10px] px-4' : 'py-4 px-5'} ${className || ''}`}
+      className={`flex w-fit gap-2 py-4 px-5 rounded-full items-center font-medium hover:bg-opacity-75 ${colorClasses[variant] || ''} ${small ? 'py-[10px] px-4' : 'py-4 px-5'} ${className}`}
       {...(newTab ? { target: '_blank' } : {})}
       {...(download ? { download: '' } : {})}
       {...(umamiEvent ? { 'data-umami-event': umamiEvent } : {})}

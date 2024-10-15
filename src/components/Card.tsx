@@ -3,7 +3,7 @@ import { ConditionalWrapper } from './ConditionalWrapper'
 import LinkButton from './LinkButton'
 import AuthorsByline from './AuthorsByline'
 
-interface Props {
+interface CardProps {
   img?: string
   imgAlt?: string
   title: string
@@ -16,20 +16,20 @@ interface Props {
   author?: CollectionEntry<'authors'>
 }
 
-const Card: React.FC<Props> = ({
+const Card: React.FC<CardProps> = ({
   img,
   imgAlt,
   title,
   subtitle,
   teaser,
   href,
-  className,
+  className = '',
   showButton,
   date,
   author,
-}: Props) => {
+}) => {
   return (
-    <div className={`flex-1 flex flex-col gap-3 group ${className || ''}`}>
+    <div className={`flex-1 flex flex-col gap-3 group ${className}`}>
       {img && (
         <ConditionalWrapper
           condition={!showButton}

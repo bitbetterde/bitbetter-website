@@ -16,12 +16,15 @@ interface TechItem {
   internalPage?: string
 }
 
-interface Props {
+interface TechItemProps {
   developmentTechItems?: TechItem[]
   consultingTechItems?: TechItem[]
 }
 
-const ServicesSection: React.FC<Props> = ({ consultingTechItems, developmentTechItems }) => {
+const ServicesSection: React.FC<TechItemProps> = ({
+  consultingTechItems,
+  developmentTechItems,
+}) => {
   return (
     <>
       <div

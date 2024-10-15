@@ -1,13 +1,13 @@
 import type React from 'react'
 
-interface Props {
+interface ServiceItemProps {
   title: string
   text: string
   dark?: boolean
   icon?: React.ReactNode
 }
 
-const ServiceItem: React.FC<Props> = ({ title, text, icon, dark = false }) => {
+const ServiceItem: React.FC<ServiceItemProps> = ({ title, text, icon, dark = false }) => {
   return (
     <div className={`p-8 ${dark ? 'bg-bb-grey-600' : 'bg-bb-grey-400'}`}>
       {icon && (
