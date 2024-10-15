@@ -19,7 +19,9 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
         />
       </div>
       <div
-        className={'text-white col-span-9 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16 z-10'}
+        className={
+          'text-white col-span-9 grid grid-cols-1 lg:pr-8 2xl:pr-0 lg:grid-cols-2 gap-x-6 gap-y-16 z-10'
+        }
       >
         {posts &&
           posts.map((post, i) => (
