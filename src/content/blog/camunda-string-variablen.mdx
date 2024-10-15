@@ -76,5 +76,5 @@ public ObjectValue getMailBody() {
                 }
 ```
 
-### Zusammenfassung
+## Zusammenfassung
 Prozess-Variablen in Camunda als Objekte zu implementieren hat mehrere Vorteile: Durch die dazugehörige Java-Klasse entsteht eine Typsicherheit, es gibt keine Größenbegrenzung durch die Camunda Datenbank und es trägt zur Übersichtlichkeit bei. An manchen Stellen, wie bei den lokalen Variablen, ist der Aufwand allerdings höher, da Probleme, welche theoretisch ausschließlich im BPMN-Diagramm gelöst werden könnten, in eine Java-Klasse ausgelagert werden müssen. Nichtsdestotrotz lohnt sich der Mehraufwand und man sollte primitive Typen in den Prozess-Variablen nur benutzen, wenn man sich sehr sicher über den Inhalt der Variable sein kann.

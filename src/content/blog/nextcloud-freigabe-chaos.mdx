@@ -18,7 +18,7 @@ Die Verbreitung und Popularität von Open-Source-Software hat im Jahr 2023 noch 
 
 Die Motivation und Euphorie beim Start einer neuen Nextcloud-Instanz sind oft sehr groß. Endlich eigene, unabhängige Infrastruktur zu nutzen, fühlt sich zunächst toll an. Über die Web-Oberfläche oder die verschiedenen Client-Anwendungen füllt sich die Nextcloud schnell mit den ersten Dateien. Und irgendwann kommt der Moment, wo mindestens zwei Benutzer oder vielleicht sogar eine ganze Gruppe von Benutzern eine Datei oder einen Ordner miteinander teilen möchten. Klingt eigentlich simpel, denn dieses Szenario beschreibt ja schließlich die Gründungsidee von Nextcloud (bzw. OwnCloud). Doch diese Aufgabe (Teilen von Dateien in einer festen Gruppe von Personen) ist gar nicht so trivial zu bewerkstelligen. Nextcloud bietet inzwischen mindestens drei verschiedene Mechanismen dafür an. 
 
-### Shares: Der naheliegendste Weg mit vielen Fallstricken
+## Shares: Der naheliegendste Weg mit vielen Fallstricken
 
 Die einfachste Lösung für dieses Problem ist also auch die Älteste: die eingebaute "Teilen"-Funktion von Nextcloud. Neben jeder Datei und jedem Ordner in Nextcloud gibt es ein kleines "Share"-Icon, welches einen Dialog öffnet, in dem sich eine Datei oder ein Ordner mit anderen Nextcloud-Nutzern oder Gruppen teilen lässt. Das ist einfach und leicht verständlich – und gefährlich. Diese Funktion sorgt gerade in Organisationen mit vielen Benutzern oft für viel Chaos: Technisch gesehen verhält sich eine solche Nextcloud-Freigabe eigentlich wie ein sogenannter [symbolischer Link](https://de.m.wikipedia.org/wiki/Symbolische_Verkn%C3%BCpfung) in einem Dateisystem. Deswegen gibt es einige weniger bekannte Nebeneffekte:
 
@@ -28,7 +28,7 @@ Die einfachste Lösung für dieses Problem ist also auch die Älteste: die einge
 
 Für sehr kleine und private Instanzen ist die einfache Share-Funktion meistens noch ausreichend. Mit steigender Anzahl von Nutzern und festen Teams wird die Funktion allerdings sehr schnell unübersichtlich. Im professionellen Umfeld ist die Funktion kaum zu beherrschen und birgt die Gefahr, dass Mitarbeiter ihre Dokumente nicht mehr finden, wenn Nutzer ausscheiden. Wer eine Übersicht über die Menge an eingerichteten Shares haben möchte, kann dazu das [`sharelisting`-Plugin](https://github.com/nextcloud/sharelisting) nutzen.
 
-### Gruppenordner: Fast perfekt aber wenig gepflegt
+## Gruppenordner: Fast perfekt aber wenig gepflegt
 
 Um viele der genannten Probleme bei der Arbeit mit Gruppen zu beseitigen, gibt es bereits [seit 2017](https://nextcloud.com/blog/new-version-of-groupfolders-app-is-coming/) das offizielle ["groupfolders"-Plugin](https://github.com/nextcloud/groupfolders) für Nextcloud. Kurioserweise gehören Gruppen zwar zum Standard-Funktionsumfang von Nextcloud, aber nicht das Plugin für Gruppenordner. Die zugrundeliegenden Gruppen können nur von Admins in Nextcloud verwaltet werden. Gruppenbasierte Funktionalitäten eignen sich also tendenziell gut für hierarchisch strukturierte Organisationen und Firmen, wo klar definiert ist, wer über eine Gruppenzuordnung entscheiden kann.
 
@@ -44,7 +44,7 @@ Um viele der genannten Probleme bei der Arbeit mit Gruppen zu beseitigen, gibt e
 
 Für die Zusammenarbeit in einer festen und hierarchischen Gruppen-Konstellation (wie sie üblicherweise im Arbeitsumfeld vorkommt) scheinen Groupfolders also eine überlegene Lösung zu sein. Trotzdem fühlt sich das groupfolders-Plugin manchmal wie ungewollter Ballast im Nextcloud-Universum an. Obwohl das Plugin offiziell von der Nextcloud GmbH verwaltet wird, bekommt es augenscheinlich nur [wenig Priorität und Ressourcen](https://github.com/nextcloud/groupfolders/issues/1215) zugewiesen und weist deswegen teilweise monatelang gravierende Fehler auf.
 
-### Teams: Aufgebohrte Share-Funktion
+## Teams: Aufgebohrte Share-Funktion
 
 ["Teams"](https://github.com/nextcloud/circles)(früher "Circles") ist eine dritte Variante um mit einer Gruppe Dateien und Ordner zu teilen. Teams wirken aber eher wie eine kleine Erweiterung der einfachen Share-Funktionalität. Anstelle einzelner Nutzer und (durch Admins definierte) Gruppen, können Dateien und Ordner damit auch mit selbstverwalteten Teams geteilt werden. Teams können von jedem Nutzer erstellt werden (vorausgesetzt die zugehörige Nextcloud-App ist installiert), und benötigen keinerlei Admin-Intervention. Teams ermöglichen also Selbstorganisation in Strukturen, wo keine klare Hierarchie oder Zuständigkeit herrscht. Die so erstellten Freigaben leiden allerdings unter denselben Problemen wie die einfachen Dateifreigaben:
 
