@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf ein Gespräch oder eine E-Mail.
         </h3>
-        <div className='flex gap-4 mt-5'>
+        <div className='grid sm:grid-cols-[auto_auto_1fr] gap-4 mt-5'>
           <LinkButton
             variant='dark'
             className=''
@@ -68,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
         <div
           className={
-            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-[11.5rem] md:mt-[17.875rem]'
+            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-24 md:mt-[17.875rem]'
           }
         >
           <address className={'not-italic mt-8 md:mt-0'}>
@@ -99,7 +99,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
       </div>
       <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
-      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 left-60 hidden md:block' />
+      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 right-16 lg:left-60 hidden md:block' />
     </>
   )
 }

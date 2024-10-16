@@ -64,7 +64,7 @@ const Card: React.FC<CardProps> = ({
       </ConditionalWrapper>
       {teaser && <p className='pt-4 text-lg leading-6 text-black/75'>{teaser}</p>}
       {(date || author) && (
-        <div className='flex gap-2 items-center font-medium text-black/50'>
+        <div className='flex flex-wrap gap-2 items-center font-medium text-black/50'>
           {date && <p className='text-lg font-normal'>{date}</p>}
           {author && (
             <>

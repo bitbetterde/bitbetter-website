@@ -21,7 +21,7 @@ const CustomersSection: React.FC = () => {
           classNameText={'opacity-75'}
         />
       </div>
-      <div className='xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 py-16 gap-4 xl:gap-8'>
+      <div className='xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 py-8 lg:py-16 gap-4 xl:gap-8'>
         <a
           href='https://cosh.de/'
           target='_blank'

@@ -36,7 +36,7 @@ const ServicesSection: React.FC<TechItemProps> = ({
       </div>
       <div
         className={
-          'grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] pl-5 xl:pl-0 lg:grid-flow-col gap-x-4 lg:col-span-8 pt-0 xl:pt-16 pb-20'
+          'grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[repeat(7,auto)] pl-5 xl:pl-0 lg:grid-flow-col gap-x-4 lg:col-span-8 pt-0 xl:pt-16 pb-8 lg:pb-20'
         }
       >
         <ServiceHeader
