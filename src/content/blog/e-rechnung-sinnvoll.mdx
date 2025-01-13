@@ -1,0 +1,62 @@
+---
+title: Wofür wird die E-Rechnung gebraucht
+image:
+  url: /images/blog/e-rechnung-sinnvoll/title.jpg
+  alt: Ein weißes Camunda Logo auf orangenem Grund und einigen abgeschnittenen Elementen aus einem BPMN-Diagramm
+subtitle: Technische Einordnung der E-Rechnung
+teaser: Ab 01.01.2025 wird die E-Rechnung für bestimmte Bereiche verpflichtent. Aber wofür braucht man überhaupt eine E-Rechnung? Schließlich haben sie schon vorher die Rechnung per E-Mail verschickt, wo ist also der Vorteil?
+date: 2024-12-17
+authors:
+  - fabian
+keywords: e-rechnung, rechnung, digitalisierung
+---
+
+Jedes Unternehmen in Deutschland muss ab dem 01.01.2025 in der Lage sein, E-Rechnungen zu empfangen. Das bedeutet oftmals nervige Updates und neue Systeme.
+Aber warum der ganze Stress?
+
+## Was ist das Problem an Rechnungen als PDF?
+Eine Rechnung als PDF auszufertigen und zu verschicken ist heutzutage ein gängiger Weg. Der Empfänger kann die PDF mit einem PDF-Reader öffnen und so die Rechnung lesen, die Überweisung tätigen etc.
+Soweit so gut, außerdem ist die PDF bereits ein elektronisches Format, mit welchem Computer arbeiten können, so sollte man meinen.
+Dies ist leider nur zum Teil richtig. Die Idee des PDF-Formates ist es, dass ein Leser einer PDF-Datei das Schriftstück immer in der Form betrachten und ausdrucken kann, die der Autor festgelegt hat.
+Eine PDF ist also für einen Menschen bestimmt, weshalb eine PDF nur aus Bildern bestehen kann und keinen Text beinhalten muss.
+Selbst wenn eine PDF den Text beinhaltet, so steht bei der einen Rechnung der Absender oben rechts, bei der nächsten Rechnung unten in der Fußzeile und bei der nächsten ganz woanders.
+Bei manchen steht ein "Absender:" davor, bei anderen nicht.
+Wenn ich also einen Ordner mit 100 Rechnungen im PDF Format habe, und ich möchte nur die Rechnungen von einem bestimmten Absender filtern und den Gesamtbetrag ausrechnen, wird dies sehr kompliziert und fehleranfällig.
+Besser wäre es, wir hätten eine Text-Datei und es wird festgelegt, dass immer in der 1. Zeile folgendes stehen muss : "Absender: bitbetter GmbH".
+Man wüsste nun, dass der Absender immer in der 1. Zeile einer jeden Rechnung zu finden ist und der Name des Absenders kommt immer nach dem Doppelpunkt.
+Und da sind wir auch schon bei der E-Rechnung. Ein "strukturiertes elektronisches Format" gibt also vor, wo der Absender, der Empfänger, der Rechnungsbetrag einer Position usw. zu finden ist,
+damit die Daten einfacher verarbeitet werden können.
+
+
+## Aufbau einer E-Rechnung
+```xml
+<ram:SellerTradeParty>
+    <ram:Name>Meine Firma</ram:Name>
+    <ram:PostalTradeAddress>
+      <ram:PostcodeCode>12345</ram:PostcodeCode>
+      <ram:LineOne>abc-strasse</ram:LineOne>
+      <ram:CityName>Stadt</ram:CityName>
+      <ram:CountryID>DE</ram:CountryID>
+    </ram:PostalTradeAddress>
+    <ram:SpecifiedTaxRegistration>
+      <ram:ID schemeID="VA">DE19990815</ram:ID>
+    </ram:SpecifiedTaxRegistration>
+    <ram:SpecifiedTaxRegistration>
+      <ram:ID schemeID="FC">4711</ram:ID>
+    </ram:SpecifiedTaxRegistration>
+</ram:SellerTradeParty>
+```
+In Deutschland gibt es momentan zwei führende Formate für die E-Rechnung, einerseits die <a href='https://xeinkauf.de/xrechnung/'>XRechnung</a> und das Format <a href='https://www.ferd-net.de/'>ZUGFeRD</a>.
+Beide Formate basieren auf <a href='https://de.wikipedia.org/wiki/Extensible_Markup_Language'>XML</a>, das bedeutet, beide Formate können mit einem Texteditor geöffnet werden. Bei der XRechnung handelt es sich um eine reine XML-Datei, während bei ZUGFeRD der XML-Text an eine PDF angehangen werden kann.
+Somit besteht eine ZUGFeRD-PDF einerseits aus einer normalen PDF und andererseits aus der XML, welche an die PDF angehängt wurde, wodurch eine ZUGFeRD-PDF sowohl von Menschen gelesen werden, als auch von Computern verarbeitet werden kann.
+
+## Möglichkeiten durch die E-Rechnung
+Die E-Rechnung ist also ein strukturiertes elektronisches Format, wodurch die Daten einer Rechnung (Absender, Empfänger, Positionen etc) automatisch erfasst werden können und verarbeitet werden können.
+Wenn also bis jetzt die Daten einer PDF-Rechnung per Hand ins Buchhaltungssystem übertragen werden musste, so kann dies jetzt automatisch passieren. Wie bereits oben beschrieben, kann außerdem über eine Liste von Rechnungen
+gefiltert, sortiert und zusammengefasst werden. Auch automatisierte Rechnungsprozesse profitieren von der E-Rechnung. Wenn Sie besipielsweise alle eingehenden Rechnungen in einer E-Mail-Adresse sammeln (z.B. rechnungen@bitbetter.de), können automatisch
+alle Rechnungen erfasst werden und Überweisungsvorschläge automatisch angelegt werden, die lediglich noch freigegeben werden müssen. Die Rechnung kann dannach automatisch zur Überweisung zugeordnet werden.
+
+## Fazit
+Die E-Rechnung ist noch neu und hat bestimmt noch die ein oder andere Kinderkrankheit, aber es ist der richtige Schritt in Richtung Digitalisierung. Die daraus folgenden Möglichkeiten für Automatisierung können das Leben vieler Unternehmen deutlich leichter machen.
+
+
