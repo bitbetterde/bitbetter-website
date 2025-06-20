@@ -12,7 +12,6 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import { findCollectionItemsByIdOrTitle, loadLatestBlogPostsWithAuthors } from '../util/content'
 import NewsSection from '@components/NewsSection'
 import WhoWeAreSection from '@components/WhoWeAreSection'
-import { getCollection } from 'astro:content'
 
 const devTools = [
   'react',
@@ -39,6 +38,7 @@ const consultTools = [
   'markdown',
   'keycloak',
   'paperless-ngx',
+  'erpnext',
 ]
 
 const devToolsItems = await findCollectionItemsByIdOrTitle('tools', devTools)
