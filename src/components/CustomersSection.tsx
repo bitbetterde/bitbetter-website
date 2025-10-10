@@ -5,6 +5,7 @@ import FchhLogo from '@assets/customers/fchh.svg?react'
 import OwLogo from '@assets/customers/ow.svg?react'
 import SchleyLogo from '@assets/customers/schley.svg?react'
 import CoshLogo from '@assets/customers/cosh.svg?react'
+import CscpLogo from '@assets/customers/cscp.svg?react'
 
 const CustomersSection: React.FC = () => {
   const linkClasses = 'block flex items-center justify-center p-4 customer-logo'
@@ -22,6 +23,14 @@ const CustomersSection: React.FC = () => {
         />
       </div>
       <div className='xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 py-8 lg:py-16 gap-4 xl:gap-8'>
+        <a
+          href='https://www.cscp.org/'
+          target='_blank'
+          aria-label='Collaborating Centre on Sustainable Consumption and Production (CSCP) gGmbH'
+          className={linkClasses}
+        >
+          <CscpLogo className={logoClasses} />
+        </a>
         <a
           href='https://cosh.de/'
           target='_blank'

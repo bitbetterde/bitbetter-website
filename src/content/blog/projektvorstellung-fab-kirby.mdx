@@ -1,0 +1,52 @@
+---
+title: 'Ein Kirby-Theme für Fab Cities'
+image:
+  url: /images/blog/fab-kirby/fab-kirby-title.jpg
+  alt: Die neue Webseite der Fab Region Bergisches Städtedreieck.
+subtitle: Projektvorstellung
+teaser: Unser React-basiertes Starterkit für das Kirby CMS hilft sogenannten Fab Cities und Fab Regions dabei, ihre Webseiten selber zu bauen. Dieses Projekt ist das Ergebnis vieler vorheriger Projekte.
+date: 2025-10-08
+authors: 
+  - moritz
+keywords: projekt, fab region, fab city, kirby, react
+---
+import ToolTag from "@components/ToolTag.astro"
+import { LinkButton } from "@components";
+
+In den letzten Monaten durften wir die Webseite der [Fab Region Bergisches Städtedreieck](https://fab-region.de/) erneuern. Dabei haben wir existierende UI-Komponenten mit einem modernen CMS verbunden, um eine nutzerfreundliche und flexible Open-Source-Lösung zu schaffen. 
+
+Unser Kunde, das [Collaborating Centre on Sustainable Consumption and Production (CSCP)](https://www.cscp.org/), beteiligt sich und fördert die Initiative "Fab Region Bergisches Städtedreieck". Diese ist Teil der weltweiten [Fab-City-Initiative](https://fab.city/), die sich zum Ziel gesetzt hat, Städte nachhaltiger und widerstandsfähiger zu machen, indem sie lokale Produktion und Kreislaufwirtschaft fördert. Die Fab Region vernetzt Akteure aus den Bereichen Bildung, Wirtschaft, Politik und Zivilgesellschaft, um gemeinsam an einer nachhaltigen Zukunft zu arbeiten. Durch unsere Arbeit für die Fab-City-Initiative in Hamburg sind wir mit dem Konzept bereits gut vertraut.
+
+<figure class="[&>p>img]:mx-auto">![Ein Screenshot des Kirby Admin Panels der neuen Webseite](/images/blog/fab-kirby/fab-region-kirby-panel.jpg)</figure>
+
+## Vorarbeiten: UI-Komponentenbibliothek mit React
+Bereits 2022 hatten wir für die [Fab City Hamburg](https://www.fabcity.hamburg) eine [React-basierte Komponentenbibliothek namens `fcos-suite-ui`](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-ui) sowie eine [interaktive "Fab Map"](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-map) unter einer Open-Source-Lizenz entwickelt. Im damaligen Projekt wurde diese UI-Bibliothek mit dem statischen Webseiten-Generator <ToolTag>Astro</ToolTag> kombiniert, um eine performante und moderne Webseite zu erstellen. Die Benutzung eines solchen Site Generators ist aber technisch oft kein adäquater Ersatz für die komfortablen Benutzeroberflächen klassischer CMS-Systeme wie Wordpress und Co. Um die Webseite also potenziell auch einem größeren Redaktionsteam ohne technisches Wissen zugänglich zu machen, wollte das Team der "Fab Region Bergisches Städtedreieck" unsere UI-Komponenten mit einem nutzerfreundlichen CMS verbinden.
+
+<figure class="[&>p>img]:mx-auto">![Ein Screenshot des Kirby Admin Panels der neuen Webseite](/images/blog/fab-kirby/fab-region-map.jpg)</figure>
+
+## Kirby als flexible und aufgeräumte CMS-Lösung
+Nach dem Abklären der individuellen Anforderungen, haben wir uns dazu entschieden, <ToolTag>Kirby</ToolTag> CMS für diese Aufgabe zu verwenden. Kirby ist ein dateibasiertes CMS, das sehr flexibel und einfach zu bedienen ist. Es bietet eine gute Balance zwischen Benutzerfreundlichkeit und Anpassungsfähigkeit, was es ideal für Projekte macht, die sowohl Redakteure als auch Entwickler ansprechen sollen. Außerdem haben wir mit Kirby in der Vergangenheit bereits viele gute Erfahrungen sammeln können.
+
+- <ToolTag>Kirby</ToolTag> CMS (PHP) als Admin-Backend
+- <ToolTag>React</ToolTag> Frontend
+- Verbindung von Frontend und Backend über das ["Inertia Adapter" Plugin](https://plugins.getkirby.com/tobimori/inertia)
+- Unsere interaktive [`fcos-suite-map`](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-map) kann nun ebenfalls über Kirby gepflegt werden
+
+
+Das Ergebnis ist ein Starterkit für Kirby, welches es erlaubt schnell neue Webseiten im gleichen Look und mit der gleichen Funktionalität zu starten. Unser Auftraggeber hat uns außerdem gestattet, auch dieses Startekit unter einer Open-Source-Lizenz zu veröffentlichen (**Achtung**: Kirby selbst ist ein "Source Available"-Produkt, das heißt, es wird eine – sehr günstige – proprietäre Lizenz benötigt um es zu nutzen).
+
+<div class="flex gap-4 not-prose items-center justify-center">
+  <LinkButton
+    variant={'dark'}
+    caption={"Zur Webseite der Fab Region"}
+    dark={true}
+    href={'https://www.fab-bergisch.org'}
+    newTab={true}
+  />
+  <LinkButton
+    variant="grey"
+    caption={"Zum Quelltext auf GitHub"}
+    href={'https://github.com/bitbetterde/fab-kirby'}
+    newTab={true}
+  />
+</div>
