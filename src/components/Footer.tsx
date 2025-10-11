@@ -68,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
         <div
           className={
-            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-24 md:mt-[17.875rem]'
+            'flex flex-col md:flex-row justify-between text-base md:text-lg leading-[1.4] mt-24 md:mt-71.5'
           }
         >
           <address className={'not-italic mt-8 md:mt-0'}>

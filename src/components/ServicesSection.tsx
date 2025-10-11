@@ -71,7 +71,7 @@ const ServicesSection: React.FC<TechItemProps> = ({
           icon={<LayoutIcon />}
         />
         <div className={`${developmentTechItems?.length ? '' : 'h-8'} bg-black`}>
-          <h4 className='px-8 pt-8 uppercase text-lg tracking-[0.1em] text-white/75'>
+          <h4 className='px-8 pt-8 uppercase text-lg tracking-widest text-white/75'>
             Wir entwickeln mit
           </h4>
           <div className='px-8 pt-4 pb-8 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5'>
@@ -118,7 +118,7 @@ const ServicesSection: React.FC<TechItemProps> = ({
         />
 
         <div className={`${consultingTechItems?.length ? '' : 'h-8'} bg-bb-grey-200`}>
-          <h4 className='px-8 pt-8 uppercase text-lg tracking-[0.1em] text-black/75'>
+          <h4 className='px-8 pt-8 uppercase text-lg tracking-widest text-black/75'>
             Wir beraten zu
           </h4>
           <div className='px-8 py-4 inline-grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5'>
@@ -134,8 +134,8 @@ const ServicesSection: React.FC<TechItemProps> = ({
           </div>
         </div>
       </div>
-      <BbBracket className='text-bb-grey-200 -scale-x-[140%] scale-y-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 hidden 2xl:block' />
-      <BbBracket className='text-transparent stroke-black -rotate-[190deg] scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden 2xl:block' />
+      <BbBracket className='text-bb-grey-200 -scale-x-140 scale-y-140 absolute w-72 top-[calc(50%-200px)] -left-8 hidden 2xl:block' />
+      <BbBracket className='text-transparent stroke-black -rotate-190 scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden 2xl:block' />
     </>
   )
 }
