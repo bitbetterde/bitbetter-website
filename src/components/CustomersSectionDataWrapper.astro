@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content'
+import CustomersSection from './CustomersSection'
+import { readFileSync } from 'node:fs'
+
+// Load SVG files so they can be inlined (necessary to change colors with CSS in the hover effects)
+const customers = (await getCollection('customers')).map((item) => {
+  const logoString = readFileSync(
+    new URL(`../assets/customers/${item.data.logo}`, import.meta.url),
+  ).toString()
+
+  return {
+    ...item.data,
+    logo: logoString,
+  }
+})
+---
+
+<CustomersSection customers={customers} />
