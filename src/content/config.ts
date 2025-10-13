@@ -40,6 +40,7 @@ const servicesCollection = defineCollection({
     teaser: z.string(),
     date: z.date(),
     keywords: z.string(),
+    hidden: z.boolean().optional(),
   }),
 })
 

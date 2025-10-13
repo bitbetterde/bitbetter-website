@@ -1,9 +1,9 @@
-import { getCollection, getEntry, type ContentEntryMap, type DataEntryMap } from 'astro:content'
+import { getCollection, getEntry, type AnyEntryMap, type CollectionEntry } from 'astro:content'
 
-const findCollectionItemsByIdOrTitle = async (
-  collection: keyof ContentEntryMap | keyof DataEntryMap,
+async function findCollectionItemsByIdOrTitle<C extends keyof AnyEntryMap>(
+  collection: C,
   ids: string[],
-) => {
+): Promise<Array<CollectionEntry<C>['data']>> {
   const allItems = await getCollection(collection)
 
   return ids
@@ -12,10 +12,10 @@ const findCollectionItemsByIdOrTitle = async (
         allItems.find(
           (tool) =>
             tool.id.toLowerCase() === toolName.toLowerCase() ||
-            tool.data.title.toLowerCase() === toolName.toLowerCase(),
+            ('title' in tool.data && tool.data.title.toLowerCase() === toolName.toLowerCase()),
         )?.data,
     )
-    .filter(Boolean)
+    .filter(Boolean) as Array<CollectionEntry<C>['data']>
 }
 
 const getAllToolKeywords = async () => {
