@@ -19,13 +19,13 @@ const SectionGridContainer: React.FC<SectionGridContainerProps> = ({
   id,
 }) => {
   const innerGridBreakpointClasses = {
-    lg: 'lg:grid-cols-inner lg:gap-4',
-    xl: 'xl:grid-cols-inner xl:gap-4',
-    '2xl': '2xl:grid-cols-inner 2xl:gap-4',
+    lg: 'lg:grid-cols-(--inner) lg:gap-4',
+    xl: 'xl:grid-cols-(--inner) xl:gap-4',
+    '2xl': '2xl:grid-cols-(--inner) 2xl:gap-4',
   }
 
   return (
-    <div className={`2xl:grid 2xl:grid-cols-outer 2xl:grid-wrapper ${className}`} id={id}>
+    <div className={`2xl:grid 2xl:grid-cols-(--outer) grid-wrapper ${className}`} id={id}>
       <Tag
         className={`grid grid-cols-1 relative ${innerGridBreakpointClasses[breakpoint] ?? ''} ${
           innerClassName

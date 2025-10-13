@@ -24,7 +24,7 @@ const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = () => {
               alt='Portrait von Moritz Stückler'
             />
 
-            <p className={'mt-5 text-base md:text-xl leading-8'}>
+            <p className={'mt-5 text-base md:text-xl'}>
               <b>Moritz Stückler</b> arbeitete zunächst viele Jahre als IT-Journalist und entschied
               sich 2014 für den Berufswechsel zum Software-Entwickler. Nach dem Studium arbeitete er
               als Full-Stack-Entwickler in Produktfirmen und Agenturen. Sein Schwerpunkt sind
@@ -37,7 +37,7 @@ const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = () => {
               webpSrc='/images/fabian_avatar.webp'
               alt='Portrait von Fabian Schmidt'
             />
-            <p className={'mt-5 text-base md:text-xl leading-8'}>
+            <p className={'mt-5 text-base md:text-xl'}>
               <b>Fabian Schmidt</b> arbeitet seit 2017 als Full-Stack-Entwickler in einer
               Anwaltskanzlei. Er kümmert sich vor allem um die Automatisierung und Optimierung von
               Geschäftsprozessen. Seine fachlichen Schwerpunkte sind Backend-Anwendungen, Web-APIs

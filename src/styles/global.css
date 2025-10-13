@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@config "../../tailwind.config.cjs";
+
+@theme {
+  /* Fonts */
+  --font-grotesk: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans';
+
+  /* Colors */
+  --color-bb-grey: #eaeaea;
+  --color-bb-grey-100: #f5f5f5;
+  --color-bb-grey-200: #f3f3f3;
+  --color-bb-grey-300: #d1d5db;
+  --color-bb-grey-400: #eaeaea;
+  --color-bb-grey-500: #2e2e2e;
+  --color-bb-grey-550: #424242;
+  --color-bb-grey-600: #2b2b2b;
+  --color-bb-grey-700: #374151;
+  --color-bb-grey-900: #111827;
+  --color-bb-blue: #182b38;
+  --color-bb-blue-200: #323f4b;
+  --color-bb-blue-400: #182b38;
+
+  /* Grid */
+  --inner: repeat(13, minmax(0, 1fr));
+  --outer: 1fr min(1500px, 100%) 1fr;
+  --span-inner: '2/-2';
+
+  /* Text */
+  --text-bb-3xl: 2rem;
+  --text-bb-3xl--line-height: 140%;
+  --text-bb-3xl--letter-spacing: -1%;
+  --text-bb-3xl--font-weight: 500;
+
+  --text-bb-4xl: 2.5rem;
+  --text-bb-4xl--line-height: 140%;
+  --text-bb-4xl--letter-spacing: -1%;
+  --text-bb-4xl--font-weight: 500;
+}
+
+@utility prose-bb-grey {
+  --tw-prose-body: var(--color-bb-grey-600);
+  --tw-prose-headings: var(--color-bb-grey-900);
+  --tw-prose-lead: var(--color-bb-grey-700);
+  --tw-prose-links: var(--color-bb-grey-900);
+  --tw-prose-bold: var(--color-bb-grey-900);
+  --tw-prose-counters: var(--color-bb-grey-600);
+  --tw-prose-bullets: var(--color-bb-grey-400);
+  --tw-prose-hr: var(--color-bb-grey-300);
+  --tw-prose-quotes: var(--color-bb-grey-900);
+  --tw-prose-quote-borders: var(--color-bb-grey-300);
+  --tw-prose-captions: var(--color-bb-grey-700);
+  --tw-prose-code: var(--color-bb-grey-900);
+  --tw-prose-pre-code: var(--color-bb-grey-100);
+  --tw-prose-pre-bg: var(--color-bb-grey-900);
+  --tw-prose-th-borders: var(--color-bb-grey-300);
+  --tw-prose-td-borders: var(--color-bb-grey-200);
+}
+
+/* Custom prose typography modifications */
+.prose code::before,
+.prose code::after {
+  content: '' !important;
+}
+
+.prose blockquote {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.prose blockquote *::before,
+.prose blockquote *::after {
+  content: normal !important;
+}
+
+.prose blockquote cite {
+  font-style: normal;
+  font-family: 'IBM Plex Sans';
+  font-weight: 600;
+  font-size: 1.25rem;
+  display: inline-block !important;
+  padding-top: 1rem !important;
+  margin-top: 2rem;
+  border-top: 1.5px solid black !important;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.grid-wrapper > *,
+.grid-wrapper .grid-child {
+  grid-column: 2;
+}
+
+.full-bleed {
+  grid-column: 1 / -1;
+}
+
+.prose > p:first-of-type {
+  @apply text-[1.22em]/[1.4em] my-[1.1em];
+}
+
+/* Hide black gradient on top of YouTube Embeds */
+lite-youtube::before {
+  content: none !important;
+}
+
+.customer-logo {
+  --svg-hover-color: black;
+}
+
+.customer-logo:hover {
+  --svg-hover-color: initial;
+}

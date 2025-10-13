@@ -48,7 +48,7 @@ const Card: React.FC<CardProps> = ({
       >
         {subtitle && (
           <h3
-            className={`font-sans text-lg leading-5 tracking-widest uppercase font-normal text-black opacity-70 ${
+            className={`font-sans text-lg/5 tracking-widest uppercase font-normal text-black opacity-70 ${
               img ? 'pt-4' : ''
             } line-clamp-1`}
             title={subtitle}
@@ -57,12 +57,10 @@ const Card: React.FC<CardProps> = ({
           </h3>
         )}
         {title && (
-          <h2 className='text-black font-grotesk font-medium text-2xl leading-8 line-clamp-2'>
-            {title}
-          </h2>
+          <h2 className='text-black font-grotesk font-medium text-2xl/8 line-clamp-2'>{title}</h2>
         )}
       </ConditionalWrapper>
-      {teaser && <p className='pt-4 text-lg leading-6 text-black/75'>{teaser}</p>}
+      {teaser && <p className='pt-4 text-lg/6 text-black/75'>{teaser}</p>}
       {(date || author) && (
         <div className='flex flex-wrap gap-2 items-center font-medium text-black/50'>
           {date && <p className='text-lg font-normal'>{date}</p>}

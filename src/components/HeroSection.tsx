@@ -10,8 +10,8 @@ interface HeroSectionProps {
 const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaption }) => {
   return (
     <>
-      <div className='flex flex-col items-start pt-[18.625rem] pb-24 lg:py-32 bg-bb-grey-200 px-5 lg:px-0 col-span-1 lg:col-span-5 lg:col-start-2'>
-        <h1 className='text-black font-grotesk font-medium text-[1.75rem] lg:text-5xl mt-7 lg:leading-tight'>
+      <div className='flex flex-col items-start pt-74.5 pb-24 lg:py-32 bg-bb-grey-200 px-5 lg:px-0 col-span-1 lg:col-span-5 lg:col-start-2'>
+        <h1 className='text-black font-grotesk font-medium text-[1.75rem] lg:text-5xl/tight mt-7'>
           {title}
         </h1>
         {subtitle && <p className='text-base lg:text-xl mt-6 text-bb-grey-500'>{subtitle}</p>}
@@ -25,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaptio
         )}
       </div>
       <div className='relative lg:pt-24 w-full overflow-visible bg-bb-grey-200 col-span-1 lg:col-start-8 lg:col-span-6'>
-        <div className={'lg:absolute h-[64vw] lg:h-[42rem] w-full overflow-hidden'}>
+        <div className={'lg:absolute h-[64vw] lg:h-168 w-full overflow-hidden'}>
           <picture>
             <source srcSet='/images/team.webp' type='image/webp' />
             <source srcSet='/images/team.jpg' type='image/jpeg' />
@@ -42,7 +42,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaptio
         </div>
       </div>
       <BbBracket className='text-white scale-[140%] absolute w-72 -top-40 lg:top-0 -right-16 z-20' />
-      <BbBracket className='text-transparent stroke-black -rotate-[10deg] scale-[140%] absolute w-72 -top-32 lg:top-8 -right-8 stroke-[0.5] z-20' />
+      <BbBracket className='text-transparent stroke-black -rotate-10 scale-[140%] absolute w-72 -top-32 lg:top-8 -right-8 stroke-[0.5] z-20' />
     </>
   )
 }

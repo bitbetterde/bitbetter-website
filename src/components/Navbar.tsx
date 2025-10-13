@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({ buttonCaption }) => {
           <ul
             className={`${
               navListOpen ? 'flex flex-1' : 'hidden lg:flex'
-            } gap-4 lg:gap-8 ml-5 lg:ml-0 flex-col lg:flex-row font-grotesk lg:font-sans text-bb-4xl lg:text-base justify-center !font-normal`}
+            } gap-4 lg:gap-8 ml-5 lg:ml-0 flex-col lg:flex-row font-grotesk lg:font-sans text-bb-4xl lg:text-base justify-center font-normal!`}
           >
             <MenuItem
               href='/#aboutus'
