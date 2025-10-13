@@ -43,7 +43,7 @@ const servicesCollection = defineCollection({
   }),
 })
 
-const authorCollection = defineCollection({
+const authorsCollection = defineCollection({
   type: 'data',
   schema: z.object({
     firstName: z.string(),
@@ -58,9 +58,19 @@ const authorCollection = defineCollection({
   }),
 })
 
+const customersCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    name: z.string(),
+    logo: z.string(),
+    href: z.string(),
+  }),
+})
+
 export const collections = {
   blog: blogCollection,
-  authors: authorCollection,
+  authors: authorsCollection,
   services: servicesCollection,
   tools: toolsCollection,
+  customers: customersCollection,
 }
