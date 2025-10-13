@@ -25,7 +25,7 @@ const SectionGridContainer: React.FC<SectionGridContainerProps> = ({
   }
 
   return (
-    <div className={`2xl:grid 2xl:grid-cols-(--outer) 2xl:grid-wrapper ${className}`} id={id}>
+    <div className={`2xl:grid 2xl:grid-cols-(--outer) grid-wrapper ${className}`} id={id}>
       <Tag
         className={`grid grid-cols-1 relative ${innerGridBreakpointClasses[breakpoint] ?? ''} ${
           innerClassName
