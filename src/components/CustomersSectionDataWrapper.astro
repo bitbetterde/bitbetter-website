@@ -1,19 +1,20 @@
 ---
 import { getCollection } from 'astro:content'
 import CustomersSection from './CustomersSection'
-import { readFileSync } from 'node:fs'
+
+const logos = import.meta.glob('../assets/customers/*.svg', { query: '?raw', import: 'default' })
 
 // Load SVG files so they can be inlined (necessary to change colors with CSS in the hover effects)
-const customers = (await getCollection('customers')).map((item) => {
-  const logoString = readFileSync(
-    new URL(`../assets/customers/${item.data.logo}`, import.meta.url),
-  ).toString()
+const customers = await Promise.all(
+  (await getCollection('customers')).map(async (item) => {
+    const logoString = await logos[`../assets/customers/${item.data.logo}`]()
 
-  return {
-    ...item.data,
-    logo: logoString,
-  }
-})
+    return {
+      ...item.data,
+      logo: logoString as string,
+    }
+  }),
+)
 ---
 
 <CustomersSection customers={customers} />
