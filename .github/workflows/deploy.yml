@@ -19,11 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install, build, and upload your site
-        uses: withastro/action@v2
+        uses: withastro/action@v5
         with:
-          node-version: 21
+          node-version: 24
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: build-output
+          path: dist/
 
   deploy:
     needs: build
