@@ -1,9 +1,12 @@
 /**
- * Post-build script that measures the homepage's actual transfer size by
- * serving the built site locally with compression, then calls the Website
- * Carbon API and replaces placeholders in all HTML files.
+ * Post-build script for the Website Carbon badge.
  *
- * Placeholders: __CARBON_CO2__ and __CARBON_PERCENT__
+ * Usage:
+ *   node scripts/carbon-badge.mjs measure   — measure homepage transfer bytes, print to stdout
+ *   node scripts/carbon-badge.mjs patch <co2> <percent> — replace placeholders in all HTML files
+ *
+ * The API call happens externally (e.g. via curl in CI) to avoid Cloudflare bot detection.
+ * Placeholders in HTML: __CARBON_CO2__ and __CARBON_PERCENT__
  */
 
 import { readFileSync, writeFileSync, readdirSync, createReadStream, statSync } from 'node:fs'
@@ -13,7 +16,6 @@ import { pipeline } from 'node:stream/promises'
 import { createGzip, gunzipSync } from 'node:zlib'
 
 const DIST_DIR = resolve(import.meta.dirname, '..', 'dist')
-const GREEN_HOSTING = 1
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -28,14 +30,10 @@ const MIME_TYPES = {
 
 const COMPRESSIBLE = new Set(['text/html', 'text/css', 'application/javascript', 'image/svg+xml'])
 
-/**
- * Start a minimal static file server with gzip compression,
- * mimicking what Caddy does in production.
- */
 function startServer() {
   return new Promise((resolve) => {
     const server = createServer(async (req, res) => {
-      let filePath = join(DIST_DIR, req.url === '/' ? '/index.html' : req.url)
+      const filePath = join(DIST_DIR, req.url === '/' ? '/index.html' : req.url)
       try {
         statSync(filePath)
       } catch {
@@ -68,10 +66,6 @@ function startServer() {
   })
 }
 
-/**
- * Raw HTTP GET that returns { rawBytes, body } without auto-decompressing,
- * so we can measure actual wire transfer size.
- */
 function rawGet(url) {
   return new Promise((resolve, reject) => {
     httpGet(url, { headers: { 'Accept-Encoding': 'gzip' } }, (res) => {
@@ -90,9 +84,6 @@ function rawGet(url) {
   })
 }
 
-/**
- * Parse a unicode-range string like "U+0000-00FF,U+0131" into [start, end] pairs.
- */
 function parseUnicodeRange(rangeStr) {
   const ranges = []
   for (const part of rangeStr.split(',')) {
@@ -108,10 +99,6 @@ function parseUnicodeRange(rangeStr) {
   return ranges
 }
 
-/**
- * Check if any character in the text falls within the given unicode ranges.
- * This mimics the browser's unicode-range font loading behavior.
- */
 function textUsesRange(text, ranges) {
   for (const char of text) {
     const cp = char.codePointAt(0)
@@ -122,10 +109,6 @@ function textUsesRange(text, ranges) {
   return false
 }
 
-/**
- * Extract font URLs from CSS that would actually be loaded for the given page text,
- * based on unicode-range matching (how browsers decide which @font-face subsets to fetch).
- */
 function getFontsForPage(cssBody, pageText) {
   const fonts = []
   for (const face of cssBody.matchAll(/@font-face\{[^}]+\}/g)) {
@@ -133,7 +116,6 @@ function getFontsForPage(cssBody, pageText) {
     const src = block.match(/url\((\/_astro\/[^)]+\.woff2)\)/)
     const range = block.match(/unicode-range:([^}]+)/)
     if (!src) continue
-    // If no unicode-range is specified, the font always loads
     if (!range || textUsesRange(pageText, parseUnicodeRange(range[1]))) {
       fonts.push(src[1])
     }
@@ -141,27 +123,20 @@ function getFontsForPage(cssBody, pageText) {
   return fonts
 }
 
-/**
- * Fetch a page and all its sub-resources, returning total transfer bytes.
- */
 async function measurePageTransfer(baseUrl) {
-  // Fetch the HTML
   const html = await rawGet(baseUrl)
   let totalBytes = html.rawBytes
 
-  // Strip tags to get visible page text for unicode-range matching
   const pageText = html.body
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
     .replace(/<[^>]+>/g, '')
 
-  // Find all sub-resource URLs (CSS, JS)
   const subResources = new Set()
   for (const match of html.body.matchAll(/\/_astro\/[^"'\s)]+/g)) {
     subResources.add(match[0])
   }
 
-  // Fetch CSS/JS and discover which fonts would actually load
   const fontPaths = new Set()
   for (const path of subResources) {
     const res = await rawGet(baseUrl + path)
@@ -174,23 +149,12 @@ async function measurePageTransfer(baseUrl) {
     }
   }
 
-  // Fetch fonts that would actually be loaded by the browser
   for (const path of fontPaths) {
     const res = await rawGet(baseUrl + path)
     totalBytes += res.rawBytes
   }
 
   return totalBytes
-}
-
-async function fetchCarbonData(bytes) {
-  const url = `https://api.websitecarbon.com/data?bytes=${bytes}&green=${GREEN_HOSTING}`
-  console.log(`  Calling API: ${url}`)
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`API returned ${response.status}: ${await response.text()}`)
-  }
-  return response.json()
 }
 
 function findHtmlFiles(dir) {
@@ -206,7 +170,19 @@ function findHtmlFiles(dir) {
   return files
 }
 
-function patchHtmlFiles(htmlFiles, co2, percent) {
+async function measure() {
+  const server = await startServer()
+  const port = server.address().port
+  try {
+    const bytes = await measurePageTransfer(`http://127.0.0.1:${port}`)
+    console.log(bytes)
+  } finally {
+    server.close()
+  }
+}
+
+function patch(co2, percent) {
+  const htmlFiles = findHtmlFiles(DIST_DIR)
   let patchedCount = 0
   for (const filePath of htmlFiles) {
     let content = readFileSync(filePath, 'utf-8')
@@ -217,39 +193,21 @@ function patchHtmlFiles(htmlFiles, co2, percent) {
       patchedCount++
     }
   }
-  return patchedCount
+  console.log(`Patched ${patchedCount} HTML files.`)
 }
 
-async function main() {
-  console.log('Carbon Badge: starting local server...')
-  const server = await startServer()
-  const port = server.address().port
-  const baseUrl = `http://127.0.0.1:${port}`
-  console.log(`  Serving dist/ on ${baseUrl}`)
+const [command, ...args] = process.argv.slice(2)
 
-  try {
-    console.log('Carbon Badge: measuring homepage transfer size...')
-    const bytes = await measurePageTransfer(baseUrl)
-    console.log(`  Total transfer: ${bytes} bytes (${(bytes / 1024).toFixed(1)} KB)`)
-
-    console.log('Carbon Badge: fetching carbon data...')
-    const data = await fetchCarbonData(bytes)
-    console.log(`  CO2: ${data.gco2e}g | Rating: ${data.rating} | Cleaner than: ${(data.cleanerThan * 100).toFixed(0)}%`)
-
-    const co2 = data.gco2e.toFixed(2)
-    const percent = (data.cleanerThan * 100).toFixed(0)
-
-    console.log('Carbon Badge: patching HTML files...')
-    const htmlFiles = findHtmlFiles(DIST_DIR)
-    const patchedCount = patchHtmlFiles(htmlFiles, co2, percent)
-    console.log(`  Patched ${patchedCount} HTML files.`)
-  } finally {
-    server.close()
+if (command === 'measure') {
+  await measure()
+} else if (command === 'patch') {
+  const [co2, percent] = args
+  if (!co2 || !percent) {
+    console.error('Usage: node carbon-badge.mjs patch <co2> <percent>')
+    process.exit(1)
   }
+  patch(co2, percent)
+} else {
+  console.error('Usage: node carbon-badge.mjs <measure|patch>')
+  process.exit(1)
 }
-
-main().catch((err) => {
-  console.error('Carbon Badge: failed, using fallback values.', err.message)
-  const htmlFiles = findHtmlFiles(DIST_DIR)
-  patchHtmlFiles(htmlFiles, '0.50', '50')
-})

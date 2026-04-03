@@ -16,6 +16,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Measure page transfer size
+        id: carbon
+        run: |
+          BYTES=$(node scripts/carbon-badge.mjs measure)
+          echo "bytes=$BYTES" >> "$GITHUB_OUTPUT"
+          echo "Measured transfer size: $BYTES bytes"
+
+      - name: Fetch carbon data and patch HTML
+        run: |
+          RESPONSE=$(curl -sf "https://api.websitecarbon.com/data?bytes=${{ steps.carbon.outputs.bytes }}&green=1")
+          CO2=$(echo "$RESPONSE" | jq -r '.gco2e | . * 100 | round / 100')
+          PERCENT=$(echo "$RESPONSE" | jq -r '.cleanerThan | . * 100 | round')
+          echo "CO2: ${CO2}g | Cleaner than: ${PERCENT}%"
+          node scripts/carbon-badge.mjs patch "$CO2" "$PERCENT"
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
