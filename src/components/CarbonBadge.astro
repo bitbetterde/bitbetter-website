@@ -1,28 +1,9 @@
 ---
 // This code is based on the existing `website-carbon-badges` package.
 // See: https://gitlab.com/wholegrain/website-carbon-badges
-// It was adopted to be server side generated via Astro
-
-interface Props {
-  production?: boolean
-}
-
-const { production = false } = Astro.props
-const SITE_URL = import.meta.env.SITE
-
-let apiResponse
-if (production && SITE_URL) {
-  apiResponse = await fetch('https://api.websitecarbon.com/b?url=' + encodeURIComponent(SITE_URL))
-    .then((r) => {
-      if (!r.ok) {
-        return Promise.reject(r)
-      }
-      return r.json()
-    })
-    .catch((e) => {
-      console.error('Error while fetching Carbon Badge', e)
-    })
-}
+// It was adopted to be server side generated via Astro.
+// The actual API call and byte measurement happens in the post-build script
+// (scripts/carbon-badge.mjs), which replaces the placeholder values below.
 ---
 
 <style>
@@ -84,12 +65,12 @@ if (production && SITE_URL) {
 </style>
 <div id='wcb' class='carbonbadge'>
   <div id='wcb_p'>
-    <span id='wcb_g'>{apiResponse?.c || 1} g of CO<sub>2</sub></span><a
+    <span id='wcb_g'>__CARBON_CO2__ g of CO<sub>2</sub></span><a
       id='wcb_a'
       target='_blank'
       rel='noopener'
       href='https://www.websitecarbon.com/website/bitbetter-de/'>Website Carbon</a
     >
   </div>
-  <span id='wcb_2'>Cleaner than {apiResponse?.p || 99}% of pages tested</span>
+  <span id='wcb_2'>Cleaner than __CARBON_PERCENT__% of pages tested</span>
 </div>

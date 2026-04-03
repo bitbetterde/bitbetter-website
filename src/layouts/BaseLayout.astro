@@ -3,9 +3,9 @@ import { Footer, Navbar, SectionGridContainer } from '../components'
 import CarbonBadge from '@components/CarbonBadge.astro'
 
 import '../styles/global.css'
-import '@fontsource/ibm-plex-sans/400.css'
-import '@fontsource/ibm-plex-sans/500.css'
-import '@fontsource/ibm-plex-sans/700.css'
+import '@fontsource/ibm-plex-sans/latin-400.css'
+import '@fontsource/ibm-plex-sans/latin-500.css'
+import '@fontsource/ibm-plex-sans/latin-700.css'
 import '@fontsource-variable/space-grotesk'
 
 interface Props {
@@ -94,7 +94,7 @@ const isProduction = import.meta.env.MODE === 'production'
       innerClassName='pt-20 pb-14 relative px-5 2xl:px-0 gap-y-12'
     >
       <Footer>
-        <CarbonBadge production={isProduction} />
+        <CarbonBadge />
       </Footer>
     </SectionGridContainer>
   </body>
