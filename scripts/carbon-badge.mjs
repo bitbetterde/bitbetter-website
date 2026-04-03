@@ -1,12 +1,9 @@
 /**
- * Post-build script for the Website Carbon badge.
+ * Carbon badge helper script.
  *
  * Usage:
- *   node scripts/carbon-badge.mjs measure   — measure homepage transfer bytes, print to stdout
- *   node scripts/carbon-badge.mjs patch <co2> <percent> — replace placeholders in all HTML files
- *
- * The API call happens externally (e.g. via curl in CI) to avoid Cloudflare bot detection.
- * Placeholders in HTML: __CARBON_CO2__ and __CARBON_PERCENT__
+ *   node scripts/carbon-badge.mjs update  — build, measure, call API, save to carbon.json
+ *   node scripts/carbon-badge.mjs patch   — replace placeholders in dist/ using carbon.json
  */
 
 import { readFileSync, writeFileSync, readdirSync, createReadStream, statSync } from 'node:fs'
@@ -14,8 +11,12 @@ import { resolve, join } from 'node:path'
 import { createServer, get as httpGet } from 'node:http'
 import { pipeline } from 'node:stream/promises'
 import { createGzip, gunzipSync } from 'node:zlib'
+import { execSync } from 'node:child_process'
 
-const DIST_DIR = resolve(import.meta.dirname, '..', 'dist')
+const ROOT_DIR = resolve(import.meta.dirname, '..')
+const DIST_DIR = join(ROOT_DIR, 'dist')
+const CARBON_JSON = join(ROOT_DIR, 'carbon.json')
+const GREEN_HOSTING = 1
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -170,25 +171,57 @@ function findHtmlFiles(dir) {
   return files
 }
 
-async function measure() {
+async function update() {
+  // Build the site
+  console.log('Building site...')
+  execSync('npm run build', { cwd: ROOT_DIR, stdio: 'inherit' })
+
+  // Measure transfer size
+  console.log('Measuring homepage transfer size...')
   const server = await startServer()
-  const port = server.address().port
+  let bytes
   try {
-    const bytes = await measurePageTransfer(`http://127.0.0.1:${port}`)
-    console.log(bytes)
+    bytes = await measurePageTransfer(`http://127.0.0.1:${server.address().port}`)
   } finally {
     server.close()
   }
+  console.log(`  ${bytes} bytes (${(bytes / 1024).toFixed(1)} KB)`)
+
+  // Call the API
+  console.log('Fetching carbon data...')
+  const url = `https://api.websitecarbon.com/data?bytes=${bytes}&green=${GREEN_HOSTING}`
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`API returned ${response.status}`)
+  }
+  const data = await response.json()
+
+  const result = {
+    co2: data.gco2e.toFixed(2),
+    percent: (data.cleanerThan * 100).toFixed(0),
+  }
+  console.log(`  CO2: ${result.co2}g | Cleaner than: ${result.percent}%`)
+
+  writeFileSync(CARBON_JSON, JSON.stringify(result, null, 2) + '\n')
+  console.log('Saved to carbon.json')
 }
 
-function patch(co2, percent) {
+function patch() {
+  let data
+  try {
+    data = JSON.parse(readFileSync(CARBON_JSON, 'utf-8'))
+  } catch {
+    console.warn('carbon.json not found, using fallback values')
+    data = { co2: '0.50', percent: '50' }
+  }
+
   const htmlFiles = findHtmlFiles(DIST_DIR)
   let patchedCount = 0
   for (const filePath of htmlFiles) {
     let content = readFileSync(filePath, 'utf-8')
     if (content.includes('__CARBON_CO2__')) {
-      content = content.replaceAll('__CARBON_CO2__', co2)
-      content = content.replaceAll('__CARBON_PERCENT__', percent)
+      content = content.replaceAll('__CARBON_CO2__', data.co2)
+      content = content.replaceAll('__CARBON_PERCENT__', data.percent)
       writeFileSync(filePath, content)
       patchedCount++
     }
@@ -196,18 +229,13 @@ function patch(co2, percent) {
   console.log(`Patched ${patchedCount} HTML files.`)
 }
 
-const [command, ...args] = process.argv.slice(2)
+const command = process.argv[2]
 
-if (command === 'measure') {
-  await measure()
+if (command === 'update') {
+  await update()
 } else if (command === 'patch') {
-  const [co2, percent] = args
-  if (!co2 || !percent) {
-    console.error('Usage: node carbon-badge.mjs patch <co2> <percent>')
-    process.exit(1)
-  }
-  patch(co2, percent)
+  patch()
 } else {
-  console.error('Usage: node carbon-badge.mjs <measure|patch>')
+  console.error('Usage: node carbon-badge.mjs <update|patch>')
   process.exit(1)
 }
