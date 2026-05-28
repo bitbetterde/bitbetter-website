@@ -13,6 +13,7 @@
   --color-bb-grey-200: #f3f3f3;
   --color-bb-grey-300: #d1d5db;
   --color-bb-grey-400: #eaeaea;
+  --color-bb-grey-450: #8c8c8c;
   --color-bb-grey-500: #2e2e2e;
   --color-bb-grey-550: #424242;
   --color-bb-grey-600: #2b2b2b;
@@ -115,4 +116,12 @@ lite-youtube::before {
 
 .customer-logo:hover {
   --svg-hover-color: initial;
+}
+
+.customer-logo .kochstrasse-logo {
+  fill: var(--color-bb-grey-450);
+}
+
+.customer-logo:hover .kochstrasse-logo {
+  fill: black;
 }
