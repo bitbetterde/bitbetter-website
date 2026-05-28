@@ -1,5 +1,6 @@
 {
   "name": "CosH Consulting GmbH",
   "logo": "cosh.svg",
-  "href": "https://cosh.de/"
+  "href": "https://cosh.de/",
+  "order": 10
 }

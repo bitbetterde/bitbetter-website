@@ -1,5 +1,6 @@
 {
   "name": "motionet AG",
   "logo": "motionet.svg",
-  "href": "https://www.motionet.de/"
+  "href": "https://www.motionet.de/",
+  "order": 70
 }

@@ -1,5 +1,6 @@
 {
   "name": "O&W Rechtsanwaltsgesellschaft mbH",
   "logo": "ow.svg",
-  "href": "https://www.owlaw.de/"
+  "href": "https://www.owlaw.de/",
+  "order": 80
 }

@@ -6,14 +6,16 @@ const logos = import.meta.glob('../assets/customers/*.svg', { query: '?raw', imp
 
 // Load SVG files so they can be inlined (necessary to change colors with CSS in the hover effects)
 const customers = await Promise.all(
-  (await getCollection('customers')).map(async (item) => {
-    const logoString = await logos[`../assets/customers/${item.data.logo}`]()
+  (await getCollection('customers'))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (item) => {
+      const logoString = await logos[`../assets/customers/${item.data.logo}`]()
 
-    return {
-      ...item.data,
-      logo: logoString as string,
-    }
-  }),
+      return {
+        ...item.data,
+        logo: logoString as string,
+      }
+    }),
 )
 ---
 

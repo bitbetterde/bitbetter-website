@@ -65,6 +65,7 @@ const customersCollection = defineCollection({
     name: z.string(),
     logo: z.string(),
     href: z.string(),
+    order: z.number(),
   }),
 })
 

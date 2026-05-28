@@ -1,5 +1,6 @@
 {
   "name": "Fab City Hamburg e.V.",
   "logo": "fchh.svg",
-  "href": "https://www.fabcity.hamburg/"
+  "href": "https://www.fabcity.hamburg/",
+  "order": 30
 }
