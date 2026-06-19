@@ -1,0 +1,78 @@
+---
+title: "Workflow-Automatisierung mit n8n: Beratung und Setup"
+image:
+  url: /images/leistungen/n8n-automatisierung/n8n-title.png
+  alt: Ein n8n Workflow-Editor mit verbundenen Nodes
+subtitle: Prozesse verbinden, Arbeit sparen
+teaser: "Wiederkehrende manuelle Aufgaben kosten Zeit und Nerven. n8n ist eine flexible Open-Source-Plattform, mit der sich Dienste und Abläufe ohne großen Aufwand miteinander verbinden lassen. Wir helfen bei Konzept, Einrichtung und laufender Betreuung auf Ihrem eigenen Server."
+keywords: n8n, workflow-automatisierung, automatisierung, integration, open source, self-hosted, no-code, low-code
+date: 2026-06-19
+---
+import { LinkButton } from "@components";
+
+Wer im Alltag mit mehreren digitalen Diensten arbeitet, kennt das Problem: Daten müssen manuell von einem System ins nächste übertragen werden, Benachrichtigungen kommen zu spät oder gar nicht an, und wiederkehrende Aufgaben fressen wertvolle Zeit. Viele dieser Abläufe lassen sich automatisieren, man braucht dafür nur das richtige Werkzeug und jemanden, der es sinnvoll einsetzt. [n8n](https://n8n.io/) ist genau dieses Werkzeug: eine leistungsfähige, quelloffene Automatisierungsplattform, die sich selbst hosten lässt und mit hunderten von Diensten und APIs sprechen kann.
+
+
+## Was kann n8n?
+
+n8n funktioniert nach dem Prinzip von visuellen Workflows: Ein Auslöser startet einen Prozess, der Schritt für Schritt durch verschiedene Aktionen läuft. Typische Einsatzbereiche:
+
+- 📩 **E-Mail-Verarbeitung**: Anhänge automatisch speichern oder in andere Systeme übertragen
+- ⏱️ **Zeitgesteuerte Jobs**: Wiederkehrende Aufgaben automatisch zu festen Zeiten ausführen
+- 🔔 **Benachrichtigungen**: Alerts aus beliebigen Quellen in Slack, Matrix, E-Mail oder andere Kanäle routen
+- 🗄️ **Datensynchronisation**: Kontakte, Aufgaben oder Buchungen zwischen verschiedenen Tools synchron halten
+- 🔗 **API-Integration**: Beliebige Dienste miteinander verbinden, auch ohne fertige Integration, zum Beispiel mit [Paperless-ngx](/leistungen/paperless-ngx/) für automatisierte Dokumenten-Workflows
+
+
+## Eigene n8n-Instanz: Setup und Betreuung
+
+Wer sensible Daten verarbeitet, also Rechnungen, Kundendaten oder interne Dokumente, sollte n8n lieber auf dem eigenen Server betreiben als in der Cloud. Der Aufwand für Einrichtung und laufenden Betrieb ist dabei nicht zu unterschätzen.
+
+### Sichere Anbindung an bestehende Dienste
+Wir richten die nötigen Zugänge, API-Keys und Authentifizierungsmechanismen sicher ein, damit n8n mit den richtigen Diensten sprechen kann, ohne unnötige Angriffsflächen zu öffnen.
+
+### Updates, Wartung und Monitoring
+Wir übernehmen die regelmäßige Wartung und stellen sicher, dass Updates eingespielt werden, ohne laufende Workflows zu unterbrechen. Dazu richten wir Monitoring und Fehlerbenachrichtigungen ein, damit Probleme sofort auffallen, bevor Daten verloren gehen oder Prozesse stillstehen.
+
+
+## Praxisbeispiel: Automatische Rechnungsverwaltung mit n8n und Paperless-ngx
+
+**Das Ausgangsproblem:** Eingangsrechnungen trudeln per E-Mail ein, mal als PDF-Anhang, mal direkt im E-Mail-Body. Sie müssen gespeichert, benannt, abgeheftet und für die Buchhaltung bereitgestellt werden. Das kostet jedes Mal manuelle Arbeit.
+
+**Ein möglicher automatisierter Ablauf mit n8n und [Paperless-ngx](/leistungen/paperless-ngx/):**
+
+1. Eine dedizierte E-Mail-Adresse (z.B. `rechnungen@ihrefirma.de`) empfängt alle eingehenden Rechnungen
+2. n8n überwacht dieses Postfach kontinuierlich auf neue E-Mails
+3. Sobald eine neue E-Mail erkannt wird, extrahiert n8n den PDF-Anhang
+4. Das Dokument wird automatisch über die Paperless-ngx-API hochgeladen
+5. Paperless-ngx erkennt den Inhalt per OCR, liest Absender und Datum aus und vergibt automatisch Tags wie "Rechnung" und den Korrespondenten
+6. Optional: Die Rechnung wird in Paperless mit einem markiert, sodass sie vor der Weiterverarbeitung kontrolliert werden kann
+7. Optional: Nach der Freigabe überträgt n8n die Rechnung direkt in eine Buchhaltungssoftware (z.B. Lexoffice, Sevdesk oder ERPNext) und erspart so den manuellen Import
+
+Das Ergebnis: Eingangsrechnungen landen ohne manuelle Eingriffe sauber archiviert und durchsuchbar in Paperless-ngx, bei Bedarf direkt in der Buchhaltung gebucht, vollständig automatisiert, nachvollziehbar und zuverlässig.
+
+Ähnliche Workflows lassen sich auch für beliebige andere wiederkehrende Dokumententypen umsetzen.
+
+<div class="flex gap-4 not-prose items-center justify-center">
+  <LinkButton
+    variant={'dark'}
+    caption={"Gespräch buchen"}
+    href={'https://cal.bitbetter.de/team/bitbetter/n8n-automatisierung'}
+    newTab={true}
+  />
+  <LinkButton
+    variant="grey"
+    caption={"E-Mail schreiben"}
+    href={'mailto:info@bitbetter.de'}
+  />
+</div>
+
+
+## Weitere Möglichkeiten
+
+Neben Einrichtung und Betreuung einer n8n-Instanz bieten wir auch folgende Dienstleistungen an:
+
+- Analyse bestehender manueller Prozesse und Beratung, welche sich sinnvoll automatisieren lassen
+- Entwicklung und Pflege individueller Workflows für spezifische Anforderungen
+- Integration von n8n in bestehende Systemlandschaften (CRM, ERP, Buchhaltung, Dokumentenmanagement)
+- Kombination mit [Paperless-ngx](/leistungen/paperless-ngx/) für ein vollständiges digitales Dokumenten- und Prozessmanagement
