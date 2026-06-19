@@ -9,19 +9,16 @@ keywords: paperless, paperless-ngx, ngx, hosting, beratung, consulting
 date: 2024-01-31
 ---
 import { LinkButton } from "@components";
+import ToolTag from "@components/ToolTag.astro";
 
-Vernünftige Digitalisierung scheitert oft an den vermeintlich einfachsten Aufgaben. Wer schon einmal versucht hat, digitale Dokumente und Scans ausschließlich in Form von Ordnern und Dateien auf der Festplatte zu organisieren, der wird meistens schnell festgestellt haben, dass das gar nicht so einfach ist. Wer etwas mehr Funktionalität benötigt, gerade im beruflichen Kontext, für den bietet sich ein Dokumentenmanagement-System (DMS) an. Der Markt ist hier voll mit teuren und trägen Business- und Enterprise-Lösungen. Dank dem Open-Source-Projekt Paperless-ngx gibt es aber inzwischen auch ein leistungsfähiges und modernes System für Freelancer, kleine und mittlere Unternehmen sowie Privatpersonen.
-
-## Paperless-ngx hat eine lange Open-Source-Geschichte
-
-Ende 2015 startete der in Großbritannien lebende Kanadier [Daniel Quinn](https://danielquinn.org/) den Versuch, ein Dokumentenmanagement auf Python-Basis unter einer Open-Source-Linzenz zu bauen. Der Name des Projekts war naheliegend: Paperless. Das Projekt war überraschend erfolgreich und gewann sehr schnell an Popularität. Schon im Jahr 2018 entstand ein erster Fork durch den deutschen Entwickler Jonas Winkler, der unter dem Namen [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) (`ng` vermutlich für `next/new generation`) die Entwicklung vorantrieb, und bald das Originalprojekt in Sachen Popularität und Aktivität übertraf. Leider wuchsen beide Projekte den jeweiligen Entwicklern langsam über den Kopf und endeten deswegen nach einiger Zeit in einem verwaisten Zustand. Eine größere Gruppe von Entwicklern und Nutzern von Paperless-ng entschied sich schließlich Anfang 2022 dazu, einen weiteren, neuen Fork zu starten: [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx). 
+Vernünftige Digitalisierung scheitert oft an den vermeintlich einfachsten Aufgaben. Wer schon einmal versucht hat, digitale PDF-Dokumente und Scans ausschließlich in Form von Ordnern und Dateien auf der Festplatte zu organisieren, der wird meistens schnell festgestellt haben, dass das gar nicht so einfach ist. Wer etwas mehr Funktionalität benötigt, gerade im beruflichen Kontext, für den bietet sich ein Dokumentenmanagement-System (DMS) an. Der Markt ist hier voll mit teuren und trägen Business- und Enterprise-Lösungen. Dank dem etablierten Open-Source-Projekt Paperless-ngx gibt es aber inzwischen auch ein leistungsfähiges und modernes System für Freelancer, kleine und mittlere Unternehmen sowie Privatpersonen.
 
 
 ## Funktionsumfang: Genau richtig für KMU und Freelancer
 
-Inzwischen hat Paperless-ngx seine beiden Vorgängerprojekte in Bezug auf die Anzahl der Nutzer, Mit-Entwickler, Features und Community-Größe längst übertroffen. Die Verbreitung hat auch nicht zuletzt durch den Digitalisierungs-Schub während der Corona-Pandemie deutlich zugenommen. Paperless-ngx ist heute ein sehr beliebtes und bekanntes Projekt bei vielen Nerds, Familien, Self-Hostern und Homelab-Betreibern, und erhält immer öfter auch Einzug in den Alltag von kleinen und mittleren Firmen und Freelancern.
+[Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) ist bereits seit vielen Jahren ein sehr beliebtes und bekanntes Projekt bei vielen Nerds, Familien, Self-Hostern und Homelab-Betreibern, und erhält immer öfter auch Einzug in den Alltag von kleinen und mittleren Firmen und Freelancern. Das Entwickler-Team hinter Paperless-ngx betreibt eine Demo-Instanz, die regelmäßig zurückgesetzt wird, aber gut dazu geeignet ist, sich einen ersten Eindruck von Paperless-ngx zu verschaffen. Die Demo-Instanz ist unter [demo.paperless-ngx.com](https://demo.paperless-ngx.com/) zu erreichen. 
 
-Paperless-ngx bietet inzwischen unter anderem folgenden Funktionen:
+Es bietet unter anderem folgenden Funktionen:
 
 - 🖥️ Web-Oberfläche mit umfangreichen Ansichten, Vorschauen und Filter- und Sortierungsfunktionen
 - 📩 Automatisches Konsumieren von neuen Dokumenten über Ordner im Dateisystem oder per E-Mail
@@ -29,22 +26,47 @@ Paperless-ngx bietet inzwischen unter anderem folgenden Funktionen:
 - 🔎 Automatische OCR-Texterkennung und schnelle Volltextsuche in allen Dokumenten
 - 🏷️ Manuelles und automatisches Tagging
 - 📞 Zuordnung von Korrespondenten/Personen
-- 📊 Benutzerdefinierte Metadaten
-- 👨‍👩‍👦 Mehrbenutzer-Zugang mit eigenen Dokumentensammlungen möglich
+- 📊 Benutzerdefinierte Metadaten-Felder
+- 👨‍👩‍👦 Mehrbenutzer-Zugang mit eigenen Dokumentensammlungen pro Nutzer möglich
 - 💾 Effiziente Langzeit-Archivierung durch PDF/A-Format
-- 🎉 Große Open-Source-Community mit Hilfe, Lösungen und Ideen
-
-## Paperless-ngx ausprobieren: Demo-Instanz vorhanden
-Das Entwickler-Team hinter Paperless-ngx betreibt eine Demo-Instanz, die regelmäßig zurückgesetzt wird, aber sehr gut dazu geeignet ist, sich einen ersten Eindruck von Paperless-ngx zu verschaffen. Die Demo-Instanz ist unter [demo.paperless-ngx.com](https://demo.paperless-ngx.com/) zu erreichen. Hier sollten auf keinen Fall echte oder wichtigen Dokumente mit persönlichen Daten hochgeladen werden. Wir bieten außerdem individuelle, private Demo-Instanzen an, wenn Sie Paperless-ngx für sich ausprobieren möchten.
-
-## Open-Source-Projekt: Kostenlose Nutzung, aber hohe technische Hürde
-
-Durch seine Open-Source-Lizenz ist Paperless-ngx zwar kostenlos nutzbar, allerdings ist der Aufwand für den Betrieb für nicht-technikaffine Nutzer und Unternehmen nicht zu vernachlässigen. Es benötigt dafür einen passenden Server mit entsprechender Anbindung und ordentlichen Sicherheitseinstellungen. Paperless-ngx empfiehllt selbst, den Dienst über ein Docker-Compose-Setup aus mehreren Containern zu installieren, die alle immer gewartet und auf dem Laufenden gehalten werden wollen. Grundlegende Kenntnisse im Umgang mit Containern sind also auch empfehlenswert. 
+- 🎉 Sehr große Open-Source-Community mit Hilfe, Lösungen und Ideen
 
 
-## Eigene Paperless-ngx-Instanzen ab 25 Euro monatlich
+## Eigene Paperless-ngx-Instanz: Beratung und Managed Hosting
 
-Wer die nötigen Kenntnisse zum Selbsthosten nicht mitbringt, oder die Zeit sparen will, ist bei uns richtig: Wir bieten den sicheren Betrieb von Paperless-ngx-Instanzen für kleine Unternehmen, Freelancer und Selbstständige ab 25 Euro monatlich an. Nach einer kurzen Analyse der Anforderungen in Bezug auf die Ausstattung (Größe des Speichers, Zugangsmöglichkeiten, Domains, etc.) können wir ihnen schnell ein individuelles Angebot unterbreiten.
+Durch seine Open-Source-Lizenz ist Paperless-ngx zwar kostenlos nutzbar, allerdings ist der Aufwand für den Betrieb für nicht-technikaffine Nutzer und Unternehmen nicht zu vernachlässigen. Es benötigt dafür einen passenden Server mit entsprechender Anbindung und ordentlichen Sicherheitseinstellungen. Paperless-ngx empfiehlt selbst, den Dienst über ein Docker-Compose-Setup aus mehreren Containern zu installieren, die alle immer gewartet und auf dem Laufenden gehalten werden wollen. Außerdem benötigt Paperless-ngx für den professionellen Einsatz oft noch weitere Hilfsdienste.
+
+### Dokumenten-Konverter für weitere Dateiformate
+Wer auch Dokumente abseits vom PDF-Format konsumieren will, z.B. E-Mails, Office-Dokumente oder E-Rechnungen, der benötigt dafür weitere Dienste (z.B. Gotenberg/Tika).
+
+### VPN-Server für sicheren Zugriff von überall
+Eine Paperless-ngx-Instanz ins öffentliche Internet zu stellen ist sicherheitstechnisch nicht ideal und kann zu Problemen führen. Wir sichern unsere Instanzen daher mit einem virtuellen privaten Netzwerk (VPN) ab. So können sie zwar von überall auf ihre Instanz zugreifen, profitieren jedoch von der erhöhten Sicherheit eines VPN, zum Beispiel durch die Verschlüsselung der Verbindung und die Möglichkeit, den Zugriff auf bestimmte IP-Adressen zu beschränken.
+
+### Automatisierte Backups
+Das schönste Paperless-ngx-System nützt nichts, wenn Daten bei einem Bedienfehler oder Angriff verloren gehen. Daher ist es wichtig, regelmäßige Backups zu erstellen und diese an einem sicheren Ort zu speichern. Wir richten für unsere Kunden automatisierte Backup-Dienste ein, die regelmäßig Sicherungskopien ihrer Paperless-ngx-Instanz erstellen und auf externen Servern speichern.
+
+### Anbindung von Scannern und Netzlaufwerken
+Nutzer, die ihre Dokumente direkt von einem Scanner in Paperless-ngx einspeisen möchten, benötigen entsprechende Dateiserver, welche die richtigen Standards sprechen. Wir richten dafür Dateiserver ein, die zu ihrem Scanner passen und konfigurieren diese gemeinsam mit unseren Kunden, damit Dokumente automatisch in ihren Dokumenten-Workflow eingespeist werden können.
+
+
+Wer die nötigen Kenntnisse zum Selbsthosten nicht mitbringt, oder die Zeit sparen will, ist bei uns genau richtig: Wir bieten den sicheren Betrieb von Paperless-ngx-Instanzen für kleine Unternehmen, Freelancer und Selbstständige an.
+
+
+
+## Das Komplett-Paket: Einrichtung von Paperless-ngx mit Hilfsdiensten für 500 Euro
+
+Wer Paperless-ngx wirklich durchdacht einsetzen will, bekommt bei uns ein Komplettpaket für einmalig 500 Euro: Wir beraten Sie, richten die Instanz ein und kümmern uns um ein automatisches Backup, VPN-Zugang und die Anbindung von Netzlaufwerken oder Scannern. Im Paket enthalten:
+
+- Wahlweise auf dem Server des Kunden oder auf unseren eigenen Servern (Gebühren für das Hosting nicht enthalten)
+- Einrichtung von Paperless-ngx
+- Einrichtung von Hilfsdiensten
+  - Gotenberg/Tika für die einfache Konsumierung von mehr Office-Dokumentenformaten
+  - VPN-Server für den sicheren Zugriff auf ihre Instanz von überall
+  - Automatisierter Backup-Dienst auf externe Server (Gebühren nicht enthalten)
+  - Dateiserver für die Anbindung gängiger Scanner oder Netzlaufwerke
+- Gemeinsame Konfiguration von Scannern und Netzlaufwerken für ihren automatischen Dokumenten-Workflow
+- 30 Minuten Einweisung und Onboarding im Videocall
+- Optionale Support- und Wartungsleistungen für die laufende Betreuung der Instanz (z.B. Updates, Fehlerbehebung, Erweiterungen)
 
 <div class="flex gap-4 not-prose items-center justify-center">
   <LinkButton
@@ -60,11 +82,13 @@ Wer die nötigen Kenntnisse zum Selbsthosten nicht mitbringt, oder die Zeit spar
   />
 </div>
 
-Wir helfen unter anderem bei folgenden Themen rund um Paperless-ngx:
 
+
+## Wenn es noch individueller sein soll
+
+Wenn Sie noch individueller Anforderungen haben, die von unserem Komplett-Paket nicht abgedeckt werden, bieten wir auch folgende Dienstleistungen:
+- Entwicklung von Paperless-ngx Erweiterungen, Automatisierungen und Core-Features – zum Beispiel **automatisierte Dokumenten-Workflows mit <ToolTag>n8n</ToolTag>**
 - Planung und Beratung über den sicheren Einsatz von Paperless-ngx im geschäftlichen Umfeld (Ist es das richtige Werkzeug für mich?)
-- Betrieb und Wartung von Paperless-ngx-Instanzen (Managed Hosting) auf deutschen Servern und mit Backup-Lösung
-- Optional mit Gotenberg- und Tika-Integration
 - Zusätzliche Absicherung von öffentlichen Instanzen durch Multi-Faktor-Authentifizierung oder Single-Sign-On
 - Support bei Problemen und Fragen rund um Paperless-ngx
-- Entwicklung von Paperless-ngx Erweiterungen, Automatisierungen und Core-Features
+- Einbinden von KI-Funktionen, z.B. für die automatische Dokumenten-Klassifizierung oder "Talk to your Data"-Funktionen
