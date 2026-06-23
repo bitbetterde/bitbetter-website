@@ -1,0 +1,44 @@
+---
+title: Unsere Haltung zu KI-gestützter Softwareentwicklung
+image:
+  url: /images/blog/ai-engineering/ai-engineering-title.jpg
+  alt: Eine Illustration von einem Elefanten, der mit den Logos von großen LLM-Anbietern beklebt ist. Der Elefant ist in einem Raum, der mit vier Software-Entwickler:innen gefüllt ist, die auf ihre Laptops starren. Dieses Bild wurde mit ChatGPT generiert.
+subtitle: Der Elefant im Raum
+teaser: "Keine Branche ist stärker von den Auswirkungen von LLMs betroffen als die Softwareentwicklung. Die Branche scheint sich häufig in zwei extreme Lager zu spalten. Wir haben in den vergangenen zwei Jahren viel experimentiert und unsere eigene Position zu dem Thema gefunden: zwischen den Extremen."
+date: 2026-06-22
+authors:
+  - moritz
+keywords: ai, llm, vibecoding
+---
+
+In kaum einer anderen Branche sind die Effekte der "Large Language Models" (LLMs) so deutlich zu spüren wie in der Softwareentwicklung. Schon kurz nach dem Erscheinen der ersten Sprachmodelle wie GPT-3 im Jahr 2020 hat sich gezeigt, dass Programmieren und das Bauen von Software einer der Anwendungsbereiche von KI-Technologie ist, wo diese Modelle ihre Stärken am besten ausspielen können. Die Qualität der Ergebnisse von KI-basierten Code-Werkzeugen wie GitHub Copilot, ChatGPT Codex oder Anthropic's Claude hat sich innerhalb von nur rund zwei Jahren drastisch verbessert.
+
+## Unnötiger Fatalismus: Entwickler werden nicht so schnell verschwinden
+In vielen Diskussionen wird daher nun oft ein sehr schwarzes Bild gezeichnet: Der Beruf von Software-Entwicklern sei nun obsolet, weil Jede(r) mithilfe von LLMs jetz Software entwickeln kann. 
+Natürlich ist da etwas dran: Die Einstiegshürde für die Entwicklung von Software sinkt durch LLMs dramatisch. Jede(r) kann mit ein paar passenden Prompts ein LLM dazu überreden, ihm oder ihr eine Server-Anwendung, eine native App oder eine Webapplikation zu bauen. 
+Trotzdem sind wir der Meinung, dass unser Beruf nicht so schnell aussterben wird, und dass wir auch in naher Zukunft weiterhin genug zu tun haben werden. Denn zur Software-Entwicklung gehört mehr als nur das Schreiben von Code. Und was als schneller Prototyp oder "Proof of Concept" mit einem LLM gut funktioniert, kann noch sehr weit davon entfernt sein, in einem professionellen Kontext produktiv und langfristig zu laufen. Wir glauben fest daran, dass trotz LLM jemand die Komplexität von Software-Architekturen verstehen, die richtigen Entscheidungen treffen und die Verantwortung für die Qualität und Wartbarkeit von Software übernehmen muss.
+
+Aber natürlich ändert sich unser Arbeitsalltag durch die LLM-Welle dramatisch und wir müssen nun dringend den richtigen Umgang mit dieser Technologie erforschen und etablieren.
+
+## Risiken und Nachteile von LLMs sind enorm
+Wie so oft vermitteln soziale Medien in diesem Bereich oft nur die Extrempositionen: Einerseits gibt es eine große Gruppe von Menschen, die KI und LLMs pauschal ablehnen und verteufeln. Deren Gründe sind zu großen Teilen absolut valide: Der ökologische Fußabdruck beim Trainieren von LLMs ist absurd, und KI-Rechenzentren zwingen den Hardware-Markt dauerhaft in die Knie. Durch die Zentralisierung und Monopolisierung der KI-Infrastruktur bei sehr wenigen, amerikanischen Tech-Firmen ergeben sich gefährliche, politische Abhängigkeiten. Die Beschaffung von Trainingsdaten für LLM wirft Moral und Urheberrecht komplett über Bord und die Gefahr von Missbrauch und Desinformation ist immens.
+
+## Dogmatische Ablehnung ist trotzdem falsch
+Und obwohl das alles richtig ist, halten wir die Pauschale Ablehnung von LLMs, also das "Kopf in den Sand" stecken für nicht zielführend. Auch wenn die Produktivitätsgewinne durch den Einsatz von LLMs deutlich kleiner sind, als viele Hype-Influencer uns glauben machen wollen, so lassen sie sich dennoch nicht wegdiskutieren.
+Monotone und repetitive Aufgaben, umfangreiche Refactorings oder zusätzliche Reviews sind zum Beispiel Aufgaben die mit einem LLM heute bereits hervorragend funktionieren. Die Paste ist also sprichwörtlich längst aus der Tube und LLMs werden aus der Software-Entwicklung sicherlich nicht mehr verschwinden. Also müssen wir uns um eine Gestaltung der Technologie bemühen, welche die benannten Nachteile möglichst minimiert.
+
+## Local AI und Open Weights als mögliche Lösung
+Gegen einige der Nachteile können selbst gehostete Sprachmodelle eine Antwort sein. Es gibt mittlerweile eine Vielzahl von sogenannten "Open Weights"-Modellen (der Begriff "Open Source" ist hier fehl am Platz, da die meisten Modelle nicht unter einer Open-Source-Lizenz veröffentlicht werden, sondern lediglich die Gewichte des Modells frei verfügbar sind). Wir evaluieren und betreiben Modelle von Qwen, Kimi, DeepSeek und Co. auf eigener Hardware und versuchen diesen Ansatz auch bei unseren Kunden zu etablieren, gerade dort wo Datenschutz eine wichtige Rolle spielt, die sich mit Cloud-basierten LLMs nicht erfüllen lies.
+
+Richtlinien für die LLM-getriebene Software-Entwicklung bei bitbetter:
+- Wir vereinbaren mit jedem Kunden individuell, **ob und wie viel LLMs** im betreffenden Projekt eingesetzt werden sollen
+- Der Einsatz von LLMs muss **transparent und nachvollziehbar** sein, damit alle Beteiligten verstehen, was von einem LLM generiert wurde und was nicht
+- Code schreiben ist nur ein kleiner Teil unserer Dienstleistung – wir bieten Dinge, die LLMs nicht gut können: Zum Beispiel Beratung, Kommunikation, Support, Infrastruktur und Wartung
+- "Agentic Engineering" hat sich bei uns etabliert, vor allem in Form von **kleinteiligeren Aufgaben** und wenig großen und lang laufenden "One-Shot"-Prompts
+- (Produktions-)Code von einem LLM muss **immer von einem Menschen reviewed, getestet und "geowned" werden**, bevor er in Produktion geht
+- **Vibecoding** (also das unüberprüfte Vertrauen in die Ergebnisse von LLMs) ist bei uns **maximal für Prototypen und Experimente** erlaubt, aber nicht für die Produktion
+- Zentralisierte KI-Anbieter sind hochproblematisch, und wir versuchen stetig **selbst gehostete, lokale Modelle** zu evaluieren und zu betreiben
+- **Weniger ist in diesem Themenfeld oft mehr**
+- Komplexe LLM-Setups ersetzen keine gutes Entwickler-Team
+- Schlechte Prozesse bei der Software-Entwicklung werden durch LLMs nicht besser
+
