@@ -2,7 +2,7 @@
 import { SectionGridContainer } from '@components'
 import AuthorsByline from '@components/AuthorsByline'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { getEntry, getCollection } from 'astro:content'
+import { getEntry, getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   const result = content.map((post) => {
     return {
       params: {
-        slug: post.slug,
+        slug: post.id,
       },
       props: {
         post,
@@ -46,7 +46,19 @@ const formatDate = (date: Date) =>
     day: 'numeric',
   })
 
-const { Content } = await post.render()
+// A caption that consists solely of a URL is rendered as a "Quelle: …" link
+const isUrl = (value: string) => {
+  try {
+    const { protocol } = new URL(value.trim())
+    return protocol === 'http:' || protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+const stripProtocol = (value: string) => value.trim().replace(/^https?:\/\//, '')
+
+const { Content } = await render(post)
 const { title, subtitle, image, teaser, date, update, keywords } = post.data
 
 // JSON-LD Schema for Google Metadata (see https://developers.google.com/search/docs/appearance/structured-data/article)
@@ -86,11 +98,34 @@ const schema = {
   </SectionGridContainer>
   <SectionGridContainer className='bg-bb-grey-200' innerClassName=''>
     <div class='lg:col-start-2 lg:col-span-6 order-2 lg:order-1'>
-      <img
-        src={image.url}
-        alt={image.alt}
-        class='w-full h-auto aspect-video object-cover lg:-mb-20'
-      />
+      <figure>
+        <img
+          src={image.url}
+          alt={image.alt}
+          class:list={['w-full h-auto aspect-video object-cover', { 'lg:-mb-20': !image.caption }]}
+        />
+        {
+          image.caption && (
+            <figcaption class='pt-2 text-sm text-right text-black/60 lg:-mb-20'>
+              {isUrl(image.caption) ? (
+                <>
+                  Quelle:{' '}
+                  <a
+                    href={image.caption.trim()}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    class='underline hover:text-black'
+                  >
+                    {stripProtocol(image.caption)}
+                  </a>
+                </>
+              ) : (
+                image.caption
+              )}
+            </figcaption>
+          )
+        }
+      </figure>
     </div>
     <div class='lg:col-start-9 lg:col-span-4 px-5 lg:px-0 order-1 lg:order-2'>
       <p class='text-lg py-4 leading-[1.4em] text-black/75'>
