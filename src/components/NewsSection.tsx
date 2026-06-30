@@ -31,7 +31,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
               subtitle={post.data.subtitle}
               img={post.data.image.url}
               imgAlt={post.data.image.alt}
-              href={'/blog/' + post.slug + '/'}
+              href={'/blog/' + post.id + '/'}
               date={post.data.date.toLocaleDateString('de-DE', {
                 year: 'numeric',
                 month: 'long',

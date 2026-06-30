@@ -1,6 +1,6 @@
-import { getCollection, getEntry, type AnyEntryMap, type CollectionEntry } from 'astro:content'
+import { getCollection, getEntry, type CollectionKey, type CollectionEntry } from 'astro:content'
 
-async function findCollectionItemsByIdOrTitle<C extends keyof AnyEntryMap>(
+async function findCollectionItemsByIdOrTitle<C extends CollectionKey>(
   collection: C,
   ids: string[],
 ): Promise<Array<CollectionEntry<C>['data']>> {

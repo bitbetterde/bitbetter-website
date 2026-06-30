@@ -2,7 +2,7 @@
 import { SectionGridContainer } from '@components'
 import AuthorsByline from '@components/AuthorsByline'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { getEntry, getCollection } from 'astro:content'
+import { getEntry, getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   const result = content.map((post) => {
     return {
       params: {
-        slug: post.slug,
+        slug: post.id,
       },
       props: {
         post,
@@ -58,7 +58,7 @@ const isUrl = (value: string) => {
 
 const stripProtocol = (value: string) => value.trim().replace(/^https?:\/\//, '')
 
-const { Content } = await post.render()
+const { Content } = await render(post)
 const { title, subtitle, image, teaser, date, update, keywords } = post.data
 
 // JSON-LD Schema for Google Metadata (see https://developers.google.com/search/docs/appearance/structured-data/article)

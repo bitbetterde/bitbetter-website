@@ -1,7 +1,9 @@
-import { z, reference, defineCollection } from 'astro:content'
+import { reference, defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
 const toolsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/tools' }),
   schema: z.object({
     title: z.string(),
     image: z.string(),
@@ -11,7 +13,7 @@ const toolsCollection = defineCollection({
 })
 
 const blogCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     image: z.object({
@@ -30,7 +32,7 @@ const blogCollection = defineCollection({
 })
 
 const servicesCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
     image: z.object({
@@ -46,7 +48,7 @@ const servicesCollection = defineCollection({
 })
 
 const authorsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
   schema: z.object({
     firstName: z.string(),
     lastName: z.string(),
@@ -61,7 +63,7 @@ const authorsCollection = defineCollection({
 })
 
 const customersCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: './src/content/customers' }),
   schema: z.object({
     name: z.string(),
     logo: z.string(),

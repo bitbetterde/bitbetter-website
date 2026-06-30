@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro'
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import { getContainerRenderer as getMDXRenderer } from '@astrojs/mdx'
 
 import reactRenderer from '@astrojs/react/server.js'
@@ -26,7 +26,7 @@ export async function GET(context: APIContext) {
   // Loop over blog posts to create feed items for each, including full content.
   const feedItems: RSSFeedItem[] = []
   for (const post of posts) {
-    const { Content } = await post.render()
+    const { Content } = await render(post)
     const rawContent = await container.renderToString(Content)
 
     // Process and sanitize the raw content:
@@ -52,7 +52,7 @@ export async function GET(context: APIContext) {
       ...post.data,
       pubDate: post.data.date,
       description: post.data.teaser,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
       content,
     })
   }
