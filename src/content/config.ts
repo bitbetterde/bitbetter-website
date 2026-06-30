@@ -17,6 +17,7 @@ const blogCollection = defineCollection({
     image: z.object({
       url: z.string(),
       alt: z.string(),
+      caption: z.string().optional(),
     }),
     subtitle: z.string(),
     teaser: z.string(),
