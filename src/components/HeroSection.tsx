@@ -41,8 +41,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaptio
           </picture>
         </div>
       </div>
-      <BbBracket className='text-white scale-[140%] absolute w-72 -top-40 lg:top-0 -right-16 z-20' />
-      <BbBracket className='text-transparent stroke-black -rotate-10 scale-[140%] absolute w-72 -top-32 lg:top-8 -right-8 stroke-[0.5] z-20' />
+      <BbBracket
+        data-parallax-speed='-0.15'
+        className='text-white scale-[140%] absolute w-72 -top-40 lg:top-0 -right-16 z-20 will-change-transform'
+      />
+      <BbBracket
+        data-parallax-speed='-0.3'
+        className='text-transparent stroke-black -rotate-10 scale-[140%] absolute w-72 -top-32 lg:top-8 -right-8 stroke-[0.5] z-20 will-change-transform'
+      />
     </>
   )
 }

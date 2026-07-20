@@ -78,3 +78,33 @@ const latestBlogPosts = (await loadLatestBlogPostsWithAuthors()).slice(0, 2)
     <CustomersSectionDataWrapper />
   </SectionGridContainer>
 </BaseLayout>
+
+<script>
+  const parallaxElements = document.querySelectorAll<SVGElement>('[data-parallax-speed]')
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+  if (parallaxElements.length > 0 && !prefersReducedMotion.matches) {
+    let ticking = false
+
+    const update = () => {
+      for (const element of parallaxElements) {
+        const speed = Number(element.dataset.parallaxSpeed)
+        element.style.translate = `0 ${window.scrollY * speed}px`
+      }
+      ticking = false
+    }
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true
+          requestAnimationFrame(update)
+        }
+      },
+      { passive: true },
+    )
+
+    update()
+  }
+</script>
