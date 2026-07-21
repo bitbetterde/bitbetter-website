@@ -10,11 +10,11 @@ interface NewsSectionProps {
 const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
   return (
     <>
-      <div className={'text-black lg:col-span-3 lg:col-start-2'}>
+      <div className={'text-white lg:col-span-3 lg:col-start-2'}>
         <SectionMark
           title={"Was gibt's Neues"}
           className='mb-4 lg:mb-0'
-          classNameLine={'bg-black/75'}
+          classNameLine={'bg-white/75'}
           classNameText={'opacity-75'}
         />
       </div>
@@ -37,10 +37,11 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
                 month: 'long',
               })}
               author={post.authors[0]}
+              light
             />
           ))}
       </div>
-      <BbBracket className='scale-x-[-1.5] scale-y-150 md:scale-x-[-1.1] md:scale-y-[1.1] text-bb-grey-200 absolute w-56 md:w-72 top-72 md:top-24 -left-16' />
+      <BbBracket className='scale-150 md:scale-110 text-bb-grey-600 absolute w-56 md:w-72 top-72 md:top-12 -right-48 rotate-180' />
     </>
   )
 }

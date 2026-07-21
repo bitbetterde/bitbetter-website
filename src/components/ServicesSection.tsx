@@ -134,8 +134,14 @@ const ServicesSection: React.FC<TechItemProps> = ({
           </div>
         </div>
       </div>
-      <BbBracket className='text-bb-grey-200 -scale-x-140 scale-y-140 absolute w-72 top-[calc(50%-200px)] -left-8 hidden 2xl:block' />
-      <BbBracket className='text-transparent stroke-black -rotate-190 scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden 2xl:block' />
+      <BbBracket
+        data-parallax-speed='0.15'
+        className='text-bb-grey-200 -scale-x-140 scale-y-140 absolute w-72 top-[calc(50%-200px)] -left-8 hidden 2xl:block will-change-transform'
+      />
+      <BbBracket
+        data-parallax-speed='-0.25'
+        className='text-transparent stroke-black -rotate-190 scale-[140%] absolute w-72 top-[calc(50%-200px)] -left-8 stroke-[0.5] hidden 2xl:block will-change-transform'
+      />
     </>
   )
 }

@@ -97,5 +97,58 @@ const isProduction = import.meta.env.MODE === 'production'
         <CarbonBadge />
       </Footer>
     </SectionGridContainer>
+    <script>
+      const parallaxElements = document.querySelectorAll<SVGElement | HTMLElement>(
+        '[data-parallax-speed]',
+      )
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+      if (parallaxElements.length > 0 && !prefersReducedMotion.matches) {
+        let items: { element: SVGElement | HTMLElement; speed: number; anchor: number }[] = []
+        let ticking = false
+
+        // An element rests at its designed position when its center crosses the
+        // viewport center; the anchor is the scrollY at which that happens,
+        // clamped to the reachable scroll range (hero and footer can never
+        // reach the center).
+        const measure = () => {
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+          items = Array.from(parallaxElements, (element) => {
+            element.style.translate = '0 0'
+            const rect = element.getBoundingClientRect()
+            const center = rect.top + window.scrollY + rect.height / 2
+            const anchor = Math.min(Math.max(center - window.innerHeight / 2, 0), maxScroll)
+            return { element, speed: Number(element.dataset.parallaxSpeed), anchor }
+          })
+        }
+
+        const update = () => {
+          for (const { element, speed, anchor } of items) {
+            element.style.translate = `0 ${(window.scrollY - anchor) * speed}px`
+          }
+          ticking = false
+        }
+
+        const refresh = () => {
+          measure()
+          update()
+        }
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ticking) {
+              ticking = true
+              requestAnimationFrame(update)
+            }
+          },
+          { passive: true },
+        )
+        window.addEventListener('resize', refresh)
+        window.addEventListener('load', refresh)
+
+        refresh()
+      }
+    </script>
   </body>
 </html>

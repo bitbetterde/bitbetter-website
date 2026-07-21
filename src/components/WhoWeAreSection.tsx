@@ -7,15 +7,15 @@ interface WhoWeAreSectionProps {}
 const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = () => {
   return (
     <>
-      <div id={'whoweare'} className={'text-white lg:col-span-3 lg:col-start-2'}>
+      <div id={'whoweare'} className={'text-black lg:col-span-3 lg:col-start-2'}>
         <SectionMark
           title={'Das sind wir'}
           className='mb-4 lg:mb-0'
-          classNameLine={'bg-white/75'}
+          classNameLine={'bg-black/75'}
           classNameText={'opacity-75'}
         />
       </div>
-      <div className={'text-white flex-[2.58] mt-6 md:mt-0 col-span-7 z-20'}>
+      <div className={'text-bb-grey-500 flex-[2.58] mt-6 md:mt-0 col-span-7 z-20'}>
         <div className={'grid grid-cols-1 sm:grid-cols-7 gap-8'}>
           <div className={'col-span-1 sm:col-span-3'}>
             <Avatar
@@ -46,7 +46,7 @@ const WhoWeAreSection: React.FC<WhoWeAreSectionProps> = () => {
           </div>
         </div>
       </div>
-      <BbBracket className='text-bb-grey-600 absolute w-56 md:w-72 -bottom-40 md:-bottom-16 md:left-0 -left-12 z-10' />
+      <BbBracket className='text-bb-grey-200 absolute w-56 md:w-72 -bottom-40 md:-bottom-16 md:left-0 -left-12 z-10' />
     </>
   )
 }

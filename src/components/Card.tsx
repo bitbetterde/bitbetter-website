@@ -14,6 +14,7 @@ interface CardProps {
   showButton?: boolean
   date?: string
   author?: CollectionEntry<'authors'>
+  light?: boolean
 }
 
 const Card: React.FC<CardProps> = ({
@@ -27,6 +28,7 @@ const Card: React.FC<CardProps> = ({
   showButton,
   date,
   author,
+  light,
 }) => {
   return (
     <div className={`flex-1 flex flex-col gap-3 group ${className}`}>
@@ -48,33 +50,49 @@ const Card: React.FC<CardProps> = ({
       >
         {subtitle && (
           <h3
-            className={`font-sans text-lg/5 tracking-widest uppercase font-normal text-black opacity-70 ${
-              img ? 'pt-4' : ''
-            } line-clamp-1`}
+            className={`font-sans text-lg/5 tracking-widest uppercase font-normal ${
+              light ? 'text-white' : 'text-black'
+            } opacity-70 ${img ? 'pt-4' : ''} line-clamp-1`}
             title={subtitle}
           >
             {subtitle}
           </h3>
         )}
         {title && (
-          <h2 className='text-black font-grotesk font-medium text-2xl/8 line-clamp-2'>{title}</h2>
+          <h2
+            className={`${light ? 'text-white' : 'text-black'} font-grotesk font-medium text-2xl/8 line-clamp-2`}
+          >
+            {title}
+          </h2>
         )}
       </ConditionalWrapper>
-      {teaser && <p className='pt-4 text-lg/6 text-black/75'>{teaser}</p>}
+      {teaser && (
+        <p className={`pt-4 text-lg/6 ${light ? 'text-white/75' : 'text-black/75'}`}>{teaser}</p>
+      )}
       {(date || author) && (
-        <div className='flex flex-wrap gap-2 items-center font-medium text-black/50'>
+        <div
+          className={`flex flex-wrap gap-2 items-center font-medium ${
+            light ? 'text-white/50' : 'text-black/50'
+          }`}
+        >
           {date && <p className='text-lg font-normal'>{date}</p>}
           {author && (
             <>
               {'·'}
-              <AuthorsByline authors={[author]} inline />
+              <AuthorsByline authors={[author]} inline light={light} />
             </>
           )}
         </div>
       )}
 
       {href && showButton && (
-        <LinkButton small caption={'Weiterlesen'} variant='dark' href={href} className='mt-2' />
+        <LinkButton
+          small
+          caption={'Weiterlesen'}
+          variant={light ? 'white' : 'dark'}
+          href={href}
+          className='mt-2'
+        />
       )}
     </div>
   )

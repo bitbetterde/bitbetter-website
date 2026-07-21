@@ -98,8 +98,14 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
           </div>
         </div>
       </div>
-      <BbBracket className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block' />
-      <BbBracket className='text-white scale-90 rotate-180 absolute w-72 top-44 right-16 lg:left-60 hidden md:block' />
+      <BbBracket
+        data-parallax-speed='0.2'
+        className='text-white scale-90 absolute w-72 -bottom-16 -left-20 hidden md:block will-change-transform'
+      />
+      <BbBracket
+        data-parallax-speed='0.1'
+        className='text-white scale-90 rotate-180 absolute w-72 top-44 right-16 lg:left-60 hidden md:block will-change-transform'
+      />
     </>
   )
 }

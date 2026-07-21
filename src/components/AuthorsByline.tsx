@@ -4,11 +4,16 @@ import Avatar from './Avatar'
 interface AuthorsBylineProps {
   authors: CollectionEntry<'authors'>[]
   inline?: boolean
+  light?: boolean
 }
 
-const AuthorsByline: React.FC<AuthorsBylineProps> = ({ authors, inline }) => {
+const AuthorsByline: React.FC<AuthorsBylineProps> = ({ authors, inline, light }) => {
   return (
-    <p className={`text-lg ${inline ? 'font-normal text-black/50' : 'font-medium pt-4'}`}>
+    <p
+      className={`text-lg ${
+        inline ? `font-normal ${light ? 'text-white/50' : 'text-black/50'}` : 'font-medium pt-4'
+      }`}
+    >
       {inline ? 'v' : 'V'}on{' '}
       <Avatar
         jpgSrc={authors[0]?.data.image.default}
