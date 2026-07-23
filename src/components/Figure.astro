@@ -1,0 +1,36 @@
+---
+import { isUrl, stripProtocol } from '../util/caption'
+
+interface Props {
+  src: string
+  alt?: string
+  caption?: string
+}
+
+const { src, alt = '', caption } = Astro.props
+---
+
+<figure>
+  <img src={src} alt={alt} class='mx-auto' />
+  {
+    caption && (
+      <figcaption class='mt-1 text-sm text-right text-black/60'>
+        {isUrl(caption) ? (
+          <>
+            Quelle:{' '}
+            <a
+              href={caption.trim()}
+              target='_blank'
+              rel='noopener noreferrer'
+              class='underline hover:text-black'
+            >
+              {stripProtocol(caption)}
+            </a>
+          </>
+        ) : (
+          caption
+        )}
+      </figcaption>
+    )
+  }
+</figure>

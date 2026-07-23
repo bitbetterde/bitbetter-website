@@ -11,6 +11,7 @@ authors:
   - moritz
 keywords: nextcloud, gruppenordner, gruppen, teams, freigabe, teilen, share
 ---
+import Figure from "@components/Figure.astro"
 
 Die Verbreitung und Popularität von Open-Source-Software hat im Jahr 2023 noch einmal deutlich an Fahrt aufgenommen. Nicht zuletzt durch große Umwerfungen im Social-Media-Bereich waren Open-Source-Alternativen zu etablierten Software-Lösungen in 2023 populärer denn je. Dabei kommt man natürlich nicht um das [Nextcloud-Projekt](https://nextcloud.com/) herum. Gerne und häufig wird die Software als Vorzeige-Alternative zu kommerziellen und zentralisierten Cloudspeicher-Anbietern wie Dropbox, Google Drive oder Microsoft One Drive und Sharepoint genannt. Auf den ersten Blick ist das eine tolle Idee, aber im Detail sorgt Nextcloud leider oft für mehr Probleme als es löst: Zum Beispiel bei der Kernaufgabe "Filesharing". 
 
@@ -58,9 +59,10 @@ Teams sind vor allem für Szenarien geeignet, in denen sich Nutzer selbst organi
 
 Natürlich ist es eine Luxus-Situation wenn es ein großes Ökosystem rund um Nextcloud gibt, mit verschiedenen Ansätzen zum Teilen von Objekten. Das Problem ist also nicht die Existenz der einzelnen Methoden, sondern ihre Koexistenz. Viele Nutzer kennen die Alternativen zur einfachen Share-Funktion und ihre jeweiligen Nachteile gar nicht. Auf der anderen Seite wird es vor allem dann problematisch, wenn mehrere Methoden gleichzeitig aktiv sind. Denn ein Groupfolder kann zusätzlich auch noch von einer Person "geteilt" werden. Es ist also denkbar, dass zwei Personen auf den gleichen Ordner zugreifen – eine Person über einen Share, und eine andere über ihre Gruppenzugehörigkeit. Das Erkennen der jeweiligen Freigabe-Methode durch das passende Icon in der Weboberfläche ist also eine wichtige Fähigkeit für Nextcloud-Nutzer.
 
-<figure class="[&>p>img]:mx-auto">
-![](/images/blog/nextcloud-freigabe-chaos/nextcloud-shares.png)
-</figure>
+<Figure
+  src="/images/blog/nextcloud-freigabe-chaos/nextcloud-shares.png"
+  alt="Die Icons der verschiedenen Freigabe-Methoden in der Nextcloud-Weboberfläche"
+/>
 
 Admins können die einzelnen Methoden zwar deaktivieren, aber das hat Auswirkungen auf die Funktionalität: Wer ausschließlich mit Groupfolders arbeitet kann die "Share"-Funktion komplett deaktivieren, und so Verwirrungen vorbeugen. Wer aber weiterhin gelegentlich Dateien und Ordner mit externen Personen über einen Link teilen möchte, der muss die Share-Funktion weiterhin aktiviert lassen und muss somit seinen Nutzern beibringen, für welche Situation welche Freigabe-Methode die beste ist.
 

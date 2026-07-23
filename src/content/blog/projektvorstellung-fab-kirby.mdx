@@ -12,17 +12,24 @@ keywords: projekt, fab region, fab city, kirby, react
 ---
 import ToolTag from "@components/ToolTag.astro"
 import { LinkButton } from "@components";
+import Figure from "@components/Figure.astro"
 
 In den letzten Monaten durften wir die Webseite der [Fab Region Bergisches Städtedreieck](https://www.fab-bergisch.org/) erneuern. Dabei haben wir existierende UI-Komponenten mit einem modernen CMS verbunden, um eine nutzerfreundliche und flexible Open-Source-Lösung zu schaffen. 
 
 Unser Kunde, das [Collaborating Centre on Sustainable Consumption and Production (CSCP)](https://www.cscp.org/), beteiligt sich und fördert die Initiative "Fab Region Bergisches Städtedreieck". Diese ist Teil der weltweiten [Fab-City-Initiative](https://fab.city/), die sich zum Ziel gesetzt hat, Städte nachhaltiger und widerstandsfähiger zu machen, indem sie lokale Produktion und Kreislaufwirtschaft fördert. Die Fab Region vernetzt Akteure aus den Bereichen Bildung, Wirtschaft, Politik und Zivilgesellschaft, um gemeinsam an einer nachhaltigen Zukunft zu arbeiten. Durch unsere Arbeit für die Fab-City-Initiative in Hamburg sind wir mit dem Konzept bereits gut vertraut.
 
-<figure class="[&>p>img]:mx-auto">![Ein Screenshot des Kirby Admin Panels der neuen Webseite](/images/blog/fab-kirby/fab-region-kirby-panel.jpg)</figure>
+<Figure
+  src="/images/blog/fab-kirby/fab-region-kirby-panel.jpg"
+  alt="Ein Screenshot des Kirby Admin Panels der neuen Webseite"
+/>
 
 ## Vorarbeiten: UI-Komponentenbibliothek mit React
 Bereits 2022 hatten wir für die [Fab City Hamburg](https://www.fabcity.hamburg) eine [React-basierte Komponentenbibliothek namens `fcos-suite-ui`](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-ui) sowie eine [interaktive "Fab Map"](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-map) unter einer Open-Source-Lizenz entwickelt. Im damaligen Projekt wurde diese UI-Bibliothek mit dem statischen Webseiten-Generator <ToolTag>Astro</ToolTag> kombiniert, um eine performante und moderne Webseite zu erstellen. Die Benutzung eines solchen Site Generators ist aber technisch oft kein adäquater Ersatz für die komfortablen Benutzeroberflächen klassischer CMS-Systeme wie Wordpress und Co. Um die Webseite also potenziell auch einem größeren Redaktionsteam ohne technisches Wissen zugänglich zu machen, wollte das Team der "Fab Region Bergisches Städtedreieck" unsere UI-Komponenten mit einem nutzerfreundlichen CMS verbinden.
 
-<figure class="[&>p>img]:mx-auto">![Ein Screenshot des Kirby Admin Panels der neuen Webseite](/images/blog/fab-kirby/fab-region-map.jpg)</figure>
+<Figure
+  src="/images/blog/fab-kirby/fab-region-map.jpg"
+  alt="Ein Screenshot der Fab Region Map auf der neuen Webseite"
+/>
 
 ## Kirby als flexible und aufgeräumte CMS-Lösung
 Nach dem Abklären der individuellen Anforderungen, haben wir uns dazu entschieden, <ToolTag>Kirby</ToolTag> CMS für diese Aufgabe zu verwenden. Kirby ist ein dateibasiertes CMS, das sehr flexibel und einfach zu bedienen ist. Es bietet eine gute Balance zwischen Benutzerfreundlichkeit und Anpassungsfähigkeit, was es ideal für Projekte macht, die sowohl Redakteure als auch Entwickler ansprechen sollen. Außerdem haben wir mit Kirby in der Vergangenheit bereits viele gute Erfahrungen sammeln können.

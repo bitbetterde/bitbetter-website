@@ -4,6 +4,7 @@ import AuthorsByline from '@components/AuthorsByline'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getEntry, getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { isUrl, stripProtocol } from '../../util/caption'
 
 interface Props {
   post: CollectionEntry<'blog'>
@@ -45,18 +46,6 @@ const formatDate = (date: Date) =>
     month: 'long',
     day: 'numeric',
   })
-
-// A caption that consists solely of a URL is rendered as a "Quelle: …" link
-const isUrl = (value: string) => {
-  try {
-    const { protocol } = new URL(value.trim())
-    return protocol === 'http:' || protocol === 'https:'
-  } catch {
-    return false
-  }
-}
-
-const stripProtocol = (value: string) => value.trim().replace(/^https?:\/\//, '')
 
 const { Content } = await render(post)
 const { title, subtitle, image, teaser, date, update, keywords } = post.data

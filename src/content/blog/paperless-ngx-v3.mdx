@@ -1,0 +1,92 @@
+---
+title: "Paperless-ngx v3: Das sind die neuen KI-Features"
+image:
+  url: /images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-rag.jpg
+  alt: "Die drei Icons für verschiedene Freigabe-Methoden in Nextcloud: Shares, Gruppenordner und Teams"
+subtitle: RAG und LLM-Support kommen jetzt ab Werk
+teaser: Mit der Version 3 von Paperless-ngx wird aus dem digitalen Dokumentenarchiv erstmals auch ein Assistent, mit dem man über seine eigene Dokumente sprechen kann. Die neue Version kann Metadaten KI-basiert vorschlagen und Antworten über einzelne Dokumente oder den gesamten Datenbestand mittels RAG beantworten.
+date: 2026-07-23
+authors:
+  - moritz
+keywords: paperless, paperless-ngx, rag, llm, ki
+---
+import ToolTag from "@components/ToolTag.astro"
+import Figure from "@components/Figure.astro"
+
+Das Auffinden und Durchsuchen von Dokumenten in größeren Datenmengen gilt als ein Anwendungsfall, bei dem Sprachmodelle besonders hilfreich sein können. In Kombination mit einer sogenannten semantischen Suche, können Sprachmodelle nämlich sowohl Dokumente in einem großen Datenbestand finden, als auch inhaltliche Fragen zu diesen Dokumenten beantworten. So ein "Talk to your data"-Szenario kann jetzt mit Paperless-ngx umgesetzt werden.
+
+Bisher musste man für sowas auf externe Tools oder Erweiterungen zurückgreifen (z.B. [Paperless AI](https://github.com/clusterzx/paperless-ai) oder [paperless-gpt](https://github.com/icereed/paperless-gpt)). Diese Tools waren aber stets nur über externe Benutzeroberflächen nutzbar, und nicht in <ToolTag>Paperless-ngx</ToolTag> integriert. Mit der Version 3 ändert sich das nun.
+
+## Keine Panik: Alle KI-Funktionen sind optional
+
+Sämtliche neuen KI-Funktionen sind standardmäßig ausgeschaltet und optional. Paperless-ngx kann weiterhin auch ohne KI-Anbindung eingesetzt werden. Zum Aktivieren müssen entweder die [entsprechenden Umgebungsvariablen](https://docs.paperless-ngx.com/configuration/#ai) gesetzt werden, oder sie müssen über die Benutzeroberfläche unter "Configuration -> AI Settings" eingestellt werden. Wer die Features nutzen möchte, muss sich entscheiden, ob externe Anbieter wie Anthropics Claude oder OpenAI genutzt werden sollen (dann braucht der Nutzer dort entsprechende Accounts), oder ob man die KI-Modelle selber betreiben möchte (das ist in Sachen Datenschutz natürlich deutlich besser, allerdings mit einigem Aufwand verbunden und benötigt Expertise und leistungsstarke Hardware – bei Interesse machen wir gerne passende Angebote).
+
+Bei aktivierten KI-Funktionen kommt KI an drei bzw. vier verschiedenen Stellen in der Paperless-ngx-Oberfläche zum Einsatz:
+- Beim Chat-Dialog in der Detailansicht eines einzigen Dokuments
+- Beim Chat-Dialog in der Dokumentenübersicht
+- Beim Vorschlag-Button auf der Detailseite
+- Optional: Remote OCR über Microsoft Azure AI Document Intelligence
+
+
+## Semantische Suche: Weg von exakten Suchbegriffen, hin zur Bedeutung
+
+Paperless-ngx konnte Dokumente schon bisher per Volltext durchsuchen. Das passiert allerdings nur auf Basis exakt übereinstimmender Suchbegriffe. Wer nach "Schule" sucht, wird auch nur Dokumente finden, welche dieses Wort genau so beinhalten. In der neuen Version 3 kann man mit dem neuen Chat-Button in der Header-Leiste eine semantische Suche starten. Mit einem Prompt wie "Welche Dokumente behandeln das Thema Schule?" werden nicht nur Dokumente gefunden, die das Wort "Schule" beinhalten, sondern auch Dokumente mit Wörtern, die inhaltlich ähnlich sind, z.B. Begriffe wie "Bildung", "Lehrplan" oder "Unterricht". Das funktioniert auch über mehrere Sprachen hinweg (ein deutscher Prompt findet auch semantische Ergebnisse in einem englischsprachigen Dokument).
+
+Dafür zerlegt Paperless-ngx den Textinhalt eines Dokuments in Abschnitte und erzeugt daraus sogenannte Embeddings: Vektoren (Zahlenfolgen), die nicht bloß identische Wörter, sondern inhaltliche Ähnlichkeit abbilden. Diese Vektoren werden in einem Vektor-Index abgelegt. Neben dem OCR-Text werden auch Notizen, benutzerdefinierte Felder und Metadaten wie Titel, Tags, Korrespondent, Dokumenttyp, Speicherpfad, Archivseriennummer und Datumsangaben dafür verwendet. Dieser Vektor-Index liegt lokal im Paperless-Ordner und wird als SQLite-Datenbank mit der `sqlite-vec`-Erweiterung gespeichert.
+
+Dieser Index ist die Grundlage für die sogenannte Retrieval-Augmented Generation, kurz RAG. Auf diese Weise kann ein LLM mit individuellen Daten angereichert werden, ohne dass das Modell neu trainiert werden muss. Bei jeder Anfrage über den neuen Chat-Dialog sucht Paperless-ngx nach relevanten Ausschnitten aus den Dokumenten und gibt diese an das zugrundeliegende Modell weiter. Das Modell kann dann die entsprechende Antwort generieren und dabei die mitgelieferten Dokumentausschnitte als Kontext nutzen. 
+
+
+## Mit dem eigenen Dokumenten-Archiv chatten
+
+Dieser Tech-Stack kommt also immer zum Einsatz wenn ein Chat über die Headerleiste geöffnet wird. Je nach geöffneter Ansicht bekommt das Sprachmodell allerdings einen anderen Kontext übergeben: Auf der Detailseite sollte sich eine Frage immer auf das gerade geöffnete Dokument beziehen. In anderen Ansichten durchsucht der Chat stets alle Dokumente, die der angemeldete Benutzer gerade sehen darf. Aber Achtung: Der Inhalt eines Chats wird nicht gespeichert. Wenn  die Seite gewechselt wird, ist der Chat-Verlauf weg.
+
+<Figure
+  src="/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-chat.jpg"
+  alt="Screenshot des Chat-Dialogs in Paperless-ngx v3 mit Frage und Antwort zum Dokumentenbestand"
+  caption="Der neue Header-Button in der Headerleiste beantwortet wahlweise Fragen zum gesamten Dokumentenbestand oder nur zu einem spezifischen Dokument."
+/>
+
+Mit dieser neuen Chat-Funktion werden zum Beispiel solche Fragen ermöglicht:
+
+- "Wann endet die Vertragslaufzeit in diesem Vertrag?"
+- "Bei welchen meiner Dokumente handelt es sich um Mobilfunkrechnungen?"
+- "Wie hoch war die letzte Beitragsanpassung meiner Versicherung?"
+
+Leider ist die Ausgabe der Ergebnisse an einigen Stellen noch verbesserungswürdig. Im Chat-Fenster können aktuell nur drei referenzierte Dokumente dargestellt werden. Eine größere Ansicht des Chatverlaufs und auch eine visuelle Zuordnung zu einzelnen Textstellen fehlt aktuell noch.
+
+## Bessere Vorschläge für Metadaten-Felder
+
+Außerdem kann der bekannte „Vorschlagen“-Button auf der Dokumentdetailseite in Version 3 nun deutlich mehr (erkennbar am kleinen Dropdown-Pfeil neben dem Button). Mithilfe des konfigurierten LLMs schlägt Paperless-ngx automatisch passende Werte für die wichtigsten Metadatenfelder vor:
+
+- einen kurzen Titel
+- Tags
+- Korrespondenten beziehungsweise erwähnte Personen oder Organisationen
+- Dokumenttyp und Speicherpfad
+
+Neue, bislang unbekannte Tags, Korrespondenten und Dokumenttypen erscheinen separat und lassen sich direkt aus dem Vorschlagsmenü (der kleine Dropdown-Pfeil) übernehmen – oder eben nicht.
+
+<Figure
+  src="/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-suggestions.jpg"
+  alt="Screenshot des Vorschlagsmenüs auf der Dokumentdetailseite mit KI-generierten Metadaten-Vorschlägen"
+  caption="Das erweiterte Vorschlagsmenü mit KI-generierten Metadaten-Vorschlägen"
+/>
+
+
+
+## Remote OCR mit Azure AI Document Intelligence
+
+Die Version 3 bringt außerdem ein weiteres Feature mit, welches potenziell mit KI umgesetzt wird: Remote OCR. Das heißt, ein externer Dienst übernimmt die Texterkennung, die normalerweise von Paperless-ngx erledigt wird. Da dieses Feature potenziell auch für nicht-KI-unterstützte Dienste funktionieren könnte, wird es auch separat konfiguriert. Da derzeit aber ausschließlich der Microsoft-Dienst "Azure AI Document Intelligence" unterstützt wird, ist es aktuell also faktisch auch ein KI-Feature. Angeblich sollen die Ergebnisse dieser Azure-Texterkennung deutlich besser sein als die Ergebnisse der lokalen Texterkennung. Wir haben noch keine Erfahrungen mit diesem Feature sammeln können.
+
+
+## Ein erster Schritt zum schlaueren Archive – aber noch viele Baustellen
+
+Als Endanwender hassen wir die Tendenz von allen Software-Herstellern uns mit KI-Funktionen in sämtlichen Programmen zu überhäufen. In vielen Kontexten sind KI-Funktionen vollkommen fehl am Platz und reiner Selbstzweck und Geldmacherei. Ein Dokumentenmanagementsystem ist allerdings ein guter Anwendungsfall für KI, Sprachmodelle und semantische Suche. Wenn man irgendwo KI einbauen sollte, dann hier.
+
+Die neuen KI-Funktionen in Paperless-ngx v3 sind daher in unseren Augen ein guter Schritt in die richtige Richtung. Allerdings sind sie noch etwas kantig und brauchen noch Einiges an Feinschliff in den nächsten Versionen. Einige Punkte, die uns noch fehlen, sind zum Beispiel:
+- Eine Möglichkeit, Chat-Verläufe zu speichern und wieder aufzurufen
+- Die Unterstützung von Markdown-Syntax in den Antworten des LLMs
+- Bessere Steuerung des aktuellen Kontexts, der an das LLM übergeben wird (z.B. nur bestimmte Dokumente oder bestimmte Metadatenfelder)
+- UI-Verbesserungen rund um den Chat-Dialog, z.B. eine größere Ansicht, besseres Auto-Scrolling, bessere Darstellung von referenzierten Dokumenten, etc.
+
+Wir empfehlen unseren Kunden aktuell, die KI-Funktionen aktuell nur als Test/Prototyp zu sehen, und sich nicht im produktiven Betrieb darauf zu verlassen. Wir versuchen auch in den nächsten Monaten die Verbesserung der KI-Features in der Paperless-ngx-Community mitzugestalten und dazu beizutragen, dass sie bald auch reif für den produktiven Einsatz sind.
