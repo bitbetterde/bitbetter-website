@@ -12,14 +12,15 @@ keywords: paperless, paperless-ngx, rag, llm, ki
 ---
 import ToolTag from "@components/ToolTag.astro"
 import Figure from "@components/Figure.astro"
+import { LinkButton } from "@components"
 
-Das Auffinden und Durchsuchen von Dokumenten in größeren Datenmengen gilt als ein Anwendungsfall, bei dem Sprachmodelle besonders hilfreich sein können. In Kombination mit einer sogenannten semantischen Suche, können Sprachmodelle nämlich sowohl Dokumente in einem großen Datenbestand finden, als auch inhaltliche Fragen zu diesen Dokumenten beantworten. So ein "Talk to your data"-Szenario kann jetzt mit Paperless-ngx umgesetzt werden.
+Das Auffinden und Durchsuchen von Dokumenten in größeren Datenmengen gilt als ein Anwendungsfall, bei dem Sprachmodelle besonders hilfreich sein können. In Kombination mit einer sogenannten semantischen Suche, können Sprachmodelle nämlich sowohl Dokumente in einem großen Datenbestand finden, als auch inhaltliche Fragen zu diesen Dokumenten beantworten. So ein "Talk to your data"-Szenario kann jetzt mit Paperless-ngx in Version 3 umgesetzt werden.
 
-Bisher musste man für sowas auf externe Tools oder Erweiterungen zurückgreifen (z.B. [Paperless AI](https://github.com/clusterzx/paperless-ai) oder [paperless-gpt](https://github.com/icereed/paperless-gpt)). Diese Tools waren aber stets nur über externe Benutzeroberflächen nutzbar, und nicht in <ToolTag>Paperless-ngx</ToolTag> integriert. Mit der Version 3 ändert sich das nun.
+Bisher musste man für sowas auf externe Tools oder Erweiterungen zurückgreifen (z.B. [Paperless AI](https://github.com/clusterzx/paperless-ai) oder [paperless-gpt](https://github.com/icereed/paperless-gpt)). Diese Tools waren aber stets nur über externe Benutzeroberflächen nutzbar, nicht in <ToolTag>Paperless-ngx</ToolTag> integriert und waren teilweise auch sehr kleien Ein-Personen-Projekte mit ungewisser Zukunft. Mit der Version 3 ändert sich das nun und Paperless-ngx bringt KI-Funktionen direkt ab Werk mit.
 
 ## Keine Panik: Alle KI-Funktionen sind optional
 
-Sämtliche neuen KI-Funktionen sind standardmäßig ausgeschaltet und optional. Paperless-ngx kann weiterhin auch ohne KI-Anbindung eingesetzt werden. Zum Aktivieren müssen entweder die [entsprechenden Umgebungsvariablen](https://docs.paperless-ngx.com/configuration/#ai) gesetzt werden, oder sie müssen über die Benutzeroberfläche unter "Configuration -> AI Settings" eingestellt werden. Wer die Features nutzen möchte, muss sich entscheiden, ob externe Anbieter wie Anthropics Claude oder OpenAI genutzt werden sollen (dann braucht der Nutzer dort entsprechende Accounts), oder ob man die KI-Modelle selber betreiben möchte (das ist in Sachen Datenschutz natürlich deutlich besser, allerdings mit einigem Aufwand verbunden und benötigt Expertise und leistungsstarke Hardware – bei Interesse machen wir gerne passende Angebote).
+Sämtliche neuen KI-Funktionen sind standardmäßig ausgeschaltet und optional. Paperless-ngx kann weiterhin auch komplett ohne KI-Anbindung eingesetzt werden. Zum Aktivieren müssen entweder die [entsprechenden Umgebungsvariablen](https://docs.paperless-ngx.com/configuration/#ai) gesetzt werden, oder sie müssen über die Benutzeroberfläche unter "Configuration -> AI Settings" eingestellt werden. Wer die Features nutzen möchte, muss sich außerdem entscheiden, ob externe Anbieter wie Anthropics Claude oder OpenAI genutzt werden sollen (dann braucht der Nutzer dort entsprechende Accounts), oder ob man die KI-Modelle selber betreiben möchte (das ist in Sachen Datenschutz natürlich deutlich besser, allerdings mit einigem Aufwand verbunden und benötigt Expertise und leistungsstarke Hardware – bei Interesse machen wir gerne passende Angebote).
 
 Bei aktivierten KI-Funktionen kommt KI an drei bzw. vier verschiedenen Stellen in der Paperless-ngx-Oberfläche zum Einsatz:
 - Beim Chat-Dialog in der Detailansicht eines einzigen Dokuments
@@ -79,14 +80,29 @@ Neue, bislang unbekannte Tags, Korrespondenten und Dokumenttypen erscheinen sepa
 Die Version 3 bringt außerdem ein weiteres Feature mit, welches potenziell mit KI umgesetzt wird: Remote OCR. Das heißt, ein externer Dienst übernimmt die Texterkennung, die normalerweise von Paperless-ngx erledigt wird. Da dieses Feature potenziell auch für nicht-KI-unterstützte Dienste funktionieren könnte, wird es auch separat konfiguriert. Da derzeit aber ausschließlich der Microsoft-Dienst "Azure AI Document Intelligence" unterstützt wird, ist es aktuell also faktisch auch ein KI-Feature. Angeblich sollen die Ergebnisse dieser Azure-Texterkennung deutlich besser sein als die Ergebnisse der lokalen Texterkennung. Wir haben noch keine Erfahrungen mit diesem Feature sammeln können.
 
 
-## Ein erster Schritt zum schlaueren Archive – aber noch viele Baustellen
+## Ein erster Schritt zum schlaueren Archiv – aber noch viele Baustellen
 
 Als Endanwender hassen wir die Tendenz von allen Software-Herstellern uns mit KI-Funktionen in sämtlichen Programmen zu überhäufen. In vielen Kontexten sind KI-Funktionen vollkommen fehl am Platz und reiner Selbstzweck und Geldmacherei. Ein Dokumentenmanagementsystem ist allerdings ein guter Anwendungsfall für KI, Sprachmodelle und semantische Suche. Wenn man irgendwo KI einbauen sollte, dann hier.
 
 Die neuen KI-Funktionen in Paperless-ngx v3 sind daher in unseren Augen ein guter Schritt in die richtige Richtung. Allerdings sind sie noch etwas kantig und brauchen noch Einiges an Feinschliff in den nächsten Versionen. Einige Punkte, die uns noch fehlen, sind zum Beispiel:
 - Eine Möglichkeit, Chat-Verläufe zu speichern und wieder aufzurufen
-- Die Unterstützung von Markdown-Syntax in den Antworten des LLMs
-- Bessere Steuerung des aktuellen Kontexts, der an das LLM übergeben wird (z.B. nur bestimmte Dokumente oder bestimmte Metadatenfelder)
+- Die Unterstützung von Markdown-Syntax (Textformatierungen, Tabellen, etc.) in den Antworten des LLMs
+- Bessere Steuerung des aktuellen Kontexts, der an das LLM übergeben wird (z.B. nur bestimmte Dokumente oder bestimmte Metadatenfelder übergeben)
 - UI-Verbesserungen rund um den Chat-Dialog, z.B. eine größere Ansicht, besseres Auto-Scrolling, bessere Darstellung von referenzierten Dokumenten, etc.
 
-Wir empfehlen unseren Kunden aktuell, die KI-Funktionen aktuell nur als Test/Prototyp zu sehen, und sich nicht im produktiven Betrieb darauf zu verlassen. Wir versuchen auch in den nächsten Monaten die Verbesserung der KI-Features in der Paperless-ngx-Community mitzugestalten und dazu beizutragen, dass sie bald auch reif für den produktiven Einsatz sind.
+<div class="flex gap-4 not-prose items-center justify-center">
+  <LinkButton
+    variant={'dark'}
+    caption={"Gespräch buchen"}
+    href={'https://cal.bitbetter.de/team/bitbetter/paperless-ngx'}
+    newTab={true}
+  />
+  <LinkButton
+    variant="grey"
+    caption={"E-Mail schreiben"}
+    href={'mailto:info@bitbetter.de'}
+  />
+</div>
+
+
+Wir empfehlen unseren Kunden aktuell, die KI-Funktionen aktuell nur als Test/Prototyp anzusehen, und sich noch nicht im produktiven Betrieb darauf zu verlassen. Wir versuchen auch in den nächsten Monaten die Verbesserung der KI-Features in der Paperless-ngx-Community selbst mitzugestalten und dazu beizutragen, dass sie bald auch reif für den produktiven Einsatz sind. Wenn Sie Interesse an einer Paperless-ngx-Instanz mit KI-Funktionen haben (optional auch mit selbstgehostetem LLM), dann sprechen Sie uns gerne an.
