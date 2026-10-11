@@ -42,7 +42,9 @@ const isProduction = import.meta.env.MODE === 'production'
 <html lang='de' class='overflow-x-hidden scroll-smooth'>
   <head>
     <meta charset='utf-8' />
-    <link rel='icon' type='image/png' href='/bb_favicon.png' />
+    {/* The .ico is the fallback. It needs `sizes`, or Chrome prefers it over the SVG. */}
+    <link rel='icon' href='/favicon.ico' sizes='32x32' />
+    <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <meta name='generator' content={Astro.generator} />
     <link rel='sitemap' href='/sitemap-index.xml' />
