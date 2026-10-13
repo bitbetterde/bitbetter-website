@@ -13,32 +13,35 @@
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.10",
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/markdown-satteri": "^0.3.2",
-    "@astrojs/mdx": "^6.0.3",
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/markdown-satteri": "^0.4.3",
+    "@astrojs/mdx": "^8.0.3",
+    "@astrojs/react": "^7.0.1",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.3",
-    "@fontsource-variable/space-grotesk": "^5.2.10",
-    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
     "@phosphor-icons/core": "^2.1.1",
     "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.2",
-    "astro": "^6.4.8",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "rehype-external-links": "^3.0.0",
-    "tailwindcss": "^4.3.2",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "prettier": "^3.9.4",
-    "prettier-plugin-astro": "^0.14.1",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
     "vite-plugin-svgr": "^5.2.0"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx,astro,css,md}": "prettier --write"
+    "*.{js,mjs,ts,jsx,tsx,astro,css,md}": "prettier --write"
   }
 }

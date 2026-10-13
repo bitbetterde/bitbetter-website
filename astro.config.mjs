@@ -3,10 +3,11 @@ import react from '@astrojs/react'
 import svgr from 'vite-plugin-svgr'
 import rehypeExternalLinks from 'rehype-external-links'
 import mdx from '@astrojs/mdx'
+import { unified } from '@astrojs/markdown-remark'
 
 import sitemap from '@astrojs/sitemap'
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,15 +18,17 @@ export default defineConfig({
     plugins: [svgr(), tailwindcss()],
   },
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          // content: { type: 'text', value: ' 🔗' },
-          target: '_blank',
-        },
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            // content: { type: 'text', value: ' 🔗' },
+            target: '_blank',
+          },
+        ],
       ],
-    ],
+    }),
   },
   redirects: {
     '/leistungen/camunda': '/leistungen/camunda-automatisierung',

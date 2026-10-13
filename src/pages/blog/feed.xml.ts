@@ -1,6 +1,6 @@
 import type { APIContext } from 'astro'
 import { getCollection, render } from 'astro:content'
-import { getContainerRenderer as getMDXRenderer } from '@astrojs/mdx'
+import { getContainerRenderer as getMDXRenderer } from '@astrojs/mdx/container-renderer'
 
 import reactRenderer from '@astrojs/react/server.js'
 import rss, { type RSSFeedItem } from '@astrojs/rss'
