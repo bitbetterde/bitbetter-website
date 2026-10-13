@@ -36,7 +36,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaptio
               }
               width={671}
               height={736}
-              className='relative lg:top-0 -top-[18vw] w-full lg:h-full object-cover z-10'
+              className='relative lg:top-0 top-[-18vw] w-full lg:h-full object-cover z-10'
             />
           </picture>
         </div>

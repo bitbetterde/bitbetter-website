@@ -24,7 +24,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = () => {
           Wir haben uns am ersten Tag unseres Informatik-Studiums kennengelernt und seitdem
           entwickeln wir gemeinsam Software. Nach dem Ende unseres Studiums, sammelten wir getrennt
           Berufserfahrung in verschiedenen Branchen und im Jahr 2022 haben wir gemeinsam die
-          bitbetter GmbH gegründet.
+          bitbetter GmbH gegründet, und seit 2025 um einen Werkstudenten ergänzt.
         </p>
       </div>
       <BbBracket className='rotate-180 text-bb-grey-600 absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16' />
