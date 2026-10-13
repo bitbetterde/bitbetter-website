@@ -1,0 +1,100 @@
+---
+import BbLogo from '@assets/bb_logo_black.svg?react'
+import { LinkButton, SectionGridContainer } from '@components'
+import ListIcon from '@phosphor-icons/core/regular/list.svg?react'
+import XIcon from '@phosphor-icons/core/bold/x-bold.svg?react'
+
+interface Props {
+  buttonCaption: string
+}
+
+const { buttonCaption } = Astro.props
+
+const menuItems = [
+  { href: '/#aboutus', label: 'Über uns' },
+  { href: '/#services', label: 'Leistungen' },
+  { href: '/blog', label: 'Blog' },
+]
+---
+
+{/* The mobile menu is open while #navbar has the `data-open` attribute (toggled by the script below) */}
+<SectionGridContainer className='fixed top-0 bg-white w-full z-30 border-b border-b-bb-grey-200'>
+  <div
+    id='navbar'
+    class='group flex flex-row max-lg:data-open:flex-col max-lg:data-open:h-dvh justify-between lg:items-center lg:col-start-2 col-span-1 lg:col-span-11'
+  >
+    <nav class='flex flex-row max-lg:group-data-open:flex-col max-lg:group-data-open:h-full w-full justify-between items-start lg:items-center px-5 lg:px-0'>
+      <div class='flex justify-between items-center w-full h-20'>
+        <a href='/'>
+          <BbLogo className='h-8' />
+        </a>
+
+        <button
+          id='navbar-toggle'
+          type='button'
+          class='flex items-center cursor-pointer lg:hidden'
+          aria-label='Menü'
+          aria-expanded='false'
+          aria-controls='navbar-menu'
+        >
+          <ListIcon className='w-8 h-8 group-data-open:hidden' />
+          <XIcon className='w-6 h-6 hidden group-data-open:block' />
+        </button>
+      </div>
+
+      <ul
+        id='navbar-menu'
+        class='hidden lg:flex max-lg:group-data-open:flex max-lg:group-data-open:flex-1 gap-4 lg:gap-8 ml-5 lg:ml-0 flex-col lg:flex-row font-grotesk lg:font-sans text-bb-4xl lg:text-base justify-center font-normal!'
+      >
+        {menuItems.map(({ href, label }) => (
+          <li class='lg:flex lg:items-center shrink-0 opacity-75'>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
+
+        <li class='ml-4 hidden lg:block shrink-0'>
+          <LinkButton
+            className='h-9'
+            caption={buttonCaption}
+            variant='dark'
+            href='mailto:info@bitbetter.de'
+          />
+        </li>
+      </ul>
+    </nav>
+
+    <div class='hidden max-lg:group-data-open:block px-5 mb-10'>
+      <LinkButton
+        className='w-full justify-center'
+        small
+        caption={buttonCaption}
+        variant='dark'
+        href='mailto:info@bitbetter.de'
+      />
+    </div>
+  </div>
+</SectionGridContainer>
+
+<script>
+  const navbar = document.getElementById('navbar')
+  const toggle = document.getElementById('navbar-toggle')
+
+  if (navbar && toggle) {
+    const setOpen = (open: boolean) => {
+      navbar.toggleAttribute('data-open', open)
+      toggle.setAttribute('aria-expanded', String(open))
+      document.documentElement.style.overflowY = open ? 'hidden' : ''
+    }
+
+    toggle.addEventListener('click', () => setOpen(!navbar.hasAttribute('data-open')))
+
+    navbar.querySelectorAll('#navbar-menu a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false))
+    })
+
+    // The menu only exists below the `lg` breakpoint, so don't leave the page scroll-locked above it
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
+      if (event.matches) setOpen(false)
+    })
+  }
+</script>

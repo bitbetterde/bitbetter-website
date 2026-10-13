@@ -1,6 +1,7 @@
 ---
-import { Footer, Navbar, SectionGridContainer } from '../components'
+import { Footer, SectionGridContainer } from '../components'
 import CarbonBadge from '@components/CarbonBadge.astro'
+import Navbar from '@components/Navbar.astro'
 
 import '../styles/global.css'
 import '@fontsource/ibm-plex-sans/latin-400.css'
@@ -62,24 +63,20 @@ const isProduction = import.meta.env.MODE === 'production'
 
     {metaDate && <meta name='date' property='og:article:published_time' content={metaDate} />}
     {metaUpdate && <meta name='date' property='og:article:modified_time' content={metaUpdate} />}
-    {
-      metaAuthors?.map((author) => (
-        <meta name='author' property='og:article:author' content={author} />
-      ))
-    }
+    {metaAuthors?.map((author) => (
+      <meta name='author' property='og:article:author' content={author} />
+    ))}
     {metaFediverse && <meta name='fediverse:creator' content={metaFediverse} />}
     {metaSchema && <script type='application/ld+json' set:html={metaSchema} is:inline defer />}
-    {
-      isProduction && (
-        <script
-          async
-          src='https://analytics.bitbetter.de/script.js'
-          data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
-          is:inline
-          defer
-        />
-      )
-    }
+    {isProduction && (
+      <script
+        async
+        src='https://analytics.bitbetter.de/script.js'
+        data-website-id='0c1e576e-389d-4f07-941c-8631e3c6dd0b'
+        is:inline
+        defer
+      />
+    )}
     <link
       rel='alternate'
       type='application/rss+xml'
@@ -88,7 +85,7 @@ const isProduction = import.meta.env.MODE === 'production'
     />
   </head>
   <body class='flex flex-col overflow-x-hidden pt-20'>
-    <Navbar buttonCaption='Schreib uns!' client:only='react' />
+    <Navbar buttonCaption='Schreib uns!' />
     <main class='flex flex-col'>
       <slot />
     </main>

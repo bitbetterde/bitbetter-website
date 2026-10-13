@@ -12,7 +12,6 @@ import ServiceHeader from './ServiceHeader'
 import ServiceItem from './ServiceItem'
 import ServiceItemDivider from './ServiceItemDivider'
 import ServicesSection from './ServicesSection'
-import Navbar from './Navbar'
 
 export {
   AboutUsSection,
@@ -29,5 +28,4 @@ export {
   ServiceItem,
   ServiceItemDivider,
   ServicesSection,
-  Navbar,
 }
