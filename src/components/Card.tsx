@@ -41,6 +41,8 @@ const Card: React.FC<CardProps> = ({
             className='w-full h-64 object-cover grayscale group-hover:grayscale-0 transition duration-300 ease-in-out'
             src={img}
             alt={imgAlt}
+            loading='lazy'
+            decoding='async'
           />
         </ConditionalWrapper>
       )}

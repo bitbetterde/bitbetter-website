@@ -26,7 +26,7 @@ const {
   metaTitle = 'bitbetter',
   metaSubtitle = 'Individuelle Software: Modern, bodenständig und ohne Schnickschnack',
   metaDescription = 'Wir sind zweieinhalb Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.',
-  metaImage = 'https://bitbetter.de/bitbetter_opengraph.jpg',
+  metaImage = 'https://bitbetter.de/images/bitbetter_opengraph.jpg',
   metaAuthors = ['Fabian Schmidt', 'Moritz Stückler'],
   metaType = 'website',
   metaDate,
@@ -89,7 +89,9 @@ const isProduction = import.meta.env.MODE === 'production'
   </head>
   <body class='flex flex-col overflow-x-hidden pt-20'>
     <Navbar buttonCaption='Schreib uns!' client:only='react' />
-    <slot />
+    <main class='flex flex-col'>
+      <slot />
+    </main>
     <SectionGridContainer
       as='footer'
       className='bg-bb-grey-200 overflow-y-hidden'
