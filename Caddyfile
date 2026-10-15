@@ -1,3 +1,10 @@
+{
+	servers {
+		# Requests arrive via the Coolify proxy, so take the visitor IP from X-Forwarded-For
+		trusted_proxies static private_ranges
+	}
+}
+
 :80 {
 	root * /srv
 	file_server
@@ -25,6 +32,8 @@
 					ipv4 24
 					ipv6 48
 				}
+				# Holds the unmasked visitor IP, client_ip already covers it
+				request>headers>X-Forwarded-For delete
 			}
 		}
 	}
