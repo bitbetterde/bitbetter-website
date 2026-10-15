@@ -16,6 +16,13 @@
 	@unhashed path /images/* /favicon.ico /favicon.svg /bb_favicon.png
 	header @unhashed Cache-Control "public, max-age=604800"
 
+	# Keep internal Uptime Kuma checks out of the access log (and GoAccess)
+	@uptimekuma {
+		client_ip private_ranges
+		header User-Agent Uptime-Kuma*
+	}
+	log_skip @uptimekuma
+
 	log {
 		output file /var/log/caddy/access.log {
 			roll_size 100MiB
