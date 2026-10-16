@@ -2,9 +2,12 @@ import type React from 'react'
 import { Card, SectionMark } from '@components'
 import BbBracket from '@assets/bb_bracket.svg?react'
 import type { CollectionEntry } from 'astro:content'
+import type { ResponsiveImage } from '../util/images'
 
 interface NewsSectionProps {
-  posts: Array<CollectionEntry<'blog'> & { authors: CollectionEntry<'authors'>[] }>
+  posts: Array<
+    CollectionEntry<'blog'> & { authors: CollectionEntry<'authors'>[]; cardImage: ResponsiveImage }
+  >
 }
 
 const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
@@ -29,7 +32,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
               key={'news' + i}
               title={post.data.title}
               subtitle={post.data.subtitle}
-              img={post.data.image.url}
+              img={post.cardImage}
               imgAlt={post.data.image.alt}
               href={'/blog/' + post.id + '/'}
               date={post.data.date.toLocaleDateString('de-DE', {

@@ -1,7 +1,7 @@
 ---
 title: Warum wir am liebsten Web-Apps bauen
 image:
-  url: /images/blog/webapps/webapps_examples.png
+  src: "@assets/images/blog/webapps/webapps_examples.png"
   alt: Die Logos einiger bekannter Webanwendungen (Figma, Google Docs, Canva, Netflix) vor einem stilisierten Browserfenster
 subtitle: Der Browser ist die beste Plattform für portable Anwendungen 
 teaser: Webanwendungen sind oft eine gute und kostengünstige Variante um individuelle Software zu realisieren. Benutzer brauchen lediglich einen aktuellen Browser. Damit sind Web-Apps klassischen, nativen Anwendungen in vielen Bereichen überlegen.
@@ -11,6 +11,7 @@ authors:
 keywords: webapps, web-entwicklung, development, browser, webanwendung, anwendungen, figma
 ---
 import Figure from "@components/Figure.astro"
+import webappsFigmaImage from "@assets/images/blog/webapps/webapps_figma.png"
 
 Webanwendungen sind in den letzten Jahren (spätestens seit dem "Web 2.0") immer beliebter geworden und haben sich in der in der IT-Welt fest etabliert. Sie bieten zahlreiche Vorteile, die sie für sehr viele Anwendungsbereiche sinnvoll machen. Wir beschreiben, warum wir Webanwendungen für eine gute und effiziente Lösung für viele Anwendungsfälle und Kunden (gerade für kleine und mittlere Unternehmen) halten – aber auch welche Risiken sie haben können.
 
@@ -27,7 +28,7 @@ Webanwendungen werden über einen Webbrowser aufgerufen. Das bedeutet, dass jede
 Webapplikationen bestehen häufig aus einer Server-Komponente (Backend) und einer Benutzeroberfläche (Frontend). Das Frontend ist die eigentliche Web-App und wird im Browser des Benutzers ausgeführt. Das Backend läuft meistens auf einem (oder mehreren) zentralisierten Server(n). Das Frontend kann dabei idealerweise sehr schlank gestaltet werden, so dass der Nutzer nur die Daten vom Server bekommt, welche er tatsächlich benötigt. Die Geschäftslogik (z.B. Berechnungen etc.) als auch die Daten liegen auf dem Server und können von vielen Nutzern geteilt werden. Eine gemeinsame Datenbasis zwischen allen Nutzern erleichtert die Kollaboration und macht das Austauschen von Dateien oder das Nutzen von Netzlaufwerken häufig unnötig.
 
 <Figure
-  src="/images/blog/webapps/webapps_figma.png"
+  src={webappsFigmaImage}
   alt="Screenshot der Design-Anwendung Figma im Browser"
   caption="Ein Screenshot aus der beliebten Design-Anwendung Figma, die komplett im Browser verwendet werden kann."
 />

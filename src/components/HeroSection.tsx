@@ -1,5 +1,6 @@
 import BbBracket from '@assets/bb_bracket_border.svg?react'
 import { LinkButton } from '@components'
+import teamImage from '@assets/images/team.webp'
 
 interface HeroSectionProps {
   title: string
@@ -26,20 +27,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, subtitle, buttonCaptio
       </div>
       <div className='relative lg:pt-24 w-full overflow-visible bg-bb-grey-200 col-span-1 lg:col-start-8 lg:col-span-6'>
         <div className={'lg:absolute h-[64vw] lg:h-168 w-full overflow-hidden'}>
-          <picture>
-            <source srcSet='/images/team.webp' type='image/webp' />
-            <source srcSet='/images/team.jpg' type='image/jpeg' />
-            <img
-              src='/images/team.jpg'
-              alt={
-                'Die zwei bitbetter-Geschäftsführer Fabian Schmidt (links) und Moritz Stückler (rechts) vor einem Fluss und Bäumen in Hamburg.'
-              }
-              width={671}
-              height={736}
-              fetchPriority='high'
-              className='relative lg:top-0 top-[-18vw] w-full lg:h-full object-cover z-10'
-            />
-          </picture>
+          <img
+            src={teamImage.src}
+            alt={
+              'Die zwei bitbetter-Geschäftsführer Fabian Schmidt (links) und Moritz Stückler (rechts) vor einem Fluss und Bäumen in Hamburg.'
+            }
+            width={teamImage.width}
+            height={teamImage.height}
+            fetchPriority='high'
+            className='relative lg:top-0 top-[-18vw] w-full lg:h-full object-cover z-10'
+          />
         </div>
       </div>
       <BbBracket

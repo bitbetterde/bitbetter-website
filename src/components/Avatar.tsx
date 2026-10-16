@@ -1,20 +1,19 @@
+import type { ImageMetadata } from 'astro'
+
 interface AvatarProps {
-  jpgSrc: string
-  webpSrc?: string
+  image: ImageMetadata
   alt: string
   small?: boolean
 }
 
-const Avatar: React.FC<AvatarProps> = ({ jpgSrc, webpSrc, alt, small }) => {
+const Avatar: React.FC<AvatarProps> = ({ image, alt, small }) => {
   return (
     <picture className={`${small ? 'inline-block my-0 pb-1 align-middle' : ''}`}>
-      <source srcSet={webpSrc} type='image/webp' />
-      <source srcSet={jpgSrc} type='image/jpeg' />
       <img
-        src={jpgSrc}
+        src={image.src}
         alt={alt}
-        width={80}
-        height={80}
+        width={image.width}
+        height={image.height}
         loading='lazy'
         decoding='async'
         className={`rounded-full grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all ease-in-out duration-300 ${

@@ -2,7 +2,9 @@
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { Card, SectionGridContainer, SectionMark } from '@components'
 import BbBracket from '@assets/bb_bracket.svg?react'
+import { Image } from 'astro:assets'
 import { loadLatestBlogPostsWithAuthors } from 'src/util/content'
+import { getCardImage, leadSizes, widthsFor } from 'src/util/images'
 
 const latestBlogPosts = await loadLatestBlogPostsWithAuthors()
 const [firstPost, ...restPosts] = latestBlogPosts
@@ -16,9 +18,7 @@ const [firstPost, ...restPosts] = latestBlogPosts
     <div class='lg:col-start-2'>
       <h1 class='font-grotesk text-5xl lg:text-[10rem] tracking-tighter font-medium'>blog</h1>
     </div>
-    <BbBracket
-      className='rotate-180 scale-x-150 -scale-y-[1.5] text-white absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16'
-    />
+    <BbBracket className='rotate-180 scale-x-150 -scale-y-[1.5] text-white absolute w-56 md:w-72 -bottom-28 -right-4 md:-top-24 md:-right-16' />
   </SectionGridContainer>
   <SectionGridContainer className='py-8 lg:py-16 bg-bb-grey-200' innerClassName='gap-8'>
     <Card
@@ -38,9 +38,13 @@ const [firstPost, ...restPosts] = latestBlogPosts
       class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 lg:h-112 overflow-hidden lg:-mb-32'
       href={'/blog/' + firstPost.id + '/'}
     >
-      <img
-        src={firstPost.data.image.url}
+      <Image
+        src={firstPost.data.image.src}
         alt={firstPost.data.image.alt}
+        widths={widthsFor(firstPost.data.image.src)}
+        sizes={leadSizes}
+        loading='eager'
+        fetchpriority='high'
         class='w-full h-auto object-cover'
       />
     </a>
@@ -55,24 +59,22 @@ const [firstPost, ...restPosts] = latestBlogPosts
       />
     </div>
     <div class='col-span-1 lg:col-span-8 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-16'>
-      {
-        restPosts.map(async (post) => {
-          return (
-            <Card
-              title={post.data.title}
-              subtitle={post.data.subtitle}
-              img={post.data.image.url}
-              imgAlt={post.data.image.alt}
-              href={'/blog/' + post.id + '/'}
-              date={post.data.date.toLocaleDateString('de-DE', {
-                year: 'numeric',
-                month: 'long',
-              })}
-              author={post.authors[0]}
-            />
-          )
-        })
-      }
+      {restPosts.map(async (post) => {
+        return (
+          <Card
+            title={post.data.title}
+            subtitle={post.data.subtitle}
+            img={await getCardImage(post.data.image.src)}
+            imgAlt={post.data.image.alt}
+            href={'/blog/' + post.id + '/'}
+            date={post.data.date.toLocaleDateString('de-DE', {
+              year: 'numeric',
+              month: 'long',
+            })}
+            author={post.authors[0]}
+          />
+        )
+      })}
     </div>
   </SectionGridContainer>
 </BaseLayout>

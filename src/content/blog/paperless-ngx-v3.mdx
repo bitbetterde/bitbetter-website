@@ -1,7 +1,7 @@
 ---
 title: "Paperless-ngx v3: Das sind die neuen KI-Features"
 image:
-  url: /images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-rag.jpg
+  src: "@assets/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-rag.jpg"
   alt: "Die drei Icons für verschiedene Freigabe-Methoden in Nextcloud: Shares, Gruppenordner und Teams"
 subtitle: RAG und LLM-Support kommen jetzt ab Werk
 teaser: Mit der Version 3 von Paperless-ngx wird aus dem digitalen Dokumentenarchiv erstmals auch ein Assistent, mit dem man über seine eigene Dokumente sprechen kann. Die neue Version kann Metadaten KI-basiert vorschlagen und Antworten über einzelne Dokumente oder den gesamten Datenbestand mittels RAG beantworten.
@@ -12,6 +12,8 @@ keywords: paperless, paperless-ngx, rag, llm, ki
 ---
 import ToolTag from "@components/ToolTag.astro"
 import Figure from "@components/Figure.astro"
+import paperlessNgxV3KiLlmChatImage from "@assets/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-chat.jpg"
+import paperlessNgxV3KiLlmSuggestionsImage from "@assets/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-suggestions.jpg"
 import { LinkButton } from "@components"
 
 Das Auffinden und Durchsuchen von Dokumenten in größeren Datenmengen gilt als ein Anwendungsfall, bei dem Sprachmodelle besonders hilfreich sein können. In Kombination mit einer sogenannten semantischen Suche, können Sprachmodelle nämlich sowohl Dokumente in einem großen Datenbestand finden, als auch inhaltliche Fragen zu diesen Dokumenten beantworten. So ein "Talk to your data"-Szenario kann jetzt mit Paperless-ngx in Version 3 umgesetzt werden.
@@ -43,7 +45,7 @@ Dieser Index ist die Grundlage für die sogenannte Retrieval-Augmented Generatio
 Dieser Tech-Stack kommt also immer zum Einsatz wenn ein Chat über die Headerleiste geöffnet wird. Je nach geöffneter Ansicht bekommt das Sprachmodell allerdings einen anderen Kontext übergeben: Auf der Detailseite sollte sich eine Frage immer auf das gerade geöffnete Dokument beziehen. In anderen Ansichten durchsucht der Chat stets alle Dokumente, die der angemeldete Benutzer gerade sehen darf. Aber Achtung: Der Inhalt eines Chats wird nicht gespeichert. Wenn  die Seite gewechselt wird, ist der Chat-Verlauf weg.
 
 <Figure
-  src="/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-chat.jpg"
+  src={paperlessNgxV3KiLlmChatImage}
   alt="Screenshot des Chat-Dialogs in Paperless-ngx v3 mit Frage und Antwort zum Dokumentenbestand"
   caption="Der neue Header-Button in der Headerleiste beantwortet wahlweise Fragen zum gesamten Dokumentenbestand oder nur zu einem spezifischen Dokument."
 />
@@ -68,7 +70,7 @@ Außerdem kann der bekannte „Vorschlagen“-Button auf der Dokumentdetailseite
 Neue, bislang unbekannte Tags, Korrespondenten und Dokumenttypen erscheinen separat und lassen sich direkt aus dem Vorschlagsmenü (der kleine Dropdown-Pfeil) übernehmen – oder eben nicht.
 
 <Figure
-  src="/images/blog/paperless-ngx-v3/paperless-ngx-v3-ki-llm-suggestions.jpg"
+  src={paperlessNgxV3KiLlmSuggestionsImage}
   alt="Screenshot des Vorschlagsmenüs auf der Dokumentdetailseite mit KI-generierten Metadaten-Vorschlägen"
   caption="Das erweiterte Vorschlagsmenü mit KI-generierten Metadaten-Vorschlägen"
 />

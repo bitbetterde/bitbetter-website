@@ -134,7 +134,10 @@ async function measurePageTransfer(baseUrl) {
     .replace(/<[^>]+>/g, '')
 
   const subResources = new Set()
-  for (const match of html.body.matchAll(/\/_astro\/[^"'\s)]+/g)) {
+  for (const match of html.body.matchAll(/\/_astro\/[^"'\s),]+/g)) {
+    // Images were never part of this measurement (they used to live in /images), and every
+    // srcset candidate would otherwise be counted as if the browser downloaded all of them
+    if (/\.(avif|gif|jpe?g|png|svg|webp)$/.test(match[0])) continue
     subResources.add(match[0])
   }
 

@@ -31,7 +31,7 @@ export async function GET(context: APIContext) {
 
     // Process and sanitize the raw content:
     // - Removes `<!DOCTYPE html>` preamble
-    // - Makes link `href` and image `src` attributes absolute instead of relative
+    // - Makes link `href` and image `src`/`srcset` attributes absolute instead of relative
     // - Strips any `<script>` and `<style>` tags
     // Thanks @Princesseuh — https://github.com/Princesseuh/erika.florist/blob/1827288c14681490fa301400bfd815acb53463e9/src/middleware.ts
     const content = await transform(rawContent.replace(/^<!DOCTYPE html>/, ''), [
@@ -42,6 +42,15 @@ export async function GET(context: APIContext) {
           }
           if (node.name === 'img' && node.attributes.src?.startsWith('/')) {
             node.attributes.src = baseUrl + node.attributes.src
+          }
+          if (node.name === 'img' && node.attributes.srcset) {
+            node.attributes.srcset = node.attributes.srcset
+              .split(',')
+              .map((candidate: string) => {
+                const trimmed = candidate.trim()
+                return trimmed.startsWith('/') ? baseUrl + trimmed : trimmed
+              })
+              .join(', ')
           }
         })
         return node

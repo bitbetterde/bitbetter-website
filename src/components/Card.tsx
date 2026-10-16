@@ -2,9 +2,10 @@ import type { CollectionEntry } from 'astro:content'
 import { ConditionalWrapper } from './ConditionalWrapper'
 import LinkButton from './LinkButton'
 import AuthorsByline from './AuthorsByline'
+import type { ResponsiveImage } from '../util/images'
 
 interface CardProps {
-  img?: string
+  img?: ResponsiveImage
   imgAlt?: string
   title: string
   subtitle: string
@@ -39,7 +40,11 @@ const Card: React.FC<CardProps> = ({
         >
           <img
             className='w-full h-64 object-cover grayscale group-hover:grayscale-0 transition duration-300 ease-in-out'
-            src={img}
+            src={img.src}
+            srcSet={img.srcSet}
+            sizes={img.sizes}
+            width={img.width}
+            height={img.height}
             alt={imgAlt}
             loading='lazy'
             decoding='async'

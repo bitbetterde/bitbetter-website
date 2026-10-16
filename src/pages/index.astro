@@ -4,6 +4,7 @@ import { HeroSection, SectionGridContainer, AboutUsSection, ServicesSection } fr
 import BaseLayout from '@layouts/BaseLayout.astro'
 
 import { findCollectionItemsByIdOrTitle, loadLatestBlogPostsWithAuthors } from '../util/content'
+import { getCardImage } from '../util/images'
 import NewsSection from '@components/NewsSection'
 import WhoWeAreSection from '@components/WhoWeAreSection'
 import CustomersSectionDataWrapper from '@components/CustomersSectionDataWrapper.astro'
@@ -40,14 +41,20 @@ const consultTools = [
 const devToolsItems = await findCollectionItemsByIdOrTitle('tools', devTools)
 const consultToolsItems = await findCollectionItemsByIdOrTitle('tools', consultTools)
 
-const latestBlogPosts = (await loadLatestBlogPostsWithAuthors()).slice(0, 2)
+const latestBlogPosts = await Promise.all(
+  (await loadLatestBlogPostsWithAuthors())
+    .slice(0, 2)
+    .map(async (post) => ({ ...post, cardImage: await getCardImage(post.data.image.src) })),
+)
 ---
 
 <BaseLayout>
   <SectionGridContainer className='bg-bb-grey-200'>
     <HeroSection
       title={'Individuelle Software: Modern, bodenständig und\u00A0ohne Schnickschnack'}
-      subtitle={'Wir sind zweieinhalb Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.'}
+      subtitle={
+        'Wir sind zweieinhalb Software-Entwickler aus Hamburg und lösen Probleme im Bereich der Digitalisierung: Making the world a bit better.'
+      }
       buttonCaption='Schreib uns'
     />
   </SectionGridContainer>

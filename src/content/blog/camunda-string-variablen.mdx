@@ -1,7 +1,7 @@
 ---
 title: Warum Strings in Camunda komplizierter sind, als man denkt
 image:
-  url: /images/blog/camunda-string-variablen/camunda-title.png
+  src: "@assets/images/blog/camunda-string-variablen/camunda-title.png"
   alt: Ein weißes Camunda Logo auf orangenem Grund und einigen abgeschnittenen Elementen aus einem BPMN-Diagramm
 subtitle: Tückische Limitierungen 
 teaser: In Camunda-Prozessen sind String-Variablen ein häufiges Werkzeug um Nutzereingaben oder Ähnliches zu speichern. Was erstmal simpel klingt kommt allerdings mit einigen unerwarteten Limitierungen in Bezug auf die Länge der Variablem daher. Wir zeigen mögliche Alternativen.
@@ -11,6 +11,9 @@ authors:
 keywords: camunda, string, variablen, java, backend, bpmn, camunda-7
 ---
 import Figure from "@components/Figure.astro"
+import camundaVariablenTypenImage from "@assets/images/blog/camunda-string-variablen/camunda-variablen-typen.png"
+import camundaExpressionFieldImage from "@assets/images/blog/camunda-string-variablen/camunda-expression-field.png"
+import camundaExpressionGetterImage from "@assets/images/blog/camunda-string-variablen/camunda-expression-getter.png"
 
 [Camunda](https://camunda.com/platform-7/) ist ein beliebtes Workflow-Management-System auf Java-Basis, welches aufgrund seiner Open-Source-Lizenz (in Version 7) schnell eine große Verbreitung erreichte. Es eignet sich gut, um interne Geschäftsprozesse zu entwerfen und zu automatisieren. Allerdings kommt Camunda auch mit einigen Fallstricken daher, die wir erst nach und nach kennengelernt haben. Einer davon: String-Variablen in einem Camunda-Prozess.
 
@@ -19,7 +22,7 @@ import Figure from "@components/Figure.astro"
 Wer einen Camunda-Prozess entwickelt, wird an vielen Stellen mit diversen benutzerdefinierten Variablen konfrontiert: Zum einem gibt es die Prozess-Variablen, welche über die gesamte Laufzeit des Prozesses existieren, aber auch "lokale Variablen" (zum Beispiel Input/Output-Variablen). Dabei müssen sämtliche Variablen einen der folgenden Typen haben:
 
 <Figure
-  src="/images/blog/camunda-string-variablen/camunda-variablen-typen.png"
+  src={camundaVariablenTypenImage}
   alt="Mögliche Variablentypen in Camunda"
 />
 
@@ -60,7 +63,7 @@ Etwas komplizierter wird es, wenn man einen langen Text an einen externen Servic
 Die naheliegendste Version wäre folgende Konfiguration:
 
 <Figure
-  src="/images/blog/camunda-string-variablen/camunda-expression-field.png"
+  src={camundaExpressionFieldImage}
   alt="Direkter Zugriff auf eine Input-Variable innerhalb eines Objekts"
 />
 
@@ -72,7 +75,7 @@ Das könnte zum Beispiel so aussehen:
 
 
 <Figure
-  src="/images/blog/camunda-string-variablen/camunda-expression-getter.png"
+  src={camundaExpressionGetterImage}
   alt="Zugriff über eine Getter-Funktion auf eine Input-Variable innerhalb eines Objekts"
 />
 

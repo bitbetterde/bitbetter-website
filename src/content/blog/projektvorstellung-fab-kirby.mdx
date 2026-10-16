@@ -1,7 +1,7 @@
 ---
 title: 'Ein Kirby-Theme für Fab Cities'
 image:
-  url: /images/blog/fab-kirby/fab-kirby-title.jpg
+  src: "@assets/images/blog/fab-kirby/fab-kirby-title.jpg"
   alt: Die neue Webseite der Fab Region Bergisches Städtedreieck.
 subtitle: Projektvorstellung
 teaser: Unser React-basiertes Starterkit für das Kirby CMS hilft sogenannten Fab Cities und Fab Regions dabei, ihre Webseiten selber zu bauen. Dieses Projekt ist das Ergebnis vieler vorheriger Projekte.
@@ -13,13 +13,15 @@ keywords: projekt, fab region, fab city, kirby, react
 import ToolTag from "@components/ToolTag.astro"
 import { LinkButton } from "@components";
 import Figure from "@components/Figure.astro"
+import fabRegionKirbyPanelImage from "@assets/images/blog/fab-kirby/fab-region-kirby-panel.jpg"
+import fabRegionMapImage from "@assets/images/blog/fab-kirby/fab-region-map.jpg"
 
 In den letzten Monaten durften wir die Webseite der [Fab Region Bergisches Städtedreieck](https://www.fab-bergisch.org/) erneuern. Dabei haben wir existierende UI-Komponenten mit einem modernen CMS verbunden, um eine nutzerfreundliche und flexible Open-Source-Lösung zu schaffen. 
 
 Unser Kunde, das [Collaborating Centre on Sustainable Consumption and Production (CSCP)](https://www.cscp.org/), beteiligt sich und fördert die Initiative "Fab Region Bergisches Städtedreieck". Diese ist Teil der weltweiten [Fab-City-Initiative](https://fab.city/), die sich zum Ziel gesetzt hat, Städte nachhaltiger und widerstandsfähiger zu machen, indem sie lokale Produktion und Kreislaufwirtschaft fördert. Die Fab Region vernetzt Akteure aus den Bereichen Bildung, Wirtschaft, Politik und Zivilgesellschaft, um gemeinsam an einer nachhaltigen Zukunft zu arbeiten. Durch unsere Arbeit für die Fab-City-Initiative in Hamburg sind wir mit dem Konzept bereits gut vertraut.
 
 <Figure
-  src="/images/blog/fab-kirby/fab-region-kirby-panel.jpg"
+  src={fabRegionKirbyPanelImage}
   alt="Ein Screenshot des Kirby Admin Panels der neuen Webseite"
 />
 
@@ -27,7 +29,7 @@ Unser Kunde, das [Collaborating Centre on Sustainable Consumption and Production
 Bereits 2022 hatten wir für die [Fab City Hamburg](https://www.fabcity.hamburg) eine [React-basierte Komponentenbibliothek namens `fcos-suite-ui`](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-ui) sowie eine [interaktive "Fab Map"](https://gitlab.fabcity.hamburg/fcos-suite/fcos-suite-map) unter einer Open-Source-Lizenz entwickelt. Im damaligen Projekt wurde diese UI-Bibliothek mit dem statischen Webseiten-Generator <ToolTag>Astro</ToolTag> kombiniert, um eine performante und moderne Webseite zu erstellen. Die Benutzung eines solchen Site Generators ist aber technisch oft kein adäquater Ersatz für die komfortablen Benutzeroberflächen klassischer CMS-Systeme wie Wordpress und Co. Um die Webseite also potenziell auch einem größeren Redaktionsteam ohne technisches Wissen zugänglich zu machen, wollte das Team der "Fab Region Bergisches Städtedreieck" unsere UI-Komponenten mit einem nutzerfreundlichen CMS verbinden.
 
 <Figure
-  src="/images/blog/fab-kirby/fab-region-map.jpg"
+  src={fabRegionMapImage}
   alt="Ein Screenshot der Fab Region Map auf der neuen Webseite"
 />
 
