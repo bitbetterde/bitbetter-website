@@ -40,7 +40,7 @@ const {
 const isProduction = import.meta.env.MODE === 'production'
 ---
 
-<html lang='de' class='overflow-x-hidden scroll-smooth'>
+<html lang='de' class='overflow-x-hidden motion-safe:scroll-smooth'>
   <head>
     <meta charset='utf-8' />
     {/* The .ico is the fallback. It needs `sizes`, or Chrome prefers it over the SVG. */}

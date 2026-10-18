@@ -1,17 +1,18 @@
 ---
 title: Ein Frontend für Parameo, den parametrischen Möbelgenerator
 image:
-  src: "@assets/images/blog/parameo/parameo-title.jpg"
+  src: '@assets/images/blog/parameo/parameo-title.jpg'
   alt: Einige der Produkte, die über Parameo konfiguriert werden können vor einem lila Hintergrund mit dem Parameo-Schriftzug darüber.
 subtitle: Projektvorstellung
-teaser: "Ganz wie wir es mögen: Eine tolle Idee, ein nettes Team und dazu auch noch Open Source. Für unseren Kunden regenholz haben wir in der zweiten Jahreshälfte 2023 ein modernes Frontend für parametrische Open-Source-Möbel gebaut."
+teaser: 'Ganz wie wir es mögen: Eine tolle Idee, ein nettes Team und dazu auch noch Open Source. Für unseren Kunden regenholz haben wir in der zweiten Jahreshälfte 2023 ein modernes Frontend für parametrische Open-Source-Möbel gebaut.'
 date: 2024-01-01
 authors:
   - moritz
 keywords: parameo, frontend, projekt, open-source, react, 3d model, parametrisch, möbel
 ---
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import ToolTag from "@components/ToolTag.astro"
+
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import ToolTag from '@components/ToolTag.astro'
 
 Als Selbstständige ist eine unserer größten Freiheiten die Tatsache, dass wir uns aussuchen können, welche Projekte wir umsetzen möchten, und welche nicht. Als Fynn und René von [regenholz](https://regenholz.de) im März 2023 zum ersten Mal auf uns zukamen, mussten wir daher nicht lange überlegen: Mit ihrer Idee für eine Web-Plattform zur parametrischen Generierung und Bestellung von Möbeln haben sie bei uns offene Türen eingerannt.
 
@@ -23,6 +24,10 @@ Die Themen Handwerk, Open Source und Nachhaltigkeit liegen uns schon lange am He
 - Kommunikation mit dem Python-Backend über eine Rest API
 - Vorschau von 3D-Modellen mit dem [Model Viewer von Google](https://modelviewer.dev/)
 
-<YouTube id="3gbeLVOyuXk" />
+<YouTube
+  id='3gbeLVOyuXk'
+  title='Parameo, der parametrische Möbelgenerator'
+  playlabel='Video abspielen: Parameo, der parametrische Möbelgenerator'
+/>
 
 Der Quelltext von Parameo (sowohl das [Frontend](https://gitlab.regenholz.de/bat/parameo-frontend), als auch das [Backend](https://gitlab.regenholz.de/bat/bat-dev)) stehen unter einer Open-Source-Lizenz und können von allen eingesehen und verwendet werden. Die aktuelle Live-Version ist unter [parameo.de](https://parameo.de) zu finden.

@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         }
       >
         <div>
-          <BbLogo className={'h-8 md:h-10'} />
+          <BbLogo className={'h-8 md:h-10'} aria-hidden='true' />
         </div>
 
         <div className='flex flex-col gap-6 items-start'>
@@ -53,9 +53,9 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
         </div>
       </div>
       <div className={'z-10 col-span-1 lg:col-span-6'}>
-        <h3 className={'text-xl md:text-bb-3xl font-grotesk'}>
+        <h2 className={'text-xl md:text-bb-3xl font-grotesk'}>
           Du möchtest mit uns zusammenarbeiten? Wir freuen uns auf ein Gespräch oder eine E-Mail.
-        </h3>
+        </h2>
         <div className='grid sm:grid-cols-[auto_auto_1fr] gap-4 mt-5'>
           <LinkButton
             variant='dark'
@@ -85,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
             Amtsgericht Hamburg (HRB 177719) <br />
           </address>
           <div>
-            Tel.: <a href={'tel:4940 33463362'}>040 33463362</a>
+            Tel.: <a href={'tel:+494033463362'}>040 33463362</a>
             <br />
             <br />
             Vertreten durch die Geschäftsführer: <br />

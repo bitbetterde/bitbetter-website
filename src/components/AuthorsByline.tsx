@@ -14,14 +14,13 @@ const AuthorsByline: React.FC<AuthorsBylineProps> = ({ authors, inline, light })
         inline ? `font-normal ${light ? 'text-white/50' : 'text-black/50'}` : 'font-medium pt-4'
       }`}
     >
-      {inline ? 'v' : 'V'}on{' '}
-      <Avatar image={authors[0]?.data.image.src} alt={authors[0]?.data.image.alt} small />{' '}
+      {inline ? 'v' : 'V'}on <Avatar image={authors[0]?.data.image.src} alt='' small />{' '}
       {authors[0].data.firstName + ' ' + authors[0].data.lastName}
       {authors.length > 1 && (
         <>
           {' '}
           &
-          <Avatar image={authors[1]?.data.image.src} alt={authors[1]?.data.image.alt} small />{' '}
+          <Avatar image={authors[1]?.data.image.src} alt='' small />{' '}
           {authors[1].data.firstName + ' ' + authors[1].data.lastName}
         </>
       )}

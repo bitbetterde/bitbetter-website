@@ -16,6 +16,7 @@ interface CardProps {
   date?: string
   author?: CollectionEntry<'authors'>
   light?: boolean
+  headingLevel?: 2 | 3
 }
 
 const Card: React.FC<CardProps> = ({
@@ -30,13 +31,20 @@ const Card: React.FC<CardProps> = ({
   date,
   author,
   light,
+  headingLevel = 3,
 }) => {
+  const Heading = `h${headingLevel}` as const
   return (
     <div className={`flex-1 flex flex-col gap-3 group ${className}`}>
       {img && (
         <ConditionalWrapper
           condition={!showButton}
-          wrapper={(children) => <a href={href}>{children}</a>}
+          wrapper={(children) => (
+            // Same target as the title link below, so keep it out of the tab order and accessibility tree
+            <a href={href} tabIndex={-1} aria-hidden='true'>
+              {children}
+            </a>
+          )}
         >
           <img
             className='w-full h-64 object-cover grayscale group-hover:grayscale-0 transition duration-300 ease-in-out'
@@ -56,21 +64,21 @@ const Card: React.FC<CardProps> = ({
         wrapper={(children) => <a href={href}>{children}</a>}
       >
         {subtitle && (
-          <h3
+          <p
             className={`font-sans text-lg/5 tracking-widest uppercase font-normal ${
               light ? 'text-white' : 'text-black'
             } opacity-70 ${img ? 'pt-4' : ''} line-clamp-1`}
             title={subtitle}
           >
             {subtitle}
-          </h3>
+          </p>
         )}
         {title && (
-          <h2
+          <Heading
             className={`${light ? 'text-white' : 'text-black'} font-grotesk font-medium text-2xl/8 line-clamp-2`}
           >
             {title}
-          </h2>
+          </Heading>
         )}
       </ConditionalWrapper>
       {teaser && (

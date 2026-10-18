@@ -33,8 +33,11 @@ const [firstPost, ...restPosts] = latestBlogPosts
       author={firstPost.authors[0]}
       className='order-2 lg:order-1 col-span-1 lg:col-start-2 lg:col-span-4 px-5 lg:px-0'
       showButton
+      headingLevel={2}
     />
     <a
+      tabindex='-1'
+      aria-hidden='true'
       class='order-1 lg:order-2 lg:col-start-7 col-span-1 lg:col-span-8 lg:h-112 overflow-hidden lg:-mb-32'
       href={'/blog/' + firstPost.id + '/'}
     >

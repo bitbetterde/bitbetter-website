@@ -25,8 +25,8 @@ const menuItems = [
   >
     <nav class='flex flex-row max-lg:group-data-open:flex-col max-lg:group-data-open:h-full w-full justify-between items-start lg:items-center px-5 lg:px-0'>
       <div class='flex justify-between items-center w-full h-20'>
-        <a href='/'>
-          <BbLogo className='h-8' />
+        <a href='/' aria-label='bitbetter – Startseite'>
+          <BbLogo className='h-8' aria-hidden='true' />
         </a>
 
         <button
@@ -80,13 +80,24 @@ const menuItems = [
   const toggle = document.getElementById('navbar-toggle')
 
   if (navbar && toggle) {
+    // Everything outside the navbar sits behind the full-screen menu, so keep focus out of it while open
+    const background = Array.from(document.body.children).filter((el) => !el.contains(navbar))
+
     const setOpen = (open: boolean) => {
       navbar.toggleAttribute('data-open', open)
       toggle.setAttribute('aria-expanded', String(open))
       document.documentElement.style.overflowY = open ? 'hidden' : ''
+      background.forEach((el) => el.toggleAttribute('inert', open))
     }
 
     toggle.addEventListener('click', () => setOpen(!navbar.hasAttribute('data-open')))
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navbar.hasAttribute('data-open')) {
+        setOpen(false)
+        toggle.focus()
+      }
+    })
 
     navbar.querySelectorAll('#navbar-menu a').forEach((link) => {
       link.addEventListener('click', () => setOpen(false))

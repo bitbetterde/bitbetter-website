@@ -23,6 +23,7 @@ const TechStackItem: React.FC<TechStackItemProps> = ({
       className={`w-8 h-8 shrink-0 aspect-square p-1 ${
         light ? 'hover:text-white/50' : 'hover:text-black/80'
       } overflow-hidden flex items-center justify-center *:h-full *:w-auto`}
+      aria-hidden='true'
       dangerouslySetInnerHTML={{ __html: image }}
     />
     <div className='font-medium flex-1 text-xl'>{title}</div>
