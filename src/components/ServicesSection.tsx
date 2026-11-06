@@ -41,7 +41,7 @@ const ServicesSection: React.FC<TechItemProps> = ({
       >
         <ServiceHeader
           title={'Entwicklung'}
-          text={'Technologieoffenheit und "Full-Stack" sind unsere Spezialität'}
+          text={'Technologieoffenheit und „Full-Stack“ sind unsere Spezialität'}
           dark
         />
         <ServiceItem

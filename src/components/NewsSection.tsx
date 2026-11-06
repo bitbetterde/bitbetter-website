@@ -15,7 +15,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({ posts }) => {
     <>
       <div className={'text-white lg:col-span-3 lg:col-start-2'}>
         <SectionMark
-          title={"Was gibt's Neues"}
+          title={'Was gibt’s Neues'}
           className='mb-4 lg:mb-0'
           classNameLine={'bg-white/75'}
           classNameText={'opacity-75'}

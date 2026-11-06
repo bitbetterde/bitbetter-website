@@ -19,6 +19,12 @@ export default defineConfig({
   },
   markdown: {
     processor: unified({
+      // German quotes: "Text" becomes „Text“. Single quotes stay English (‘…’) because
+      // SmartyPants uses the closing single quote for apostrophes too (gibt’s, not gibt‘s).
+      smartypants: {
+        openingQuotes: { double: '„', single: '‘' },
+        closingQuotes: { double: '“', single: '’' },
+      },
       rehypePlugins: [
         [
           rehypeExternalLinks,
