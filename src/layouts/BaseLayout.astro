@@ -21,6 +21,8 @@ interface Props {
   metaUpdate?: string
   metaSchema?: string
   metaKeywords?: string
+  /** Keeps search engines from indexing the page and following its links. */
+  noindex?: boolean
 }
 
 const {
@@ -35,6 +37,7 @@ const {
   metaSchema,
   metaFediverse,
   metaKeywords = '',
+  noindex = false,
 } = Astro.props
 
 const isProduction = import.meta.env.MODE === 'production'
@@ -48,6 +51,7 @@ const isProduction = import.meta.env.MODE === 'production'
     <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <meta name='generator' content={Astro.generator} />
+    {noindex && <meta name='robots' content='noindex, nofollow' />}
     <link rel='sitemap' href='/sitemap-index.xml' />
     <title>{`${metaTitle} - ${metaSubtitle}`}</title>
     <meta name='description' content={metaDescription} />

@@ -13,7 +13,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   devToolbar: { enabled: false },
   site: 'https://bitbetter.de',
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [
+    react(),
+    mdx(),
+    sitemap({
+      // Leave out preview posts: only they have a second path segment (/blog/<slug>/<token>/).
+      filter: (page) => !/^\/blog\/[^/]+\/[^/]+\/$/.test(new URL(page).pathname),
+    }),
+  ],
   vite: {
     plugins: [svgr(), tailwindcss()],
   },

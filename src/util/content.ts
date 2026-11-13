@@ -27,8 +27,16 @@ const getAllToolKeywords = async () => {
     .join(',')
 }
 
+/**
+ * All blog posts that aren't hidden or previews, for every list of posts (home page, blog
+ * overview, RSS feed). Hidden and preview posts still get their own page, so don't use this to
+ * build the post pages.
+ */
+const getVisibleBlogPosts = () =>
+  getCollection('blog', (post) => !post.data.hidden && !post.data.preview)
+
 const loadLatestBlogPostsWithAuthors = async () => {
-  const latestBlogPosts = (await getCollection('blog')).sort(
+  const latestBlogPosts = (await getVisibleBlogPosts()).sort(
     (postA, postB) => postB?.data?.date?.getTime() - postA?.data?.date?.getTime(),
   )
 
@@ -52,4 +60,9 @@ const loadLatestBlogPostsWithAuthors = async () => {
   return loadLatestBlogPostsWithAuthors
 }
 
-export { getAllToolKeywords, findCollectionItemsByIdOrTitle, loadLatestBlogPostsWithAuthors }
+export {
+  getAllToolKeywords,
+  findCollectionItemsByIdOrTitle,
+  getVisibleBlogPosts,
+  loadLatestBlogPostsWithAuthors,
+}

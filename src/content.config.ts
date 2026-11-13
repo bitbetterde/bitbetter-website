@@ -27,7 +27,16 @@ const blogCollection = defineCollection({
       date: z.date(),
       update: z.date().optional(),
       authors: z.array(reference('authors')),
+      // Hidden posts are left out of every list (home page, blog overview, RSS feed), but are still
+      // built, reachable by their URL, listed in the sitemap and indexable.
       hidden: z.boolean().optional(),
+      // Secret token for sharing an unpublished post, e.g. for review. The post then only exists at
+      // /blog/<slug>/<token>/ and is left out of every list and the sitemap and marked noindex.
+      // Remove the token to publish the post at /blog/<slug>/. Generate one with: openssl rand -hex 8
+      preview: z
+        .string()
+        .regex(/^[A-Za-z0-9_-]{12,}$/, 'At least 12 characters: letters, digits, - or _')
+        .optional(),
       keywords: z.string(),
     }),
 })
@@ -45,7 +54,6 @@ const servicesCollection = defineCollection({
       teaser: z.string(),
       date: z.date(),
       keywords: z.string(),
-      hidden: z.boolean().optional(),
     }),
 })
 

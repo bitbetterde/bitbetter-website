@@ -16,6 +16,10 @@
 	@unhashed path /images/* /favicon.ico /favicon.svg /bb_favicon.png
 	header @unhashed Cache-Control "public, max-age=604800"
 
+	# Preview posts (/blog/<slug>/<token>/) must not be indexed. The page also has a robots meta tag.
+	@preview path_regexp ^/blog/[^/]+/[^/]+
+	header @preview X-Robots-Tag "noindex, nofollow"
+
 	# Keep internal Uptime Kuma checks out of the access log (and GoAccess)
 	@uptimekuma {
 		client_ip private_ranges

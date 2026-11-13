@@ -1,5 +1,6 @@
 import type { APIContext } from 'astro'
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
+import { getVisibleBlogPosts } from '../../util/content'
 import { getContainerRenderer as getMDXRenderer } from '@astrojs/mdx/container-renderer'
 
 import reactRenderer from '@astrojs/react/server.js'
@@ -21,7 +22,7 @@ export async function GET(context: APIContext) {
   container.addServerRenderer({ renderer: reactRenderer, name: 'reactRenderer' })
 
   // Load the content collection entries to add to our RSS feed.
-  const posts = (await getCollection('blog')).sort((a, b) => (a.data.date > b.data.date ? -1 : 1))
+  const posts = (await getVisibleBlogPosts()).sort((a, b) => (a.data.date > b.data.date ? -1 : 1))
 
   // Loop over blog posts to create feed items for each, including full content.
   const feedItems: RSSFeedItem[] = []

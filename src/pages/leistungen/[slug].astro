@@ -11,7 +11,7 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const content = await getCollection('services', (entry) => !entry.data.hidden)
+  const content = await getCollection('services')
 
   const result = content.map((post) => {
     return {
