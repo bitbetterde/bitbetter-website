@@ -1,0 +1,56 @@
+---
+import { toCssLength } from './length'
+
+interface Props {
+  /** Optional heading at the top of the lane. */
+  label?: string
+  /**
+   * How this lane branches off: "fork" (default, shared code) draws a solid curve,
+   * "new" (rewrite or new project) draws a dashed one.
+   */
+  origin?: 'fork' | 'new'
+  /**
+   * Moves the whole lane down: its fork curve, label and items. Use it to show that a lane
+   * started later than its neighbors. A number is in rem; strings are used as CSS lengths.
+   */
+  offset?: number | string
+}
+
+const { label, origin = 'fork', offset } = Astro.props
+const offsetValue = toCssLength(offset)
+
+// Lane widths: an empty lane (no label, no items) is just a narrow line. All other space is shared
+// equally between the end lanes that have content, at any nesting depth. Nested lanes render
+// first and mark themselves, so a lane can count what's below it.
+const content = Astro.slots.has('default') ? (await Astro.slots.render('default')).trim() : ''
+const filledBelow = content.match(/data-timeline-leaf="filled"/g)?.length ?? 0
+const emptyBelow = content.match(/data-timeline-leaf="empty"/g)?.length ?? 0
+const isLeaf = filledBelow + emptyBelow === 0
+// An end marker (<TimelineEnd />) as the last item: the lane's line stops there.
+const endMarker = /<li\b[^>]*\bdata-timeline-end="true"[^>]*>(?:(?!<li\b)[\s\S])*<\/li>/g
+const ended = /<li\b[^>]*\bdata-timeline-end="true"[^>]*>(?:(?!<li\b)[\s\S])*<\/li>\s*$/.test(
+  content,
+)
+// A lane with nothing but an end marker is still just a narrow line.
+const hasContent = content.replace(endMarker, '').trim() !== ''
+const leaf = isLeaf ? (label || hasContent ? 'filled' : 'empty') : undefined
+
+// A lane that splits again takes one share of the width per text lane below it.
+const grow = isLeaf ? 1 : Math.max(filledBelow, 1)
+---
+
+<!-- TimelineSplit reads the data attributes to size the columns and draw the curves. -->
+<div
+  class='timeline-lane'
+  data-timeline-leaf={leaf}
+  data-timeline-grow={grow}
+  data-timeline-origin={origin}
+  data-timeline-offset={offsetValue}
+  data-timeline-ended={ended ? 'true' : undefined}
+  style={offsetValue ? `--tl-lane-offset: ${offsetValue}` : undefined}
+>
+  {label && <p class='timeline-lane-label'>{label}</p>}
+  <ol class='timeline-lane-items' aria-label={label}>
+    <Fragment set:html={content} />
+  </ol>
+</div>

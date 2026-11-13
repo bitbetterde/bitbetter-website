@@ -1,0 +1,157 @@
+---
+title: Nextcloud vs. OpenCloud
+image:
+  src: '@assets/images/blog/nextcloud-vs-opencloud/nextcloud-vs-opencloud.webp'
+  alt: 'Ein halbierter Laptop-Bildschirm zeigt die Start-Ansicht von Nextcloud auf der linken Seite und OpenCloud auf der rechten Seite.'
+subtitle: Welche Cloud ist die richtige für mich?
+teaser: Nextcloud ist zwar der Platzhirsch bei freier Cloud-Software, aber mit OpenCloud gibt es eine modernere und effizientere Alternative auf Go-Basis, die inzwischen beim Funktionsumfang teilweise mithalten kann. Wir erklären die Unterschiede und Stärken und wann Sie zu welcher Software greifen sollten.
+date: 2026-11-06
+authors:
+  - moritz
+keywords: nextcloud, opencloud, open source, foss, filesharing, groupware
+preview: '43ba959b7255bc11'
+---
+
+import Figure from '@components/Figure.astro'
+import Disclosure from '@components/Disclosure.astro'
+import { Timeline, TimelineItem, TimelineSplit, TimelineLane, TimelineEnd } from '@components/timeline'
+import ToolTag from '@components/ToolTag.astro'
+import { ProsCons, Pros, Cons, ProsConsFooter } from '@components/pros-cons'
+
+import nextcloudActiveAppsImage from '@assets/images/blog/nextcloud-vs-opencloud/nextcloud-active-apps.png'
+import opencloudAppStoreImage from '@assets/images/blog/nextcloud-vs-opencloud/opencloud-app-store.png'
+
+Seit vielen Jahren gilt <ToolTag>Nextcloud</ToolTag> als **die** Software-Lösung für selbst gehostete Cloud- und Groupware-Instanzen – sowohl bei Privatanwendern als auch bei Freelancern sowie kleinen und mittleren Unternehmen. Trotz starken Wachstums, Professionalisierung und einer großen Firma im Hintergrund weist das Projekt aber immer wieder Instabilitäten (gerade beim Synchronisieren von Dateien), Sicherheitslücken, konzeptionelle Altlasten oder sperrige Benutzeroberflächen auf, so dass die Frage nach Alternativen inzwischen immer öfter aufkommt.
+
+Mit <ToolTag>OpenCloud</ToolTag> gibt es spätestens seit 2025 eine ernstzunehmende Konkurrenz, die ebenfalls unter einer Open-Source-Lizenz und von einer deutschen Firma entwickelt wird. OpenCloud ist ein Fork (also eine Code-Abspaltung) von ["ownCloud Infinite Scale"](https://owncloud.dev/ocis/), welches bereits 2019 gestartet wurde. Es ist also inzwischen ebenfalls ein etabliertes System mit großen Organisationen unter den Anwendern und kein kurzlebiger Vibecoding-Trend. Für einen Teil der Nextcloud-Anwender kann OpenCloud inzwischen als Alternative dienen.
+
+<Disclosure title="Die komplizierte Verwandtschaft von Nextcloud und OpenCloud">
+Um die Beziehungen zwischen Nextcloud und OpenCloud zu verstehen, kommt man nicht umhin einen Blick in die Vergangenheit beider Projekte zu werfen: Im Jahr 2010 startet der deutsche Entwickler Frank Karlitschek zunächst eine PHP-Software namens **ownCloud** zum webbasierten Teilen von Dateien. Mit zwei Geschäftspartnern gründet er dafür 2011 die Owncloud GmbH. 2016 trennen sich die Wege der drei Gründer, und Karlitschek startet den heute bekannteren Fork namens Nextcloud. Bis heute teilen sich ownCloud und Nextcloud also weiterhin einen (immer kleiner werdenden) Teil ihres PHP-Codes.
+
+Zum Ende der 2010er Jahre möchte ownCloud die organisch und schnell gewachsene PHP-Basis hinter sich lassen und beginnt mit dem Projekt **"OCIS" (ownCloud Infinite Scale)** einen vollständigen Rewrite (also einen Code-Neustart) in einer neuen Programmiersprache und mit neuen Entwurfsmustern und Zielen. Go ersetzt PHP als Programmiersprache im Backend, und das neue Frontend basiert auf Vue.js (inzwischen auch bei Nextcloud im Einsatz). Auch die Architektur setzt nun auf Microservices anstelle eines großen Monolithen. Erster großer Kunde für OCIS ist das CERN, die europäische Organisation für Kernforschung, mit tausenden Mitarbeitern und riesigen Datenmengen aus dem Forschungsbetrieb. OCIS konzentriert sich deswegen vor allem auf Effizienz, Skalierbarkeit und Modularität/Föderation beim Speicher-Backend. Speicher auf verteilten Systemen können in OCIS virtuell zusammengefasst werden. Damit skalieren bereits die ersten Deployments in den Petabyte-Bereich. Hobby-Anwender spielen am Anfang keine große Rolle.
+
+Ende 2023 wird ownCloud von einem amerikanischen Käufer (Kiteworks LLC bzw. deren europäische Kiteworks Europe AG) übernommen, was zu internen Unstimmigkeiten in der Belegschaft führt. So [spaltet sich Anfang 2025](https://www.heise.de/news/Ex-ownCloud-Devs-suchen-Neustart-bei-OpenCloud-Owncloud-Besitzer-will-klagen-10253188.html) eine Gruppe von rund 15 OCIS-Entwicklern von ownCloud ab und startet den **Fork namens "OpenCloud"**. Finanzielle und juristische Unterstützung findet die Entwicklergruppe bei der deutschen [Heinlein Gruppe](https://www.heinlein.group). Die Firma um Peer Heinlein hat sich über viele Jahre einen Namen gemacht – zunächst als Linux-Consulting- und Support-Firma. Zu Heinlein gehören aber auch der [Mailhoster mailbox.org](https://mailbox.org) sowie die [Videokonferenz-Lösung OpenTalk](https://opentalk.eu/en). Damit positioniert sich Heinlein als klarer Konkurrent für die Nextcloud GmbH, um Unternehmen und dem öffentlichen Sektor souveräne Cloud- und Kollaborations-Produkte anzubieten. 
+
+2026 gibt ownCloud nach mehrmaligem Aufschub bekannt, dass das "klassische" ownCloud 10 auf PHP-Basis ab 2027 nicht mehr weiterentwickelt werden soll. Die Firma konzentriert sich zukünftig nur noch auf OCIS. 
+
+
+<Timeline>
+  <TimelineItem date="2010" title="Gründung ownCloud" highlight>
+  Frank Karlitschek startet PHP-Projekt.
+  </TimelineItem>
+  <TimelineSplit>
+    <TimelineLane>
+      <TimelineSplit>
+        <TimelineLane>
+          <TimelineItem date="2023" title="Übernahme" offset={4}>Kiteworks LLC steigt ein.</TimelineItem>
+          <TimelineItem date="2026" title="Aufgabe von ownCloud 10" offset={4}>Das PHP-basierte ownCloud wird ab 2027 nicht mehr weiterentwickelt.</TimelineItem>
+          <TimelineEnd />
+        </TimelineLane>
+        <TimelineLane label="Rewrite: OCIS" origin="new">
+          <TimelineItem date="2019" title="Gründung OCIS">
+          ownCloud Infinite Scale ersetzt PHP durch Go.
+          </TimelineItem>
+          <TimelineSplit>
+            <TimelineLane />
+            <TimelineLane label="Fork: OpenCloud">
+              <TimelineItem date="2025" title="Gründung OpenCloud" highlight>
+              Unter dem Dach der Heinlein-Gruppe.
+              </TimelineItem>
+            </TimelineLane>
+          </TimelineSplit>
+        </TimelineLane>
+      </TimelineSplit>
+    </TimelineLane>
+    <TimelineLane label="Fork: Nextcloud">
+      <TimelineItem date="2016" title="Gründung Nextcloud" highlight>
+      Karlitschek startet eigenen Fork.
+      </TimelineItem>
+    </TimelineLane>
+
+  </TimelineSplit>
+</Timeline>
+</Disclosure>
+
+Auch wenn beide Projekte inzwischen eine gewisse Schnittmenge bei ihren Fähigkeiten aufweisen, gibt es trotzdem noch riesige Unterschiede, und die Wahl der richtigen Software hat durchaus ihre Tücken:
+
+## Nextcloud: App-Plattform mit unendlichen Möglichkeiten - und vielen Problemen 
+
+Aus Nextcloud ist in rund 16 Jahren (seit der ownCloud-Gründung) der Entwicklung eine extrem umfangreiche App-Plattform geworden. Nahezu alle Funktionalitäten sind inzwischen in Form von einzelnen Apps modularisiert und lassen sich dadurch individuell ein- oder ausschalten. Dadurch kann es im Nextcloud-Universum auch konkurrierende offizielle Lösungen für ähnliche Konzepte (z.B. [das Teilen in Gruppen](/blog/nextcloud-freigabe-chaos/)) geben. "Ab Werk" kommt eine Nextcloud-Instanz bereits mit 36 aktivierten Apps daher. Selbst für erfahrene Nextcloud-Admins ist es da manchmal schwer den Überblick zu behalten, wofür einige der eingebauten Apps zuständig sind. Mithilfe des eigenen App Stores können rund 550 (mit der aktuellen Version kompatible) weitere offizielle und Community-Apps installiert werden, die nahezu alle erdenklichen Groupware-Szenarien abdecken.
+
+Standardmäßig gibt es zum Beispiel neben den Sharing- und Freigabefunktionen schon Apps für kollaborative Tags, Datei-Kommentare, Foto-Management, einen Markdown-Editor und Föderation mit anderen Nextclouds. Weitere Funktionen lassen sich dann über den App Store schnell nachrüsten: Kontakte, E-Mails abrufen und teilen, Kalender, Räume und Ressourcen planen, Passwörter teilen, Umfragen und Web-Formulare erstellen, eine eigene RAG-Wissensdatenbank für KI-Integration bauen oder eine komplette Messenger- und Videokonferenz-Lösung. Nahezu alles lässt sich irgendwie in Nextcloud abbilden. Bei der Integration von webbasierten Office-Programmen lässt sich Nextcloud mit allen gängigen Projekten ([OnlyOffice](https://www.onlyoffice.com/), [Collabora](https://www.collaboraonline.com/) und dem neuen (von Nextcloud gestarteten) OnlyOffice-Fork namens ["Euro-Office"](https://github.com/Euro-Office)) verbinden.
+
+<Figure
+  src={nextcloudActiveAppsImage}
+  maxHeight={30}
+  alt="Die Liste der aktiven Apps in der Nextcloud-Verwaltung: 36 Apps von Activity bis Weather status, die ab Werk aktiviert sind."
+  caption="Fluch und Segen zugleich: Eine frische Nextcloud-Installation kommt mit 36 aktivierten Apps daher."
+/>
+
+### Neue Features überschatten bestehende Probleme
+
+Die funktionale Breite ist Fluch und Segen zugleich, denn die ursprüngliche Kernfunktion (das Teilen und Synchronisieren von Dateien) scheint gegenüber neuen Funktionalitäten manchmal ins Hintertreffen zu geraten. Bei jeder neuen Major-Version werden viele neue Features vorgestellt, um (auf dem Papier) mit der proprietären Konkurrenz (vor allem Microsoft 365 bzw. Microsoft Teams) mithalten zu können. Gefühlt werden dabei aber manchmal die bestehenden [Probleme](https://github.com/nextcloud/desktop/issues?q=is%3Aissue+state%3Aopen+label%3Abug) bei der Zuverlässigkeit von bestehenden, offiziellen Apps und [Clients](https://github.com/nextcloud/ios/issues?q=is%3Aissue+state%3Aopen+label%3Abug) vergessen. Diese weisen oft Fehler auf, stellen die Synchronisation ein oder löschen im schlimmsten (seltenen) Fall sogar Daten. Gerade Major-Updates (die etwa alle drei bis sechs Monate erscheinen) sorgen oft für viel Frust bei den Nutzern in der Community und führen zur gängigen Empfehlung, neue Major-Updates immer erst etwas "abhängen" zu lassen, und ggf. auf darauffolgende Minor/Patch-Updates zu warten.
+
+Durch die Modularität der Funktionen und Heterogenität von Server- und Client-Umgebungen ist alleine die Aufrechterhaltung bestehender Funktionen und das Fixen von Sicherheitslücken eine riesige Aufgabe für die hybride Community aus bezahlten Mitarbeitern der Nextcloud GmbH und unbezahlten Freiwilligen. Leider gibt es für zahlungswillige Privatanwender, Freelancer oder kleine und mittlere Unternehmen aktuell kaum Möglichkeiten, die Nextcloud-Entwicklung monetär zu unterstützen. 
+
+### Freier App-Store sorgt für viele Apps mit geringer Qualität
+
+Der offene App Store sorgt natürlich dafür, dass die Qualität der einzelnen Nextcloud-Apps stark variiert. Es gibt dort viele tolle und gut funktionierende Apps, aber genau so auch unfertige, schlecht dokumentierte oder verwaiste Apps, die nicht mehr weiterentwickelt werden. Ob eine App sich an "Best Practices" hält und die internen Nextcloud-Schnittstellen "ordentlich" verwendet, obliegt den einzelnen App-Entwicklern. So ist es zum Beispiel nicht garantiert, dass eine App aus dem App Store auch immer die offiziellen Schnittstellen zum Teilen mit Gruppen oder einzelnen Usern nutzt – ggf. kann eine App auch ihre komplett eigene Share-Logik implementieren. Das reine Vorhandensein einer App im Nextcloud App-Store ist also noch keine Garantie dafür, dass eine funktionale Anforderung zufriedenstellend mit der App gelöst werden kann. Der Vergleich und die Bewertung entsprechender Apps muss beim Betrieb also immer eingeplant werden. Das führt auch zu sehr unterschiedlichen Erfahrungsberichten: Viele Betreiber und Nutzer sind mit Nextcloud super zufrieden, während Andere schimpfen und regelmäßig mit vielen Bugs kämpfen müssen.
+
+
+<ProsCons title="Nextcloud" link="https://nextcloud.com/de/instant-trial/" linkLabel="Nextcloud-Demo ausprobieren" linkIcon="play">
+  <Pros>
+    - Erweiterbar durch hunderte Apps
+    - Große Community für Support
+    - Läuft auch ohne Docker und Kubernetes (also auf "bare metal")
+  </Pros>
+  <Cons>
+    - Qualität von Nextcloud-Apps ist sehr durchwachsen
+    - Stabilität manchmal problematisch
+    - Höherer Ressourcenverbrauch durch PHP-Monolith und viele Standard-Apps
+    - Konzeptionelle Altlasten oder konkurrierende Konzepte
+  </Cons>
+  <ProsConsFooter label="Geeignet für">
+    - Anwender, die eine zentrale Kollaborations-Suite mit vielen Groupware-Funktionen benötigen (Kalender, Kontakte, Aufgaben, etc.)
+  </ProsConsFooter>
+</ProsCons>
+
+## OpenCloud: Kann deutlich weniger – das aber besser
+
+OpenCloud konzentriert sich bisher deutlich stärker auf die Kernfunktion, das "Dateien in Gruppen miteinander teilen" (und auf verschiedene Geräte synchronisieren). Das beherrscht OpenCloud inzwischen sehr gut, effizient und stabil. Trotz der Microservice-Architektur sind grundlegende Funktionen in OpenCloud fester Bestandteil des "Core", und alternative Konzepte oder Modifikationen dieser Logik sind nicht vorgesehen. Gerade die Gruppen- oder Teams-Logik ist fest in sogenannten Spaces verankert, womit Dateien in unabhängigen Teams miteinander geteilt und administriert werden können.
+
+### Microservices und Go sorgen für geringen Ressourcenverbrauch
+
+Beim Ressourcenverbrauch hat OpenCloud die Nase vorn: Der Go-Code der einzelnen rund 35 Microservices wird bei OpenCloud in eine einzige Binärdatei kompiliert – das resultiert in einer schnelleren Ausführung gegenüber PHP-Skripten, die zunächst interpretiert und dann pro Anfrage neu initialisiert werden müssen. Wenn eine einzelne Instanz des OpenCloud-Services nicht mehr ausreicht, können einzelne Dienste auch externalisiert (und skaliert) werden. Ein weiterer großer Unterschied: Nextcloud legt alle Metadaten in einer separaten SQL-Datenbank (üblicherweise als externer Dienst, optional auch als SQLite inkludiert) ab, während OpenCloud diese Daten direkt in das Dateisystem (in die sogenannten `xattrs`) schreibt. Deswegen ist ein normales OpenCloud-Setup meistens etwas schlanker als sein Nextcloud-Äquivalent: Je nach Art der Installation benötigt Nextcloud üblicherweise [drei separate Dienste](https://github.com/nextcloud/docker/blob/master/.examples/docker-compose/insecure/mariadb/apache/compose.yaml): DBMS, Cron und Nextcloud-App (häufig noch ein separater Webserver und Redis). OpenCloud besteht lediglich aus einem einzigen "Core"-Dienst. Ein OpenCloud-Server benötigt dadurch in unseren eigenen Tests deutlich weniger Speicherplatz und Container-Images, startet schneller und verbraucht außerdem weniger CPU-Leistung. Dabei schafft er trotzdem einen höheren Durchsatz beim Dateiupload gegenüber einer neuen Nextcloud-Installation (er verfügt aber natürlich auch über weniger Funktionalität, insofern ist der Vergleich nicht perfekt). 
+
+### OpenCloud ist (noch) keine App- oder Groupware-Plattform
+
+Der Ausbau zu einer generischen App-Plattform findet bei OpenCloud deutlich behutsamer statt. Inzwischen gibt es zwar einen "App Store", dahinter versteckt sich aber eine Mogelpackung. Dabei handelt es sich um eine Liste von rund 20 reinen Erweiterungen der clientseitigen Benutzeroberfläche. Ein Klick auf einen Eintrag löst keine Installation aus, sondern lädt lediglich eine ZIP-Datei herunter, die der Nutzer dann selber installieren muss. Eine Schnittstelle für serverseitige Erweiterungen bietet OpenCloud bisher – konzeptionell bedingt – nicht an. Denn gemäß der Microservices-Architektur muss eine OpenCloud-App aktuell einen komplett unabhängigen Web-Service bereitstellen. Das bedeutet, dass die Installation einer solchen Erweiterung auf der Infrastruktur-Ebene (Docker Compose oder Kubernetes) erfolgen muss, und nicht über die Admin-Oberfläche erledigt werden kann. Ob und wann so ein "One-Click"-App-Store überhaupt auf der Roadmap des OpenCloud-Teams steht, ist aktuell unklar. Zumindest bei der Integration von Office-Lösungen bietet OpenCloud aber die gleichen Optionen wie Nextcloud an (OnlyOffice, Collabora oder Euro-Office).
+
+<Figure
+  src={opencloudAppStoreImage}
+  maxHeight={30}
+  alt="Der App Store von OpenCloud mit 22 Erweiterungen, darunter Draw.io, Excalidraw, Maps, Notes und ein Importer für externe Cloud-Speicher."
+  caption="Der OpenCloud App Store ist eine überschaubare Liste von rund 20 reinen Frontend-Erweiterungen und konzeptionell nicht vergleichbar mit dem Nextcloud App Store"
+/>
+
+### Eigene Groupware-Apps sind in der Entwicklung
+
+Wer aktuell über das "Dateien teilen" hinaus auch noch Kontakte oder Kalender mit OpenCloud nutzen möchte, der wird mit einer temporären Zwischenlösung konfrontiert: Über eine Umgebungsvariable kann OpenCloud eine separate Instanz des freien Cal/CardDAV-Servers [Radicale](https://radicale.org/) nutzen. Die Integration in die OpenCloud-UI ist allerdings sehr minimal – eine klassische Kalender- oder Adressbuch-Ansicht für Nutzer gibt es nicht (lediglich eine Konfigurations-Ansicht). Die Radicale-Daten können also nur mit externen Kalender- oder Adressbuch-Anwendungen verwendet werden. Langfristig arbeitet OpenCloud aber auch an echten, eigenen Groupware-Funktionen wie [E-Mail](https://github.com/opencloud-eu/web/tree/main/packages/web-app-mail), [Kalender](https://github.com/opencloud-eu/web/pull/3838) und [Kontakten](https://github.com/opencloud-eu/web/tree/main/packages/web-app-contacts) auf Basis des JMAP-Protokolls. Zur Nutzung dieser neuen Frontends wird dann der moderne [Stalwart](https://stalw.art/)-Mailserver im Backend vorausgesetzt.
+
+
+
+<ProsCons title="OpenCloud" link="https://demo.opencloud.eu/" linkLabel="OpenCloud-Demo ausprobieren" linkIcon="play">
+  <Pros>
+    - Geringerer Ressourcenverbrauch durch kompiliertes Go-Backend
+    - Moderne, visuell konsistente Oberfläche
+    - Keine Datenbank nötig, Metadaten liegen im Dateisystem
+  </Pros>
+  <Cons>
+    - Deutlich geringerer Funktionsumfang (nur Dateien Teilen, Bearbeiten und Synchronisieren)
+    - Nur Frontend-Erweiterungen möglich – keine einfache Erweiterung durch serverseitige Apps 
+  </Cons>
+  <ProsConsFooter label="Geeignet für">
+    - Anwender, die "nur" Dateien teilen, synchronisieren und ggf. mit Web-Office bearbeiten wollen
+    - Umgebungen mit limitierten Ressourcen
+  </ProsConsFooter>
+</ProsCons>

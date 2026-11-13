@@ -1,0 +1,34 @@
+---
+import { toCssLength } from './length'
+
+interface Props {
+  /** Small uppercase line above the title, e.g. "März 2024". */
+  date?: string
+  title?: string
+  /** Filled dot instead of a hollow one, for milestones. */
+  highlight?: boolean
+  /**
+   * Extra space above the item, e.g. to place a later event lower than one in a neighboring lane.
+   * A number is in rem; strings are used as CSS lengths.
+   */
+  offset?: number | string
+}
+
+const { date, title, highlight = false, offset } = Astro.props
+const offsetValue = toCssLength(offset)
+---
+
+<li
+  class='timeline-item'
+  data-highlight={highlight ? '' : undefined}
+  style={offsetValue ? `--tl-offset: ${offsetValue}` : undefined}
+>
+  <span class='timeline-dot' aria-hidden='true'></span>
+  {date && <p class='timeline-date'>{date}</p>}
+  {title && <p class='timeline-title'>{title}</p>}
+  {Astro.slots.has('default') && (
+    <div class='timeline-body'>
+      <slot />
+    </div>
+  )}
+</li>

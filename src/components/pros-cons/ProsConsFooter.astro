@@ -1,0 +1,16 @@
+---
+interface Props {
+  /** Optional small label above the text, e.g. "Fazit". */
+  label?: string
+}
+
+const { label } = Astro.props
+---
+
+<!-- order-last: always below the columns, wherever it's placed inside <ProsCons>. -->
+<div class='order-last bg-bb-grey-200 px-5 py-4 md:col-span-2 md:px-6'>
+  {label && <p class='not-prose mb-1 text-sm uppercase tracking-wide text-black/60'>{label}</p>}
+  <div class='text-[0.9em] leading-[1.4] *:first:mt-0 *:last:mb-0'>
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,372 @@
+---
+/**
+ * Vertical timeline for blog posts. Children: <TimelineItem> and <TimelineSplit>.
+ *
+ * <Timeline>
+ *   <TimelineItem date="2013" title="Start" highlight>Optional text</TimelineItem>
+ *   <TimelineSplit>
+ *     <TimelineLane label="A"><TimelineItem title="…" /></TimelineLane>
+ *     <TimelineLane label="B"><TimelineItem title="…" /></TimelineLane>
+ *   </TimelineSplit>
+ *   <TimelineItem title="Lanes merge back here" />
+ * </Timeline>
+ *
+ * A split followed by an item merges back into one line. A split at the end stays open.
+ */
+---
+
+<ol class='timeline'>
+  <slot />
+</ol>
+
+<style is:global>
+  .timeline {
+    --tl-line: var(--color-bb-grey-300);
+    --tl-ink: var(--color-bb-grey-900);
+    /* Background behind the dots. Containers with a colored background can set --tl-bg. */
+    --tl-x: 0.5rem; /* center of the line */
+    --tl-w: 2px; /* line width */
+    --tl-dot: 0.875rem;
+    --tl-indent: 2rem; /* text offset from the left edge */
+    --tl-gap: 1.25rem; /* space between lanes */
+    --tl-r: 1rem; /* radius of the fork/join curves */
+    --tl-space: 2rem; /* space between items */
+  }
+
+  /* Reset prose list styles. Selectors are prefixed with .timeline to beat .prose. */
+  .timeline,
+  .timeline .timeline-lane-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .timeline {
+    margin-block: 2.5rem;
+    /* Scroll sideways if the lanes don't fit (see min-width below). The small inline padding keeps
+       the dot rings from being clipped by the scroll container. */
+    overflow-x: auto;
+    padding-inline: 3px;
+    margin-inline: -3px;
+  }
+
+  .timeline .timeline-item,
+  .timeline .timeline-split {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  .timeline .timeline-item::marker {
+    content: none;
+  }
+
+  /* Item */
+  .timeline .timeline-item {
+    /* Vertical center of the first text line, used to place the dot. */
+    --tl-dot-y: 0.6em;
+    /* Space above the item: automatic (after a merge) plus the item's own offset prop. */
+    --tl-above: 0px;
+    --tl-dot-top: calc(var(--tl-above) + var(--tl-offset, 0px) + var(--tl-dot-y));
+    padding: calc(var(--tl-above) + var(--tl-offset, 0px)) 0 var(--tl-space) var(--tl-indent);
+  }
+
+  .timeline .timeline-item:not(:has(.timeline-date)) {
+    --tl-dot-y: 0.8em;
+  }
+
+  .timeline .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Breathing room between a merge and the next dot. */
+  .timeline .timeline-split + .timeline-item {
+    --tl-above: 1rem;
+  }
+
+  .timeline .timeline-dot {
+    position: absolute;
+    z-index: 1;
+    left: calc(var(--tl-x) - var(--tl-dot) / 2);
+    top: calc(var(--tl-dot-top) - var(--tl-dot) / 2);
+    width: var(--tl-dot);
+    height: var(--tl-dot);
+    border: 2px solid var(--tl-ink);
+    border-radius: 50%;
+    background: var(--tl-bg, white);
+    box-shadow: 0 0 0 3px var(--tl-bg, white);
+  }
+
+  .timeline .timeline-item[data-highlight] .timeline-dot {
+    background: var(--tl-ink);
+  }
+
+  .timeline .timeline-date {
+    margin: 0;
+    font-size: 0.75em;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(0 0 0 / 0.6);
+  }
+
+  .timeline .timeline-title {
+    margin: 0;
+    font-family: var(--font-grotesk);
+    font-size: 1.125em;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--tl-ink);
+  }
+
+  .timeline .timeline-body {
+    margin-top: 0.25rem;
+    font-size: 0.9em;
+    /* Same as article paragraphs, also for text written on one line without a <p>. */
+    line-height: 1.4;
+  }
+
+  .timeline .timeline-body > :first-child {
+    margin-top: 0;
+  }
+
+  .timeline .timeline-body > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Main line: each top-level item draws its own segment, so splits can sit in between. */
+  .timeline > .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--tl-x) - var(--tl-w) / 2);
+    width: var(--tl-w);
+    top: 0;
+    bottom: 0;
+    background: var(--tl-line);
+  }
+
+  .timeline > .timeline-item:first-child::before {
+    top: var(--tl-dot-top);
+  }
+
+  .timeline > .timeline-item:last-child::before {
+    bottom: auto;
+    height: var(--tl-dot-top);
+  }
+
+  .timeline > .timeline-item:only-child::before {
+    content: none;
+  }
+
+  /*
+   * Split into lanes. TimelineSplit sets grid-template-columns: every lane with text gets an equal
+   * share (at least 6.5rem), a lane that splits again one share per text lane below it, and an
+   * empty lane a narrow fixed column.
+   */
+  .timeline .timeline-lanes {
+    position: relative;
+    display: grid;
+    column-gap: var(--tl-gap);
+    font-size: 0.9em;
+  }
+
+  .timeline .timeline-lanes .timeline-lanes {
+    font-size: 1em;
+  }
+
+  .timeline .timeline-lanes .timeline-title {
+    font-size: 1em;
+  }
+
+  .timeline .timeline-lanes .timeline-item {
+    --tl-dot-y: 0.6em;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .timeline .timeline-lanes .timeline-item:not(:has(.timeline-date)) {
+    --tl-dot-y: 0.7em;
+  }
+
+  /* Lanes default to "open" (lines fade out); see "Merging lanes" below for the closed variant. */
+  .timeline .timeline-lane {
+    /* Set per lane by its offset prop. Declared here so nested lanes don't inherit it. */
+    --tl-lane-offset: 0px;
+    position: relative;
+    min-width: 0;
+    padding-top: calc(var(--tl-r) + 0.75rem + var(--tl-lane-offset));
+    padding-bottom: var(--tl-space);
+  }
+
+  /* Lane ends with an open split: let the sub-lanes do the fading. */
+  .timeline .timeline-lane:has(> .timeline-lane-items > .timeline-split:last-child) {
+    padding-bottom: 0;
+  }
+
+  .timeline .timeline-lane-label {
+    margin: 0 0 0.75rem var(--tl-indent);
+    font-family: var(--font-grotesk);
+    font-size: 0.875em;
+    font-weight: 500;
+    color: var(--tl-ink);
+  }
+
+  /* Lane line */
+  .timeline .timeline-lane::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--tl-x) - var(--tl-w) / 2);
+    width: var(--tl-w);
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(var(--tl-line) calc(100% - var(--tl-space)), transparent);
+  }
+
+  .timeline .timeline-lane:not(:first-child)::after {
+    top: calc(var(--tl-r) + var(--tl-lane-offset));
+  }
+
+  /*
+   * Curves into a lane (fork, at its offset) and back out (join, at the bottom). TimelineSplit
+   * places each one over the grid columns from the line it starts at to the lane before the target,
+   * so the curve ends exactly on the target lane's line whatever the lane widths are.
+   */
+  .timeline .timeline-fork,
+  .timeline .timeline-join {
+    position: absolute;
+    grid-row: 1;
+    left: calc(var(--tl-x) - var(--tl-w) / 2);
+    width: calc(100% + var(--tl-gap) + var(--tl-w));
+    height: var(--tl-r);
+    border: 0 solid var(--tl-line);
+    border-right-width: var(--tl-w);
+  }
+
+  .timeline .timeline-fork {
+    top: var(--tl-fork-offset, 0px);
+    border-top-width: var(--tl-w);
+    border-top-right-radius: var(--tl-r);
+  }
+
+  .timeline .timeline-fork[data-timeline-origin='new'] {
+    border-style: dashed;
+  }
+
+  .timeline .timeline-join {
+    display: none;
+    bottom: 0;
+    border-bottom-width: var(--tl-w);
+    border-bottom-right-radius: var(--tl-r);
+  }
+
+  /* Starting at a middle lane: overlap its incoming curve so the horizontal line has no gap. */
+  .timeline [data-timeline-chained]:is(.timeline-fork, .timeline-join) {
+    left: calc(var(--tl-x) - var(--tl-w) / 2 - var(--tl-r));
+    width: calc(100% + var(--tl-gap) + var(--tl-w) + var(--tl-r));
+  }
+
+  /*
+   * Merging lanes: a split that isn't the last child merges back into one line, and so does
+   * every split nested inside it. Works at any depth.
+   */
+  .timeline .timeline-split:not(:last-child) .timeline-join {
+    display: block;
+  }
+
+  .timeline .timeline-split:not(:last-child) .timeline-lane {
+    padding-bottom: calc(var(--tl-r) + var(--tl-space));
+
+    &:has(> .timeline-lane-items > .timeline-split:last-child) {
+      padding-bottom: calc(var(--tl-r) + var(--tl-space));
+    }
+
+    &::after {
+      background: var(--tl-line);
+    }
+
+    &:not(:first-child)::after {
+      bottom: var(--tl-r);
+    }
+  }
+
+  /* End marker (TimelineEnd): a cross instead of a dot, and the line stops at it. */
+  .timeline .timeline-end {
+    /* !important: the "item without date" rules are more specific and would move the cross. */
+    --tl-dot-y: calc(var(--tl-dot) / 2) !important;
+    box-sizing: content-box;
+    height: var(--tl-dot);
+    padding-bottom: 0;
+  }
+
+  .timeline .timeline-end .timeline-dot {
+    border: 0;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 125%;
+      height: var(--tl-w);
+      border-radius: var(--tl-w);
+      background: var(--tl-ink);
+      translate: -50% -50%;
+      rotate: 45deg;
+    }
+
+    &::after {
+      rotate: -45deg;
+    }
+  }
+
+  /*
+   * A lane ending with a cross: solid line down to the cross, no fade, no merge. It isn't
+   * stretched to the height of its neighbors, so its line ends at the cross.
+   */
+  .timeline .timeline-lane[data-timeline-ended],
+  .timeline .timeline-split:not(:last-child) .timeline-lane[data-timeline-ended] {
+    align-self: start;
+    padding-bottom: var(--tl-space);
+
+    &::after {
+      bottom: calc(var(--tl-space) + var(--tl-dot) / 2);
+      background: var(--tl-line);
+    }
+  }
+
+  /*
+   * Covers the outer line in the first column when the first lane ends (see TimelineSplit). The
+   * ended lane's own line and dots are drawn on top of it.
+   */
+  .timeline .timeline-cover {
+    position: absolute;
+    z-index: 1;
+    grid-row: 1;
+    grid-column: 1;
+    top: 0;
+    bottom: 0;
+    /* 1px extra on each side, so no anti-aliased edge of the outer line shows. */
+    left: calc(var(--tl-x) - var(--tl-w) / 2 - 1px);
+    width: calc(var(--tl-w) + 2px);
+    background: var(--tl-bg, white);
+  }
+
+  .timeline .timeline-lane[data-timeline-ended] {
+    &::after {
+      z-index: 2;
+    }
+
+    & .timeline-dot {
+      z-index: 3;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .timeline .timeline-lanes {
+      --tl-indent: 1.5rem;
+      --tl-gap: 0.75rem;
+      font-size: 0.85em;
+    }
+  }
+</style>

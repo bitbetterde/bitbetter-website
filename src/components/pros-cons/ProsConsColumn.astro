@@ -1,0 +1,42 @@
+---
+import CheckIcon from '@phosphor-icons/core/bold/check-bold.svg'
+import XIcon from '@phosphor-icons/core/bold/x-bold.svg'
+import checkUrl from '@phosphor-icons/core/bold/check-bold.svg?url'
+import xUrl from '@phosphor-icons/core/bold/x-bold.svg?url'
+
+interface Props {
+  type: 'pro' | 'con'
+  /** Column heading. Defaults to "Vorteile" / "Nachteile". */
+  label?: string
+}
+
+const { type, label = type === 'pro' ? 'Vorteile' : 'Nachteile' } = Astro.props
+const Icon = type === 'pro' ? CheckIcon : XIcon
+---
+
+<!--
+  The list items get the same icon as the heading, drawn as a CSS mask so it takes the column's
+  color. Only the top-level list gets icons; nested lists keep normal bullets.
+-->
+<div
+  class:list={[
+    'border-t-3 bg-bb-grey-200 px-5 pb-6 pt-5 md:px-6',
+    type === 'pro'
+      ? 'border-emerald-700 [--pc-color:var(--color-emerald-700)]'
+      : 'border-red-700 [--pc-color:var(--color-red-700)]',
+  ]}
+  style={`--pc-icon: url("${type === 'pro' ? checkUrl : xUrl}")`}
+>
+  <p class='not-prose mb-4 flex items-center gap-2.5 font-grotesk text-lg font-medium text-bb-grey-900'>
+    <span
+      class='flex size-6 shrink-0 items-center justify-center rounded-full bg-(--pc-color) text-white'
+      aria-hidden='true'
+    >
+      <Icon class='size-3.5' />
+    </span>
+    {label}
+  </p>
+  <div class='text-[0.9em] leading-[1.4] *:first:mt-0 *:last:mb-0 [&_ul_ul]:my-1.5 [&>ul]:list-none [&>ul]:pl-0 [&>ul>li]:relative [&>ul>li]:my-3 [&>ul>li]:pl-7 [&>ul>li]:before:absolute [&>ul>li]:before:left-0.5 [&>ul>li]:before:top-[0.25em] [&>ul>li]:before:size-[0.9em] [&>ul>li]:before:bg-(--pc-color) [&>ul>li]:before:mask-(--pc-icon) [&>ul>li]:before:mask-contain [&>ul>li]:before:mask-center [&>ul>li]:before:mask-no-repeat [&>ul>li]:before:content-[""]'>
+    <slot />
+  </div>
+</div>

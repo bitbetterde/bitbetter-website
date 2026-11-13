@@ -1,0 +1,78 @@
+---
+/**
+ * Pro/con comparison for blog posts. Children: <Pros> and <Cons>, each with a Markdown list,
+ * and an optional <ProsConsFooter> (always shown at the bottom).
+ *
+ * <ProsCons title="OpenCloud">
+ *   <Pros>
+ *     - Schnell
+ *   </Pros>
+ *   <Cons>
+ *     - Wenige Apps
+ *   </Cons>
+ *   <ProsConsFooter label="Fazit">Gut für reines Datei-Teilen.</ProsConsFooter>
+ * </ProsCons>
+ *
+ * The columns sit side by side on wide screens and stack on small ones.
+ */
+interface Props {
+  /** Optional heading above both columns, e.g. the product name. */
+  title?: string
+  /** Optional link, shown as an icon on the right of the heading (opens in a new tab). */
+  link?: string
+  /** What the link does, for screen readers and the tooltip. */
+  linkLabel?: string
+  /**
+   * Name of a Phosphor icon (https://phosphoricons.com), e.g. "play". Add "-fill" for the filled
+   * variant, e.g. "play-fill".
+   */
+  linkIcon?: string
+}
+
+const { title, link, linkLabel = 'Demo ausprobieren', linkIcon = 'arrow-up-right' } = Astro.props
+
+// All Phosphor icons as SVG source, loaded lazily. Raw imports, because normal SVG imports would
+// copy all ~3000 icons into the build output.
+const icons = import.meta.glob<string>(
+  [
+    '/node_modules/@phosphor-icons/core/assets/regular/*.svg',
+    '/node_modules/@phosphor-icons/core/assets/fill/*.svg',
+  ],
+  { query: '?raw', import: 'default' },
+)
+const iconPath = Object.keys(icons).find((path) => path.endsWith(`/${linkIcon}.svg`))
+if (link && !iconPath) {
+  throw new Error(`ProsCons: unknown icon "${linkIcon}". Use a name from phosphoricons.com.`)
+}
+const linkIconSvg =
+  link && iconPath
+    ? (await icons[iconPath]()).replace('<svg ', '<svg class="size-4" aria-hidden="true" ')
+    : undefined
+---
+
+<!-- Darker list bullets: the default ones are too light on the grey background. -->
+<section
+  class='my-10 grid gap-0.5 [--tw-prose-bullets:var(--color-bb-grey-450)] md:grid-cols-2'
+  aria-label={title}
+>
+  {(title || link) && (
+    <div class='not-prose flex items-center gap-4 bg-bb-grey-200 px-5 py-4 md:col-span-2 md:px-6'>
+      {title && (
+        <p class='font-grotesk text-xl font-medium leading-snug text-bb-grey-900'>{title}</p>
+      )}
+      {link && (
+        <a
+          href={link}
+          target='_blank'
+          rel='noopener'
+          aria-label={linkLabel}
+          title={linkLabel}
+          class='ml-auto flex size-9 shrink-0 items-center justify-center rounded-full border border-black/20 text-bb-grey-900 transition-colors hover:bg-bb-grey focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
+        >
+          <Fragment set:html={linkIconSvg} />
+        </a>
+      )}
+    </div>
+  )}
+  <slot />
+</section>

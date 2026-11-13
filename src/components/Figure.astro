@@ -1,22 +1,62 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
+import CaretDownIcon from '@phosphor-icons/core/regular/caret-down.svg'
 import { isUrl, stripProtocol } from '../util/caption'
 import { contentSizes, widthsFor } from '../util/images'
+import { toCssLength } from './timeline/length'
 
 interface Props {
   src: ImageMetadata
   alt?: string
   caption?: string
+  /**
+   * Cuts tall images off at this height (a number is in rem) and fades them out. A click shows the
+   * whole image. Images that are shorter anyway are shown in full.
+   */
+  maxHeight?: number | string
 }
 
-const { src, alt = '', caption } = Astro.props
+const { src, alt = '', caption, maxHeight } = Astro.props
+const maxHeightValue = toCssLength(maxHeight)
 ---
 
 <figure>
-  <Image src={src} alt={alt} widths={widthsFor(src)} sizes={contentSizes} class='mx-auto' />
+  {maxHeightValue ? (
+    <div
+      class='group/figure relative overflow-hidden outline-none transition-[max-height] duration-500 ease-in-out data-expanded:max-h-none! data-fits:max-h-none! motion-reduce:transition-none noscript:max-h-none! print:max-h-none!'
+      style={`max-height: ${maxHeightValue}`}
+      tabindex='-1'
+      data-figure-collapsible
+    >
+      <Image
+        src={src}
+        alt={alt}
+        widths={widthsFor(src)}
+        sizes={contentSizes}
+        class='mx-auto my-0!'
+      />
+      {/* Covers the whole cut-off image, so a click anywhere shows it in full. */}
+      <button
+        type='button'
+        class='absolute inset-0 flex cursor-zoom-in items-end justify-center pb-5 group-data-expanded/figure:hidden group-data-fits/figure:hidden noscript:hidden print:hidden'
+        aria-expanded='false'
+      >
+        <span
+          class='absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-(--figure-bg,white)'
+          aria-hidden='true'
+        />
+        <span class='relative flex items-center gap-2 rounded-full border border-black/20 bg-white px-4 py-2 text-sm font-medium text-bb-grey-900 shadow-sm transition-colors hover:bg-bb-grey-200'>
+          Ganzes Bild anzeigen
+          <CaretDownIcon class='size-4' aria-hidden='true' />
+        </span>
+      </button>
+    </div>
+  ) : (
+    <Image src={src} alt={alt} widths={widthsFor(src)} sizes={contentSizes} class='mx-auto' />
+  )}
   {caption && (
-    <figcaption class='mt-1 text-sm text-right text-black/60'>
+    <figcaption class='mt-1 text-sm text-black/60'>
       {isUrl(caption) ? (
         <>
           Quelle:{' '}
@@ -35,3 +75,28 @@ const { src, alt = '', caption } = Astro.props
     </figcaption>
   )}
 </figure>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>('[data-figure-collapsible]')) {
+    const image = box.querySelector('img')
+    const button = box.querySelector('button')
+    if (!image || !button) continue
+
+    // No need to cut off an image that fits (it gets narrower and shorter on small screens).
+    const limit = parseFloat(getComputedStyle(box).maxHeight)
+    new ResizeObserver(() => {
+      box.toggleAttribute('data-fits', image.offsetHeight <= limit + 1)
+    }).observe(image)
+
+    button.addEventListener('click', () => {
+      // Animate from the cut-off height to the full height, then drop the limit for good.
+      box.style.maxHeight = `${box.scrollHeight}px`
+      const done = () => box.setAttribute('data-expanded', '')
+      box.addEventListener('transitionend', done, { once: true })
+      setTimeout(done, 600)
+      button.setAttribute('aria-expanded', 'true')
+      // The button disappears, so keep the keyboard focus in the figure.
+      box.focus({ preventScroll: true })
+    })
+  }
+</script>

@@ -1,0 +1,45 @@
+---
+import PlusIcon from '@phosphor-icons/core/regular/plus.svg'
+
+interface Props {
+  /** Visible heading of the collapsed box. */
+  title: string
+  /** Small uppercase label above the title. */
+  label?: string
+  /** Start expanded. */
+  open?: boolean
+}
+
+const { title, label = 'Hintergrund', open = false } = Astro.props
+---
+
+<!--
+  Open/close animation: the panel animates its grid row from 0fr to 1fr (works in all current
+  browsers). Its padding lives two levels deeper so the row can collapse to 0. The transition on
+  ::details-content keeps the content rendered while the closing animation plays.
+-->
+<details
+  class='group my-10 bg-bb-grey-200 [--tl-bg:var(--color-bb-grey-200)] [--figure-bg:var(--color-bb-grey-200)] [--tw-prose-bullets:var(--color-bb-grey-450)] details-content:transition-[content-visibility] details-content:transition-discrete details-content:duration-300 motion-reduce:details-content:transition-none print:details-content:[content-visibility:visible]'
+  open={open}
+>
+  <summary class='not-prose flex cursor-pointer list-none items-center gap-4 px-5 py-4 transition-colors hover:bg-bb-grey focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black md:px-6 [&::-webkit-details-marker]:hidden'>
+    <span class='flex flex-col gap-0.5'>
+      <span class='text-sm uppercase tracking-wide text-black/60'>{label}</span>
+      <span class='font-grotesk text-xl font-medium leading-snug text-bb-grey-900'>{title}</span>
+    </span>
+    <span
+      class='ml-auto flex size-9 shrink-0 items-center justify-center rounded-full border border-black/20 transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none'
+      aria-hidden='true'
+    >
+      <PlusIcon class='size-4' />
+    </span>
+  </summary>
+  <div class='grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-300 group-open:grid-rows-[1fr] group-open:opacity-100 group-open:starting:grid-rows-[0fr] group-open:starting:opacity-0 motion-reduce:transition-none print:grid-rows-[1fr] print:opacity-100'>
+    <div class='min-h-0 overflow-hidden'>
+      <!-- Inherits the article's prose styles; em-based spacing scales with the smaller font size. -->
+      <div class='px-5 pb-6 pt-4 text-[0.9em] md:px-6 *:first:mt-0 *:last:mb-0'>
+        <slot />
+      </div>
+    </div>
+  </div>
+</details>

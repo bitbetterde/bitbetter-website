@@ -1,0 +1,109 @@
+---
+/**
+ * Splits the timeline into parallel lanes. Children: <TimelineLane>.
+ *
+ * Lanes render first, so this component can read their data attributes to size the grid columns
+ * and to draw the curves: each lane forks off the first lane's line at its offset (or off the
+ * nearest lane to its left with the same offset, so lanes forking at the same height share one
+ * horizontal line) and joins back in at the bottom.
+ */
+const html = Astro.slots.has('default') ? await Astro.slots.render('default') : ''
+
+/** Splits the rendered HTML into the top-level lanes (ignoring nested ones) by counting divs. */
+function topLevelLanes(source: string) {
+  const lanes: string[] = []
+  let depth = 0
+  let start = -1
+  for (const match of source.matchAll(/<div\b|<\/div>/g)) {
+    if (match[0] === '</div>') {
+      depth--
+      if (depth === 0 && start >= 0) {
+        lanes.push(source.slice(start, match.index + match[0].length))
+        start = -1
+      }
+    } else {
+      if (depth === 0) start = match.index
+      depth++
+    }
+  }
+  return lanes
+}
+
+const lanes = topLevelLanes(html).map((lane) => {
+  const rootTag = lane.slice(0, lane.indexOf('>'))
+  const attr = (name: string) =>
+    rootTag.match(new RegExp(`\\bdata-timeline-${name}="([^"]*)"`))?.[1]
+  return {
+    html: lane,
+    leaf: attr('leaf'),
+    grow: Number(attr('grow') ?? 1),
+    origin: attr('origin') ?? 'fork',
+    offset: attr('offset') ?? '0px',
+    ended: attr('ended') === 'true',
+  }
+})
+
+const columns = lanes
+  .map(({ leaf, grow }) =>
+    leaf === 'empty'
+      ? 'var(--tl-r)'
+      : leaf === 'filled'
+        ? 'minmax(6.5rem, 1fr)'
+        : `minmax(auto, ${grow}fr)`,
+  )
+  .join(' ')
+
+// Grid lines are 1-based: "from / to" spans the lanes from..to-1, i.e. up to the target's neighbor.
+const curves = lanes.slice(1).map((lane, i) => {
+  const target = i + 2
+  let from = 1
+  for (let j = target - 1; j >= 2; j--) {
+    if (lanes[j - 1].offset === lane.offset) {
+      from = j
+      break
+    }
+  }
+  return { target, from, origin: lane.origin, offset: lane.offset }
+})
+
+// Joins back at the bottom, from the nearest lane to the left that hasn't ended. Ended lanes
+// don't join.
+const joins = lanes.flatMap((lane, i) => {
+  const target = i + 1
+  if (target === 1 || lane.ended) return []
+  let from = 1
+  for (let j = target - 1; j >= 2; j--) {
+    if (!lanes[j - 1].ended) {
+      from = j
+      break
+    }
+  }
+  return [{ target, from }]
+})
+---
+
+<li class='timeline-split'>
+  <div class='timeline-lanes' style={`grid-template-columns: ${columns}`}>
+    <Fragment set:html={lanes.length ? lanes.map((lane) => lane.html).join('') : html} />
+    {curves.map(({ target, from, origin, offset }) => (
+      <span
+        class='timeline-fork'
+        aria-hidden='true'
+        data-timeline-origin={origin}
+        data-timeline-chained={from > 1 ? '' : undefined}
+        style={`grid-column: ${from} / ${target}; --tl-fork-offset: ${offset}`}
+      />
+    ))}
+    {/* The first lane continues the line of the lane around this split. If it ends, cover that
+        outer line, which would otherwise keep going below the cross. */}
+    {lanes[0]?.ended && <span class='timeline-cover' aria-hidden='true' />}
+    {joins.map(({ target, from }) => (
+      <span
+        class='timeline-join'
+        aria-hidden='true'
+        data-timeline-chained={from > 1 ? '' : undefined}
+        style={`grid-column: ${from} / ${target}`}
+      />
+    ))}
+  </div>
+</li>

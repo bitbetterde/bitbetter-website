@@ -1,0 +1,12 @@
+---
+import ProsConsColumn from './ProsConsColumn.astro'
+
+interface Props {
+  /** Column heading. Defaults to "Nachteile". */
+  label?: string
+}
+---
+
+<ProsConsColumn type='con' {...Astro.props}>
+  <slot />
+</ProsConsColumn>

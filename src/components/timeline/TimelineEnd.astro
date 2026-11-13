@@ -1,0 +1,14 @@
+---
+interface Props {
+  /** Text for screen readers. */
+  label?: string
+}
+
+const { label = 'Ende' } = Astro.props
+---
+
+<!-- Ends a lane or the whole timeline: a cross instead of a dot, and the line stops here. -->
+<li class='timeline-item timeline-end' data-timeline-end='true'>
+  <span class='timeline-dot' aria-hidden='true'></span>
+  <span class='sr-only'>{label}</span>
+</li>

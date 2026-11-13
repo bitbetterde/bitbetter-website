@@ -43,7 +43,10 @@ const shareImageUrl = await getShareImageUrl(image.src, Astro.url.origin)
   metaDate={post.data.date?.toISOString()}
   metaKeywords={keywords}
 >
-  <SectionGridContainer className='bg-bb-grey-200' innerClassName='py-12 lg:py-24 px-5 lg:px-0'>
+  <SectionGridContainer
+    className='bg-bb-grey-200'
+    innerClassName='py-8 sm:py-12 lg:py-24 px-5 lg:px-0'
+  >
     <header class='lg:col-start-2 col-span-11 flex flex-col gap-4'>
       {subtitle && <p class='uppercase text-black/60'>{subtitle}</p>}
       <h1 class='font-grotesk text-4xl md:text-7xl font-medium'>{title}</h1>
