@@ -18,7 +18,7 @@ import { LinkButton } from "@components"
 
 Das Auffinden und Durchsuchen von Dokumenten in größeren Datenmengen gilt als ein Anwendungsfall, bei dem Sprachmodelle besonders hilfreich sein können. In Kombination mit einer sogenannten semantischen Suche, können Sprachmodelle nämlich sowohl Dokumente in einem großen Datenbestand finden, als auch inhaltliche Fragen zu diesen Dokumenten beantworten. So ein "Talk to your data"-Szenario kann jetzt mit Paperless-ngx in Version 3 umgesetzt werden.
 
-Bisher musste man für sowas auf externe Tools oder Erweiterungen zurückgreifen (z.B. [Paperless AI](https://github.com/clusterzx/paperless-ai) oder [paperless-gpt](https://github.com/icereed/paperless-gpt)). Diese Tools waren aber stets nur über externe Benutzeroberflächen nutzbar, nicht in <ToolTag>Paperless-ngx</ToolTag> integriert und waren teilweise auch sehr kleien Ein-Personen-Projekte mit ungewisser Zukunft. Mit der Version 3 ändert sich das nun und Paperless-ngx bringt KI-Funktionen direkt ab Werk mit.
+Bisher musste man für sowas auf externe Tools oder Erweiterungen zurückgreifen (z. B. [Paperless AI](https://github.com/clusterzx/paperless-ai) oder [paperless-gpt](https://github.com/icereed/paperless-gpt)). Diese Tools waren aber stets nur über externe Benutzeroberflächen nutzbar, nicht in <ToolTag>Paperless-ngx</ToolTag> integriert und waren teilweise auch sehr kleien Ein-Personen-Projekte mit ungewisser Zukunft. Mit der Version 3 ändert sich das nun und Paperless-ngx bringt KI-Funktionen direkt ab Werk mit.
 
 ## Keine Panik: Alle KI-Funktionen sind optional
 
@@ -33,7 +33,7 @@ Bei aktivierten KI-Funktionen kommt KI an drei bzw. vier verschiedenen Stellen i
 
 ## Semantische Suche: Weg von exakten Suchbegriffen, hin zur Bedeutung
 
-Paperless-ngx konnte Dokumente schon bisher per Volltext durchsuchen. Das passiert allerdings nur auf Basis exakt übereinstimmender Suchbegriffe. Wer nach "Schule" sucht, wird auch nur Dokumente finden, welche dieses Wort genau so beinhalten. In der neuen Version 3 kann man mit dem neuen Chat-Button in der Header-Leiste eine semantische Suche starten. Mit einem Prompt wie "Welche Dokumente behandeln das Thema Schule?" werden nicht nur Dokumente gefunden, die das Wort "Schule" beinhalten, sondern auch Dokumente mit Wörtern, die inhaltlich ähnlich sind, z.B. Begriffe wie "Bildung", "Lehrplan" oder "Unterricht". Das funktioniert auch über mehrere Sprachen hinweg (ein deutscher Prompt findet auch semantische Ergebnisse in einem englischsprachigen Dokument).
+Paperless-ngx konnte Dokumente schon bisher per Volltext durchsuchen. Das passiert allerdings nur auf Basis exakt übereinstimmender Suchbegriffe. Wer nach "Schule" sucht, wird auch nur Dokumente finden, welche dieses Wort genau so beinhalten. In der neuen Version 3 kann man mit dem neuen Chat-Button in der Header-Leiste eine semantische Suche starten. Mit einem Prompt wie "Welche Dokumente behandeln das Thema Schule?" werden nicht nur Dokumente gefunden, die das Wort "Schule" beinhalten, sondern auch Dokumente mit Wörtern, die inhaltlich ähnlich sind, z. B. Begriffe wie "Bildung", "Lehrplan" oder "Unterricht". Das funktioniert auch über mehrere Sprachen hinweg (ein deutscher Prompt findet auch semantische Ergebnisse in einem englischsprachigen Dokument).
 
 Dafür zerlegt Paperless-ngx den Textinhalt eines Dokuments in Abschnitte und erzeugt daraus sogenannte Embeddings: Vektoren (Zahlenfolgen), die nicht bloß identische Wörter, sondern inhaltliche Ähnlichkeit abbilden. Diese Vektoren werden in einem Vektor-Index abgelegt. Neben dem OCR-Text werden auch Notizen, benutzerdefinierte Felder und Metadaten wie Titel, Tags, Korrespondent, Dokumenttyp, Speicherpfad, Archivseriennummer und Datumsangaben dafür verwendet. Dieser Vektor-Index liegt lokal im Paperless-Ordner und wird als SQLite-Datenbank mit der `sqlite-vec`-Erweiterung gespeichert.
 
@@ -89,8 +89,8 @@ Als Endanwender hassen wir die Tendenz von allen Software-Herstellern uns mit KI
 Die neuen KI-Funktionen in Paperless-ngx v3 sind daher in unseren Augen ein guter Schritt in die richtige Richtung. Allerdings sind sie noch etwas kantig und brauchen noch Einiges an Feinschliff in den nächsten Versionen. Einige Punkte, die uns noch fehlen, sind zum Beispiel:
 - Eine Möglichkeit, Chat-Verläufe zu speichern und wieder aufzurufen
 - Die Unterstützung von Markdown-Syntax (Textformatierungen, Tabellen, etc.) in den Antworten des LLMs
-- Bessere Steuerung des aktuellen Kontexts, der an das LLM übergeben wird (z.B. nur bestimmte Dokumente oder bestimmte Metadatenfelder übergeben)
-- UI-Verbesserungen rund um den Chat-Dialog, z.B. eine größere Ansicht, besseres Auto-Scrolling, bessere Darstellung von referenzierten Dokumenten, etc.
+- Bessere Steuerung des aktuellen Kontexts, der an das LLM übergeben wird (z. B. nur bestimmte Dokumente oder bestimmte Metadatenfelder übergeben)
+- UI-Verbesserungen rund um den Chat-Dialog, z. B. eine größere Ansicht, besseres Auto-Scrolling, bessere Darstellung von referenzierten Dokumenten, etc.
 
 <div class="flex gap-4 not-prose items-center justify-center">
   <LinkButton

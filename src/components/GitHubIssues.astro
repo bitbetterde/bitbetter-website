@@ -1,0 +1,154 @@
+---
+import OpenIcon from '@phosphor-icons/core/fill/radio-button-fill.svg'
+import CheckCircleIcon from '@phosphor-icons/core/fill/check-circle-fill.svg'
+import ProhibitIcon from '@phosphor-icons/core/fill/prohibit-fill.svg'
+import PullRequestIcon from '@phosphor-icons/core/fill/git-pull-request-fill.svg'
+import MergeIcon from '@phosphor-icons/core/fill/git-merge-fill.svg'
+import GithubIcon from '@phosphor-icons/core/regular/github-logo.svg'
+import ArrowIcon from '@phosphor-icons/core/regular/arrow-up-right.svg'
+import PlusIcon from '@phosphor-icons/core/regular/plus.svg'
+import { fetchIssue, parseIssueRef, type IssueStatus } from '../util/github'
+
+interface Props {
+  /** Issue or PR URLs, "owner/repo#123", or plain numbers when `repo` is set. */
+  issues: string[]
+  /** Default repository ("owner/repo") for plain issue numbers. */
+  repo?: string
+  /** Optional heading above the list. With a heading, the list can be collapsed by clicking it. */
+  title?: string
+  /** Start expanded (only relevant with a heading). */
+  open?: boolean
+}
+
+const { issues, repo, title, open = false } = Astro.props
+
+// Without a heading there is nothing to click, so the list is a plain, always visible section.
+const Wrapper = title ? 'details' : 'section'
+
+const refs = issues.map((input) => parseIssueRef(input, repo))
+const items = await Promise.all(refs.map(async (ref) => ({ ref, issue: await fetchIssue(ref) })))
+
+// Status text doubles as the accessible label for the icon, so the color is never the only signal.
+const statusConfig: Record<IssueStatus, { icon: typeof OpenIcon; color: string; label: string }> = {
+  open: { icon: OpenIcon, color: 'text-emerald-700', label: 'Offen seit' },
+  completed: { icon: CheckCircleIcon, color: 'text-purple-700', label: 'Erledigt am' },
+  'not-planned': {
+    icon: ProhibitIcon,
+    color: 'text-bb-grey-450',
+    label: 'Nicht geplant, geschlossen am',
+  },
+  duplicate: {
+    icon: ProhibitIcon,
+    color: 'text-bb-grey-450',
+    label: 'Als Duplikat geschlossen am',
+  },
+  'pr-open': {
+    icon: PullRequestIcon,
+    color: 'text-emerald-700',
+    label: 'Pull Request offen seit',
+  },
+  'pr-draft': {
+    icon: PullRequestIcon,
+    color: 'text-bb-grey-450',
+    label: 'Pull-Request-Entwurf seit',
+  },
+  'pr-merged': { icon: MergeIcon, color: 'text-purple-700', label: 'Gemergt am' },
+  'pr-closed': {
+    icon: PullRequestIcon,
+    color: 'text-red-700',
+    label: 'Pull Request geschlossen am',
+  },
+}
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })
+
+const showRepo = new Set(refs.map((ref) => `${ref.owner}/${ref.repo}`.toLowerCase())).size > 1
+---
+
+<!--
+  Same look as ProsCons and Disclosure: grey tiles separated by thin white gaps. Each row is one
+  link. Line heights are set on block elements, because the article's prose line height would
+  otherwise win over a line height set on inline text.
+
+  Open/close animation as in Disclosure: the panel animates its grid row from 0fr to 1fr, and the
+  transition on ::details-content keeps the content rendered while the closing animation plays.
+-->
+<Wrapper
+  class:list={[
+    'not-prose my-10',
+    title &&
+      'group/issues details-content:transition-[content-visibility] details-content:transition-discrete details-content:duration-300 motion-reduce:details-content:transition-none print:details-content:[content-visibility:visible]',
+  ]}
+  open={title ? open : undefined}
+>
+  {title && (
+    <summary class='flex cursor-pointer list-none items-center gap-4 bg-bb-grey-200 px-5 py-4 transition-colors hover:bg-bb-grey focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black md:px-6 [&::-webkit-details-marker]:hidden'>
+      <span class='flex flex-col gap-0.5'>
+        <span class='flex items-center gap-1.5 text-sm uppercase leading-normal tracking-wide text-black/60'>
+          <GithubIcon class='size-4' aria-hidden='true' />
+          GitHub
+        </span>
+        <span class='font-grotesk text-xl font-medium leading-snug text-bb-grey-900'>{title}</span>
+      </span>
+      <span
+        class='ml-auto flex size-9 shrink-0 items-center justify-center rounded-full border border-black/20 transition-transform duration-200 group-open/issues:rotate-45 motion-reduce:transition-none'
+        aria-hidden='true'
+      >
+        <PlusIcon class='size-4' />
+      </span>
+    </summary>
+  )}
+  <div
+    class:list={[
+      title &&
+        'grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-300 group-open/issues:grid-rows-[1fr] group-open/issues:opacity-100 group-open/issues:starting:grid-rows-[0fr] group-open/issues:starting:opacity-0 motion-reduce:transition-none print:grid-rows-[1fr] print:opacity-100',
+    ]}
+  >
+    <ul class:list={['grid min-h-0 gap-0.5 overflow-hidden', title && 'pt-0.5']}>
+      {items.map(({ ref, issue }) => {
+        const refLabel = showRepo ? `${ref.owner}/${ref.repo}#${ref.number}` : `#${ref.number}`
+        const fallbackUrl = `https://github.com/${ref.owner}/${ref.repo}/issues/${ref.number}`
+        const status = issue ? statusConfig[issue.status] : null
+        const Icon = status?.icon ?? GithubIcon
+
+        return (
+          <li>
+            <a
+              class='group/row flex items-start gap-3 bg-bb-grey-200 px-5 py-3 transition-colors hover:bg-bb-grey focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black md:px-6'
+              href={issue?.url ?? fallbackUrl}
+              target='_blank'
+              rel='noopener'
+            >
+              <Icon
+                class:list={['mt-px size-5 shrink-0', status?.color ?? 'text-bb-grey-450']}
+                aria-hidden='true'
+              />
+              <span class='min-w-0 flex-1'>
+                <span class='block text-base font-medium leading-snug text-bb-grey-900 wrap-break-word'>
+                  {issue?.title ?? `${ref.owner}/${ref.repo}#${ref.number}`}
+                </span>
+                {issue && status && (
+                  <span class='mt-1 flex flex-col gap-x-1.5 text-sm leading-normal text-black/60 sm:flex-row sm:flex-wrap'>
+                    <span class='whitespace-nowrap'>{refLabel}</span>
+                    <span class='max-sm:hidden' aria-hidden='true'>
+                      ·
+                    </span>
+                    <span class='whitespace-nowrap'>
+                      {status.label}{' '}
+                      <time datetime={issue.date.toISOString()}>{formatDate(issue.date)}</time>
+                    </span>
+                  </span>
+                )}
+              </span>
+              <ArrowIcon
+                class='mt-0.5 size-4 shrink-0 text-black/40 transition-colors group-hover/row:text-bb-grey-900'
+                aria-hidden='true'
+              />
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+</Wrapper>
