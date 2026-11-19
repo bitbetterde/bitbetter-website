@@ -67,6 +67,8 @@ const authorsCollection = defineCollection({
         src: image(),
         alt: z.string(),
       }),
+      // Continues the author's name, e.g. "<b>Moritz Stückler</b> arbeitete zunächst …"
+      description: z.string().optional(),
       homepage: z.string().optional(),
       fediverse: z.string().optional(),
     }),

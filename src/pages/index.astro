@@ -8,6 +8,7 @@ import { getCardImage } from '../util/images'
 import NewsSection from '@components/NewsSection'
 import WhoWeAreSection from '@components/WhoWeAreSection'
 import CustomersSectionDataWrapper from '@components/CustomersSectionDataWrapper.astro'
+import { getEntry } from 'astro:content'
 
 const devTools = [
   'react',
@@ -37,6 +38,10 @@ const consultTools = [
   'erpnext',
   'n8n',
 ]
+
+const team = (await Promise.all(['moritz', 'fabian'].map((id) => getEntry('authors', id)))).filter(
+  (author) => author !== undefined,
+)
 
 const devToolsItems = await findCollectionItemsByIdOrTitle('tools', devTools)
 const consultToolsItems = await findCollectionItemsByIdOrTitle('tools', consultTools)
@@ -69,7 +74,7 @@ const latestBlogPosts = await Promise.all(
     className='bg-white overflow-hidden'
     innerClassName='py-16 md:py-28 px-5 lg:px-0'
   >
-    <WhoWeAreSection />
+    <WhoWeAreSection authors={team} />
   </SectionGridContainer>
   <SectionGridContainer
     className='bg-black overflow-hidden'
